@@ -1,0 +1,132 @@
+name: defiraiser_mobile
+description: Crowdfunding app for DeFi projects
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.19.6 <3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  #? equatable is a Dart package that helps you to implement value based equality without needing to explicitly override == and hashCode.
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  #?  flutter_bloc is a Flutter package that helps you to easily implement the BLoC (Business Logic Component) design pattern.
+  flutter_bloc: ^8.1.3
+  #? flutter_form_bloc is a Flutter package that helps you to easily create forms with validation.
+  formz: ^0.6.0
+  #? Caches images from the internet
+  cached_network_image:
+    ^3.2.3
+    #?  A Flutter curl-command generator for Dio.
+  curl_logger_dio_interceptor: ^0.0.3
+  #? dartz is a functional programming library for Dart and Flutter. It provides a set of data types and functions to work with them.
+  dartz: ^0.10.1
+  #? A powerful HTTP client for Dart/Flutter, which supports global configuration, interceptors,
+  #? FormData, request cancellation, file uploading/downloading, timeout, and custom adapters etc
+  dio: ^4.0.6
+  #? Retry failed HTTP requests
+  dio_smart_retry: ^1.3.2
+  #?  file_picker is a Flutter plugin to let users pick files from the file system,
+  file_picker:
+    ^5.2.4
+    #?  flutter_native_splash is a Flutter plugin that allows you to easily create a native splash screen.
+  flutter_native_splash:
+    ^2.2.16
+    #? flutter_svg is a Flutter package for drawing SVG pictures.
+  flutter_svg: ^2.0.5
+  #? Fluttertoast is a Flutter plugin to show toast.
+  fluttertoast: ^8.1.1
+  #?  get_it is a service locator that makes it easy to access services throughout your app.
+  get_it: ^7.2.0
+  #? get_storage is a Flutter plugin for persistent storage.
+  get_storage: ^2.0.3
+  #? google_fonts is a Flutter package that provides a set of fonts from Google Fonts.
+  google_fonts: ^2.1.0
+  #?  go_router is a Flutter package that allows you to easily manage your app's navigation.
+  go_router: ^6.2.0
+  #? images_picker is a Flutter plugin to pick images from the image library, and take new pictures with the camera.
+  images_picker: ^1.2.11
+  #?  loading_animation_widget is a Flutter package that provides a loading animation widget.
+  loading_animation_widget: ^1.1.0+5
+  #? injectable is a code generation library for Dart and Flutter that makes it easy to use the dependency injection (DI) design pattern.
+  injectable: any
+  #? internet_connection_checker is a Flutter plugin to check the internet connection.
+  internet_connection_checker: ^1.0.0+1
+  #? Image picker is a Flutter plugin for iOS and Android for picking images from the image library, and taking new pictures with the camera.
+  image_picker: ^0.8.6+4
+  #? Flutter secure storage is a Flutter plugin for storing data in the secure storage.
+  flutter_secure_storage: ^8.0.0
+  #? Local authentication is a Flutter plugin for iOS and Android to authenticate the user using biometrics.
+  local_auth: ^2.1.6
+  #? flutter_riverpod is a Flutter package that provides a set of utilities for using the Riverpod state management library.
+  flutter_riverpod: ^2.1.1
+  #? intl
+  intl: any
+  #? shared_preferences is a Flutter plugin for reading and writing simple key-value pairs.
+  shared_preferences: ^2.0.18
+  #? Pinput is a Flutter package that provides a pin input widget.
+  pinput: ^2.2.21
+  #? Timer count down is a Flutter package that provides a timer count down widget.
+  timer_count_down: ^2.2.2
+  #?  timeago is a Dart package for formatting date into a fuzzy time like "a moment ago", "1 day ago", "1 month ago", etc.
+  timeago: ^3.4.0
+  #? pretty_dio_logger is a Flutter package that provides a pretty logger for Dio.
+  pretty_dio_logger: ^1.1.1
+  #? freezed_annotation is a Dart package that provides a set of utilities for generating code for the freezed package.
+  freezed_annotation: ^2.2.0
+  #? animate_do is a Flutter package that provides a set of animations.
+  animate_do: ^3.0.2
+  #? auto_size_text is a Flutter package that provides a widget that automatically resizes text to fit perfectly within its bounds.
+  auto_size_text: ^3.0.0
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  #? freezed is a code generation library for Dart that helps you to write immutable models with ease.
+  freezed: ^2.3.2
+  #? build_runner is a Dart package that provides a concrete way of generating files using Dart code, outside of tools like pub and the Dart VM.
+  build_runner: ^2.3.3
+  #? import_sorter is a Dart package that helps you to sort your imports.
+  import_sorter: ^4.6.0
+  #? json_serializable is a Dart package that helps you to convert your Dart objects to JSON and vice versa.
+  json_serializable: ^6.6.1
+  #?  very_good_analysis is a Dart package that provides a set of lint rules for Dart and Flutter.
+  very_good_analysis: ^4.0.0+1
+  #?  flutter_test is a Dart package that provides a set of utilities for testing Flutter apps.
+  flutter_test:
+    sdk: flutter
+  #?  mockito is a Dart package that provides a set of utilities for mocking Dart objects.
+  mockito: any
+  #?  bloc_test is a Dart package that provides a set of utilities for testing Flutter apps that use the BLoC (Business Logic Component) design pattern.
+  bloc_test: any
+  #? injectable_generator is a Dart package that provides a set of utilities for generating code for the injectable package.
+  injectable_generator: null
+  #? flutter_launcher_icons is a Flutter package that provides a set of utilities for generating launcher icons for Android and iOS.
+  flutter_launcher_icons: "^0.13.1"
+  #? flutter_staggered_animations is a Flutter package that provides a set of utilities for creating staggered animations.
+  flutter_staggered_animations: ^1.1.1
+
+#? For information on the generic Dart part of this file, see the
+import_sorter:
+  emojis: true
+
+#? The following section is specific to Flutter.
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+    -
+flutter_native_splash:
+  color: "#000000"
+  image: "assets/images/splashLogo.png"
+  android: true
+  ios: true
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/images/appLogo.png"

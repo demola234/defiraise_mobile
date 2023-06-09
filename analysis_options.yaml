@@ -1,0 +1,14 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    avoid_print: false # Uncomment to disable the `avoid_print` rule
+    prefer_const_constructors: false
+    prefer_const_constructors_in_immutables: true
+    avoid_relative_lib_imports: true
+    prefer_const_literals_to_create_immutables: true
+
+analyzer:
+  exclude: [build/**, lib/models/**.freezed.dart, lib/**.g.dart]
+  errors:
+    invalid_annotation_target: ignore
