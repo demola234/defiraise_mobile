@@ -21,6 +21,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   }
 
   @override
+  dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.white200,
@@ -29,7 +35,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
               snap: false,
               automaticallyImplyLeading: false,
               pinned: false,
-              floating: true,
+              floating: false,
               backgroundColor: Colors.transparent,
               actions: [
                 GestureDetector(

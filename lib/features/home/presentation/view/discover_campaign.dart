@@ -35,12 +35,12 @@ class DiscoverCampaign extends StatelessWidget {
             width: context.screenWidth(),
             child: AnimationLimiter(
               child: ListView.builder(
-                  itemCount: 4,
+                  itemCount: 8,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return AnimationConfiguration.staggeredList(
                         position: index,
-                        duration: const Duration(milliseconds: 1000),
+                        duration: const Duration(milliseconds: 200),
                         child: SlideAnimation(
                             delay: Duration(milliseconds: 100),
                             curve: Curves.easeOutQuint,
@@ -54,8 +54,8 @@ class DiscoverCampaign extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15.0),
                                   child: Container(
-                                    height: 70,
-                                    width: 70,
+                                    height: 50,
+                                    width: 50,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: AppColors.grey200.withOpacity(0.5),
@@ -74,8 +74,8 @@ class DiscoverCampaign extends StatelessWidget {
                                 Text(
                                   AppTexts.education,
                                   style: Config.b1(context).copyWith(
-                                    color: AppColors.black100,
-                                    fontSize: 12,
+                                    color: AppColors.grey100,
+                                    fontSize: 10,
                                   ),
                                 )
                               ],

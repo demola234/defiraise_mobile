@@ -28,4 +28,17 @@ class AppIcons {
   static String transfer = '${_baseAssetUrl}transfer.svg';
   static String share = '${_baseAssetUrl}share.svg';
   static String copy = '${_baseAssetUrl}copy.svg';
+
+  //! NAV BAR
+  static String homeSelected = '${_baseAssetUrl}home-selected.svg';
+  static String homeUnselected = '${_baseAssetUrl}home-unselected.svg';
+  static String handSelected = '${_baseAssetUrl}hand-selected.svg';
+  static String handUnselected = '${_baseAssetUrl}hand-unselected.svg';
+  static String donateSelected = '${_baseAssetUrl}donate-selected.svg';
+  static String donateUnselected = '${_baseAssetUrl}donate-unselected.svg';
+  static String profileSelected = '${_baseAssetUrl}profile-selected.svg';
+  static String profileUnselected = '${_baseAssetUrl}profile-unselected.svg';
+
+  //! PROFILE
+  static String copyPaste = '${_baseAssetUrl}copy-paste.svg';
 }

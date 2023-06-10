@@ -8,10 +8,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 class DeFiRaiseAppBar extends StatelessWidget {
   final String? title;
   final List<Widget>? actions;
+  final bool? isBack;
 
   const DeFiRaiseAppBar({
     this.title,
     this.actions,
+    this.isBack = true,
     super.key,
   });
 
@@ -28,12 +30,14 @@ class DeFiRaiseAppBar extends StatelessWidget {
             fontSize: 18,
           )),
       actions: actions,
-      leading: IconButton(
-        icon: SvgPicture.asset(AppIcons.back),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
+      leading: isBack!
+          ? IconButton(
+              icon: SvgPicture.asset(AppIcons.back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            )
+          : null,
     );
   }
 }
