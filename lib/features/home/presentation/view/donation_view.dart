@@ -1,4 +1,4 @@
-part of '../home.dart';
+part of '../_home.dart';
 
 class DonationView extends ConsumerStatefulWidget {
   const DonationView({super.key});
@@ -28,7 +28,7 @@ class _DonationViewState extends ConsumerState<DonationView>
             title: AppTexts.donation,
           )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
+      floatingActionButton: SizedBox(
           width: context.screenWidth() * 0.9,
           height: 50,
           child: Row(

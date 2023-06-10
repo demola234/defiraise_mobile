@@ -91,6 +91,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                                 controller: _passwordController,
                                 inputType: TextInputType.visiblePassword,
                                 textInputAction: TextInputAction.done,
+                                focusNode: _passwordNode,
                                 obscureText: isHide.value,
                                 suffixIcon: Padding(
                                   padding: const EdgeInsets.all(14.0),

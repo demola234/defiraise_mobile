@@ -1,4 +1,4 @@
-part of '../home.dart';
+part of '../_home.dart';
 
 class AmountDonateScreen extends ConsumerStatefulWidget {
   const AmountDonateScreen({super.key});

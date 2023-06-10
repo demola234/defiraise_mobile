@@ -1,4 +1,4 @@
-part of '../home.dart';
+part of '../_home.dart';
 
 class ConfirmDonationDetailsScreen extends ConsumerStatefulWidget {
   const ConfirmDonationDetailsScreen({super.key});

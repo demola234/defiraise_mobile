@@ -1,5 +1,5 @@
 // 🐦 Flutter imports:
-import 'package:defiraiser_mobile/features/home/presentation/home.dart';
+import 'package:defiraiser_mobile/features/home/presentation/_home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -41,7 +41,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SuccessScreen(),
+      home: const HomeScreen(),
     );
   }
 }

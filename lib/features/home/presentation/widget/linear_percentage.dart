@@ -1,4 +1,4 @@
-part of '../home.dart';
+part of '../_home.dart';
 
 linearPercentage(int percentage, int total, AnimationController controller,
     BuildContext context) {

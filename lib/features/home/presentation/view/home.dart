@@ -1,4 +1,4 @@
-part of '../home.dart';
+part of '../_home.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
