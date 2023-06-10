@@ -26,4 +26,6 @@ class AppIcons {
   static String ethBackground = '${_baseAssetUrl}eth_background.svg';
   static String keyBack = '${_baseAssetUrl}keyboardBack.svg';
   static String transfer = '${_baseAssetUrl}transfer.svg';
+  static String share = '${_baseAssetUrl}share.svg';
+  static String copy = '${_baseAssetUrl}copy.svg';
 }
