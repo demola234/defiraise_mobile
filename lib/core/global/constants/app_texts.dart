@@ -70,4 +70,16 @@ class AppTexts {
   static String success = "YEEEH!!!";
   static String successDesc = "Your donation was successful";
   static String continueText = "Go to dashboard";
+  static String walletAddr = "Wallet Address";
+  static String copyAddr = "Copy address";
+
+  //! NAVIGATION
+  static String home = "Home";
+  static String navDonation = "Donations";
+  static String navCampaign = "Campaigns";
+  static String navProfile = "Profile";
+
+
+  //! My Campaign
+  static String myCampaign = "My Campaign";
 }

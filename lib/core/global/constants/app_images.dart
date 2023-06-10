@@ -8,4 +8,5 @@ class AppImages {
   static String avatarPlaceholder = '${_baseAssetUrl}avatar1.png';
   static String avatar(int index) => '${_baseAssetUrl}avatar$index.png';
   static String background = '${_baseAssetUrl}background.png';
+  static String campaign = '${_baseAssetUrl}campaign.png';
 }
