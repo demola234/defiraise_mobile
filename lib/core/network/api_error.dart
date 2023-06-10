@@ -29,7 +29,7 @@ class ApiError {
           errorCode = 'CONNECTION_TIMEOUT';
           break;
         case DioErrorType.other:
-          errorMessage = 'Checks!  your connection';
+          errorMessage = 'Checks! your connection';
           errorCode = 'NETWORK_ERROR';
           break;
         case DioErrorType.receiveTimeout:

@@ -1,4 +1,4 @@
-part of '../home.dart';
+part of '../_home.dart';
 
 class CustomKeyboard extends StatelessWidget {
   final ValueSetter<String> onTap;

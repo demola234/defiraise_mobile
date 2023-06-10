@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_icons.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_images.dart';
+import 'package:defiraiser_mobile/core/global/constants/app_json.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_texts.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 part '../presentation/view/discover_campaign.dart';
 part '../presentation/view/donation_view.dart';

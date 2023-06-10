@@ -67,4 +67,7 @@ class AppTexts {
   static String proceed = "Proceed";
   static String availableBalance = "Available Balance";
   static String confirmDonation = "Confirm Donation Details";
+  static String success = "YEEEH!!!";
+  static String successDesc = "Your donation was successful";
+  static String continueText = "Go to dashboard";
 }
