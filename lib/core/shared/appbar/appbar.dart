@@ -4,6 +4,7 @@ import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class DeFiRaiseAppBar extends StatelessWidget {
   final String? title;
@@ -34,7 +35,7 @@ class DeFiRaiseAppBar extends StatelessWidget {
           ? IconButton(
               icon: SvgPicture.asset(AppIcons.back),
               onPressed: () {
-                Navigator.pop(context);
+                context.pop();
               },
             )
           : null,

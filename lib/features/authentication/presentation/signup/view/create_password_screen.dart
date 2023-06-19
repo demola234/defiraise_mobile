@@ -2,6 +2,7 @@ import 'package:defiraiser_mobile/core/global/constants/app_icons.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_texts.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
+import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class CreatePasswordScreen extends ConsumerStatefulWidget {
   const CreatePasswordScreen({super.key});
@@ -104,19 +106,21 @@ class _CreatePasswordScreenState extends ConsumerState<CreatePasswordScreen>
       //     )),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
           child: SingleChildScrollView(
               child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // VerticalMargin(20),
-                Text(AppTexts.password, style: Config.h2(context).copyWith()),
-                VerticalMargin(5),
+                VerticalMargin(20),
+                Text(AppTexts.password,
+                    style: Config.h2(context).copyWith(
+                      fontSize: 24,
+                    )),
                 // 📝 Note: The code below is the same as the one in the previous snippet.
                 Text(AppTexts.passwordText,
-                    style: Config.b1(context).copyWith(
+                    style: Config.b3(context).copyWith(
                       color: AppColors.grey100,
                     )),
                 VerticalMargin(50),
@@ -134,16 +138,19 @@ class _CreatePasswordScreenState extends ConsumerState<CreatePasswordScreen>
                           isHide.value = !isHide.value;
                         });
                       },
-                      child: SvgPicture.asset(
-                        isHide.value ? AppIcons.eye : AppIcons.eyeSplash,
-                        color: AppColors.grey100,
-                        height: 10,
-                        width: 10,
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: SvgPicture.asset(
+                          isHide.value ? AppIcons.eye : AppIcons.eyeSplash,
+                          color: AppColors.grey100,
+                          height: 10,
+                          width: 10,
+                        ),
                       ),
                     ),
                   ),
                 ),
-                VerticalMargin(20),
+                VerticalMargin(10),
                 AppTextField(
                   hintText: AppTexts.confirmPassword,
                   controller: _confirmPasswordController,
@@ -158,11 +165,16 @@ class _CreatePasswordScreenState extends ConsumerState<CreatePasswordScreen>
                           isConfirmHide.value = !isConfirmHide.value;
                         });
                       },
-                      child: SvgPicture.asset(
-                        isConfirmHide.value ? AppIcons.eye : AppIcons.eyeSplash,
-                        color: AppColors.grey100,
-                        height: 10,
-                        width: 10,
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: SvgPicture.asset(
+                          isConfirmHide.value
+                              ? AppIcons.eye
+                              : AppIcons.eyeSplash,
+                          color: AppColors.grey100,
+                          height: 10,
+                          width: 10,
+                        ),
                       ),
                     ),
                   ),
@@ -200,14 +212,17 @@ class _CreatePasswordScreenState extends ConsumerState<CreatePasswordScreen>
                             _passwordNode.unfocus();
                             _confirmPasswordNode.unfocus();
                             //FIXME: Navigate to login screen
+                            context.goNamed(RouteConstants.login);
                           },
                           textColor: AppColors.white100,
+                          textSize: 12,
                           color: AppColors.primaryColor,
                         ),
                       );
                     }),
 
                 // Use Biometrics with switch
+                VerticalMargin(10),
                 AnimatedBuilder(
                     animation: controller,
                     builder: (BuildContext context, Widget? child) {
@@ -218,7 +233,7 @@ class _CreatePasswordScreenState extends ConsumerState<CreatePasswordScreen>
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(AppTexts.useBiometrics,
-                                style: Config.b1(context).copyWith(
+                                style: Config.b3(context).copyWith(
                                   color: AppColors.grey100,
                                 )),
                             Config.isAndroid

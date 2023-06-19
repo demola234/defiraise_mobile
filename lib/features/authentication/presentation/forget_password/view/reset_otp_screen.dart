@@ -1,10 +1,11 @@
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
-import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
+import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/widgets/resend_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 import 'package:timer_count_down/timer_controller.dart';
@@ -48,12 +49,12 @@ class _ResetOTPScreenState extends ConsumerState<ResetOTPScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size(context.screenWidth(), 60),
-        child: const DeFiRaiseAppBar(
-          title: 'Notifications',
-        ),
-      ),
+      // appBar: PreferredSize(
+      //   preferredSize: Size(context.screenWidth(), 60),
+      //   child: const DeFiRaiseAppBar(
+      //     title: '',
+      //   ),
+      // ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
@@ -63,12 +64,15 @@ class _ResetOTPScreenState extends ConsumerState<ResetOTPScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  VerticalMargin(20),
-                  Text(AppTexts.resetOTP, style: Config.h2(context).copyWith()),
+                  VerticalMargin(30),
+                  Text(AppTexts.resetOTP,
+                      style: Config.h2(context).copyWith(
+                        fontSize: 24,
+                      )),
                   VerticalMargin(5),
                   // 📝 Note: The code below is the same as the one in the previous snippet.
                   Text(AppTexts.verifyOTPDescription("email"),
-                      style: Config.b1(context).copyWith(
+                      style: Config.b3(context).copyWith(
                         color: AppColors.grey100,
                       )),
                   VerticalMargin(50),
@@ -112,7 +116,7 @@ class _ResetOTPScreenState extends ConsumerState<ResetOTPScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(AppTexts.notYourEmail,
-                            style: Config.b1(context).copyWith(
+                            style: Config.b3(context).copyWith(
                               color: AppColors.grey100.withOpacity(0.5),
                             )),
                         const HorizontalMargin(5),
@@ -128,7 +132,7 @@ class _ResetOTPScreenState extends ConsumerState<ResetOTPScreen> {
                           onPressed: () {},
                           child: Text(
                             "Edit Email",
-                            style: Config.b2(context).copyWith(
+                            style: Config.b3(context).copyWith(
                               color: AppColors.secondaryColor,
                             ),
                           ),
@@ -175,7 +179,10 @@ class _ResetOTPScreenState extends ConsumerState<ResetOTPScreen> {
                   const VerticalMargin(30),
                   AppButton(
                     text: AppTexts.verifyOTP,
-                    onTap: () {},
+                    onTap: () {
+                      context.goNamed(RouteConstants.resetConfirmPassword);
+                    },
+                    textSize: 12,
                     textColor: AppColors.white100,
                     color: AppColors.primaryColor,
                   ),

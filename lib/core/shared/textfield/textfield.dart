@@ -85,54 +85,55 @@ class AppTextField extends StatelessWidget {
           textAlign: textAlign,
           textInputAction: textInputAction,
           enabled: enabled,
-          style: Config.b1(context).copyWith(
+          style: Config.b2(context).copyWith(
             color: AppColors.primaryColor,
           ),
           decoration: InputDecoration(
-              fillColor: AppColors.textfieldColor,
-              focusColor: AppColors.white100,
-              filled: true,
-              label: Text(
-                hintText!,
-                style: Config.b3(context).copyWith(
-                  color: AppColors.primaryColor,
-                ),
+            fillColor: AppColors.textfieldColor,
+            focusColor: AppColors.white100,
+            filled: true,
+            label: Text(
+              hintText!,
+              style: Config.b3(context).copyWith(
+                color: AppColors.grey100.withAlpha(100),
               ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(
-                  color: AppColors.grey100.withOpacity(0.5),
-                  width: 1,
-                ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: AppColors.grey200.withOpacity(0.5),
+                width: 1,
               ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(
-                  color: AppColors.grey100.withOpacity(0.5),
-                  width: 1,
-                ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: AppColors.grey200.withOpacity(0.5),
+                width: 1,
               ),
-              focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(
-                  color: AppColors.errorColor,
-                  width: 1,
-                ),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: AppColors.errorColor,
+                width: 1,
               ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(
-                  color: AppColors.white100,
-                  width: 1,
-                ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: AppColors.white100,
+                width: 1,
               ),
-              prefixIcon: prefixIcon,
-              suffixIcon: suffixIcon,
-              labelText: labelText,
-              hintText: label == '' ? 'Enter $hintText' : '$hintText',
-              hintStyle: Config.b2(context).copyWith(
-                color: AppColors.grey100.withOpacity(0.5),
-              )),
+            ),
+            prefixIcon: prefixIcon,
+            suffixIcon: suffixIcon,
+            labelText: labelText,
+            hintText: label == '' ? 'Enter $hintText' : '$hintText',
+            hintStyle: Config.b3(context).copyWith(
+              color: AppColors.grey100.withAlpha(100),
+            ),
+          ),
           onChanged: onChanged,
           validator: validator,
           onTap: onTap,

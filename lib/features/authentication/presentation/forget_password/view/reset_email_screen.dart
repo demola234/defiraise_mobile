@@ -1,12 +1,14 @@
 import 'package:defiraiser_mobile/core/global/constants/app_texts.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
+import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class ResetEmailScreen extends ConsumerStatefulWidget {
   const ResetEmailScreen({super.key});
@@ -30,19 +32,6 @@ class _ResetEmailScreenState extends ConsumerState<ResetEmailScreen>
             preferredSize: Size(context.screenWidth(), 60),
             child: DeFiRaiseAppBar(
               title: '',
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15.0),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(AppTexts.createAccount,
-                        style: Config.b2(context).copyWith(
-                          fontSize: 15,
-                          color: AppColors.primaryColor,
-                        )),
-                  ),
-                )
-              ],
             )),
         body: SafeArea(
             child: Padding(
@@ -54,13 +43,15 @@ class _ResetEmailScreenState extends ConsumerState<ResetEmailScreen>
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              VerticalMargin(20),
+                              // VerticalMargin(20),
                               Text(AppTexts.resetPassword,
-                                  style: Config.h2(context).copyWith()),
+                                  style: Config.h2(context).copyWith(
+                                    fontSize: 24,
+                                  )),
                               VerticalMargin(5),
                               // 📝 Note: The code below is the same as the one in the previous snippet.
                               Text(AppTexts.resetPasswordDesc,
-                                  style: Config.b1(context).copyWith(
+                                  style: Config.b3(context).copyWith(
                                     color: AppColors.grey100,
                                   )),
                               VerticalMargin(50),
@@ -89,7 +80,9 @@ class _ResetEmailScreenState extends ConsumerState<ResetEmailScreen>
                                 text: AppTexts.resetPasswordButton,
                                 onTap: () {
                                   //FIXME: Navigate to login screen
+                                  context.goNamed(RouteConstants.resetOtp);
                                 },
+                                textSize: 12,
                                 textColor: AppColors.white100,
                                 color: AppColors.primaryColor,
                               ),

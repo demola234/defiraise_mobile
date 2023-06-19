@@ -41,11 +41,11 @@ class DiscoverCampaign extends StatelessWidget {
                     return AnimationConfiguration.staggeredList(
                         position: index,
                         duration: const Duration(milliseconds: 200),
-                        child: SlideAnimation(
-                            delay: Duration(milliseconds: 100),
-                            curve: Curves.easeOutQuint,
-                            horizontalOffset: 30,
-                            verticalOffset: 50.0,
+                        child: FadeIn(
+                            delay: Duration(milliseconds: 50),
+                            // curve: Curves.easeOutQuint,
+                            // horizontalOffset: 30,
+                            // verticalOffset: 50.0,
                             child: FlipAnimation(
                                 child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,

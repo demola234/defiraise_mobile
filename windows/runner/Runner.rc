@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "defiraiser_mobile" "\0"
+            VALUE "FileDescription", "DefiFundr" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "defiraiser_mobile" "\0"
+            VALUE "InternalName", "DefiFundr" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
             VALUE "OriginalFilename", "defiraiser_mobile.exe" "\0"
-            VALUE "ProductName", "defiraiser_mobile" "\0"
+            VALUE "ProductName", "DefiFundr" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

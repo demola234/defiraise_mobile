@@ -17,8 +17,8 @@ Row bottomTexts({
         onTap: onTap,
         child: Text(
           buttonText,
-          style: Config.b2(context).copyWith(
-            fontSize: 14,
+          style: Config.b3(context).copyWith(
+            fontSize: 12,
             color: textColor ?? AppColors.grey100,
             fontWeight: FontWeight.bold,
           ),

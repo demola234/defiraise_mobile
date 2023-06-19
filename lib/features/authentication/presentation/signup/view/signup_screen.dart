@@ -1,11 +1,13 @@
 import 'package:defiraiser_mobile/core/global/constants/app_texts.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
+import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class CreateAccountScreen extends ConsumerStatefulWidget {
   const CreateAccountScreen({super.key});
@@ -46,17 +48,18 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen>
                 children: [
                   VerticalMargin(50),
                   Text(AppTexts.createAccount,
-                      style: Config.h2(context).copyWith()),
-                  VerticalMargin(5),
+                      style: Config.h2(context).copyWith(
+                        fontSize: 24,
+                      )),
                   // 📝 Note: The code below is the same as the one in the previous snippet.
                   Text(AppTexts.createAccountDescription,
-                      style: Config.b1(context).copyWith(
+                      style: Config.b3(context).copyWith(
                         color: AppColors.grey100,
                       )),
                   VerticalMargin(50),
                   AppTextField(
                     controller: _firstNameController,
-                    hintText: 'First Name',
+                    hintText: AppTexts.firstName,
                     inputType: TextInputType.name,
                     textCapitalization: TextCapitalization.none,
                     focusNode: _firstNameNode,
@@ -91,11 +94,13 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen>
                       _emailNode.unfocus();
                       _firstNameNode.unfocus();
                       //FIXME: Navigate to login screen
+                      context.goNamed(RouteConstants.verifyEmail);
                     },
+                    textSize: 12,
                     textColor: AppColors.white100,
                     color: AppColors.primaryColor,
                   ),
-                  VerticalMargin(10),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -106,12 +111,12 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen>
                           ),
                         ),
                         onPressed: () {
-                          //FIXME: Navigate to login screen
+                          context.goNamed(RouteConstants.login);
                         },
                         child: Text(
                           AppTexts.alreadyHaveAccount,
-                          style: Config.b1(context).copyWith(
-                            color: AppColors.grey100,
+                          style: Config.b3(context).copyWith(
+                            color: AppColors.secondaryColor,
                           ),
                         ),
                       ),

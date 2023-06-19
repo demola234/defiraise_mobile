@@ -1,0 +1,12 @@
+{
+  "data": {
+    "username": "test",
+    "email": "test@test.com",
+    "password_changed_at": null,
+    "created_at": null,
+    "address": "0xtest",
+    "balance": "0"
+  },
+  "message": "success",
+  "status": 200
+}

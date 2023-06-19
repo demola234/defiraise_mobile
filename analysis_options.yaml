@@ -4,9 +4,11 @@ linter:
   rules:
     avoid_print: false # Uncomment to disable the `avoid_print` rule
     prefer_const_constructors: false
-    prefer_const_constructors_in_immutables: true
+    prefer_const_constructors_in_immutables: false
     avoid_relative_lib_imports: true
-    prefer_const_literals_to_create_immutables: true
+    prefer_final_fields: false
+    prefer_single_quotes: false
+    prefer_const_literals_to_create_immutables: false
 
 analyzer:
   exclude: [build/**, lib/models/**.freezed.dart, lib/**.g.dart]
