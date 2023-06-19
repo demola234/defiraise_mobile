@@ -2,13 +2,14 @@ import 'package:defiraiser_mobile/core/global/constants/app_icons.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_texts.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
-import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
+import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -30,24 +31,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-            preferredSize: Size(context.screenWidth(), 60),
-            child: DeFiRaiseAppBar(
-              title: '',
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15.0),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(AppTexts.createAccount,
-                        style: Config.b2(context).copyWith(
-                          fontSize: 15,
-                          color: AppColors.primaryColor,
-                        )),
-                  ),
-                )
-              ],
-            )),
         body: SafeArea(
             child: Padding(
                 padding:
@@ -59,18 +42,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               VerticalMargin(20),
-                              Text(AppTexts.login,
-                                  style: Config.h2(context).copyWith()),
+                              Text(
+                                AppTexts.login,
+                                style: Config.h2(context).copyWith(
+                                  fontSize: 24,
+                                ),
+                              ),
                               VerticalMargin(5),
                               // 📝 Note: The code below is the same as the one in the previous snippet.
                               Text(AppTexts.loginDesc,
-                                  style: Config.b1(context).copyWith(
+                                  style: Config.b3(context).copyWith(
                                     color: AppColors.grey100,
                                   )),
                               VerticalMargin(50),
                               AppTextField(
                                 controller: _emailController,
-                                hintText: AppTexts.fillEmail,
+                                hintText: AppTexts.fillEmailLogin,
                                 inputType: TextInputType.emailAddress,
                                 textCapitalization: TextCapitalization.none,
                                 focusNode: _emailNode,
@@ -101,13 +88,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                                         isHide.value = !isHide.value;
                                       });
                                     },
-                                    child: SvgPicture.asset(
-                                      isHide.value
-                                          ? AppIcons.eye
-                                          : AppIcons.eyeSplash,
-                                      color: AppColors.grey100,
-                                      height: 10,
-                                      width: 10,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(3.0),
+                                      child: SvgPicture.asset(
+                                        isHide.value
+                                            ? AppIcons.eye
+                                            : AppIcons.eyeSplash,
+                                        color: AppColors.grey100.withAlpha(100),
+                                        height: 10,
+                                        width: 10,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -119,46 +109,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                       context.goNamed(RouteConstants.resetPassword);
+                                    },
                                     style: ButtonStyle(
                                       overlayColor: MaterialStateProperty.all(
                                           Colors.transparent),
                                     ),
                                     child: Text(
                                       AppTexts.forgetDetails,
-                                      style: Config.b2(context).copyWith(
-                                        fontSize: 14,
-                                        color: AppColors.grey100,
+                                      style: Config.b3(context).copyWith(
+                                        fontSize: 12,
+                                        color: AppColors.secondaryColor,
                                         fontWeight: FontWeight.bold,
                                       ),
-                                    ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    style: ButtonStyle(
-                                      overlayColor: MaterialStateProperty.all(
-                                          Colors.transparent),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          AppTexts.biometrics,
-                                          style: Config.h2(context).copyWith(
-                                            fontSize: 14,
-                                            color: AppColors.primaryColor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        HorizontalMargin(5),
-                                        SvgPicture.asset(
-                                          Config.isAndroid
-                                              ? AppIcons.fingerPrint
-                                              : AppIcons.faceId,
-                                          width: 20,
-                                          height: 20,
-                                          color: AppColors.primaryColor,
-                                        ),
-                                      ],
                                     ),
                                   ),
                                 ],
@@ -170,9 +134,32 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                                 text: AppTexts.login,
                                 onTap: () {
                                   //FIXME: Navigate to login screen
+                                  context.goNamed(RouteConstants.selectAvatar);
                                 },
                                 textColor: AppColors.white100,
+                                textSize: 12,
                                 color: AppColors.primaryColor,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      overlayColor: MaterialStateProperty.all(
+                                        Colors.transparent,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      context.goNamed(RouteConstants.register);
+                                    },
+                                    child: Text(
+                                      AppTexts.dontHaveAccount,
+                                      style: Config.b3(context).copyWith(
+                                        color: AppColors.secondaryColor,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ]))))));
   }

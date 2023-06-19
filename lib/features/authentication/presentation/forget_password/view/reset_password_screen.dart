@@ -2,13 +2,14 @@ import 'package:defiraiser_mobile/core/global/constants/app_icons.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_texts.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
-import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
+import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class ResetPasswordScreen extends ConsumerStatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -97,11 +98,6 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size(context.screenWidth(), 60),
-          child: const DeFiRaiseAppBar(
-            title: '',
-          )),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
@@ -111,13 +107,15 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                VerticalMargin(20),
+                VerticalMargin(30),
                 Text(AppTexts.resetPassword,
-                    style: Config.h2(context).copyWith()),
+                    style: Config.h2(context).copyWith(
+                      fontSize: 24,
+                    )),
                 VerticalMargin(5),
                 // 📝 Note: The code below is the same as the one in the previous snippet.
                 Text(AppTexts.resetPassDesc,
-                    style: Config.b1(context).copyWith(
+                    style: Config.b3(context).copyWith(
                       color: AppColors.grey100,
                     )),
                 VerticalMargin(50),
@@ -135,11 +133,14 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
                           isHide.value = !isHide.value;
                         });
                       },
-                      child: SvgPicture.asset(
-                        isHide.value ? AppIcons.eye : AppIcons.eyeSplash,
-                        color: AppColors.grey100,
-                        height: 10,
-                        width: 10,
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: SvgPicture.asset(
+                          isHide.value ? AppIcons.eye : AppIcons.eyeSplash,
+                          color: AppColors.grey100,
+                          height: 10,
+                          width: 10,
+                        ),
                       ),
                     ),
                   ),
@@ -159,11 +160,16 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
                           isConfirmHide.value = !isConfirmHide.value;
                         });
                       },
-                      child: SvgPicture.asset(
-                        isConfirmHide.value ? AppIcons.eye : AppIcons.eyeSplash,
-                        color: AppColors.grey100,
-                        height: 10,
-                        width: 10,
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: SvgPicture.asset(
+                          isConfirmHide.value
+                              ? AppIcons.eye
+                              : AppIcons.eyeSplash,
+                          color: AppColors.grey100,
+                          height: 10,
+                          width: 10,
+                        ),
                       ),
                     ),
                   ),
@@ -196,11 +202,13 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
                         duration: const Duration(milliseconds: 500),
                         child: AppButton(
                           text: AppTexts.resetPassDesc,
+                          textSize: 12,
                           isActive: enabled.value,
                           onTap: () {
                             _passwordNode.unfocus();
                             _confirmPasswordNode.unfocus();
                             //FIXME: Navigate to login screen
+                            context.goNamed(RouteConstants.login);
                           },
                           textColor: AppColors.white100,
                           color: AppColors.primaryColor,

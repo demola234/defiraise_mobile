@@ -1,9 +1,11 @@
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
+import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/widgets/resend_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 import 'package:timer_count_down/timer_controller.dart';
@@ -65,11 +67,13 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen> {
                 children: [
                   VerticalMargin(20),
                   Text(AppTexts.verifyOTP,
-                      style: Config.h2(context).copyWith()),
+                      style: Config.h2(context).copyWith(
+                        fontSize: 22,
+                      )),
                   VerticalMargin(5),
                   // 📝 Note: The code below is the same as the one in the previous snippet.
                   Text(AppTexts.verifyOTPDescription("email"),
-                      style: Config.b1(context).copyWith(
+                      style: Config.b3(context).copyWith(
                         color: AppColors.grey100,
                       )),
                   VerticalMargin(50),
@@ -113,10 +117,11 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(AppTexts.notYourEmail,
-                            style: Config.b1(context).copyWith(
+                            style: Config.b3(context).copyWith(
+                              fontSize: 12,
                               color: AppColors.grey100.withOpacity(0.5),
                             )),
-                        const HorizontalMargin(5),
+                        const HorizontalMargin(2),
                         TextButton(
                           style: ButtonStyle(
                             overlayColor: MaterialStateProperty.all(
@@ -129,8 +134,9 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen> {
                           onPressed: () {},
                           child: Text(
                             "Edit Email",
-                            style: Config.b2(context).copyWith(
+                            style: Config.b3(context).copyWith(
                               color: AppColors.secondaryColor,
+                              fontSize: 12,
                             ),
                           ),
                         )
@@ -175,8 +181,11 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen> {
                   ),
                   const VerticalMargin(30),
                   AppButton(
-                    text: AppTexts.createAccountButton,
-                    onTap: () {},
+                    onTap: () {
+                      context.goNamed(RouteConstants.confirmPassword);
+                    },
+                    textSize: 12,
+                    text: AppTexts.verify,
                     textColor: AppColors.white100,
                     color: AppColors.primaryColor,
                   ),

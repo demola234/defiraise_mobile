@@ -2,10 +2,12 @@ import 'package:defiraiser_mobile/core/global/constants/app_images.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_texts.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
+import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class SelectAvatarScreen extends ConsumerStatefulWidget {
   const SelectAvatarScreen({super.key});
@@ -37,7 +39,7 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
         body: SafeArea(
             child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
                 child: SingleChildScrollView(
                     child: Form(
                         key: _formKey,
@@ -45,14 +47,16 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(AppTexts.selectAvatar,
-                                  style: Config.h2(context).copyWith()),
+                                  style: Config.h2(context).copyWith(
+                                    fontSize: 24,
+                                  )),
                               VerticalMargin(5),
                               // 📝 Note: The code below is the same as the one in the previous snippet.
                               Text(AppTexts.selectAvatarDesc,
-                                  style: Config.b1(context).copyWith(
+                                  style: Config.b3(context).copyWith(
                                     color: AppColors.grey100,
                                   )),
-                              VerticalMargin(50),
+                              VerticalMargin(20),
                               Align(
                                 alignment: Alignment.center,
                                 child: Stack(
@@ -121,7 +125,7 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
                                   ],
                                 ),
                               ),
-                              VerticalMargin(50),
+                              VerticalMargin(30),
 
                               Align(
                                 alignment: Alignment.center,
@@ -139,8 +143,10 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
                                 text: AppTexts.dashboard,
                                 onTap: () {
                                   //FIXME: Navigate to login screen
+                                  context.goNamed(RouteConstants.home);
                                 },
                                 textColor: AppColors.white100,
+                                textSize: 12,
                                 color: AppColors.primaryColor,
                               ),
                             ]))))));
@@ -179,7 +185,9 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
           VerticalMargin(5),
           Text(
             '0x0${index + 1}',
-            style: Config.b3(context),
+            style: Config.b3(context).copyWith(
+              color: AppColors.grey100,
+            ),
           )
         ],
       ),

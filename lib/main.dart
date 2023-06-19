@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
-import 'package:defiraiser_mobile/core/shared/bottom_navigator/bottom_navigator.dart';
+import 'package:defiraiser_mobile/core/di/injector.dart';
+import 'package:defiraiser_mobile/core/routers/_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.remove();
+  await injector();
   runApp(ProviderScope(child: const MyApp()));
 }
 
@@ -34,14 +36,16 @@ class _MyAppState extends ConsumerState<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'DeFiRaiser',
       scrollBehavior: const _AppScrollBehavior(),
-      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: const BottomNavigationController(),
+      routeInformationProvider: AppRouter.router.routeInformationProvider,
+      routeInformationParser: AppRouter.router.routeInformationParser,
+      routerDelegate: AppRouter.router.routerDelegate,
     );
   }
 }

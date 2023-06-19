@@ -55,6 +55,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
             _profileMenu(),
             Spacer(),
             _logoutButton(),
+            VerticalMargin(10),
           ],
         ),
       ),
@@ -138,7 +139,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
             fontWeight: FontWeight.bold,
             color: AppColors.secondaryColor,
           )),
-      VerticalMargin(10),
+      VerticalMargin(5),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

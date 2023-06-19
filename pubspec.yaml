@@ -89,6 +89,10 @@ dependencies:
   lottie: ^2.4.0
   #? qr_flutter is a Flutter package that provides a set of utilities for generating QR codes.
   qr_flutter: ^4.1.0
+  #? auto_route is Flutter package used for routing
+  auto_route: ^7.4.0
+  #? mocktail is a Dart package that provides a set of utilities for mocking Dart objects.
+  mocktail: ^0.1.4
 
 dev_dependencies:
   flutter_lints: ^2.0.0

@@ -1,18 +1,22 @@
 class AppTexts {
   //! AUTHENTICATION
   static String createAccount = "Create an account";
-  static String createAccountDescription = "Enter a valid email address";
+  static String createAccountDescription =
+      "Enter your credentials to get started";
   static String termsAndConditions =
       "By creating an account, you agree to our ";
   static String termsAndConditionsLink = "Terms and Conditions";
   static String createAccountButton = "Create my account";
   static String accountLogin = "Login to my account";
-  static String firstName = "First Name";
+  static String firstName = "User Name";
   static String fillEmail = "Your email address";
+    static String fillEmailLogin = "Your email address or username";
   static String emailInvalid = "Email is invalid";
   static String fieldEmpty(String field) => "$field can't be empty";
   static String alreadyHaveAccount = "Already have an account?";
+  static String dontHaveAccount = "Don't have an account?";
   static String verifyOTP = "Verify your Email";
+  static String verify = "Verify";
   static String verifyOTPDescription(String email) =>
       "OTP has been sent to $email";
   static String notYourEmail = "Not your Email?";
@@ -78,7 +82,6 @@ class AppTexts {
   static String navDonation = "Donations";
   static String navCampaign = "Campaigns";
   static String navProfile = "Profile";
-
 
   //! My Campaign
   static String myCampaign = "My Campaign";

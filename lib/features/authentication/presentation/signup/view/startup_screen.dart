@@ -33,20 +33,20 @@ class _StartUpScreenState extends ConsumerState<StartUpScreen>
               AppIcons.logo,
             ),
           ),
-          const VerticalMargin(60),
+          const VerticalMargin(30),
           // Bouncing Animation
           AnimatedBuilder(
               animation: controller,
               child: Image.asset(
                 AppImages.bank,
-                height: 300,
+                height: 250,
                 width: 250,
                 fit: BoxFit.cover,
               ),
               builder: (context, child) {
                 // Animate up and down
                 return Transform.translate(
-                  offset: Offset(0, 25 * controller.value),
+                  offset: Offset(0, 10 * controller.value),
                   child: child,
                 );
               }),
@@ -54,13 +54,19 @@ class _StartUpScreenState extends ConsumerState<StartUpScreen>
           const VerticalMargin(60),
           AppButton(
             text: AppTexts.createAccountButton,
-            onTap: () {},
+            textSize: 12,
+            onTap: () {
+              context.goNamed(RouteConstants.register);
+            },
             textColor: AppColors.white100,
             color: AppColors.primaryColor,
           ),
           AppButton(
             text: AppTexts.accountLogin,
-            onTap: () {},
+            textSize: 12,
+            onTap: () {
+              context.goNamed(RouteConstants.login);
+            },
             textColor: AppColors.primaryColor,
             borderColor: AppColors.primaryColor,
           ),
@@ -71,6 +77,7 @@ class _StartUpScreenState extends ConsumerState<StartUpScreen>
               text: "${AppTexts.termsAndConditions}\n",
               style: Config.b1(context).copyWith(
                 color: AppColors.grey100,
+                fontSize: 11,
               ),
               children: [
                 TextSpan(
@@ -81,6 +88,7 @@ class _StartUpScreenState extends ConsumerState<StartUpScreen>
                     },
                   style: Config.b1(context).copyWith(
                     color: AppColors.secondaryColor,
+                    fontSize: 11,
                   ),
                 ),
               ],
