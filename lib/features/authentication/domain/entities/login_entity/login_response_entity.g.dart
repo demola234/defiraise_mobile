@@ -8,7 +8,9 @@ part of 'login_response_entity.dart';
 
 _$_LoginResponse _$$_LoginResponseFromJson(Map<String, dynamic> json) =>
     _$_LoginResponse(
-      data: Data.fromJson(json['data'] as Map<String, dynamic>),
+      data: json['data'] == null
+          ? null
+          : Data.fromJson(json['data'] as Map<String, dynamic>),
       message: json['message'] ?? '',
       status: json['status'] as int,
     );
