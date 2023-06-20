@@ -15,6 +15,7 @@ void main() {
   late MockAuthenticationRepository mockAuthenticationRepository;
   late String username;
   late String email;
+  late String password;
   late CreateAccountResponse tResponse;
 
   setUp(() {
@@ -22,6 +23,7 @@ void main() {
     usecase = CreateUserAccountUsecase(mockAuthenticationRepository);
     username = "test";
     email = "test@test.com";
+    password = "Pass234";
     tResponse = const CreateAccountResponse(
         data: Data(
             username: "test",
@@ -46,32 +48,32 @@ void main() {
   test("should get the user info after you create account", () async {
     // arrange
     when(mockAuthenticationRepository.createAccount(
-            email: email, username: username))
+            email: email, username: username, password: password))
         .thenAnswer((_) async => Right(tResponse));
 
     // act
-    final result = await usecase.call(Params(email: email, username: username));
+    final result = await usecase.call(Params(email: email, username: username, password: password));
 
     // assert
     expect(result, Right(tResponse));
     verify(mockAuthenticationRepository.createAccount(
-        email: email, username: username));
+        email: email, username: username, password: password));
     verifyNoMoreInteractions(mockAuthenticationRepository);
   });
 
   test('should not get the user info when create account fails', () async {
     // arrange
     when(mockAuthenticationRepository.createAccount(
-            email: email, username: username))
+            email: email, username: username, password: password))
         .thenAnswer((_) async => Left(failure));
 
     // act
-    final result = await usecase.call(Params(email: email, username: username));
+    final result = await usecase.call(Params(email: email, username: username, password: password));
 
     // assert
     expect(result, Left(failure));
     verify(mockAuthenticationRepository.createAccount(
-        email: email, username: username));
+        email: email, username: username, password: password));
     verifyNoMoreInteractions(mockAuthenticationRepository);
   });
 }

@@ -20,7 +20,7 @@ LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginResponse {
-  Data get data => throw _privateConstructorUsedError;
+  Data? get data => throw _privateConstructorUsedError;
   dynamic get message => throw _privateConstructorUsedError;
   int get status => throw _privateConstructorUsedError;
 
@@ -36,9 +36,9 @@ abstract class $LoginResponseCopyWith<$Res> {
           LoginResponse value, $Res Function(LoginResponse) then) =
       _$LoginResponseCopyWithImpl<$Res, LoginResponse>;
   @useResult
-  $Res call({Data data, dynamic message, int status});
+  $Res call({Data? data, dynamic message, int status});
 
-  $DataCopyWith<$Res> get data;
+  $DataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -54,15 +54,15 @@ class _$LoginResponseCopyWithImpl<$Res, $Val extends LoginResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? data = freezed,
     Object? message = freezed,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data,
+              as Data?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -76,8 +76,12 @@ class _$LoginResponseCopyWithImpl<$Res, $Val extends LoginResponse>
 
   @override
   @pragma('vm:prefer-inline')
-  $DataCopyWith<$Res> get data {
-    return $DataCopyWith<$Res>(_value.data, (value) {
+  $DataCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $DataCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -91,10 +95,10 @@ abstract class _$$_LoginResponseCopyWith<$Res>
       __$$_LoginResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Data data, dynamic message, int status});
+  $Res call({Data? data, dynamic message, int status});
 
   @override
-  $DataCopyWith<$Res> get data;
+  $DataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -108,15 +112,15 @@ class __$$_LoginResponseCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? data = freezed,
     Object? message = freezed,
     Object? status = null,
   }) {
     return _then(_$_LoginResponse(
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data,
+              as Data?,
       message: freezed == message ? _value.message! : message,
       status: null == status
           ? _value.status
@@ -129,14 +133,13 @@ class __$$_LoginResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_LoginResponse implements _LoginResponse {
-  const _$_LoginResponse(
-      {required this.data, this.message = '', required this.status});
+  const _$_LoginResponse({this.data, this.message = '', required this.status});
 
   factory _$_LoginResponse.fromJson(Map<String, dynamic> json) =>
       _$$_LoginResponseFromJson(json);
 
   @override
-  final Data data;
+  final Data? data;
   @override
   @JsonKey()
   final dynamic message;
@@ -179,7 +182,7 @@ class _$_LoginResponse implements _LoginResponse {
 
 abstract class _LoginResponse implements LoginResponse {
   const factory _LoginResponse(
-      {required final Data data,
+      {final Data? data,
       final dynamic message,
       required final int status}) = _$_LoginResponse;
 
@@ -187,7 +190,7 @@ abstract class _LoginResponse implements LoginResponse {
       _$_LoginResponse.fromJson;
 
   @override
-  Data get data;
+  Data? get data;
   @override
   dynamic get message;
   @override

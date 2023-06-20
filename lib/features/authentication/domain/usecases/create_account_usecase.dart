@@ -13,18 +13,20 @@ class CreateUserAccountUsecase implements UseCase<CreateAccountResponse, Params>
   @override
   Future<Either<ApiError, CreateAccountResponse>> call(Params params) async {
     return await authenticationRepository.createAccount(
-        username: params.username, email: params.email);
+        username: params.username, email: params.email, password: params.password);
   }
 }
 
 class Params extends Equatable {
   final String username;
   final String email;
+  final String password;
   const Params({
     required this.email,
+    required this.password,
     required this.username,
   });
 
   @override
-  List<Object> get props => [email, username];
+  List<Object> get props => [email, username, password];
 }

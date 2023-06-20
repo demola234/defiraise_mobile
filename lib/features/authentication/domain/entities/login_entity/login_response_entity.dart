@@ -13,7 +13,7 @@ String loginResponseToJson(LoginResponse data) => json.encode(data.toJson());
 @freezed
 class LoginResponse with _$LoginResponse {
   const factory LoginResponse({
-    required Data data,
+     Data? data,
     @Default('') message,
     required int status,
   }) = _LoginResponse;
