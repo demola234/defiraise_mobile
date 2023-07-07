@@ -38,7 +38,6 @@ void main() {
             body: {
               "username": tUsername,
               "email": tEmail,
-              "password": tPassword,
             })).thenAnswer((_) async {
       return Response(
           requestOptions: RequestOptions(path: EndpointManager.createAccount),
@@ -126,7 +125,7 @@ void main() {
         () async {
       setUpMockHttpManager();
       final result = await authenticationRemoteDataSource.createAccount(
-          tUsername, tEmail, tPassword);
+          tUsername, tEmail);
       expect(result, isA<CreateAccountResponse>());
     });
 
@@ -138,7 +137,6 @@ void main() {
               body: {
                 "username": tUsername,
                 "email": tEmail,
-                "password": tPassword,
               })).thenAnswer((_) async {
         return Response(
             requestOptions: RequestOptions(path: EndpointManager.createAccount),
@@ -146,7 +144,7 @@ void main() {
             statusCode: 400);
       });
       final call = authenticationRemoteDataSource.createAccount;
-      expect(() => call(tUsername, tEmail, tPassword),
+      expect(() => call(tUsername, tEmail),
           throwsA(isA<ServerException>()));
     });
   });

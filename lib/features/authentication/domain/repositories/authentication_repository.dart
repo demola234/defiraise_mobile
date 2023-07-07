@@ -7,8 +7,7 @@ import 'package:defiraiser_mobile/features/authentication/domain/entities/regist
 abstract class AuthenticationRepository {
   Future<Either<ApiError, CreateAccountResponse>> createAccount(
       {required String username,
-      required String email,
-      required String password});
+      required String email});
 
   Future<Either<ApiError, LoginResponse>> login(
       {required String username, required String password});
