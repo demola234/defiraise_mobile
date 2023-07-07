@@ -72,13 +72,14 @@ void main() {
         "should return remote data when the call to remote data source is successful",
         () async {
       // arrange
-      when(() => mockRemoteDataSource.createAccount(any(), any(), any()))
+      when(() => mockRemoteDataSource.createAccount(any(), any()))
           .thenAnswer((_) async => tCreateAccountResponse);
-      // act
       final result = await authenticationRepositoryImpl.createAccount(
-          username: tUsername, email: tEmail, password: tPassword);
+        username: tUsername,
+        email: tEmail,
+      );
       // assert
-      verify(() => mockRemoteDataSource.createAccount(any(), any(), any()));
+      verify(() => mockRemoteDataSource.createAccount(any(), any()));
       expect(result, equals(Right(tCreateAccountResponse)));
     });
   });

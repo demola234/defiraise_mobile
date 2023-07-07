@@ -7,7 +7,7 @@ import 'package:defiraiser_mobile/features/authentication/domain/entities/regist
 
 abstract class AuthenticationRemoteDataSource {
   Future<CreateAccountResponse> createAccount(
-      String username, String email, String password);
+      String username, String email);
   Future<LoginResponse> login(String username, String password);
     Future<BaseEntity> verifyOtp(
       {required String username, required String otpCode});
@@ -26,11 +26,11 @@ class IAuthenticationRemoteDataSource
 
   @override
   Future<CreateAccountResponse> createAccount(
-      String username, String email, String password) async {
+      String username, String email) async {
     final response = await client.call(
         path: EndpointManager.createAccount,
         method: RequestMethod.post,
-        body: {"username": username, "email": email, "password": password});
+        body: {"username": username, "email": email,});
     final res = response!.data;
     if (response.statusCode == 200) {
       return CreateAccountResponse.fromJson(res);

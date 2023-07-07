@@ -20,6 +20,7 @@ dependencies:
   #?  flutter_bloc is a Flutter package that helps you to easily implement the BLoC (Business Logic Component) design pattern.
   flutter_bloc: ^8.1.3
   #? flutter_form_bloc is a Flutter package that helps you to easily create forms with validation.
+  bloc: any
   formz: ^0.6.0
   #? Caches images from the internet
   cached_network_image:
@@ -92,7 +93,7 @@ dependencies:
   #? auto_route is Flutter package used for routing
   auto_route: ^7.4.0
   #? mocktail is a Dart package that provides a set of utilities for mocking Dart objects.
-  mocktail: ^0.1.4
+  mocktail: ^0.2.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -112,7 +113,7 @@ dev_dependencies:
   #?  mockito is a Dart package that provides a set of utilities for mocking Dart objects.
   mockito: any
   #?  bloc_test is a Dart package that provides a set of utilities for testing Flutter apps that use the BLoC (Business Logic Component) design pattern.
-  bloc_test: any
+  bloc_test: ^9.1.3
   #? injectable_generator is a Dart package that provides a set of utilities for generating code for the injectable package.
   injectable_generator: null
   #? flutter_launcher_icons is a Flutter package that provides a set of utilities for generating launcher icons for Android and iOS.

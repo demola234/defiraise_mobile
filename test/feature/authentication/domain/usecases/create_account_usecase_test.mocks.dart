@@ -52,7 +52,6 @@ class MockAuthenticationRepository extends _i1.Mock
       createAccount({
     required String? username,
     required String? email,
-    required String? password,
   }) =>
           (super.noSuchMethod(
             Invocation.method(
@@ -61,7 +60,6 @@ class MockAuthenticationRepository extends _i1.Mock
               {
                 #username: username,
                 #email: email,
-                #password: password,
               },
             ),
             returnValue: _i4.Future<
@@ -74,7 +72,6 @@ class MockAuthenticationRepository extends _i1.Mock
                 {
                   #username: username,
                   #email: email,
-                  #password: password,
                 },
               ),
             )),

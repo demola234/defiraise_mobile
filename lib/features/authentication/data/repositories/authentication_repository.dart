@@ -19,12 +19,10 @@ class IAuthenticationRepository implements AuthenticationRepository {
   @override
   Future<Either<ApiError, CreateAccountResponse>> createAccount(
       {required String username,
-      required String email,
-      required String password}) async {
+      required String email,}) async {
     return await _createAccount(() => remoteDataSource.createAccount(
           username,
           email,
-          password,
         ));
   }
 
