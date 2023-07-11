@@ -461,8 +461,11 @@ mixin _$User {
   dynamic get username => throw _privateConstructorUsedError;
   dynamic get email => throw _privateConstructorUsedError;
   DateTime? get passwordChangedAt => throw _privateConstructorUsedError;
+  dynamic get isFirstTime => throw _privateConstructorUsedError;
+  dynamic get avatar => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   dynamic get address => throw _privateConstructorUsedError;
+  dynamic get biometrics => throw _privateConstructorUsedError;
   dynamic get balance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -479,8 +482,11 @@ abstract class $UserCopyWith<$Res> {
       {dynamic username,
       dynamic email,
       DateTime? passwordChangedAt,
+      dynamic isFirstTime,
+      dynamic avatar,
       DateTime? createdAt,
       dynamic address,
+      dynamic biometrics,
       dynamic balance});
 }
 
@@ -500,8 +506,11 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? username = freezed,
     Object? email = freezed,
     Object? passwordChangedAt = freezed,
+    Object? isFirstTime = freezed,
+    Object? avatar = freezed,
     Object? createdAt = freezed,
     Object? address = freezed,
+    Object? biometrics = freezed,
     Object? balance = freezed,
   }) {
     return _then(_value.copyWith(
@@ -517,6 +526,14 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.passwordChangedAt
           : passwordChangedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      isFirstTime: freezed == isFirstTime
+          ? _value.isFirstTime
+          : isFirstTime // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -524,6 +541,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      biometrics: freezed == biometrics
+          ? _value.biometrics
+          : biometrics // ignore: cast_nullable_to_non_nullable
               as dynamic,
       balance: freezed == balance
           ? _value.balance
@@ -543,8 +564,11 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       {dynamic username,
       dynamic email,
       DateTime? passwordChangedAt,
+      dynamic isFirstTime,
+      dynamic avatar,
       DateTime? createdAt,
       dynamic address,
+      dynamic biometrics,
       dynamic balance});
 }
 
@@ -560,8 +584,11 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? username = freezed,
     Object? email = freezed,
     Object? passwordChangedAt = freezed,
+    Object? isFirstTime = freezed,
+    Object? avatar = freezed,
     Object? createdAt = freezed,
     Object? address = freezed,
+    Object? biometrics = freezed,
     Object? balance = freezed,
   }) {
     return _then(_$_User(
@@ -571,11 +598,14 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.passwordChangedAt
           : passwordChangedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      isFirstTime: freezed == isFirstTime ? _value.isFirstTime! : isFirstTime,
+      avatar: freezed == avatar ? _value.avatar! : avatar,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       address: freezed == address ? _value.address! : address,
+      biometrics: freezed == biometrics ? _value.biometrics! : biometrics,
       balance: freezed == balance ? _value.balance! : balance,
     ));
   }
@@ -589,8 +619,11 @@ class _$_User implements _User {
       {this.username = '',
       this.email = '',
       this.passwordChangedAt,
+      this.isFirstTime = false,
+      this.avatar = '',
       this.createdAt,
       this.address = '',
+      this.biometrics = false,
       this.balance = ''});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
@@ -604,17 +637,26 @@ class _$_User implements _User {
   @override
   final DateTime? passwordChangedAt;
   @override
+  @JsonKey()
+  final dynamic isFirstTime;
+  @override
+  @JsonKey()
+  final dynamic avatar;
+  @override
   final DateTime? createdAt;
   @override
   @JsonKey()
   final dynamic address;
   @override
   @JsonKey()
+  final dynamic biometrics;
+  @override
+  @JsonKey()
   final dynamic balance;
 
   @override
   String toString() {
-    return 'User(username: $username, email: $email, passwordChangedAt: $passwordChangedAt, createdAt: $createdAt, address: $address, balance: $balance)';
+    return 'User(username: $username, email: $email, passwordChangedAt: $passwordChangedAt, isFirstTime: $isFirstTime, avatar: $avatar, createdAt: $createdAt, address: $address, biometrics: $biometrics, balance: $balance)';
   }
 
   @override
@@ -626,9 +668,14 @@ class _$_User implements _User {
             const DeepCollectionEquality().equals(other.email, email) &&
             (identical(other.passwordChangedAt, passwordChangedAt) ||
                 other.passwordChangedAt == passwordChangedAt) &&
+            const DeepCollectionEquality()
+                .equals(other.isFirstTime, isFirstTime) &&
+            const DeepCollectionEquality().equals(other.avatar, avatar) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             const DeepCollectionEquality().equals(other.address, address) &&
+            const DeepCollectionEquality()
+                .equals(other.biometrics, biometrics) &&
             const DeepCollectionEquality().equals(other.balance, balance));
   }
 
@@ -639,8 +686,11 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(email),
       passwordChangedAt,
+      const DeepCollectionEquality().hash(isFirstTime),
+      const DeepCollectionEquality().hash(avatar),
       createdAt,
       const DeepCollectionEquality().hash(address),
+      const DeepCollectionEquality().hash(biometrics),
       const DeepCollectionEquality().hash(balance));
 
   @JsonKey(ignore: true)
@@ -662,8 +712,11 @@ abstract class _User implements User {
       {final dynamic username,
       final dynamic email,
       final DateTime? passwordChangedAt,
+      final dynamic isFirstTime,
+      final dynamic avatar,
       final DateTime? createdAt,
       final dynamic address,
+      final dynamic biometrics,
       final dynamic balance}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -675,9 +728,15 @@ abstract class _User implements User {
   @override
   DateTime? get passwordChangedAt;
   @override
+  dynamic get isFirstTime;
+  @override
+  dynamic get avatar;
+  @override
   DateTime? get createdAt;
   @override
   dynamic get address;
+  @override
+  dynamic get biometrics;
   @override
   dynamic get balance;
   @override

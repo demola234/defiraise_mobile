@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:defiraiser_mobile/features/authentication/data/data_source/authentication_local_datasource.dart';
 import 'package:defiraiser_mobile/features/authentication/data/data_source/authentication_remote_data_source.dart';
 import 'package:defiraiser_mobile/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/entities/base_entity/base_entity.dart';
@@ -13,9 +14,13 @@ import 'package:mocktail/mocktail.dart';
 class MockAuthenticationRemoteDataSource extends Mock
     implements AuthenticationRemoteDataSource {}
 
+class MockAuthLocalDataSource extends Mock implements AuthLocalDataSource {}
+
 void main() {
   late MockAuthenticationRemoteDataSource mockRemoteDataSource;
   late IAuthenticationRepository authenticationRepositoryImpl;
+  late MockAuthLocalDataSource mockAuthLocalDataSource;
+
   late String tUsername = "test";
   late String tEmail = "test@test.com";
   late String tPassword = "test";
@@ -26,8 +31,10 @@ void main() {
 
   setUpAll(() {
     mockRemoteDataSource = MockAuthenticationRemoteDataSource();
+    mockAuthLocalDataSource = MockAuthLocalDataSource();
     authenticationRepositoryImpl = IAuthenticationRepository(
       remoteDataSource: mockRemoteDataSource,
+      authLocalDataSource: mockAuthLocalDataSource,
     );
     tCreateAccountResponse = const CreateAccountResponse(
         data: Data(

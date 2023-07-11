@@ -3,6 +3,7 @@ import 'package:defiraiser_mobile/core/global/constants/app_images.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_texts.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
+import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,10 +37,18 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size(context.screenWidth(), 60),
+        child: DeFiRaiseAppBar(
+          isBack: false,
+          title: AppTexts.navProfile,
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0),
         child: Column(
           children: [
+            VerticalMargin(20),
             _profileImage(),
             VerticalMargin(10),
             _profilePersonalInfo(),

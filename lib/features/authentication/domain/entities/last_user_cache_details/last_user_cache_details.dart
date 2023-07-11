@@ -10,9 +10,10 @@ part 'last_user_cache_details.g.dart';
 @freezed
 class LastUserCachedDetails with _$LastUserCachedDetails {
   const factory LastUserCachedDetails({
-    required String name,
+    required String username,
+    required String email,
     required String password,
-    required String address,
+    required bool isBiometric,
   }) = _LastUserCachedDetails;
 
   factory LastUserCachedDetails.fromJson(String json) =>

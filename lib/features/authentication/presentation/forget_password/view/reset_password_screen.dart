@@ -3,16 +3,22 @@ import 'package:defiraiser_mobile/core/global/constants/app_texts.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
+import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/forget_password/state/bloc/forget_password_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class ResetPasswordScreen extends ConsumerStatefulWidget {
-  const ResetPasswordScreen({super.key});
+  final String otp;
+  final String email;
+  const ResetPasswordScreen(
+      {required this.otp, required this.email, super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -98,6 +104,11 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+          preferredSize: Size(context.screenWidth(), 60),
+          child: DeFiRaiseAppBar(
+            title: '',
+          )),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
@@ -200,18 +211,28 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
                       return AnimatedOpacity(
                         opacity: enabled.value ? 1 : 0,
                         duration: const Duration(milliseconds: 500),
-                        child: AppButton(
-                          text: AppTexts.resetPassDesc,
-                          textSize: 12,
-                          isActive: enabled.value,
-                          onTap: () {
-                            _passwordNode.unfocus();
-                            _confirmPasswordNode.unfocus();
-                            //FIXME: Navigate to login screen
-                            context.goNamed(RouteConstants.login);
+                        child: BlocConsumer<ForgetPasswordBloc,
+                            ForgetPasswordState>(
+                          listener: _listener,
+                          builder: (context, state) {
+                            return AppButton(
+                              text: AppTexts.resetPassDesc,
+                              textSize: 12,
+                              isActive: enabled.value,
+                              onTap: () {
+                                _passwordNode.unfocus();
+                                _confirmPasswordNode.unfocus();
+
+                                context.read<ForgetPasswordBloc>().add(
+                                    ResetVerifyOtpEvent(
+                                        otp: widget.otp,
+                                        password: _passwordController.text,
+                                        username: widget.email));
+                              },
+                              textColor: AppColors.white100,
+                              color: AppColors.primaryColor,
+                            );
                           },
-                          textColor: AppColors.white100,
-                          color: AppColors.primaryColor,
                         ),
                       );
                     }),
@@ -221,6 +242,28 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
         ),
       ),
     );
+  }
+
+  void _listener(BuildContext context, ForgetPasswordState state) {
+    state.maybeWhen(
+        orElse: () {},
+        registrationError: (message) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(message),
+              backgroundColor: AppColors.errorColor,
+            ),
+          );
+        },
+        registrationSuccessful: (message) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(message),
+              backgroundColor: AppColors.successColor,
+            ),
+          );
+          context.goNamed(RouteConstants.login);
+        });
   }
 
   Container _passwordChecker(

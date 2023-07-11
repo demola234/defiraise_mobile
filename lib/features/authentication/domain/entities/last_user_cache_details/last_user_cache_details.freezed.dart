@@ -21,9 +21,10 @@ LastUserCachedDetails _$LastUserCachedDetailsFromJson(
 
 /// @nodoc
 mixin _$LastUserCachedDetails {
-  String get name => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
+  bool get isBiometric => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,7 @@ abstract class $LastUserCachedDetailsCopyWith<$Res> {
           $Res Function(LastUserCachedDetails) then) =
       _$LastUserCachedDetailsCopyWithImpl<$Res, LastUserCachedDetails>;
   @useResult
-  $Res call({String name, String password, String address});
+  $Res call({String username, String email, String password, bool isBiometric});
 }
 
 /// @nodoc
@@ -54,23 +55,28 @@ class _$LastUserCachedDetailsCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? username = null,
+    Object? email = null,
     Object? password = null,
-    Object? address = null,
+    Object? isBiometric = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
+      isBiometric: null == isBiometric
+          ? _value.isBiometric
+          : isBiometric // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -83,7 +89,7 @@ abstract class _$$_LastUserCachedDetailsCopyWith<$Res>
       __$$_LastUserCachedDetailsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String password, String address});
+  $Res call({String username, String email, String password, bool isBiometric});
 }
 
 /// @nodoc
@@ -97,23 +103,28 @@ class __$$_LastUserCachedDetailsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? username = null,
+    Object? email = null,
     Object? password = null,
-    Object? address = null,
+    Object? isBiometric = null,
   }) {
     return _then(_$_LastUserCachedDetails(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
+      isBiometric: null == isBiometric
+          ? _value.isBiometric
+          : isBiometric // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -122,21 +133,26 @@ class __$$_LastUserCachedDetailsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_LastUserCachedDetails implements _LastUserCachedDetails {
   const _$_LastUserCachedDetails(
-      {required this.name, required this.password, required this.address});
+      {required this.username,
+      required this.email,
+      required this.password,
+      required this.isBiometric});
 
   factory _$_LastUserCachedDetails.fromJson(Map<String, dynamic> json) =>
       _$$_LastUserCachedDetailsFromJson(json);
 
   @override
-  final String name;
+  final String username;
+  @override
+  final String email;
   @override
   final String password;
   @override
-  final String address;
+  final bool isBiometric;
 
   @override
   String toString() {
-    return 'LastUserCachedDetails(name: $name, password: $password, address: $address)';
+    return 'LastUserCachedDetails(username: $username, email: $email, password: $password, isBiometric: $isBiometric)';
   }
 
   @override
@@ -144,15 +160,19 @@ class _$_LastUserCachedDetails implements _LastUserCachedDetails {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LastUserCachedDetails &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.address, address) || other.address == address));
+            (identical(other.isBiometric, isBiometric) ||
+                other.isBiometric == isBiometric));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, password, address);
+  int get hashCode =>
+      Object.hash(runtimeType, username, email, password, isBiometric);
 
   @JsonKey(ignore: true)
   @override
@@ -171,19 +191,22 @@ class _$_LastUserCachedDetails implements _LastUserCachedDetails {
 
 abstract class _LastUserCachedDetails implements LastUserCachedDetails {
   const factory _LastUserCachedDetails(
-      {required final String name,
+      {required final String username,
+      required final String email,
       required final String password,
-      required final String address}) = _$_LastUserCachedDetails;
+      required final bool isBiometric}) = _$_LastUserCachedDetails;
 
   factory _LastUserCachedDetails.fromJson(Map<String, dynamic> json) =
       _$_LastUserCachedDetails.fromJson;
 
   @override
-  String get name;
+  String get username;
+  @override
+  String get email;
   @override
   String get password;
   @override
-  String get address;
+  bool get isBiometric;
   @override
   @JsonKey(ignore: true)
   _$$_LastUserCachedDetailsCopyWith<_$_LastUserCachedDetails> get copyWith =>

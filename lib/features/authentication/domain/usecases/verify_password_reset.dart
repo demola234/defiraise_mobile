@@ -5,13 +5,13 @@ import 'package:defiraiser_mobile/features/authentication/domain/entities/base_e
 import 'package:defiraiser_mobile/features/authentication/domain/repositories/authentication_repository.dart';
 import 'package:equatable/equatable.dart';
 
-class VerifyPasswordResetUsecase implements UseCase<BaseEntity, Params> {
+class VerifyPasswordResetUsecase implements UseCase<BaseEntity, VerifyPasswordParams> {
   final AuthenticationRepository authenticationRepository;
 
   VerifyPasswordResetUsecase(this.authenticationRepository);
 
   @override
-  Future<Either<ApiError, BaseEntity>> call(Params params) async {
+  Future<Either<ApiError, BaseEntity>> call(VerifyPasswordParams params) async {
     return await authenticationRepository.verifyPasswordResetCode(
         otpCode: params.otpCode,
         password: params.password,
@@ -19,11 +19,11 @@ class VerifyPasswordResetUsecase implements UseCase<BaseEntity, Params> {
   }
 }
 
-class Params extends Equatable {
+class VerifyPasswordParams extends Equatable {
   final String username;
   final String password;
   final String otpCode;
-  const Params({
+  const VerifyPasswordParams({
     required this.username,
     required this.password,
     required this.otpCode,

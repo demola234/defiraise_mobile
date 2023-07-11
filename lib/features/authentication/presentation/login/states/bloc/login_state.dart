@@ -7,4 +7,7 @@ class LoginState with _$LoginState {
   const factory LoginState.authenticationFailed(
     String error,
   ) = AuthFailedState;
+  const factory LoginState.loginSuccessful(
+    LoginResponse response,
+  ) = AuthLoadedState;
 }

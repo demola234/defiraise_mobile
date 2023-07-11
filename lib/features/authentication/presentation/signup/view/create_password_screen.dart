@@ -6,14 +6,18 @@ import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
+import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/create_password_bloc/bloc/create_password_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class CreatePasswordScreen extends ConsumerStatefulWidget {
-  const CreatePasswordScreen({super.key});
+  final String username;
+  const CreatePasswordScreen({required this.username, super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -21,7 +25,10 @@ class CreatePasswordScreen extends ConsumerStatefulWidget {
 }
 
 class _CreatePasswordScreenState extends ConsumerState<CreatePasswordScreen>
-    with InputValidationMixin, SingleTickerProviderStateMixin {
+    with
+        InputValidationMixin,
+        SingleTickerProviderStateMixin,
+        LoadingOverlayMixin {
   late AnimationController controller = AnimationController(
     duration: const Duration(milliseconds: 500),
     vsync: this,
@@ -39,6 +46,7 @@ class _CreatePasswordScreenState extends ConsumerState<CreatePasswordScreen>
   final enabled = ValueNotifier<bool>(false);
   final isConfirmHide = ValueNotifier<bool>(true);
   final isSwitched = ValueNotifier<bool>(false);
+  OverlayEntry? _overlayEntry;
 
   final passwordMatch = ValueNotifier<bool>(false);
   final FocusNode _passwordNode = FocusNode();
@@ -199,27 +207,39 @@ class _CreatePasswordScreenState extends ConsumerState<CreatePasswordScreen>
                     ),
                   ),
                 ),
-                AnimatedBuilder(
-                    animation: controller,
-                    builder: (BuildContext context, Widget? child) {
-                      return AnimatedOpacity(
-                        opacity: enabled.value ? 1 : 0,
-                        duration: const Duration(milliseconds: 500),
-                        child: AppButton(
-                          text: AppTexts.looksGood,
-                          isActive: enabled.value,
-                          onTap: () {
-                            _passwordNode.unfocus();
-                            _confirmPasswordNode.unfocus();
-                            //FIXME: Navigate to login screen
-                            context.goNamed(RouteConstants.login);
-                          },
-                          textColor: AppColors.white100,
-                          textSize: 12,
-                          color: AppColors.primaryColor,
-                        ),
-                      );
-                    }),
+                BlocConsumer<CreatePasswordBloc, CreatePasswordState>(
+                  listener: _listener,
+                  builder: (context, state) {
+                    return AnimatedBuilder(
+                        animation: controller,
+                        builder: (BuildContext context, Widget? child) {
+                          return AnimatedOpacity(
+                            opacity: enabled.value ? 1 : 0,
+                            duration: const Duration(milliseconds: 500),
+                            child: AppButton(
+                              text: AppTexts.looksGood,
+                              isActive: enabled.value,
+                              onTap: () {
+                                _passwordNode.unfocus();
+                                _confirmPasswordNode.unfocus();
+                                //FIXME: Navigate to login screen
+
+                                context
+                                    .read<CreatePasswordBloc>()
+                                    .add(CreatePasswordEq(
+                                      biometrics: isSwitched.value,
+                                      username: widget.username,
+                                      password: _passwordController.text,
+                                    ));
+                              },
+                              textColor: AppColors.white100,
+                              textSize: 12,
+                              color: AppColors.primaryColor,
+                            ),
+                          );
+                        });
+                  },
+                ),
 
                 // Use Biometrics with switch
                 VerticalMargin(10),
@@ -268,6 +288,25 @@ class _CreatePasswordScreenState extends ConsumerState<CreatePasswordScreen>
         ),
       ),
     );
+  }
+
+  void _listener(BuildContext context, CreatePasswordState state) {
+    state.maybeWhen(orElse: () {
+      _overlayEntry?.remove();
+    }, creatingPassword: () {
+      _overlayEntry = showLoadingOverlay(context, _overlayEntry);
+    }, createPasswordError: (message) {
+      _overlayEntry?.remove();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: AppColors.errorColor,
+        ),
+      );
+    }, createPasswordSuccess: (message) {
+      _overlayEntry?.remove();
+      context.goNamed(RouteConstants.login);
+    });
   }
 
   Container _passwordChecker(

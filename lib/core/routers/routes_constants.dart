@@ -8,6 +8,7 @@ class RouteConstants {
   static String register = 'register';
   static String verifyEmail = 'verifyEmail';
   static String resetPassword = 'resetPassword';
+  static String lastLogin = 'lastLogin';
   static String confirmPassword = 'confirmPassword';
   static String resetOtp = 'resetOtp';
   static String resetConfirmPassword = 'resetConfirmPassword';

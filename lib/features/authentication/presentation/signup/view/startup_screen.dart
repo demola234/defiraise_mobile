@@ -64,7 +64,7 @@ class _StartUpScreenState extends ConsumerState<StartUpScreen>
           AppButton(
             text: AppTexts.accountLogin,
             textSize: 12,
-            onTap: () {
+            onTap: () async {
               context.goNamed(RouteConstants.login);
             },
             textColor: AppColors.primaryColor,

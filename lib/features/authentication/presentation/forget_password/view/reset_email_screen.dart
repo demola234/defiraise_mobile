@@ -6,7 +6,9 @@ import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/forget_password/state/bloc/forget_password_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -76,16 +78,41 @@ class _ResetEmailScreenState extends ConsumerState<ResetEmailScreen>
 
                               VerticalMargin(10),
                               // Login Button
-                              AppButton(
-                                text: AppTexts.resetPasswordButton,
-                                onTap: () {
-                                  //FIXME: Navigate to login screen
-                                  context.goNamed(RouteConstants.resetOtp);
+                              BlocConsumer<ForgetPasswordBloc,
+                                  ForgetPasswordState>(
+                                listener: _listener,
+                                builder: (context, state) {
+                                  return AppButton(
+                                    text: AppTexts.resetPasswordButton,
+                                    onTap: () {
+                                      context.read<ForgetPasswordBloc>().add(
+                                          ResetPasswordEvent(
+                                              email: _emailController.text));
+                                    },
+                                    textSize: 12,
+                                    textColor: AppColors.white100,
+                                    color: AppColors.primaryColor,
+                                  );
                                 },
-                                textSize: 12,
-                                textColor: AppColors.white100,
-                                color: AppColors.primaryColor,
                               ),
                             ]))))));
+  }
+
+  void _listener(BuildContext context, ForgetPasswordState state) {
+    state.maybeWhen(
+        orElse: () {},
+        resetPasswordError: (message) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(message),
+              backgroundColor: AppColors.errorColor,
+            ),
+          );
+        },
+        resetPasswordSuccess: (response) {
+          context.goNamed(RouteConstants.resetOtp, queryParameters: {
+            "email": _emailController.text,
+          });
+        });
   }
 }

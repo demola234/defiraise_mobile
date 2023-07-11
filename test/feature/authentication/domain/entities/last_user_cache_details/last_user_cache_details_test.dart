@@ -5,18 +5,19 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   final tResponse = LastUserCachedDetails(
-    name: 'testUser1',
-    address: '0xaddress123',
-    password: 'pass123',
-  );
+      username: 'testUser1',
+      password: 'pass123',
+      isBiometric: true,
+      email: 'test@test.com');
 
   group("test response on last user cache details", () {
     test("should return a valid model", () {
       // arrange
       final data = {
-        'name': tResponse.name,
-        'address': tResponse.address,
+        'name': tResponse.username,
         'password': tResponse.password,
+        'isBiometric': tResponse.isBiometric,
+        'email': tResponse.email,
       };
       // act
       final result = LastUserCachedDetails.fromJson(jsonEncode(data));

@@ -1,15 +1,19 @@
+import 'package:defiraiser_mobile/core/di/injector.dart';
 import 'package:defiraiser_mobile/core/global/error/exceptions.dart';
 import 'package:defiraiser_mobile/core/network/endpoint_manager.dart';
 import 'package:defiraiser_mobile/core/network/network_provider.dart';
+import 'package:defiraiser_mobile/core/secure/secure.dart';
+import 'package:defiraiser_mobile/core/secure/secure_key.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/entities/base_entity/base_entity.dart';
+import 'package:defiraiser_mobile/features/authentication/domain/entities/check_user_entity/check_user_entity.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/entities/login_entity/login_response_entity.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/entities/register_entity/create_account_response.dart';
+import 'package:dio/dio.dart';
 
 abstract class AuthenticationRemoteDataSource {
-  Future<CreateAccountResponse> createAccount(
-      String username, String email);
+  Future<CreateAccountResponse> createAccount(String username, String email);
   Future<LoginResponse> login(String username, String password);
-    Future<BaseEntity> verifyOtp(
+  Future<BaseEntity> verifyOtp(
       {required String username, required String otpCode});
   Future<BaseEntity> resendOTP({required String userId});
   Future<BaseEntity> resetPassword({required String username});
@@ -17,6 +21,17 @@ abstract class AuthenticationRemoteDataSource {
       {required String username,
       required String otpCode,
       required String password});
+
+  Future<BaseEntity> createUserPassword(
+      {required String username,
+      required bool biometrics,
+      required String password});
+
+  Future<CheckUserEntity> checkUsernameExists({
+    required String username,
+  });
+
+  Future<User> setProfile({required int imageId});
 }
 
 class IAuthenticationRemoteDataSource
@@ -30,7 +45,10 @@ class IAuthenticationRemoteDataSource
     final response = await client.call(
         path: EndpointManager.createAccount,
         method: RequestMethod.post,
-        body: {"username": username, "email": email,});
+        body: {
+          "username": username,
+          "email": email,
+        });
     final res = response!.data;
     if (response.statusCode == 200) {
       return CreateAccountResponse.fromJson(res);
@@ -85,7 +103,7 @@ class IAuthenticationRemoteDataSource
   Future<BaseEntity> verifyOtp(
       {required String username, required String otpCode}) async {
     final response = await client.call(
-        path: EndpointManager.resetPassword,
+        path: EndpointManager.verifyOTP,
         method: RequestMethod.post,
         body: {
           "username": username,
@@ -115,6 +133,63 @@ class IAuthenticationRemoteDataSource
     final res = response!.data;
     if (response.statusCode == 200) {
       return BaseEntity.fromJson(res);
+    } else {
+      throw ServerException(message: 'Server Error');
+    }
+  }
+
+  @override
+  Future<BaseEntity> createUserPassword(
+      {required String username,
+      required bool biometrics,
+      required String password}) async {
+    final response = await client.call(
+        path: EndpointManager.createUserPassword,
+        method: RequestMethod.post,
+        body: {
+          "username": username,
+          "password": password,
+          "biometrics": biometrics,
+        });
+    final res = response!.data;
+    if (response.statusCode == 200) {
+      return BaseEntity.fromJson(res);
+    } else {
+      throw ServerException(message: 'Server Error');
+    }
+  }
+
+  @override
+  Future<CheckUserEntity> checkUsernameExists(
+      {required String username}) async {
+    final response = await client.call(
+        path: EndpointManager.checkUsername,
+        method: RequestMethod.post,
+        body: {"username": username});
+    final res = response!.data;
+    if (response.statusCode == 200) {
+      return CheckUserEntity.fromJson(res);
+    } else {
+      throw ServerException(message: 'Server Error');
+    }
+  }
+
+  @override
+  Future<User> setProfile({required int imageId}) async {
+    final token =
+        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
+
+    final response = await client.call(
+      path: EndpointManager.setProfileAvatar,
+      method: RequestMethod.post,
+      body: {'image_id': imageId},
+      options: Options(headers: {
+        'Authorization': 'Bearer $token',
+      }),
+    );
+    final res = response!.data['data'];
+    if (response.statusCode == 200) {
+      return User.fromJson(res);
     } else {
       throw ServerException(message: 'Server Error');
     }

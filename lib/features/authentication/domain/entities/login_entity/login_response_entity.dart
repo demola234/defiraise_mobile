@@ -13,7 +13,7 @@ String loginResponseToJson(LoginResponse data) => json.encode(data.toJson());
 @freezed
 class LoginResponse with _$LoginResponse {
   const factory LoginResponse({
-     Data? data,
+    Data? data,
     @Default('') message,
     required int status,
   }) = _LoginResponse;
@@ -44,8 +44,11 @@ class User with _$User {
     @Default('') username,
     @Default('') email,
     DateTime? passwordChangedAt,
+    @Default(false) isFirstTime,
+    @Default('') avatar,
     DateTime? createdAt,
     @Default('') address,
+    @Default(false) biometrics,
     @Default('') balance,
   }) = _User;
 

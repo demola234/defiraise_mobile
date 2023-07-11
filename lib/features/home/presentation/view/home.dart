@@ -197,6 +197,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         data: "0xEDc7d973cA6eE138A3210664639c2F2c5283309D",
                         version: QrVersions.auto,
                         size: 170.0,
+                        // embeddedImage: AssetImage(AppImages.appLogoQr),
+                        // embeddedImageStyle: QrEmbeddedImageStyle(
+                        //   size: Size(40, 40),
+                        // ),
                       ),
                       VerticalMargin(20),
                       Text(

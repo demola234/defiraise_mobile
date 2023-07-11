@@ -5,7 +5,10 @@ import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
+import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/bloc/sign_up_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,13 +21,14 @@ class CreateAccountScreen extends ConsumerStatefulWidget {
 }
 
 class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen>
-    with InputValidationMixin {
+    with InputValidationMixin, LoadingOverlayMixin {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey();
   final isValidate = ValueNotifier<bool>(false);
   final FocusNode _emailNode = FocusNode();
   final FocusNode _firstNameNode = FocusNode();
+  OverlayEntry? _overlayEntry;
 
   @override
   void dispose() {
@@ -57,19 +61,50 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen>
                         color: AppColors.grey100,
                       )),
                   VerticalMargin(50),
-                  AppTextField(
-                    controller: _firstNameController,
-                    hintText: AppTexts.firstName,
-                    inputType: TextInputType.name,
-                    textCapitalization: TextCapitalization.none,
-                    focusNode: _firstNameNode,
-                    textInputAction: TextInputAction.next,
-                    validator: isValidate.value
-                        ? combine([
-                            withMessage(
-                                AppTexts.fieldEmpty("First Name"), isTextEmpty),
-                          ])
-                        : null,
+                  BlocConsumer<SignUpBloc, SignUpState>(
+                    listener: (context, state) {
+                      // TODO: implement listener
+                    },
+                    builder: (context, state) {
+                      return AppTextField(
+                        controller: _firstNameController,
+                        hintText: AppTexts.firstName,
+                        inputType: TextInputType.name,
+                        textCapitalization: TextCapitalization.none,
+                        focusNode: _firstNameNode,
+                        onChanged: (input) {
+                          context
+                              .read<SignUpBloc>()
+                              .add(CheckUsernameEvent(username: input));
+                        },
+                        suffixIcon: state.maybeWhen(
+                          orElse: () => Icon(
+                            Icons.info,
+                            color: Colors.orange,
+                          ),
+                          checkUsernameError: (check) => Icon(
+                            Icons.error,
+                            color: AppColors.errorColor,
+                          ),
+                          checkedUserLoaded: (check) => check == false
+                              ? Icon(
+                                  Icons.check_box,
+                                  color: AppColors.successColor,
+                                )
+                              : Icon(
+                                  Icons.error,
+                                  color: AppColors.errorColor,
+                                ),
+                        ),
+                        textInputAction: TextInputAction.next,
+                        validator: isValidate.value
+                            ? combine([
+                                withMessage(AppTexts.fieldEmpty("First Name"),
+                                    isTextEmpty),
+                              ])
+                            : null,
+                      );
+                    },
                   ),
                   VerticalMargin(20),
                   AppTextField(
@@ -88,17 +123,25 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen>
                         : null,
                   ),
                   VerticalMargin(20),
-                  AppButton(
-                    text: AppTexts.createAccountButton,
-                    onTap: () {
-                      _emailNode.unfocus();
-                      _firstNameNode.unfocus();
-                      //FIXME: Navigate to login screen
-                      context.goNamed(RouteConstants.verifyEmail);
+                  BlocConsumer<SignUpBloc, SignUpState>(
+                    listener: _listener,
+                    builder: (context, state) {
+                      return AppButton(
+                        text: AppTexts.createAccountButton,
+                        onTap: () {
+                          _emailNode.unfocus();
+                          _firstNameNode.unfocus();
+                          //FIXME: Navigate to login screen
+
+                          context.read<SignUpBloc>().add(RegisterUser(
+                              email: _emailController.text,
+                              username: _firstNameController.text));
+                        },
+                        textSize: 12,
+                        textColor: AppColors.white100,
+                        color: AppColors.primaryColor,
+                      );
                     },
-                    textSize: 12,
-                    textColor: AppColors.white100,
-                    color: AppColors.primaryColor,
                   ),
 
                   Row(
@@ -129,5 +172,27 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen>
         ),
       ),
     );
+  }
+
+  void _listener(BuildContext context, SignUpState state) {
+    state.maybeWhen(orElse: () {
+      _overlayEntry?.remove();
+    }, loading: () {
+      _overlayEntry = showLoadingOverlay(context, _overlayEntry);
+    }, registrationError: (message) {
+      _overlayEntry?.remove();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: AppColors.errorColor,
+        ),
+      );
+    }, registrationSuccessful: (message) {
+      _overlayEntry?.remove();
+      context.goNamed(RouteConstants.verifyEmail, queryParameters: {
+        "username": _firstNameController.text,
+        "email": _emailController.text
+      });
+    });
   }
 }

@@ -52,10 +52,13 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       passwordChangedAt: json['password_changed_at'] == null
           ? null
           : DateTime.parse(json['password_changed_at'] as String),
+      isFirstTime: json['is_first_time'] ?? false,
+      avatar: json['avatar'] ?? '',
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
       address: json['address'] ?? '',
+      biometrics: json['biometrics'] ?? false,
       balance: json['balance'] ?? '',
     );
 
@@ -63,7 +66,10 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'username': instance.username,
       'email': instance.email,
       'password_changed_at': instance.passwordChangedAt?.toIso8601String(),
+      'is_first_time': instance.isFirstTime,
+      'avatar': instance.avatar,
       'created_at': instance.createdAt?.toIso8601String(),
       'address': instance.address,
+      'biometrics': instance.biometrics,
       'balance': instance.balance,
     };

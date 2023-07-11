@@ -9,6 +9,8 @@ import 'package:dartz/dartz.dart' as _i2;
 import 'package:defiraiser_mobile/core/network/api_error.dart' as _i5;
 import 'package:defiraiser_mobile/features/authentication/domain/entities/base_entity/base_entity.dart'
     as _i8;
+import 'package:defiraiser_mobile/features/authentication/domain/entities/check_user_entity/check_user_entity.dart'
+    as _i9;
 import 'package:defiraiser_mobile/features/authentication/domain/entities/login_entity/login_response_entity.dart'
     as _i7;
 import 'package:defiraiser_mobile/features/authentication/domain/entities/register_entity/create_account_response.dart'
@@ -199,4 +201,73 @@ class MockAuthenticationRepository extends _i1.Mock
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.ApiError, _i8.BaseEntity>>);
+  @override
+  _i4.Future<_i2.Either<_i5.ApiError, _i8.BaseEntity>> createUserPassword({
+    required String? username,
+    required bool? biometrics,
+    required String? password,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createUserPassword,
+          [],
+          {
+            #username: username,
+            #biometrics: biometrics,
+            #password: password,
+          },
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.ApiError, _i8.BaseEntity>>.value(
+            _FakeEither_0<_i5.ApiError, _i8.BaseEntity>(
+          this,
+          Invocation.method(
+            #createUserPassword,
+            [],
+            {
+              #username: username,
+              #biometrics: biometrics,
+              #password: password,
+            },
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.ApiError, _i8.BaseEntity>>);
+  @override
+  _i4.Future<_i2.Either<_i5.ApiError, _i9.CheckUserEntity>> checkUsernameExists(
+          {required String? username}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #checkUsernameExists,
+          [],
+          {#username: username},
+        ),
+        returnValue:
+            _i4.Future<_i2.Either<_i5.ApiError, _i9.CheckUserEntity>>.value(
+                _FakeEither_0<_i5.ApiError, _i9.CheckUserEntity>(
+          this,
+          Invocation.method(
+            #checkUsernameExists,
+            [],
+            {#username: username},
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.ApiError, _i9.CheckUserEntity>>);
+  @override
+  _i4.Future<_i2.Either<_i5.ApiError, _i7.User>> setProfileAvatar(
+          {required int? imageId}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setProfileAvatar,
+          [],
+          {#imageId: imageId},
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.ApiError, _i7.User>>.value(
+            _FakeEither_0<_i5.ApiError, _i7.User>(
+          this,
+          Invocation.method(
+            #setProfileAvatar,
+            [],
+            {#imageId: imageId},
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.ApiError, _i7.User>>);
 }

@@ -1,7 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:defiraiser_mobile/core/network/api_error.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/entities/register_entity/create_account_response.dart';
+import 'package:defiraiser_mobile/features/authentication/domain/usecases/check_user_exist_usecase.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/usecases/create_account_usecase.dart';
+import 'package:defiraiser_mobile/features/authentication/domain/usecases/create_user_password_usecase.dart';
+import 'package:defiraiser_mobile/features/authentication/domain/usecases/resend_otp_usecase.dart';
+import 'package:defiraiser_mobile/features/authentication/domain/usecases/verify_otp_usecase.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/bloc/sign_up_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -10,8 +14,18 @@ import 'package:mockito/mockito.dart';
 import 'sign_up_bloc_test.mocks.dart';
 
 @GenerateMocks([CreateUserAccountUsecase])
+@GenerateMocks([VerifyOtpUseCase])
+@GenerateMocks([CreateUserPasswordUsecase])
+@GenerateMocks([CheckUsernameExistUsecase])
+@GenerateMocks([ResendOtpUsecase])
+
 void main() {
   late MockCreateUserAccountUsecase mockCreateUserAccountUsecase;
+  late MockVerifyOtpUseCase mockVerifyOtpUseCase;
+  late MockCreateUserPasswordUsecase mockCreatePasswordUseCase;
+  late MockResendOtpUsecase mockResendOtpUsecase;
+  late MockCheckUsernameExistUsecase mockCheckUsernameExistUsecase;
+
   late String tEmail;
   late String tUsername;
   late CreateAccountResponse tResponse;
@@ -19,9 +33,18 @@ void main() {
 
   setUp(() {
     mockCreateUserAccountUsecase = MockCreateUserAccountUsecase();
+    mockVerifyOtpUseCase = MockVerifyOtpUseCase();
+    mockCheckUsernameExistUsecase = MockCheckUsernameExistUsecase();
+    mockCreatePasswordUseCase = MockCreateUserPasswordUsecase();
+    mockResendOtpUsecase = MockResendOtpUsecase();
     tUsername = "test";
     tEmail = "test@test.com";
-    bloc = SignUpBloc(createUserAccountUsecase: mockCreateUserAccountUsecase);
+    bloc = SignUpBloc(
+        createUserAccountUsecase: mockCreateUserAccountUsecase,
+        createPasswordUseCase: mockCreatePasswordUseCase,
+        checkUsernameExistUsecase: mockCheckUsernameExistUsecase,
+        resendOtpUsecase: mockResendOtpUsecase,
+        verifyOtpUseCase: mockVerifyOtpUseCase);
     tResponse = const CreateAccountResponse(
         data: Data(
             username: "test",

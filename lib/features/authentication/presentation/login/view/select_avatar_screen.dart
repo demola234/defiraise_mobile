@@ -4,8 +4,10 @@ import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
-import 'package:defiraiser_mobile/core/utils/input_validation.dart';
+import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/login/states/set_profile_avatar/bloc/set_profile_avatar_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,10 +20,11 @@ class SelectAvatarScreen extends ConsumerStatefulWidget {
 }
 
 class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
-    with InputValidationMixin, SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, LoadingOverlayMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final isValidate = ValueNotifier<bool>(false);
   final isSelected = ValueNotifier<int>(0);
+  OverlayEntry? _overlayEntry;
 
   late final AnimationController _animationController;
 
@@ -139,17 +142,47 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
                               ),
                               VerticalMargin(20),
                               // Login Button
-                              AppButton(
-                                text: AppTexts.dashboard,
-                                onTap: () {
-                                  //FIXME: Navigate to login screen
-                                  context.goNamed(RouteConstants.home);
+                              BlocConsumer<SetProfileAvatarBloc,
+                                  SetProfileAvatarState>(
+                                listener: _listener,
+                                builder: (context, state) {
+                                  return AppButton(
+                                    text: AppTexts.dashboard,
+                                    onTap: () {
+                                      //FIXME: Navigate to login screen
+                                      //
+                                      context
+                                          .read<SetProfileAvatarBloc>()
+                                          .add(SetProfileAvatarEq(
+                                            imageId: isSelected.value + 1,
+                                          ));
+                                    },
+                                    textColor: AppColors.white100,
+                                    textSize: 12,
+                                    color: AppColors.primaryColor,
+                                  );
                                 },
-                                textColor: AppColors.white100,
-                                textSize: 12,
-                                color: AppColors.primaryColor,
                               ),
                             ]))))));
+  }
+
+  void _listener(BuildContext context, SetProfileAvatarState state) {
+    state.maybeWhen(orElse: () {
+      _overlayEntry?.remove();
+    }, loading: () {
+      _overlayEntry = showLoadingOverlay(context, _overlayEntry);
+    }, profileError: (message) {
+      _overlayEntry?.remove();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: AppColors.errorColor,
+        ),
+      );
+    }, profileSet: (response) {
+      _overlayEntry?.remove();
+      context.goNamed(RouteConstants.home);
+    });
   }
 
   GestureDetector _avatars(int index) {
@@ -157,6 +190,7 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
       onTap: () {
         setState(() {
           isSelected.value = index;
+          print(isSelected.value);
         });
       },
       child: Column(
