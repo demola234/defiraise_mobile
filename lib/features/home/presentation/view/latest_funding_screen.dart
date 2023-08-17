@@ -49,160 +49,284 @@ class _LatestFundraiserWidgetState extends ConsumerState<LatestFundraiserWidget>
           SizedBox(
               width: context.screenWidth(),
               height: 250,
-              child: AnimationLimiter(
-                child: ListView.builder(
-                    itemCount: 7,
-                    shrinkWrap: true,
-                    physics: BouncingScrollPhysics(
-                        parent: AlwaysScrollableScrollPhysics()),
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: ((context, index) {
-                      return AnimationConfiguration.staggeredList(
-                          position: index,
-                          duration: const Duration(milliseconds: 200),
-                          child: SlideAnimation(
-                              horizontalOffset: 30,
-                              verticalOffset: 50.0,
-                              child: FadeInAnimation(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  child: Container(
-                                    width: 200,
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
-                                      color: AppColors.white100,
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          height: 120,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: AppColors.grey200
-                                                .withOpacity(0.5),
-                                          ),
-                                        ),
-                                        VerticalMargin(10),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "By",
-                                              style:
-                                                  Config.b2(context).copyWith(
-                                                fontSize: 10,
-                                                color: AppColors.grey100,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+              child: BlocBuilder<CampaignsBloc, CampaignsState>(
+                  builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () => Container(),
+                  loaded: (success) => AnimationLimiter(
+                      child: ListView.builder(
+                          itemCount: success.data.length,
+                          shrinkWrap: true,
+                          physics: BouncingScrollPhysics(
+                              parent: AlwaysScrollableScrollPhysics()),
+                          padding: const EdgeInsets.symmetric(horizontal: 25),
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                context.goNamed(RouteConstants.singleDonation,
+                                    extra: success.data[index]);
+                              },
+                              child: AnimationConfiguration.staggeredList(
+                                  position: index,
+                                  duration: const Duration(milliseconds: 200),
+                                  child: SlideAnimation(
+                                      horizontalOffset: 30,
+                                      verticalOffset: 50.0,
+                                      child: FadeInAnimation(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          child: Container(
+                                            width: 200,
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 10),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              color: AppColors.white100,
                                             ),
-                                            HorizontalMargin(5),
-                                            CircleAvatar(
-                                              radius: 8,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              backgroundImage: AssetImage(
-                                                  AppImages.avatar(1)),
-                                            ),
-                                            HorizontalMargin(5),
-                                            Text(
-                                              AppTexts.placeHolderName,
-                                              style:
-                                                  Config.b2(context).copyWith(
-                                                fontSize: 10,
-                                                color: AppColors.black100,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        VerticalMargin(10),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "India Train Crash: How to Help",
-                                              style:
-                                                  Config.b2(context).copyWith(
-                                                fontSize: 12,
-                                                color: AppColors.black100,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        VerticalMargin(10),
-                                        linearPercentage(
-                                          90,
-                                          100,
-                                          _controller,
-                                          context,
-                                          height: 10,
-                                        ),
-                                        VerticalMargin(10),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Row(
+                                            child: Column(
                                               children: [
-                                                SvgPicture.asset(
-                                                  AppIcons.ether,
-                                                  height: 10,
-                                                  width: 10,
-                                                ),
-                                                HorizontalMargin(5),
-                                                Text(
-                                                  "1.3",
-                                                  style: Config.b2(context)
-                                                      .copyWith(
-                                                    fontSize: 10,
-                                                    color: AppColors.black100,
-                                                    fontWeight: FontWeight.bold,
+                                                Container(
+                                                  height: 120,
+                                                  width: 200,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                    color: AppColors.grey200
+                                                        .withOpacity(0.5),
+                                                  ),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                    child: CachedNetworkImage(
+                                                        imageUrl: success
+                                                            .data[index].image,
+                                                        fit: BoxFit.cover,
+                                                        height: 120,
+                                                        placeholder: (context,
+                                                                url) =>
+                                                            Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10),
+                                                                  color: AppColors
+                                                                      .grey100,
+                                                                ),
+                                                                child: Shimmer(
+                                                                  gradient:
+                                                                      LinearGradient(
+                                                                    begin: Alignment
+                                                                        .topLeft,
+                                                                    end: Alignment
+                                                                        .bottomRight,
+                                                                    colors: [
+                                                                      AppColors
+                                                                          .grey100,
+                                                                      AppColors
+                                                                          .white100,
+                                                                    ],
+                                                                  ),
+                                                                  child:
+                                                                      Container(
+                                                                    height: 120,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              20),
+                                                                    ),
+                                                                  ),
+                                                                )),
+                                                        errorWidget: (context,
+                                                            url, error) {
+                                                          return Image.asset(
+                                                            AppImages.avatar(1),
+                                                            height: 12,
+                                                            fit: BoxFit.cover,
+                                                            width: 12,
+                                                          );
+                                                        }),
                                                   ),
                                                 ),
-                                                HorizontalMargin(5),
-                                                Text(
-                                                  "ETH",
-                                                  style: Config.b2(context)
-                                                      .copyWith(
-                                                    fontSize: 10,
-                                                    color: AppColors.grey100,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
+                                                VerticalMargin(10),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      "By",
+                                                      style: Config.b2(context)
+                                                          .copyWith(
+                                                        fontSize: 10,
+                                                        color:
+                                                            AppColors.grey100,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    HorizontalMargin(5),
+                                                    CachedNetworkImage(
+                                                        imageUrl: success
+                                                            .data[index]
+                                                            .user![0]
+                                                            .avatar,
+                                                        fit: BoxFit.cover,
+                                                        height: 15,
+                                                        width: 15,
+                                                        placeholder:
+                                                            (context, url) =>
+                                                                LoadingImage(),
+                                                        errorWidget: (context,
+                                                            url, error) {
+                                                          return Image.asset(
+                                                            AppImages.avatar(1),
+                                                            height: 12,
+                                                            fit: BoxFit.cover,
+                                                            width: 12,
+                                                          );
+                                                        }),
+                                                    HorizontalMargin(5),
+                                                    Flexible(
+                                                      child: Text(
+                                                        success
+                                                                    .data[index]
+                                                                    .user![0]
+                                                                    .username !=
+                                                                ""
+                                                            ? "${success.data[index].user![0].username}"
+                                                            : "Anonymous",
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style:
+                                                            Config.b2(context)
+                                                                .copyWith(
+                                                          fontSize: 10,
+                                                          color: AppColors
+                                                              .black100,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                VerticalMargin(10),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Flexible(
+                                                      child: Text(
+                                                        success
+                                                            .data[index].title,
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style:
+                                                            Config.b3(context)
+                                                                .copyWith(
+                                                          fontSize: 10,
+                                                          color: AppColors
+                                                              .black100,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                VerticalMargin(10),
+                                                linearPercentage(
+                                                    success.data[index]
+                                                        .totalAmountDonated,
+                                                    success.data[index].goal,
+                                                    _controller,
+                                                    context,
+                                                    height: 10,
+                                                    width: 200),
+                                                VerticalMargin(10),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        SvgPicture.asset(
+                                                          AppIcons.ether,
+                                                          height: 10,
+                                                          width: 10,
+                                                        ),
+                                                        HorizontalMargin(5),
+                                                        Text(
+                                                          (success.data[index]
+                                                                      .goal /
+                                                                  1000000000000000000)
+                                                              .toString(),
+                                                          style:
+                                                              Config.b2(context)
+                                                                  .copyWith(
+                                                            fontSize: 10,
+                                                            color: AppColors
+                                                                .black100,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        HorizontalMargin(5),
+                                                        Text(
+                                                          "ETH",
+                                                          style:
+                                                              Config.b2(context)
+                                                                  .copyWith(
+                                                            fontSize: 10,
+                                                            color: AppColors
+                                                                .grey100,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Text(
+                                                      DateTime.tryParse(success
+                                                              .data[index]
+                                                              .deadline!)!
+                                                          .endTime(),
+                                                      style: Config.b2(context)
+                                                          .copyWith(
+                                                        fontSize: 10,
+                                                        color:
+                                                            AppColors.grey100,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
-                                            Text(
-                                              "31 days left",
-                                              style:
-                                                  Config.b2(context).copyWith(
-                                                fontSize: 10,
-                                                color: AppColors.grey100,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ],
+                                          ),
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              )));
-                    })),
-              )),
+                                      ))),
+                            );
+                          })),
+                );
+              })),
           VerticalMargin(30),
         ],
       ),

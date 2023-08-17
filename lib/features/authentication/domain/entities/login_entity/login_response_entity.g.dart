@@ -32,7 +32,7 @@ _$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
       refreshTokenExpiresAt: json['refresh_token_expires_at'] == null
           ? null
           : DateTime.parse(json['refresh_token_expires_at'] as String),
-      user: User.fromJson(json['user'] as Map<String, dynamic>),
+      user: UserResponse.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{
@@ -46,7 +46,8 @@ Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{
       'user': instance.user.toJson(),
     };
 
-_$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
+_$_UserResponse _$$_UserResponseFromJson(Map<String, dynamic> json) =>
+    _$_UserResponse(
       username: json['username'] ?? '',
       email: json['email'] ?? '',
       passwordChangedAt: json['password_changed_at'] == null
@@ -62,7 +63,8 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       balance: json['balance'] ?? '',
     );
 
-Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
+Map<String, dynamic> _$$_UserResponseToJson(_$_UserResponse instance) =>
+    <String, dynamic>{
       'username': instance.username,
       'email': instance.email,
       'password_changed_at': instance.passwordChangedAt?.toIso8601String(),

@@ -155,12 +155,23 @@ class IAuthenticationRepository implements AuthenticationRepository {
   }
 
   @override
-  Future<Either<ApiError, User>> setProfileAvatar(
+  Future<Either<ApiError, UserResponse>> setProfileAvatar(
       {required int imageId}) async {
     try {
       final remoteVerifyOtp =
           await remoteDataSource.setProfile(imageId: imageId);
       return Right(remoteVerifyOtp);
+    } on ApiError catch (error) {
+      return Left(error);
+    }
+  }
+
+  @override
+  Future<Either<ApiError, UserResponse>> getUserDetails() async {
+    try {
+      final remoteUser = await remoteDataSource.getUserDetails();
+      await authLocalDataSource.cacheUserDetails(user: remoteUser);
+      return Right(remoteUser);
     } on ApiError catch (error) {
       return Left(error);
     }

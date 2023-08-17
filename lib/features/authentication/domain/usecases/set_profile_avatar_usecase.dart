@@ -5,13 +5,13 @@ import 'package:defiraiser_mobile/features/authentication/domain/entities/login_
 import 'package:defiraiser_mobile/features/authentication/domain/repositories/authentication_repository.dart';
 import 'package:equatable/equatable.dart';
 
-class ProfileAvatarUsecase implements UseCase<User, SetProfileAvatarParams> {
+class ProfileAvatarUsecase implements UseCase<UserResponse, SetProfileAvatarParams> {
   final AuthenticationRepository authenticationRepository;
 
   ProfileAvatarUsecase(this.authenticationRepository);
 
   @override
-  Future<Either<ApiError, User>> call(SetProfileAvatarParams params) async {
+  Future<Either<ApiError, UserResponse>> call(SetProfileAvatarParams params) async {
     return await authenticationRepository.setProfileAvatar(
         imageId: params.imageId);
   }

@@ -22,6 +22,12 @@
 		<string>????</string>
 		<key>NSFaceIDUsageDescription</key>
 		<string>Why is my app authenticating using face id?</string>
+		<key>NSCameraUsageDescription</key>
+		<string>$(APP_NAME) allows you to upload profile images using the camera. Granting access to the camera will enable you to take photos and update your profile picture easily</string>
+		<key>NSPhotoLibraryAddUsageDescription</key>
+		<string>$(APP_NAME) allows you to upload profile images using the gallery. Granting access to the gallery will enable you to take photos and update your profile picture easily</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>$(APP_NAME) allows you to upload profile images using the gallery. Granting access to the gallery will enable you to take photos and update your profile picture easily</string>
 		<key>CFBundleVersion</key>
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
 		<key>LSRequiresIPhoneOS</key>

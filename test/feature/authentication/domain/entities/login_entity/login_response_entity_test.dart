@@ -14,7 +14,7 @@ void main() {
       accessTokenExpiresAt: null,
       refreshToken: "",
       refreshTokenExpiresAt: null,
-      user: User(
+      user: UserResponse(
         username: "ademola1",
         email: "",
         passwordChangedAt: null,

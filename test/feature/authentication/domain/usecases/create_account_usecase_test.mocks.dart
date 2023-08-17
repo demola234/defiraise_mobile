@@ -252,7 +252,7 @@ class MockAuthenticationRepository extends _i1.Mock
         )),
       ) as _i4.Future<_i2.Either<_i5.ApiError, _i9.CheckUserEntity>>);
   @override
-  _i4.Future<_i2.Either<_i5.ApiError, _i7.User>> setProfileAvatar(
+  _i4.Future<_i2.Either<_i5.ApiError, _i7.UserResponse>> setProfileAvatar(
           {required int? imageId}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -260,8 +260,9 @@ class MockAuthenticationRepository extends _i1.Mock
           [],
           {#imageId: imageId},
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.ApiError, _i7.User>>.value(
-            _FakeEither_0<_i5.ApiError, _i7.User>(
+        returnValue:
+            _i4.Future<_i2.Either<_i5.ApiError, _i7.UserResponse>>.value(
+                _FakeEither_0<_i5.ApiError, _i7.UserResponse>(
           this,
           Invocation.method(
             #setProfileAvatar,
@@ -269,5 +270,22 @@ class MockAuthenticationRepository extends _i1.Mock
             {#imageId: imageId},
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.ApiError, _i7.User>>);
+      ) as _i4.Future<_i2.Either<_i5.ApiError, _i7.UserResponse>>);
+  @override
+  _i4.Future<_i2.Either<_i5.ApiError, _i7.UserResponse>> getUserDetails() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getUserDetails,
+          [],
+        ),
+        returnValue:
+            _i4.Future<_i2.Either<_i5.ApiError, _i7.UserResponse>>.value(
+                _FakeEither_0<_i5.ApiError, _i7.UserResponse>(
+          this,
+          Invocation.method(
+            #getUserDetails,
+            [],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.ApiError, _i7.UserResponse>>);
 }

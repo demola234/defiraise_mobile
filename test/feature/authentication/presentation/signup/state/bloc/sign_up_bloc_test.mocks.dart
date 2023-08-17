@@ -85,8 +85,8 @@ class MockCreateUserAccountUsecase extends _i1.Mock
           #call,
           [params],
         ),
-        returnValue: _i5.Future<
-                _i3.Either<_i6.ApiError, _i7.CreateAccountResponse>>.value(
+        returnValue: _i5
+            .Future<_i3.Either<_i6.ApiError, _i7.CreateAccountResponse>>.value(
             _FakeEither_1<_i6.ApiError, _i7.CreateAccountResponse>(
           this,
           Invocation.method(

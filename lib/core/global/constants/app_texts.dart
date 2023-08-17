@@ -47,8 +47,7 @@ class AppTexts {
   static String resetOTP = "Reset OTP";
   static String resetPassDesc = "Reset your password";
   static String hiUser(String username) => "Hello $username,";
-  static String notUser(String username) =>
-      "Not $username?";
+  static String notUser(String username) => "Not $username?";
   static String loginDiff = "Login as a different user";
 
   //! DASHBOARD
@@ -60,6 +59,7 @@ class AppTexts {
   static String education = "Education";
   static String placeHolderName = "Joe Doe";
   static String donation = "Donation";
+  static String createDonation = "Create Donation";
 
   //! DONATION
   static String donationDesc = "Enter the amount you want to donate";
@@ -76,11 +76,16 @@ class AppTexts {
   static String proceed = "Proceed";
   static String availableBalance = "Available Balance";
   static String confirmDonation = "Confirm Donation Details";
-  static String success = "YEEEH!!!";
+  static String success = "Successful!!!";
   static String successDesc = "Your donation was successful";
   static String continueText = "Go to dashboard";
   static String walletAddr = "Wallet Address";
   static String copyAddr = "Copy address";
+  static String campaignName = "Campaign Title";
+  static String campaignDesc = "Campaign Description";
+  static String campaignGoal = "Campaign Goal";
+  static String selectCategory = "Select Category";
+  static String deadline = "Select Deadline";
 
   //! NAVIGATION
   static String home = "Home";
@@ -90,4 +95,11 @@ class AppTexts {
 
   //! My Campaign
   static String myCampaign = "My Campaign";
+  static String addCampaign = "Add Campaign";
+
+  //! Profile
+  static String profile = "Profile";
+  static String editProfile = "Edit Profile";
+  static String continueTo = "continue";
+  static String changePassword = "Change Password";
 }

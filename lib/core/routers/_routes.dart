@@ -15,6 +15,13 @@ import 'package:defiraiser_mobile/features/authentication/presentation/signup/si
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/view/create_password_screen.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/view/signup_screen.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/view/verify_otp_screen.dart';
+import 'package:defiraiser_mobile/features/donation/presentation/view/create_donation_screen.dart';
+import 'package:defiraiser_mobile/features/home/domain/entities/campaigns/campaigns_entity.dart';
+import 'package:defiraiser_mobile/features/home/presentation/_home.dart';
+import 'package:defiraiser_mobile/features/home/presentation/view/category_campaign_screen.dart';
+import 'package:defiraiser_mobile/features/profile/presentation/view/change_password_screen.dart';
+import 'package:defiraiser_mobile/features/profile/presentation/view/edit_profile_screen.dart';
+import 'package:defiraiser_mobile/features/profile/presentation/view/select_avatar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

@@ -55,7 +55,7 @@ void main() {
       accessTokenExpiresAt: null,
       refreshToken: "",
       refreshTokenExpiresAt: null,
-      user: login.User(
+      user: login.UserResponse(
         username: "ademola1",
         email: "",
         passwordChangedAt: null,

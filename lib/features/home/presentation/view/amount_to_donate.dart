@@ -1,7 +1,17 @@
 part of '../_home.dart';
 
 class AmountDonateScreen extends ConsumerStatefulWidget {
-  const AmountDonateScreen({super.key});
+  final String campaignId;
+  final String campaignName;
+  final String campaignAddress;
+  final String goal;
+  const AmountDonateScreen({
+    required this.campaignId,
+    required this.goal,
+    required this.campaignName,
+    required this.campaignAddress,
+    super.key,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -13,10 +23,13 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
   late AnimationController _controller;
   late Animation<double> _animation;
   final TextEditingController _amountController = TextEditingController();
-  final double _availableBalance = 2.10;
+  final user = sl<AppCache>().getUserDetails();
+  final double _availableBalance =
+      double.parse(sl<AppCache>().getUserDetails().balance);
   final ValueNotifier<bool> _isAvailableGreaterThanAmount =
       ValueNotifier<bool>(false);
   final ValueNotifier<double> _exchangeRate = ValueNotifier<double>(0.0);
+  final ValueNotifier<double> _currentRate = ValueNotifier<double>(0.0);
 
   @override
   void initState() {
@@ -38,24 +51,68 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
     super.initState();
   }
 
-  double _exchangeRateDollarToEther() {
-    setState(() {
-      _exchangeRate.value = _amountController.text.isEmpty
-          ? 0.0
-          : double.parse(_amountController.text) * 1900.10;
+  @override
+  void didChangeDependencies() {
+    context.read<CurrentEthPriceBloc>().add(GetCurrentPriceEvent());
+    context.read<CurrentEthPriceBloc>().stream.listen((state) {
+      state.maybeWhen(
+          orElse: () {},
+          loaded: (data) {
+            if (mounted) {
+              setState(() {
+                _currentRate.value = double.parse(data);
+              });
+            }
+          });
     });
+    super.didChangeDependencies();
+  }
+
+  double _exchangeRateDollarToEther() {
+    if (mounted) {
+      setState(() {
+        _exchangeRate.value = _amountController.text.isEmpty
+            ? 0.0
+            : double.parse(_amountController.text) * _currentRate.value;
+      });
+    }
     return _exchangeRate.value;
   }
 
   _availableGreaterThanAmount() {
-    setState(() {
-      if (_amountController.text.isEmpty) {
-        _isAvailableGreaterThanAmount.value = false;
-        return;
-      }
-      _isAvailableGreaterThanAmount.value =
-          double.parse(_amountController.text) > _availableBalance;
-    });
+    if (mounted) {
+      setState(() {
+        if (_amountController.text.isEmpty ||
+            double.parse(_amountController.text) == 0.0 ||
+            double.parse(_amountController.text) < 0.0 ||
+            double.parse(_amountController.text) == 0 ||
+            _amountController.text == "0.00" ||
+            _amountController.text == "" ||
+            _amountController.text == "0.0" ||
+            _amountController.text == "0.000" ||
+            _amountController.text == "0.0000" ||
+            _amountController.text == "0.") {
+          _isAvailableGreaterThanAmount.value = false;
+          return;
+        } else if (double.parse(_amountController.text) >
+            (_availableBalance - 0.001)) {
+          _isAvailableGreaterThanAmount.value = false;
+          return;
+        } else {
+          _isAvailableGreaterThanAmount.value = true;
+          return;
+        }
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _amountController.dispose();
+    _controller.dispose();
+    _isAvailableGreaterThanAmount.dispose();
+    _exchangeRate.dispose();
+    super.dispose();
   }
 
   @override
@@ -63,14 +120,15 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
     return Scaffold(
       backgroundColor: AppColors.white200,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
+        preferredSize: const Size.fromHeight(80),
         child: DeFiRaiseAppBar(
           title: AppTexts.amount2Donate,
+          isBack: true,
         ),
       ),
       body: Column(
         children: [
-          VerticalMargin(10),
+          VerticalMargin(50),
           Expanded(
             child: SizedBox(
               width: context.screenWidth(0.8),
@@ -79,29 +137,40 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: SvgPicture.asset(
-                      AppIcons.ether,
-                      height: 20,
-                      width: 20,
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(top: 19.0),
+                      child: Text(
+                        "ETH",
+                      )),
                   HorizontalMargin(10),
                   ScaleTransition(
                     scale: _animation,
                     child: AutoSizeText(
-                      maxFontSize: 50,
+                      maxFontSize: 40,
                       _amountController.text.isEmpty
                           ? '0.00'
                           : _amountController.text,
                       softWrap: true,
                       overflow: TextOverflow.fade,
                       style: Config.h1(context).copyWith(
-                          color: !_isAvailableGreaterThanAmount.value
+                          color: _isAvailableGreaterThanAmount.value ||
+                                  !_amountController.text.isNotEmpty ||
+                                  _amountController.text == "0.00" ||
+                                  _amountController.text == "0.0" ||
+                                  _amountController.text == "0.000" ||
+                                  _amountController.text == "0.0000" ||
+                                  _amountController.text == "0." ||
+                                  _amountController.text == "0"
                               ? AppColors.black100
                               : AppColors.errorColor,
-                          fontSize: 50,
-                          decoration: !_isAvailableGreaterThanAmount.value
+                          fontSize: 40,
+                          decoration: _isAvailableGreaterThanAmount.value ||
+                                  !_amountController.text.isNotEmpty ||
+                                  _amountController.text == "0.00" ||
+                                  _amountController.text == "0.000" ||
+                                  _amountController.text == "0.0000" ||
+                                  _amountController.text == "0.0" ||
+                                  _amountController.text == "0." ||
+                                  _amountController.text == "0"
                               ? TextDecoration.none
                               : TextDecoration.lineThrough,
                           fontWeight: FontWeight.bold),
@@ -111,7 +180,7 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
               ),
             ),
           ),
-          VerticalMargin(10),
+          VerticalMargin(1),
           AnimatedBuilder(
               animation: _controller,
               builder: (context, child) {
@@ -123,24 +192,25 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
                     HapticFeedback.mediumImpact();
                     SystemSound.play(SystemSoundType.alert);
                     setState(() {
-                      _amountController.text = _availableBalance.toString();
+                      _amountController.text =
+                          (_availableBalance - 0.001).toStringAsPrecision(4);
                     });
                   },
                   // shape: const CircleBorder(),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.0),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                  color: AppColors.secondaryColor,
+                  color: AppColors.black200,
                   elevation: 0.0,
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  minWidth: 120.0,
+                  minWidth: 20.0,
                   // height: 35.0,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       'Use Max',
                       style: Config.b1(context).copyWith(
-                        fontSize: 16.0,
+                        fontSize: 8.0,
                         color: AppColors.white100,
                         fontWeight: FontWeight.bold,
                       ),
@@ -148,13 +218,13 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
                   ),
                 );
               }),
-          VerticalMargin(20),
+          VerticalMargin(30),
           Text(
-            AppTexts.availableBalance,
-            style: Config.b1(context).copyWith(
-              fontSize: 16.0,
-              color: AppColors.black100,
-              fontWeight: FontWeight.bold,
+            AppTexts.availableBalance.toUpperCase(),
+            style: Config.b3(context).copyWith(
+              fontSize: 11.0,
+              color: AppColors.grey300,
+              fontWeight: FontWeight.w100,
             ),
           ),
 
@@ -162,17 +232,17 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 3.0),
-                child: SvgPicture.asset(
-                  AppIcons.ether,
-                  height: 20,
-                  width: 20,
+              Text(
+                _availableBalance.toStringAsFixed(4),
+                style: Config.b1(context).copyWith(
+                  fontSize: 19.0,
+                  color: AppColors.black100,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              HorizontalMargin(10),
+              HorizontalMargin(2),
               Text(
-                _availableBalance.toString(),
+                'ETH',
                 style: Config.b1(context).copyWith(
                   fontSize: 19.0,
                   color: AppColors.black100,
@@ -181,91 +251,117 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
               ),
             ],
           ),
-          VerticalMargin(15),
-          Container(
-              width: context.screenWidth(0.6),
-              padding: EdgeInsets.symmetric(vertical: 10.0),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: AppColors.black200,
-                  width: 1.0,
+          VerticalMargin(2),
+          BlocListener<CurrentEthPriceBloc, CurrentEthPriceState>(
+            listener: (context, state) {},
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'USD ${_exchangeRateDollarToEther().toStringAsFixed(2)}',
+                  style: Config.b2(context).copyWith(
+                    fontSize: 14.0,
+                    color: AppColors.secondaryColor,
+                    fontWeight: FontWeight.w100,
+                  ),
                 ),
-                borderRadius: BorderRadius.circular(50.0),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    '\$ ${_exchangeRateDollarToEther().toStringAsFixed(1)}',
-                    style: Config.b1(context).copyWith(
-                      fontSize: 16.0,
-                      color: AppColors.black100,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  HorizontalMargin(5),
-                  SvgPicture.asset(
-                    AppIcons.transfer,
-                    height: 20,
-                    width: 20,
-                  ),
-                ],
-              )),
+              ],
+            ),
+          ),
           // Spacer(),
           VerticalMargin(20),
           Align(
               alignment: Alignment.bottomCenter,
               child: CustomKeyboard(
                 onTap: (value) {
-                  setState(() {
-                    // if the length is greater 8 do nothing
-                    if (_amountController.text.length > 8) {
-                      return;
-                    } else if (_amountController.text.isEmpty && value == '.') {
-                      _amountController.text = '0$value';
-                    }
-                    // only one . is allowed
-                    else if (_amountController.text.contains('.') &&
-                        value == '.') {
-                      return;
-                    }
-                    // if the first character is 0 and the second is not . add . + new value
-                    else if (_amountController.text.startsWith('0') &&
-                        _amountController.text.length == 1 &&
-                        value != '.') {
-                      _amountController.text = value;
-                    } else {
-                      _amountController.text = _amountController.text + value;
-                    }
-                    _controller.reset();
-                    _controller.forward();
-                  });
+                  if (mounted) {
+                    setState(() {
+                      // if the length is greater 8 do nothing
+                      if (_amountController.text.length > 8) {
+                        return;
+                      } else if (_amountController.text.isEmpty &&
+                          value == '.') {
+                        _amountController.text = '0$value';
+                      }
+                      // only one . is allowed
+                      else if (_amountController.text.contains('.') &&
+                          value == '.') {
+                        return;
+                      }
+                      // if the first character is 0 and the second is not . add . + new value
+                      else if (_amountController.text.startsWith('0') &&
+                          _amountController.text.length == 1 &&
+                          value != '.') {
+                        _amountController.text = value;
+                      } else {
+                        _amountController.text = _amountController.text + value;
+                      }
+                      _controller.reset();
+                      _controller.forward();
+                    });
+                  }
                 },
                 onBackspaceTap: () {
-                  setState(() {
-                    _controller.reset();
-                    _controller.forward();
-                    if (_amountController.text.length > 1) {
-                      _amountController.text = _amountController.text
-                          .substring(0, _amountController.text.length - 1);
-                    } else {
-                      _amountController.clear();
-                    }
-                  });
+                  if (mounted) {
+                    setState(() {
+                      _controller.reset();
+                      _controller.forward();
+                      if (_amountController.text.length > 1) {
+                        _amountController.text = _amountController.text
+                            .substring(0, _amountController.text.length - 1);
+                      } else {
+                        _amountController.clear();
+                      }
+                    });
+                  }
                 },
                 onBackspaceLongPress: () {
-                  setState(() {
-                    _amountController.clear();
-                  });
+                  if (mounted) {
+                    setState(() {
+                      _amountController.clear();
+                    });
+                  }
                 },
               )),
           VerticalMargin(20),
           AppButton(
             text: AppTexts.proceed,
             isRounded: true,
+            isActive: _isAvailableGreaterThanAmount.value,
             onTap: () {
-              //FIXME: Navigate to login screen
+              if (_isAvailableGreaterThanAmount.value &&
+                  double.tryParse(_amountController.text)! <=
+                      double.tryParse(widget.goal)!) {
+                context.pushNamed(RouteConstants.donationConfirmation,
+                    queryParameters: {
+                      "amount": _amountController.text,
+                      "campaignId": widget.campaignId.toString(),
+                      "campaignName": widget.campaignName,
+                      "address": widget.campaignAddress,
+                      "amountInUsd": (_currentRate.value *
+                              double.parse(_amountController.text))
+                          .toString(),
+                      "goal": widget.goal,
+                    });
+              } else if (double.tryParse(widget.goal)! >=
+                  double.tryParse(_amountController.text)!) {
+                // show snackbar
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      "Amount should be less than the goal",
+                      style: Config.b1(context).copyWith(
+                        fontSize: 14.0,
+                        color: AppColors.white100,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    backgroundColor: AppColors.errorColor,
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
             },
             textColor: AppColors.white100,
             color: AppColors.black200,

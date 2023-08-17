@@ -13,7 +13,7 @@ abstract class AuthLocalDataSource {
   });
 
   Future<void> cacheUserDetails({
-    required User user,
+    required UserResponse user,
   });
 
   Future<void> clearUserCache();
@@ -70,7 +70,7 @@ class IAuthLocalDataSource implements AuthLocalDataSource {
   }
 
   @override
-  Future<void> cacheUserDetails({required User user}) {
+  Future<void> cacheUserDetails({required UserResponse user}) {
     final cache = sl<AppCache>();
 
     final saveDetails = cache.saveUser(user);

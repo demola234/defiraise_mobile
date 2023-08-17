@@ -1,7 +1,18 @@
 part of '../_home.dart';
 
 class ConfirmDonationDetailsScreen extends ConsumerStatefulWidget {
-  const ConfirmDonationDetailsScreen({super.key});
+  final String address;
+  final String amount;
+  final String campaignId;
+  final String campaignName;
+  final String amountInUsd;
+  const ConfirmDonationDetailsScreen(
+      {required this.address,
+      required this.amount,
+      required this.campaignId,
+      required this.campaignName,
+      required this.amountInUsd,
+      super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -9,7 +20,9 @@ class ConfirmDonationDetailsScreen extends ConsumerStatefulWidget {
 }
 
 class _ConfirmDonationDetailsScreenState
-    extends ConsumerState<ConfirmDonationDetailsScreen> {
+    extends ConsumerState<ConfirmDonationDetailsScreen>
+    with LoadingOverlayMixin {
+  OverlayEntry? _overlayEntry;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +31,7 @@ class _ConfirmDonationDetailsScreenState
         preferredSize: const Size.fromHeight(60),
         child: DeFiRaiseAppBar(
           title: AppTexts.confirmDonation,
+          isBack: true,
         ),
       ),
       body: Padding(
@@ -34,70 +48,49 @@ class _ConfirmDonationDetailsScreenState
 
   Widget _buildDonationDetails() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 25),
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
       child: Column(
         children: [
           VerticalMargin(20),
           _buildDonationAmount(),
-          VerticalMargin(20),
-          _buildDetails(),
-          VerticalMargin(20),
+          VerticalMargin(60),
           _buildDonationTransaction(),
-          VerticalMargin(20),
-          _buildTotalAmount(),
-          VerticalMargin(20),
+          VerticalMargin(50),
           _buildDonationButton(),
-          // VerticalMargin(20),
+          VerticalMargin(20),
+          _note(),
         ],
       ),
     );
   }
 
-  _buildDonationButton() {
-    return AppButton(
-        text: "Make Donation",
-        textColor: AppColors.white100,
-        color: AppColors.primaryColor,
-        isRounded: true,
-        onTap: () {});
+  _note() {
+    return Text(
+      '* The transaction fee may vary depending on the network congestion.',
+      style: Config.h3(context).copyWith(
+        color: AppColors.grey100,
+        fontWeight: FontWeight.w500,
+        fontSize: 10,
+      ),
+    );
   }
 
-  _buildTotalAmount() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          'Total Amount',
-          style: Config.h3(context).copyWith(
-            color: AppColors.black100,
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
-        VerticalMargin(5),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: SvgPicture.asset(
-                AppIcons.ether,
-                height: 20,
-                width: 20,
+  _buildDonationButton() {
+    return BlocListener<MakeDonationsBloc, MakeDonationsState>(
+      listener: _listener,
+      child: AppButton(
+          text: "Make Donation",
+          textColor: AppColors.white100,
+          color: AppColors.primaryColor,
+          isRounded: false,
+          onTap: () {
+            BlocProvider.of<MakeDonationsBloc>(context).add(
+              DonateEvent(
+                campaignId: widget.campaignId,
+                amount: widget.amount,
               ),
-            ),
-            HorizontalMargin(5),
-            Text(
-              '0.3342 Eth',
-              style: Config.h3(context).copyWith(
-                color: AppColors.secondaryColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
-          ],
-        )
-      ],
+            );
+          }),
     );
   }
 
@@ -105,156 +98,97 @@ class _ConfirmDonationDetailsScreenState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Transaction Details',
-          style: Config.h3(context).copyWith(
-            color: AppColors.black100,
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
-        VerticalMargin(20),
-        Container(
-          height: 100,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: AppColors.white200,
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: AppColors.grey200,
-              width: 1,
-            ),
-          ),
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Amount: ',
-                      style: Config.h3(context).copyWith(
-                        color: AppColors.black100,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 10,
-                      ),
-                    ),
-                    HorizontalMargin(5),
-                    Text(
-                      '0.3 Eth',
-                      style: Config.h3(context).copyWith(
-                        color: AppColors.secondaryColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
-                ),
-                VerticalMargin(5),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Gas Fees: ',
-                      style: Config.h3(context).copyWith(
-                        color: AppColors.black100,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 10,
-                      ),
-                    ),
-                    HorizontalMargin(5),
-                    Text(
-                      '0.00042Eth',
-                      style: Config.h3(context).copyWith(
-                        color: AppColors.secondaryColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
-                ),
-                VerticalMargin(5),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Transaction Fees: ',
-                      style: Config.h3(context).copyWith(
-                        color: AppColors.black100,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 10,
-                      ),
-                    ),
-                    HorizontalMargin(5),
-                    Text(
-                      '1.000000007 Gwei (0.000000001000000007 ETH)',
-                      style: Config.h3(context).copyWith(
-                        color: AppColors.secondaryColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        )
-      ],
-    );
-  }
-
-  _buildDetails() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Your Details',
-          style: Config.h3(context).copyWith(
-            color: AppColors.black100,
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
-        VerticalMargin(20),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-            color: AppColors.black100,
-          ),
-          child: Row(
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 15.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
-                radius: 25,
-                backgroundColor: Colors.transparent,
-                backgroundImage: AssetImage(
-                  AppImages.avatar(1),
-                ),
-              ),
-              HorizontalMargin(15),
-              Column(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'David Alnord',
+                    'Receiver ',
                     style: Config.h3(context).copyWith(
-                      color: AppColors.white100,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      color: AppColors.grey100,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 10,
                     ),
                   ),
-                  VerticalMargin(5),
+                  HorizontalMargin(5),
+                  InkWell(
+                    onTap: () {
+                      Clipboard.setData(ClipboardData(text: widget.address));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Copied to Clipboard'),
+                        ),
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        Text(
+                          widget.address,
+                          style: Config.h3(context).copyWith(
+                            color: AppColors.black200,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 10,
+                          ),
+                        ),
+                        HorizontalMargin(5),
+                        SvgPicture.asset(
+                          AppIcons.copyPaste,
+                          height: 15,
+                          width: 15,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              VerticalMargin(25),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Text(
-                    '0xEDc7d973cA6eE138A3210664639c2F2c5283309D',
+                    'Fees',
                     style: Config.h3(context).copyWith(
-                      color: AppColors.white200,
+                      color: AppColors.grey100,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 10,
+                    ),
+                  ),
+                  HorizontalMargin(5),
+                  Text(
+                    '${(double.parse(widget.amount) / 5).toStringAsPrecision(1)} Eth',
+                    style: Config.h3(context).copyWith(
+                      color: AppColors.black200,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 10,
+                    ),
+                  ),
+                ],
+              ),
+              VerticalMargin(25),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    'Total amount to be deducted',
+                    style: Config.h3(context).copyWith(
+                      color: AppColors.grey100,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 10,
+                    ),
+                  ),
+                  HorizontalMargin(5),
+                  Text(
+                    '${(double.parse(widget.amount) + double.parse(widget.amount) / 5).toStringAsPrecision(3)} ETH',
+                    style: Config.h3(context).copyWith(
+                      color: AppColors.black200,
                       fontWeight: FontWeight.w500,
                       fontSize: 10,
                     ),
@@ -263,38 +197,92 @@ class _ConfirmDonationDetailsScreenState
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }
 
   _buildDonationAmount() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: Row(
+      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: SvgPicture.asset(
-              AppIcons.ether,
-              height: 20,
-              width: 20,
+          Text(
+            'You are about to Donate',
+            style: Config.b3(context).copyWith(
+              color: AppColors.black200,
+              fontWeight: FontWeight.w100,
+              fontSize: 12,
             ),
           ),
-          HorizontalMargin(10),
-          Text(
-            '0.3 ETH',
-            style: Config.b1(context).copyWith(
-              color: AppColors.black100,
-              fontSize: 35,
-            ),
+          VerticalMargin(20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                widget.amount,
+                style: Config.b1(context).copyWith(
+                  fontSize: 19.0,
+                  color: AppColors.black100,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              HorizontalMargin(2),
+              Text(
+                'ETH',
+                style: Config.b1(context).copyWith(
+                  fontSize: 19.0,
+                  color: AppColors.black100,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          VerticalMargin(2),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'USD ${double.parse(widget.amountInUsd).toStringAsFixed(2)}',
+                style: Config.b2(context).copyWith(
+                  fontSize: 14.0,
+                  color: AppColors.secondaryColor,
+                  fontWeight: FontWeight.w100,
+                ),
+              ),
+            ],
           ),
         ],
       ),
     );
   }
 
-  // Widget _buildConfirmButton() {}
+  void _listener(BuildContext context, MakeDonationsState state) {
+    state.maybeWhen(orElse: () {
+      _overlayEntry?.remove();
+    }, loading: () {
+      _overlayEntry = showLoadingOverlay(context, _overlayEntry);
+    }, error: (message) {
+      _overlayEntry?.remove();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: AppColors.errorColor,
+        ),
+      );
+    }, loaded: (response) {
+      _overlayEntry?.remove();
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SuccessScreen(),
+        ),
+      );
+    });
+  }
 }

@@ -8,12 +8,14 @@ import 'package:defiraiser_mobile/features/authentication/domain/repositories/au
 import 'package:defiraiser_mobile/features/authentication/domain/usecases/check_user_exist_usecase.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/usecases/create_account_usecase.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/usecases/create_user_password_usecase.dart';
+import 'package:defiraiser_mobile/features/authentication/domain/usecases/get_user_details_usecase.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/usecases/login_usecase.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/usecases/resend_otp_usecase.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/usecases/reset_password_usecase.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/usecases/set_profile_avatar_usecase.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/usecases/verify_otp_usecase.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/forget_password/state/bloc/forget_password_bloc.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/login/states/get_user_details/bloc/get_user_details_bloc.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/login/states/set_profile_avatar/bloc/set_profile_avatar_bloc.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/bloc/sign_up_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -57,6 +59,14 @@ Future<void> registerAuthDependencies() async {
     ),
   );
 
+    authLocator.registerFactory(
+    () => GetUserDetailsBloc(
+      getUserDetailsUsecase: authLocator(),
+    ),
+  );
+
+  
+
   authLocator.registerFactory(
     () => VerifyOtpBloc(
       verifyOtpUseCase: authLocator(),
@@ -84,6 +94,7 @@ Future<void> registerAuthDependencies() async {
       authLocalDataSource: authLocator(),
     ),
   );
+  
 
   //Repository
   authLocator.registerLazySingleton<AuthLocalDataSource>(
@@ -129,6 +140,11 @@ Future<void> registerAuthDependencies() async {
   authLocator.registerLazySingleton<CheckUsernameExistUsecase>(
     () => CheckUsernameExistUsecase(authLocator()),
   );
+
+  authLocator.registerLazySingleton<GetUserDetailsUsecase>(
+    () => GetUserDetailsUsecase(authLocator()),
+  );
+  
 
   // DataSources
   authLocator.registerLazySingleton<AuthenticationRemoteDataSource>(

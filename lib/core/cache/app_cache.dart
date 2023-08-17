@@ -4,8 +4,8 @@ import 'package:defiraiser_mobile/features/authentication/domain/entities/login_
 import 'package:get_storage/get_storage.dart';
 
 abstract class AppCache {
-  saveUser(User userDetails);
-  User getUserDetails();
+  saveUser(UserResponse userDetails);
+  UserResponse getUserDetails();
   saveUserToken(String token);
   String getToken();
 }
@@ -28,14 +28,14 @@ class AppCacheImpl implements AppCache {
   }
 
   @override
-  User getUserDetails() {
+  UserResponse getUserDetails() {
     try {
       final userDetails = box.read(AppCacheKey.userDetails);
       print('Details $userDetails');
       if (userDetails != null) {
-        return User.fromJson(userDetails);
+        return UserResponse.fromJson(userDetails);
       } else {
-        return User();
+        return UserResponse();
       }
     } on CacheException {
       throw CacheException();
@@ -43,7 +43,7 @@ class AppCacheImpl implements AppCache {
   }
 
   @override
-  saveUser(User userDetails) async {
+  saveUser(UserResponse userDetails) async {
     try {
       await box.write(AppCacheKey.userDetails, userDetails.toJson());
     } on CacheException {

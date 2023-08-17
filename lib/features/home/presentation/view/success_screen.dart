@@ -1,7 +1,8 @@
 part of '../_home.dart';
 
 class SuccessScreen extends ConsumerStatefulWidget {
-  const SuccessScreen({super.key});
+  final String? campaignHash;
+  const SuccessScreen({this.campaignHash, super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SuccessScreenState();
@@ -19,7 +20,8 @@ class _SuccessScreenState extends ConsumerState<SuccessScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // VerticalMargin(100),
+              VerticalMargin(10),
+              _removeButton(),
               Spacer(),
               _buildSuccessIcon(),
               VerticalMargin(40),
@@ -33,15 +35,40 @@ class _SuccessScreenState extends ConsumerState<SuccessScreen> {
     );
   }
 
+  _removeButton() {
+    return Align(
+      alignment: Alignment.topRight,
+      child: GestureDetector(
+        onTap: () {
+          context.goNamed(RouteConstants.home);
+        },
+        child: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: AppColors.white200,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Icon(
+            Icons.close,
+            color: AppColors.grey300,
+          ),
+        ),
+      ),
+    );
+  }
+
   _buildSuccessButton() {
     return Align(
       alignment: Alignment.bottomCenter,
       child: AppButton(
         text: AppTexts.continueText,
-        onTap: () {},
+        onTap: () {
+          context.goNamed(RouteConstants.home);
+        },
         textColor: AppColors.white200,
         color: AppColors.primaryColor,
-        isRounded: true,
+        isRounded: false,
       ),
     );
   }
@@ -71,12 +98,15 @@ class _SuccessScreenState extends ConsumerState<SuccessScreen> {
           ),
         ),
         VerticalMargin(10),
+        //  Widget for the success message
         Text(
-          AppTexts.successDesc,
-          style: Config.b1(context).copyWith(
-            color: AppColors.grey300,
-          ),
+          "Your donation was successful \nThank you for your support!",
           textAlign: TextAlign.center,
+          style: Config.h3(context).copyWith(
+            color: AppColors.grey100,
+            fontWeight: FontWeight.w500,
+            fontSize: 14,
+          ),
         ),
       ],
     );

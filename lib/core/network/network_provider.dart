@@ -2,11 +2,10 @@
 
 // 📦 Package imports:
 import 'package:curl_logger_dio_interceptor/curl_logger_dio_interceptor.dart';
-import 'package:dio/dio.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
 // 🌎 Project imports:
 import 'package:defiraiser_mobile/core/network/api_error.dart';
+import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 abstract class NetworkProvider {
   Future<Response?> call({
@@ -68,24 +67,24 @@ class NetworkProviderImpl extends NetworkProvider {
     try {
       switch (method) {
         case RequestMethod.get:
-          response =
-              await _getDioInstance().get(path, queryParameters: queryParams);
+          response = await _getDioInstance()
+              .get(path, queryParameters: queryParams, options: options);
           break;
         case RequestMethod.post:
           response = await _getDioInstance().post(path,
               data: body, queryParameters: queryParams, options: options);
           break;
         case RequestMethod.patch:
-          response = await _getDioInstance()
-              .patch(path, data: body, queryParameters: queryParams);
+          response = await _getDioInstance().patch(path,
+              data: body, queryParameters: queryParams, options: options);
           break;
         case RequestMethod.put:
-          response = await _getDioInstance()
-              .put(path, data: body, queryParameters: queryParams);
+          response = await _getDioInstance().put(path,
+              data: body, queryParameters: queryParams, options: options);
           break;
         case RequestMethod.delete:
-          response = await _getDioInstance()
-              .delete(path, data: body, queryParameters: queryParams);
+          response = await _getDioInstance().delete(path,
+              data: body, queryParameters: queryParams, options: options);
           break;
       }
 

@@ -1,7 +1,8 @@
 part of '../_home.dart';
 
 class ViewDonorsScreens extends ConsumerStatefulWidget {
-  const ViewDonorsScreens({super.key});
+  final String campaignId;
+  const ViewDonorsScreens({required this.campaignId, super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -9,6 +10,8 @@ class ViewDonorsScreens extends ConsumerStatefulWidget {
 }
 
 class _ViewDonorsScreensState extends ConsumerState<ViewDonorsScreens> {
+  final RefreshController _refreshController1 =
+      RefreshController(initialRefresh: false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +19,7 @@ class _ViewDonorsScreensState extends ConsumerState<ViewDonorsScreens> {
         preferredSize: const Size.fromHeight(60),
         child: DeFiRaiseAppBar(
           title: AppTexts.viewDonors,
+          isBack: true,
         ),
       ),
       body: Column(
@@ -28,49 +32,88 @@ class _ViewDonorsScreensState extends ConsumerState<ViewDonorsScreens> {
 
   Widget _buildDonorsList() {
     return Expanded(
-      child: ListView.builder(
-        shrinkWrap: true,
-        physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics()),
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return AnimationConfiguration.staggeredList(
-            position: index,
-            duration: const Duration(milliseconds: 1000),
-            child: SlideAnimation(
-              verticalOffset: 50.0,
-              child: FadeInAnimation(
-                child: _buildDonorItem(),
+      child: BlocBuilder<GetDonorsBloc, GetDonorsState>(
+        bloc: context.read<GetDonorsBloc>()
+          ..add(DonationEvent(campaignId: widget.campaignId)),
+        builder: (context, state) {
+          return state.maybeWhen(orElse: () {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }, loaded: (donors) {
+            return SmartRefresher(
+              enablePullDown: true,
+              enablePullUp: true,
+              header: const WaterDropHeader(),
+              onRefresh: () async {
+                //  refresh bloc
+                context
+                    .read<GetDonorsBloc>()
+                    .add(DonationEvent(campaignId: widget.campaignId));
+                _refreshController1.refreshCompleted();
+              },
+              controller: _refreshController1,
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()),
+                itemCount: donors.data.length,
+                itemBuilder: (context, index) {
+                  return AnimationConfiguration.staggeredList(
+                    position: index,
+                    duration: const Duration(milliseconds: 500),
+                    child: SlideAnimation(
+                      verticalOffset: 1.0,
+                      child: FadeInAnimation(
+                        child: _buildDonorItem(
+                          donors: donors.data[index],
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
-            ),
-          );
+            );
+          }, error: (message) {
+            return Center(
+              child: Text(message),
+            );
+          });
         },
       ),
     );
   }
 
-  Widget _buildDonorItem() {
+  Widget _buildDonorItem({
+    required Donors donors,
+  }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 25),
+      padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 25),
       child: Container(
-          // padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           decoration: BoxDecoration(
             color: AppColors.white100,
-            borderRadius: BorderRadius.circular(40),
+            borderRadius: BorderRadius.circular(20),
           ),
           child: Row(children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                radius: 30,
-                backgroundColor: Colors.transparent,
-                backgroundImage: AssetImage(AppImages.avatar(1)),
-              ),
-            ),
+            CachedNetworkImage(
+                imageUrl: donors.image!,
+                fit: BoxFit.cover,
+                height: 60,
+                width: 60,
+                placeholder: (context, url) => LoadingImage(),
+                errorWidget: (context, url, error) {
+                  return Image.asset(
+                    AppImages.avatar(1),
+                    height: 20,
+                    fit: BoxFit.cover,
+                    width: 20,
+                  );
+                }),
             HorizontalMargin(10),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
-                'John Doe',
+                donors.username,
                 style: Config.b2(context).copyWith(
                   color: AppColors.secondaryColor,
                   fontSize: 14,
@@ -85,10 +128,11 @@ class _ViewDonorsScreensState extends ConsumerState<ViewDonorsScreens> {
                       AppIcons.ether,
                       height: 15,
                       width: 15,
+                      color: AppColors.grey100,
                     ),
                     HorizontalMargin(5),
                     Text(
-                      '0.0001 ETH',
+                      '${donors.amount} ETH',
                       style: Config.b2(context).copyWith(
                         color: AppColors.black100,
                         fontSize: 12,
@@ -96,20 +140,13 @@ class _ViewDonorsScreensState extends ConsumerState<ViewDonorsScreens> {
                     ),
                   ]),
               Text(
-                '2 days ago',
+                '${donors.donor}',
                 style: Config.b2(context).copyWith(
                   color: AppColors.grey300,
-                  fontSize: 12,
+                  fontSize: 10,
                 ),
               )
             ]),
-            Spacer(),
-            SvgPicture.asset(
-              AppIcons.ethBackground,
-              height: 80,
-              width: 80,
-              fit: BoxFit.cover,
-            )
           ])),
     );
   }

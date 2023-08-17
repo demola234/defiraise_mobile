@@ -26,9 +26,11 @@ abstract class AuthenticationRepository {
       required bool biometrics,
       required String password});
 
-  Future<Either<ApiError,CheckUserEntity>> checkUsernameExists({
+  Future<Either<ApiError, CheckUserEntity>> checkUsernameExists({
     required String username,
   });
 
-    Future<Either<ApiError,User>> setProfileAvatar({required int imageId});
+  Future<Either<ApiError, UserResponse>> setProfileAvatar(
+      {required int imageId});
+  Future<Either<ApiError, UserResponse>> getUserDetails();
 }

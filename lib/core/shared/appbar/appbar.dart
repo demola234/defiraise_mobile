@@ -29,7 +29,7 @@ class DeFiRaiseAppBar extends StatelessWidget {
           style: Config.b1(context).copyWith(
             color: AppColors.primaryColor,
             fontWeight: FontWeight.w400,
-            fontSize: 18,
+            fontSize: 15,
           )),
       actions: actions,
       leading: isBack!

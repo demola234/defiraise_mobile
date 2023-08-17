@@ -226,25 +226,242 @@ class AppRouter {
               },
             ),
             GoRoute(
-              path: 'home',
-              name: RouteConstants.home,
-              pageBuilder: (context, state) {
-                return CustomTransitionPage(
-                  key: state.pageKey,
-                  child: const BottomNavigationController(),
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    // Change the opacity of the screen using a Curve based on the the animation's
-                    // value
-                    return FadeTransition(
-                      opacity: CurveTween(curve: Curves.easeInOutCirc)
-                          .animate(animation),
-                      child: child,
-                    );
-                  },
-                );
-              },
-            ),
+                path: 'home',
+                name: RouteConstants.home,
+                pageBuilder: (context, state) {
+                  return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const BottomNavigationController(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      // Change the opacity of the screen using a Curve based on the the animation's
+                      // value
+                      return FadeTransition(
+                        opacity: CurveTween(curve: Curves.easeInOutCirc)
+                            .animate(animation),
+                        child: child,
+                      );
+                    },
+                  );
+                },
+                routes: [
+                  GoRoute(
+                    path: 'createDonation',
+                    name: RouteConstants.createDonation,
+                    pageBuilder: (context, state) {
+                      return CustomTransitionPage(
+                        key: state.pageKey,
+                        child: CreateDonationScreen(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          // Change the opacity of the screen using a Curve based on the the animation's
+                          // value
+                          return FadeTransition(
+                            opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                .animate(animation),
+                            child: child,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  GoRoute(
+                    path: 'changePassword',
+                    name: RouteConstants.changePassword,
+                    pageBuilder: (context, state) {
+                      return CustomTransitionPage(
+                        key: state.pageKey,
+                        child: ChangePasswordScreen(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          // Change the opacity of the screen using a Curve based on the the animation's
+                          // value
+                          return FadeTransition(
+                            opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                .animate(animation),
+                            child: child,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  GoRoute(
+                    path: 'editProfile',
+                    name: RouteConstants.editProfile,
+                    pageBuilder: (context, state) {
+                      return CustomTransitionPage(
+                        key: state.pageKey,
+                        child: EditProfileScreen(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          // Change the opacity of the screen using a Curve based on the the animation's
+                          // value
+                          return FadeTransition(
+                            opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                .animate(animation),
+                            child: child,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  GoRoute(
+                    path: 'selectAvatar2',
+                    name: RouteConstants.selectAvatar2,
+                    pageBuilder: (context, state) {
+                      return CustomTransitionPage(
+                        key: state.pageKey,
+                        child: SelectAvatarScreen2(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          // Change the opacity of the screen using a Curve based on the the animation's
+                          // value
+                          return FadeTransition(
+                            opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                .animate(animation),
+                            child: child,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  GoRoute(
+                      path: 'singleDonation',
+                      name: RouteConstants.singleDonation,
+                      pageBuilder: (context, state) {
+                        return CustomTransitionPage(
+                          key: state.pageKey,
+                          child: DonationView(
+                            campaign: state.extra as Datum,
+                          ),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            // Change the opacity of the screen using a Curve based on the the animation's
+                            // value
+                            return FadeTransition(
+                              opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                  .animate(animation),
+                              child: child,
+                            );
+                          },
+                        );
+                      },
+                      routes: [
+                        GoRoute(
+                          path: 'viewDonors',
+                          name: RouteConstants.viewDonors,
+                          pageBuilder: (context, state) {
+                            return CustomTransitionPage(
+                              key: state.pageKey,
+                              child: ViewDonorsScreens(
+                                campaignId:
+                                    state.queryParameters['campaignId'] ?? '',
+                              ),
+                              transitionsBuilder: (context, animation,
+                                  secondaryAnimation, child) {
+                                return FadeTransition(
+                                  opacity:
+                                      CurveTween(curve: Curves.easeInOutCirc)
+                                          .animate(animation),
+                                  child: child,
+                                );
+                              },
+                            );
+                          },
+                        ),
+                        GoRoute(
+                            path: 'amountToDonate',
+                            name: RouteConstants.amountToDonate,
+                            pageBuilder: (context, state) {
+                              return CustomTransitionPage(
+                                key: state.pageKey,
+                                child: AmountDonateScreen(
+                                  campaignId:
+                                      state.queryParameters['campaignId'] ?? '',
+                                  campaignName:
+                                      state.queryParameters['campaignName'] ??
+                                          '',
+                                  campaignAddress: state
+                                          .queryParameters['campaignAddress'] ??
+                                      '',
+                                  goal: state.queryParameters['goal'] ?? '',
+                                ),
+                                transitionsBuilder: (context, animation,
+                                    secondaryAnimation, child) {
+                                  // Change the opacity of the screen using a Curve based on the the animation's
+                                  // value
+                                  return FadeTransition(
+                                    opacity:
+                                        CurveTween(curve: Curves.easeInOutCirc)
+                                            .animate(animation),
+                                    child: child,
+                                  );
+                                },
+                              );
+                            },
+                            routes: [
+                              GoRoute(
+                                path: 'donationConfirmation',
+                                name: RouteConstants.donationConfirmation,
+                                pageBuilder: (context, state) {
+                                  return CustomTransitionPage(
+                                    key: state.pageKey,
+                                    child: ConfirmDonationDetailsScreen(
+                                      campaignName: state.queryParameters[
+                                              'campaignName'] ??
+                                          '',
+                                      amount:
+                                          state.queryParameters['amount'] ?? '',
+                                      amountInUsd: state
+                                              .queryParameters['amountInUsd'] ??
+                                          '',
+                                      campaignId:
+                                          state.queryParameters['campaignId'] ??
+                                              '',
+                                      address:
+                                          state.queryParameters['address'] ??
+                                              '',
+                                    ),
+                                    transitionsBuilder: (context, animation,
+                                        secondaryAnimation, child) {
+                                      // Change the opacity of the screen using a Curve based on the the animation's
+                                      // value
+                                      return FadeTransition(
+                                        opacity: CurveTween(
+                                                curve: Curves.easeInOutCirc)
+                                            .animate(animation),
+                                        child: child,
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ]),
+                      ]),
+                  GoRoute(
+                    path: 'getCampaignCategory',
+                    name: RouteConstants.getCampaignCategory,
+                    pageBuilder: (context, state) {
+                      return CustomTransitionPage(
+                        key: state.pageKey,
+                        child: CategoryCampaignScreen(
+                          category: state.queryParameters['category'] ?? '',
+                          id: state.queryParameters['id'] ?? '',
+                        ),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          // Change the opacity of the screen using a Curve based on the the animation's
+                          // value
+                          return FadeTransition(
+                            opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                .animate(animation),
+                            child: child,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ]),
           ]),
     ],
   );

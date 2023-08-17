@@ -6,8 +6,6 @@ import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/local/local.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
-import 'package:defiraiser_mobile/core/secure/secure.dart';
-import 'package:defiraiser_mobile/core/secure/secure_key.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
@@ -130,6 +128,16 @@ class _LastUserLoginScreenState extends ConsumerState<LastUserLoginScreen>
                                               if (value) {
                                                 context.read<LoginStateBloc>().add(
                                                     LoginWithFingerPrintEvent());
+                                              } else {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                        "No biometrics available"),
+                                                    backgroundColor:
+                                                        AppColors.errorColor,
+                                                  ),
+                                                );
                                               }
                                             });
                                           },
@@ -203,8 +211,8 @@ class _LastUserLoginScreenState extends ConsumerState<LastUserLoginScreen>
                                     ),
                                     onPressed: () {
                                       context.goNamed(RouteConstants.login);
-                                      sl<SecureStorage>().clearAuthCredentials(
-                                          SecureStorageKey().userLogin);
+                                      // sl<SecureStorage>().clearAuthCredentials(
+                                      //     SecureStorageKey().userLogin);
                                     },
                                     child: Row(
                                       children: [
@@ -246,7 +254,6 @@ class _LastUserLoginScreenState extends ConsumerState<LastUserLoginScreen>
       );
     }, loginSuccessful: (response) {
       _overlayEntry?.remove();
-
       if (!response.data!.user.isFirstTime) {
         context.goNamed(RouteConstants.selectAvatar);
       } else {

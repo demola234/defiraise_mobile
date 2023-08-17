@@ -212,7 +212,7 @@ mixin _$Data {
   DateTime? get accessTokenExpiresAt => throw _privateConstructorUsedError;
   dynamic get refreshToken => throw _privateConstructorUsedError;
   DateTime? get refreshTokenExpiresAt => throw _privateConstructorUsedError;
-  User get user => throw _privateConstructorUsedError;
+  UserResponse get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -230,9 +230,9 @@ abstract class $DataCopyWith<$Res> {
       DateTime? accessTokenExpiresAt,
       dynamic refreshToken,
       DateTime? refreshTokenExpiresAt,
-      User user});
+      UserResponse user});
 
-  $UserCopyWith<$Res> get user;
+  $UserResponseCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -279,14 +279,14 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User,
+              as UserResponse,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
+  $UserResponseCopyWith<$Res> get user {
+    return $UserResponseCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -304,10 +304,10 @@ abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
       DateTime? accessTokenExpiresAt,
       dynamic refreshToken,
       DateTime? refreshTokenExpiresAt,
-      User user});
+      UserResponse user});
 
   @override
-  $UserCopyWith<$Res> get user;
+  $UserResponseCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -342,7 +342,7 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User,
+              as UserResponse,
     ));
   }
 }
@@ -375,7 +375,7 @@ class _$_Data implements _Data {
   @override
   final DateTime? refreshTokenExpiresAt;
   @override
-  final User user;
+  final UserResponse user;
 
   @override
   String toString() {
@@ -431,7 +431,7 @@ abstract class _Data implements Data {
       final DateTime? accessTokenExpiresAt,
       final dynamic refreshToken,
       final DateTime? refreshTokenExpiresAt,
-      required final User user}) = _$_Data;
+      required final UserResponse user}) = _$_Data;
 
   factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
 
@@ -446,18 +446,18 @@ abstract class _Data implements Data {
   @override
   DateTime? get refreshTokenExpiresAt;
   @override
-  User get user;
+  UserResponse get user;
   @override
   @JsonKey(ignore: true)
   _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;
 }
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
+UserResponse _$UserResponseFromJson(Map<String, dynamic> json) {
+  return _UserResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$User {
+mixin _$UserResponse {
   dynamic get username => throw _privateConstructorUsedError;
   dynamic get email => throw _privateConstructorUsedError;
   DateTime? get passwordChangedAt => throw _privateConstructorUsedError;
@@ -470,13 +470,15 @@ mixin _$User {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+  $UserResponseCopyWith<UserResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res, User>;
+abstract class $UserResponseCopyWith<$Res> {
+  factory $UserResponseCopyWith(
+          UserResponse value, $Res Function(UserResponse) then) =
+      _$UserResponseCopyWithImpl<$Res, UserResponse>;
   @useResult
   $Res call(
       {dynamic username,
@@ -491,9 +493,9 @@ abstract class $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res, $Val extends User>
-    implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
+class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
+    implements $UserResponseCopyWith<$Res> {
+  _$UserResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -555,9 +557,11 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
 }
 
 /// @nodoc
-abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
-      __$$_UserCopyWithImpl<$Res>;
+abstract class _$$_UserResponseCopyWith<$Res>
+    implements $UserResponseCopyWith<$Res> {
+  factory _$$_UserResponseCopyWith(
+          _$_UserResponse value, $Res Function(_$_UserResponse) then) =
+      __$$_UserResponseCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -573,9 +577,11 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
-    implements _$$_UserCopyWith<$Res> {
-  __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
+class __$$_UserResponseCopyWithImpl<$Res>
+    extends _$UserResponseCopyWithImpl<$Res, _$_UserResponse>
+    implements _$$_UserResponseCopyWith<$Res> {
+  __$$_UserResponseCopyWithImpl(
+      _$_UserResponse _value, $Res Function(_$_UserResponse) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -591,7 +597,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? biometrics = freezed,
     Object? balance = freezed,
   }) {
-    return _then(_$_User(
+    return _then(_$_UserResponse(
       username: freezed == username ? _value.username! : username,
       email: freezed == email ? _value.email! : email,
       passwordChangedAt: freezed == passwordChangedAt
@@ -614,8 +620,8 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_User implements _User {
-  const _$_User(
+class _$_UserResponse implements _UserResponse {
+  const _$_UserResponse(
       {this.username = '',
       this.email = '',
       this.passwordChangedAt,
@@ -626,7 +632,8 @@ class _$_User implements _User {
       this.biometrics = false,
       this.balance = ''});
 
-  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
+  factory _$_UserResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_UserResponseFromJson(json);
 
   @override
   @JsonKey()
@@ -656,14 +663,14 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(username: $username, email: $email, passwordChangedAt: $passwordChangedAt, isFirstTime: $isFirstTime, avatar: $avatar, createdAt: $createdAt, address: $address, biometrics: $biometrics, balance: $balance)';
+    return 'UserResponse(username: $username, email: $email, passwordChangedAt: $passwordChangedAt, isFirstTime: $isFirstTime, avatar: $avatar, createdAt: $createdAt, address: $address, biometrics: $biometrics, balance: $balance)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_User &&
+            other is _$_UserResponse &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             (identical(other.passwordChangedAt, passwordChangedAt) ||
@@ -696,19 +703,19 @@ class _$_User implements _User {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserCopyWith<_$_User> get copyWith =>
-      __$$_UserCopyWithImpl<_$_User>(this, _$identity);
+  _$$_UserResponseCopyWith<_$_UserResponse> get copyWith =>
+      __$$_UserResponseCopyWithImpl<_$_UserResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserToJson(
+    return _$$_UserResponseToJson(
       this,
     );
   }
 }
 
-abstract class _User implements User {
-  const factory _User(
+abstract class _UserResponse implements UserResponse {
+  const factory _UserResponse(
       {final dynamic username,
       final dynamic email,
       final DateTime? passwordChangedAt,
@@ -717,9 +724,10 @@ abstract class _User implements User {
       final DateTime? createdAt,
       final dynamic address,
       final dynamic biometrics,
-      final dynamic balance}) = _$_User;
+      final dynamic balance}) = _$_UserResponse;
 
-  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+  factory _UserResponse.fromJson(Map<String, dynamic> json) =
+      _$_UserResponse.fromJson;
 
   @override
   dynamic get username;
@@ -741,5 +749,6 @@ abstract class _User implements User {
   dynamic get balance;
   @override
   @JsonKey(ignore: true)
-  _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
+  _$$_UserResponseCopyWith<_$_UserResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }

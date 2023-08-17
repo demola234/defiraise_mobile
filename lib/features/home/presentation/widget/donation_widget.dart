@@ -1,16 +1,24 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_icons.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_images.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
+import 'package:defiraiser_mobile/features/home/domain/entities/campaigns/campaigns_entity.dart';
 import 'package:defiraiser_mobile/features/home/presentation/_home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shimmer/shimmer.dart';
 
 class BuildDonationWidget extends ConsumerWidget {
-     late AnimationController controller;
+  final Datum? campaign;
+  late final AnimationController controller;
 
-   BuildDonationWidget({super.key, required this.controller,});
+  BuildDonationWidget({
+    this.campaign,
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,7 +36,7 @@ class BuildDonationWidget extends ConsumerWidget {
         ),
         child: Row(
           children: [
-            _buildCampaignImage(),
+            _buildCampaignImage(image: campaign!.image),
             HorizontalMargin(10),
             Expanded(
               child: Column(
@@ -36,11 +44,17 @@ class BuildDonationWidget extends ConsumerWidget {
                 children: [
                   _buildCampaignDonor(context),
                   VerticalMargin(5),
-                  _buildCampaignName(context),
+                  _buildCampaignName(context, title: campaign!.title),
                   VerticalMargin(8),
-                  linearPercentage(40, 100, controller, context, height: 7),
+                  linearPercentage(campaign!.totalAmountDonated, campaign!.goal,
+                      controller, context,
+                      height: 7),
                   VerticalMargin(5),
-                  _buildCampaignRaised(context),
+                  _buildCampaignRaised(context,
+                      raised:
+                          (campaign!.totalAmountDonated / 1000000000000000000)
+                              .toString(),
+                      goal: (campaign!.goal / 1000000000000000000).toString()),
                 ],
               ),
             ),
@@ -50,7 +64,7 @@ class BuildDonationWidget extends ConsumerWidget {
     );
   }
 
-  _buildCampaignRaised(BuildContext context) {
+  _buildCampaignRaised(BuildContext context, {String? raised, String? goal}) {
     return Row(
       children: [
         SvgPicture.asset(
@@ -62,7 +76,7 @@ class BuildDonationWidget extends ConsumerWidget {
         ),
         HorizontalMargin(5),
         Text(
-          'Raised \$40,000 of \$100,000',
+          'Raised $raised of $goal',
           style: Config.b1(context).copyWith(
             fontWeight: FontWeight.w600,
             fontSize: 9.0,
@@ -73,9 +87,9 @@ class BuildDonationWidget extends ConsumerWidget {
     );
   }
 
-  _buildCampaignName(BuildContext context) {
+  _buildCampaignName(BuildContext context, {String? title}) {
     return Text(
-      'Help me raise funds for my education',
+      title!,
       style: Config.b1(context).copyWith(
         fontWeight: FontWeight.w600,
         fontSize: 12.0,
@@ -95,39 +109,77 @@ class BuildDonationWidget extends ConsumerWidget {
             color: AppColors.grey300,
           ),
         ),
-        CircleAvatar(
-          radius: 7,
-          backgroundColor: AppColors.grey300,
-          backgroundImage: AssetImage(AppImages.avatar(1)),
-        ),
+        CachedNetworkImage(
+            imageUrl: campaign!.user![0].avatar,
+            fit: BoxFit.cover,
+            height: 15,
+            width: 15,
+            placeholder: (context, url) => LoadingImage(),
+            errorWidget: (context, url, error) {
+              return Image.asset(
+                AppImages.avatar(1),
+                height: 12,
+                fit: BoxFit.cover,
+                width: 12,
+              );
+            }),
         HorizontalMargin(5),
-        Text(
-          'John Doe',
-          style: Config.b1(context).copyWith(
-            fontWeight: FontWeight.w600,
-            fontSize: 9.0,
-            color: AppColors.black100,
+        Flexible(
+          child: Text(
+            campaign!.user![0].username != ""
+                ? "${campaign!.user![0].username}"
+                : "Anonymous",
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Config.b2(context).copyWith(
+              fontSize: 10,
+              color: AppColors.black100,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ],
     );
   }
 
-  _buildCampaignImage() {
-    return Container(
-      width: 85,
-      height: 85,
-      decoration: BoxDecoration(
-        color: AppColors.white100,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          AppImages.campaign,
+  _buildCampaignImage({String? image}) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: CachedNetworkImage(
+          imageUrl: image!,
           fit: BoxFit.cover,
-        ),
-      ),
+          height: 80,
+          width: 100,
+          placeholder: (context, url) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: AppColors.grey100,
+              ),
+              child: Shimmer(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    AppColors.grey100,
+                    AppColors.white100,
+                  ],
+                ),
+                child: Container(
+                  height: 120,
+                  width: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+              )),
+          errorWidget: (context, url, error) {
+            return Image.asset(
+              AppImages.avatar(1),
+              height: 12,
+              fit: BoxFit.cover,
+              width: 12,
+            );
+          }),
     );
   }
 }

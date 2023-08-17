@@ -13,4 +13,14 @@ class EndpointManager {
   static const String getUser = '$_defifundr/user';
   static const String createUserPassword = '$_defifundr/user/password';
   static const String setProfileAvatar = '$_defifundr/user/avatar/set';
+  static const String getCampaign = '$_defifundr/campaigns/latestCampaigns';
+  static const String getDonation = '$_defifundr/campaigns';
+  static const String getMyCampaign = '$_defifundr/campaigns/owner';
+  static const String getCategories = '$_defifundr/campaigns/categories';
+  static const String getCurrentEthPrice = '$_defifundr/currentPrice';
+  static const String makeDonation = '$_defifundr/campaigns/donate';
+  static String getDonors(String id) => '$_defifundr/campaigns/donation/$id';
+  static String getCampaignsByCategory(String id) =>
+      '$_defifundr/campaigns/categories/$id';
+  static const String createDonation = '$_defifundr/campaigns';
 }

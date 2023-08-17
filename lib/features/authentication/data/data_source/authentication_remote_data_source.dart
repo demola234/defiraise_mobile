@@ -31,7 +31,8 @@ abstract class AuthenticationRemoteDataSource {
     required String username,
   });
 
-  Future<User> setProfile({required int imageId});
+  Future<UserResponse> setProfile({required int imageId});
+  Future<UserResponse> getUserDetails();
 }
 
 class IAuthenticationRemoteDataSource
@@ -175,7 +176,7 @@ class IAuthenticationRemoteDataSource
   }
 
   @override
-  Future<User> setProfile({required int imageId}) async {
+  Future<UserResponse> setProfile({required int imageId}) async {
     final token =
         await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
 
@@ -189,7 +190,27 @@ class IAuthenticationRemoteDataSource
     );
     final res = response!.data['data'];
     if (response.statusCode == 200) {
-      return User.fromJson(res);
+      return UserResponse.fromJson(res);
+    } else {
+      throw ServerException(message: 'Server Error');
+    }
+  }
+
+  @override
+  Future<UserResponse> getUserDetails() async {
+    final token =
+        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
+
+    final response = await client.call(
+      path: EndpointManager.getUser,
+      method: RequestMethod.get,
+      options: Options(headers: {
+        'Authorization': 'Bearer $token',
+      }),
+    );
+    final res = response!.data['data'];
+    if (response.statusCode == 200) {
+      return UserResponse.fromJson(res);
     } else {
       throw ServerException(message: 'Server Error');
     }

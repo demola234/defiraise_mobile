@@ -13,6 +13,7 @@ class _StartUpScreenState extends ConsumerState<StartUpScreen>
 
   @override
   void initState() {
+    
     controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1000));
     controller.repeat(reverse: true);
