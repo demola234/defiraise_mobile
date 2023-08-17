@@ -1,11 +1,15 @@
-import 'package:defiraiser_mobile/core/global/constants/app_images.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_texts.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
+import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
+import 'package:defiraiser_mobile/features/donation/presentation/state/get_donation/bloc/get_donation_bloc.dart';
 import 'package:defiraiser_mobile/features/home/presentation/widget/donation_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:go_router/go_router.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class DonationScreenView extends ConsumerStatefulWidget {
   const DonationScreenView({super.key});
@@ -18,6 +22,8 @@ class DonationScreenView extends ConsumerStatefulWidget {
 class _DonationScreenViewState extends ConsumerState<DonationScreenView>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  final RefreshController _refreshController1 =
+      RefreshController(initialRefresh: false);
 
   @override
   void initState() {
@@ -41,19 +47,7 @@ class _DonationScreenViewState extends ConsumerState<DonationScreenView>
         child: DeFiRaiseAppBar(
           isBack: false,
           title: AppTexts.donation,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 14.0, top: 10),
-              child: CircleAvatar(
-                radius: 35,
-                backgroundColor: Colors.transparent,
-                child: Image.asset(
-                  AppImages.avatar(1),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            )
-          ],
+          actions: [],
         ),
       ),
       body: Column(
@@ -66,27 +60,51 @@ class _DonationScreenViewState extends ConsumerState<DonationScreenView>
   }
 
   _buildSearchCampaign() {
-    return Expanded(
-      child: ListView.builder(
-        shrinkWrap: true,
-        physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics()),
-        itemCount: 20,
-        itemBuilder: (context, index) {
-          return AnimationConfiguration.staggeredList(
-            position: index,
-            duration: const Duration(milliseconds: 200),
-            child: SlideAnimation(
-              verticalOffset: 50.0,
-              child: FadeInAnimation(
-                child: BuildDonationWidget(
-                  controller: _controller,
+    return BlocBuilder<GetDonationBloc, GetDonationState>(
+        builder: (context, state) {
+      return state.maybeWhen(
+          orElse: () => Container(),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (error) => Center(child: Text(error)),
+          loaded: (success) => Expanded(
+                  child: SmartRefresher(
+                enablePullDown: true,
+                enablePullUp: true,
+                header: const WaterDropHeader(),
+                onRefresh: () async {
+                  //  refresh bloc
+                  context.read<GetDonationBloc>().add(FetchDonations());
+                  _refreshController1.refreshCompleted();
+                },
+                controller: _refreshController1,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics()),
+                  itemCount: success.data.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        context.goNamed(RouteConstants.singleDonation,
+                            extra: success.data[index]);
+                      },
+                      child: AnimationConfiguration.staggeredList(
+                        position: index,
+                        duration: const Duration(milliseconds: 200),
+                        child: SlideAnimation(
+                          verticalOffset: 50.0,
+                          child: FadeInAnimation(
+                            child: BuildDonationWidget(
+                              campaign: success.data[index],
+                              controller: _controller,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
+              )));
+    });
   }
 }

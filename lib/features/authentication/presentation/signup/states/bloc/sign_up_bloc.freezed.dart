@@ -31,6 +31,9 @@ mixin _$SignUpState {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -48,6 +51,9 @@ mixin _$SignUpState {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +71,9 @@ mixin _$SignUpState {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -86,6 +95,9 @@ mixin _$SignUpState {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -104,6 +116,9 @@ mixin _$SignUpState {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -122,6 +137,9 @@ mixin _$SignUpState {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -195,6 +213,9 @@ class _$_Initial implements _Initial {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) {
     return initial();
   }
@@ -215,6 +236,9 @@ class _$_Initial implements _Initial {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) {
     return initial?.call();
   }
@@ -235,6 +259,9 @@ class _$_Initial implements _Initial {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -262,6 +289,9 @@ class _$_Initial implements _Initial {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) {
     return initial(this);
   }
@@ -283,6 +313,9 @@ class _$_Initial implements _Initial {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) {
     return initial?.call(this);
   }
@@ -304,6 +337,9 @@ class _$_Initial implements _Initial {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -395,6 +431,9 @@ class _$_RegistrationError implements _RegistrationError {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) {
     return registrationError(message);
   }
@@ -415,6 +454,9 @@ class _$_RegistrationError implements _RegistrationError {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) {
     return registrationError?.call(message);
   }
@@ -435,6 +477,9 @@ class _$_RegistrationError implements _RegistrationError {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (registrationError != null) {
@@ -462,6 +507,9 @@ class _$_RegistrationError implements _RegistrationError {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) {
     return registrationError(this);
   }
@@ -483,6 +531,9 @@ class _$_RegistrationError implements _RegistrationError {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) {
     return registrationError?.call(this);
   }
@@ -504,6 +555,9 @@ class _$_RegistrationError implements _RegistrationError {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (registrationError != null) {
@@ -572,6 +626,9 @@ class _$_Loading implements _Loading {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) {
     return loading();
   }
@@ -592,6 +649,9 @@ class _$_Loading implements _Loading {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) {
     return loading?.call();
   }
@@ -612,6 +672,9 @@ class _$_Loading implements _Loading {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -639,6 +702,9 @@ class _$_Loading implements _Loading {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) {
     return loading(this);
   }
@@ -660,6 +726,9 @@ class _$_Loading implements _Loading {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) {
     return loading?.call(this);
   }
@@ -681,6 +750,9 @@ class _$_Loading implements _Loading {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -772,6 +844,9 @@ class _$_RegistrationSuccessful implements _RegistrationSuccessful {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) {
     return registrationSuccessful(message);
   }
@@ -792,6 +867,9 @@ class _$_RegistrationSuccessful implements _RegistrationSuccessful {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) {
     return registrationSuccessful?.call(message);
   }
@@ -812,6 +890,9 @@ class _$_RegistrationSuccessful implements _RegistrationSuccessful {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (registrationSuccessful != null) {
@@ -839,6 +920,9 @@ class _$_RegistrationSuccessful implements _RegistrationSuccessful {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) {
     return registrationSuccessful(this);
   }
@@ -860,6 +944,9 @@ class _$_RegistrationSuccessful implements _RegistrationSuccessful {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) {
     return registrationSuccessful?.call(this);
   }
@@ -881,6 +968,9 @@ class _$_RegistrationSuccessful implements _RegistrationSuccessful {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (registrationSuccessful != null) {
@@ -951,6 +1041,9 @@ class _$_VerifyingOtp implements _VerifyingOtp {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) {
     return verifyingOtp();
   }
@@ -971,6 +1064,9 @@ class _$_VerifyingOtp implements _VerifyingOtp {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) {
     return verifyingOtp?.call();
   }
@@ -991,6 +1087,9 @@ class _$_VerifyingOtp implements _VerifyingOtp {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (verifyingOtp != null) {
@@ -1018,6 +1117,9 @@ class _$_VerifyingOtp implements _VerifyingOtp {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) {
     return verifyingOtp(this);
   }
@@ -1039,6 +1141,9 @@ class _$_VerifyingOtp implements _VerifyingOtp {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) {
     return verifyingOtp?.call(this);
   }
@@ -1060,6 +1165,9 @@ class _$_VerifyingOtp implements _VerifyingOtp {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (verifyingOtp != null) {
@@ -1153,6 +1261,9 @@ class _$_OtpVerificationSuccessful implements _OtpVerificationSuccessful {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) {
     return otpVerificationSuccessful(message);
   }
@@ -1173,6 +1284,9 @@ class _$_OtpVerificationSuccessful implements _OtpVerificationSuccessful {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) {
     return otpVerificationSuccessful?.call(message);
   }
@@ -1193,6 +1307,9 @@ class _$_OtpVerificationSuccessful implements _OtpVerificationSuccessful {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (otpVerificationSuccessful != null) {
@@ -1220,6 +1337,9 @@ class _$_OtpVerificationSuccessful implements _OtpVerificationSuccessful {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) {
     return otpVerificationSuccessful(this);
   }
@@ -1241,6 +1361,9 @@ class _$_OtpVerificationSuccessful implements _OtpVerificationSuccessful {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) {
     return otpVerificationSuccessful?.call(this);
   }
@@ -1262,6 +1385,9 @@ class _$_OtpVerificationSuccessful implements _OtpVerificationSuccessful {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (otpVerificationSuccessful != null) {
@@ -1359,6 +1485,9 @@ class _$_OtpVerificationError implements _OtpVerificationError {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) {
     return otpVerificationError(message);
   }
@@ -1379,6 +1508,9 @@ class _$_OtpVerificationError implements _OtpVerificationError {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) {
     return otpVerificationError?.call(message);
   }
@@ -1399,6 +1531,9 @@ class _$_OtpVerificationError implements _OtpVerificationError {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (otpVerificationError != null) {
@@ -1426,6 +1561,9 @@ class _$_OtpVerificationError implements _OtpVerificationError {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) {
     return otpVerificationError(this);
   }
@@ -1447,6 +1585,9 @@ class _$_OtpVerificationError implements _OtpVerificationError {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) {
     return otpVerificationError?.call(this);
   }
@@ -1468,6 +1609,9 @@ class _$_OtpVerificationError implements _OtpVerificationError {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (otpVerificationError != null) {
@@ -1538,6 +1682,9 @@ class _$_ResendingOtp implements _ResendingOtp {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) {
     return resendingOtp();
   }
@@ -1558,6 +1705,9 @@ class _$_ResendingOtp implements _ResendingOtp {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) {
     return resendingOtp?.call();
   }
@@ -1578,6 +1728,9 @@ class _$_ResendingOtp implements _ResendingOtp {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (resendingOtp != null) {
@@ -1605,6 +1758,9 @@ class _$_ResendingOtp implements _ResendingOtp {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) {
     return resendingOtp(this);
   }
@@ -1626,6 +1782,9 @@ class _$_ResendingOtp implements _ResendingOtp {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) {
     return resendingOtp?.call(this);
   }
@@ -1647,6 +1806,9 @@ class _$_ResendingOtp implements _ResendingOtp {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (resendingOtp != null) {
@@ -1738,6 +1900,9 @@ class _$_OtpResendSuccessful implements _OtpResendSuccessful {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) {
     return otpResendSuccessful(message);
   }
@@ -1758,6 +1923,9 @@ class _$_OtpResendSuccessful implements _OtpResendSuccessful {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) {
     return otpResendSuccessful?.call(message);
   }
@@ -1778,6 +1946,9 @@ class _$_OtpResendSuccessful implements _OtpResendSuccessful {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (otpResendSuccessful != null) {
@@ -1805,6 +1976,9 @@ class _$_OtpResendSuccessful implements _OtpResendSuccessful {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) {
     return otpResendSuccessful(this);
   }
@@ -1826,6 +2000,9 @@ class _$_OtpResendSuccessful implements _OtpResendSuccessful {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) {
     return otpResendSuccessful?.call(this);
   }
@@ -1847,6 +2024,9 @@ class _$_OtpResendSuccessful implements _OtpResendSuccessful {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (otpResendSuccessful != null) {
@@ -1943,6 +2123,9 @@ class _$_OtpResendError implements _OtpResendError {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) {
     return otpResendError(message);
   }
@@ -1963,6 +2146,9 @@ class _$_OtpResendError implements _OtpResendError {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) {
     return otpResendError?.call(message);
   }
@@ -1983,6 +2169,9 @@ class _$_OtpResendError implements _OtpResendError {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (otpResendError != null) {
@@ -2010,6 +2199,9 @@ class _$_OtpResendError implements _OtpResendError {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) {
     return otpResendError(this);
   }
@@ -2031,6 +2223,9 @@ class _$_OtpResendError implements _OtpResendError {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) {
     return otpResendError?.call(this);
   }
@@ -2052,6 +2247,9 @@ class _$_OtpResendError implements _OtpResendError {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (otpResendError != null) {
@@ -2121,6 +2319,9 @@ class _$_CreatingPassword implements _CreatingPassword {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) {
     return creatingPassword();
   }
@@ -2141,6 +2342,9 @@ class _$_CreatingPassword implements _CreatingPassword {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) {
     return creatingPassword?.call();
   }
@@ -2161,6 +2365,9 @@ class _$_CreatingPassword implements _CreatingPassword {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (creatingPassword != null) {
@@ -2188,6 +2395,9 @@ class _$_CreatingPassword implements _CreatingPassword {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) {
     return creatingPassword(this);
   }
@@ -2209,6 +2419,9 @@ class _$_CreatingPassword implements _CreatingPassword {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) {
     return creatingPassword?.call(this);
   }
@@ -2230,6 +2443,9 @@ class _$_CreatingPassword implements _CreatingPassword {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (creatingPassword != null) {
@@ -2321,6 +2537,9 @@ class _$_CreatePasswordSuccess implements _CreatePasswordSuccess {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) {
     return createPasswordSuccess(message);
   }
@@ -2341,6 +2560,9 @@ class _$_CreatePasswordSuccess implements _CreatePasswordSuccess {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) {
     return createPasswordSuccess?.call(message);
   }
@@ -2361,6 +2583,9 @@ class _$_CreatePasswordSuccess implements _CreatePasswordSuccess {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (createPasswordSuccess != null) {
@@ -2388,6 +2613,9 @@ class _$_CreatePasswordSuccess implements _CreatePasswordSuccess {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) {
     return createPasswordSuccess(this);
   }
@@ -2409,6 +2637,9 @@ class _$_CreatePasswordSuccess implements _CreatePasswordSuccess {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) {
     return createPasswordSuccess?.call(this);
   }
@@ -2430,6 +2661,9 @@ class _$_CreatePasswordSuccess implements _CreatePasswordSuccess {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (createPasswordSuccess != null) {
@@ -2527,6 +2761,9 @@ class _$_CreatePasswordError implements _CreatePasswordError {
     required TResult Function() creatingPassword,
     required TResult Function(String message) createPasswordSuccess,
     required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
   }) {
     return createPasswordError(message);
   }
@@ -2547,6 +2784,9 @@ class _$_CreatePasswordError implements _CreatePasswordError {
     TResult? Function()? creatingPassword,
     TResult? Function(String message)? createPasswordSuccess,
     TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
   }) {
     return createPasswordError?.call(message);
   }
@@ -2567,6 +2807,9 @@ class _$_CreatePasswordError implements _CreatePasswordError {
     TResult Function()? creatingPassword,
     TResult Function(String message)? createPasswordSuccess,
     TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (createPasswordError != null) {
@@ -2594,6 +2837,9 @@ class _$_CreatePasswordError implements _CreatePasswordError {
     required TResult Function(_CreatePasswordSuccess value)
         createPasswordSuccess,
     required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
   }) {
     return createPasswordError(this);
   }
@@ -2615,6 +2861,9 @@ class _$_CreatePasswordError implements _CreatePasswordError {
     TResult? Function(_CreatingPassword value)? creatingPassword,
     TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
   }) {
     return createPasswordError?.call(this);
   }
@@ -2636,6 +2885,9 @@ class _$_CreatePasswordError implements _CreatePasswordError {
     TResult Function(_CreatingPassword value)? creatingPassword,
     TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
     TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
     required TResult orElse(),
   }) {
     if (createPasswordError != null) {
@@ -2652,5 +2904,644 @@ abstract class _CreatePasswordError implements SignUpState {
   String get message;
   @JsonKey(ignore: true)
   _$$_CreatePasswordErrorCopyWith<_$_CreatePasswordError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CheckingUserCopyWith<$Res> {
+  factory _$$_CheckingUserCopyWith(
+          _$_CheckingUser value, $Res Function(_$_CheckingUser) then) =
+      __$$_CheckingUserCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_CheckingUserCopyWithImpl<$Res>
+    extends _$SignUpStateCopyWithImpl<$Res, _$_CheckingUser>
+    implements _$$_CheckingUserCopyWith<$Res> {
+  __$$_CheckingUserCopyWithImpl(
+      _$_CheckingUser _value, $Res Function(_$_CheckingUser) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_CheckingUser implements _CheckingUser {
+  const _$_CheckingUser();
+
+  @override
+  String toString() {
+    return 'SignUpState.checkingUsername()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_CheckingUser);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String message) registrationError,
+    required TResult Function() loading,
+    required TResult Function(String message) registrationSuccessful,
+    required TResult Function() verifyingOtp,
+    required TResult Function(String message) otpVerificationSuccessful,
+    required TResult Function(String message) otpVerificationError,
+    required TResult Function() resendingOtp,
+    required TResult Function(String message) otpResendSuccessful,
+    required TResult Function(String message) otpResendError,
+    required TResult Function() creatingPassword,
+    required TResult Function(String message) createPasswordSuccess,
+    required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
+  }) {
+    return checkingUsername();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(String message)? registrationError,
+    TResult? Function()? loading,
+    TResult? Function(String message)? registrationSuccessful,
+    TResult? Function()? verifyingOtp,
+    TResult? Function(String message)? otpVerificationSuccessful,
+    TResult? Function(String message)? otpVerificationError,
+    TResult? Function()? resendingOtp,
+    TResult? Function(String message)? otpResendSuccessful,
+    TResult? Function(String message)? otpResendError,
+    TResult? Function()? creatingPassword,
+    TResult? Function(String message)? createPasswordSuccess,
+    TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
+  }) {
+    return checkingUsername?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String message)? registrationError,
+    TResult Function()? loading,
+    TResult Function(String message)? registrationSuccessful,
+    TResult Function()? verifyingOtp,
+    TResult Function(String message)? otpVerificationSuccessful,
+    TResult Function(String message)? otpVerificationError,
+    TResult Function()? resendingOtp,
+    TResult Function(String message)? otpResendSuccessful,
+    TResult Function(String message)? otpResendError,
+    TResult Function()? creatingPassword,
+    TResult Function(String message)? createPasswordSuccess,
+    TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
+    required TResult orElse(),
+  }) {
+    if (checkingUsername != null) {
+      return checkingUsername();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_RegistrationError value) registrationError,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_RegistrationSuccessful value)
+        registrationSuccessful,
+    required TResult Function(_VerifyingOtp value) verifyingOtp,
+    required TResult Function(_OtpVerificationSuccessful value)
+        otpVerificationSuccessful,
+    required TResult Function(_OtpVerificationError value) otpVerificationError,
+    required TResult Function(_ResendingOtp value) resendingOtp,
+    required TResult Function(_OtpResendSuccessful value) otpResendSuccessful,
+    required TResult Function(_OtpResendError value) otpResendError,
+    required TResult Function(_CreatingPassword value) creatingPassword,
+    required TResult Function(_CreatePasswordSuccess value)
+        createPasswordSuccess,
+    required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
+  }) {
+    return checkingUsername(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_RegistrationError value)? registrationError,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_RegistrationSuccessful value)? registrationSuccessful,
+    TResult? Function(_VerifyingOtp value)? verifyingOtp,
+    TResult? Function(_OtpVerificationSuccessful value)?
+        otpVerificationSuccessful,
+    TResult? Function(_OtpVerificationError value)? otpVerificationError,
+    TResult? Function(_ResendingOtp value)? resendingOtp,
+    TResult? Function(_OtpResendSuccessful value)? otpResendSuccessful,
+    TResult? Function(_OtpResendError value)? otpResendError,
+    TResult? Function(_CreatingPassword value)? creatingPassword,
+    TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
+    TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
+  }) {
+    return checkingUsername?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_RegistrationError value)? registrationError,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_RegistrationSuccessful value)? registrationSuccessful,
+    TResult Function(_VerifyingOtp value)? verifyingOtp,
+    TResult Function(_OtpVerificationSuccessful value)?
+        otpVerificationSuccessful,
+    TResult Function(_OtpVerificationError value)? otpVerificationError,
+    TResult Function(_ResendingOtp value)? resendingOtp,
+    TResult Function(_OtpResendSuccessful value)? otpResendSuccessful,
+    TResult Function(_OtpResendError value)? otpResendError,
+    TResult Function(_CreatingPassword value)? creatingPassword,
+    TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
+    TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
+    required TResult orElse(),
+  }) {
+    if (checkingUsername != null) {
+      return checkingUsername(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CheckingUser implements SignUpState {
+  const factory _CheckingUser() = _$_CheckingUser;
+}
+
+/// @nodoc
+abstract class _$$_CheckUsernameLoadedCopyWith<$Res> {
+  factory _$$_CheckUsernameLoadedCopyWith(_$_CheckUsernameLoaded value,
+          $Res Function(_$_CheckUsernameLoaded) then) =
+      __$$_CheckUsernameLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool message});
+}
+
+/// @nodoc
+class __$$_CheckUsernameLoadedCopyWithImpl<$Res>
+    extends _$SignUpStateCopyWithImpl<$Res, _$_CheckUsernameLoaded>
+    implements _$$_CheckUsernameLoadedCopyWith<$Res> {
+  __$$_CheckUsernameLoadedCopyWithImpl(_$_CheckUsernameLoaded _value,
+      $Res Function(_$_CheckUsernameLoaded) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_CheckUsernameLoaded(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CheckUsernameLoaded implements _CheckUsernameLoaded {
+  const _$_CheckUsernameLoaded(this.message);
+
+  @override
+  final bool message;
+
+  @override
+  String toString() {
+    return 'SignUpState.checkedUserLoaded(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CheckUsernameLoaded &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CheckUsernameLoadedCopyWith<_$_CheckUsernameLoaded> get copyWith =>
+      __$$_CheckUsernameLoadedCopyWithImpl<_$_CheckUsernameLoaded>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String message) registrationError,
+    required TResult Function() loading,
+    required TResult Function(String message) registrationSuccessful,
+    required TResult Function() verifyingOtp,
+    required TResult Function(String message) otpVerificationSuccessful,
+    required TResult Function(String message) otpVerificationError,
+    required TResult Function() resendingOtp,
+    required TResult Function(String message) otpResendSuccessful,
+    required TResult Function(String message) otpResendError,
+    required TResult Function() creatingPassword,
+    required TResult Function(String message) createPasswordSuccess,
+    required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
+  }) {
+    return checkedUserLoaded(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(String message)? registrationError,
+    TResult? Function()? loading,
+    TResult? Function(String message)? registrationSuccessful,
+    TResult? Function()? verifyingOtp,
+    TResult? Function(String message)? otpVerificationSuccessful,
+    TResult? Function(String message)? otpVerificationError,
+    TResult? Function()? resendingOtp,
+    TResult? Function(String message)? otpResendSuccessful,
+    TResult? Function(String message)? otpResendError,
+    TResult? Function()? creatingPassword,
+    TResult? Function(String message)? createPasswordSuccess,
+    TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
+  }) {
+    return checkedUserLoaded?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String message)? registrationError,
+    TResult Function()? loading,
+    TResult Function(String message)? registrationSuccessful,
+    TResult Function()? verifyingOtp,
+    TResult Function(String message)? otpVerificationSuccessful,
+    TResult Function(String message)? otpVerificationError,
+    TResult Function()? resendingOtp,
+    TResult Function(String message)? otpResendSuccessful,
+    TResult Function(String message)? otpResendError,
+    TResult Function()? creatingPassword,
+    TResult Function(String message)? createPasswordSuccess,
+    TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
+    required TResult orElse(),
+  }) {
+    if (checkedUserLoaded != null) {
+      return checkedUserLoaded(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_RegistrationError value) registrationError,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_RegistrationSuccessful value)
+        registrationSuccessful,
+    required TResult Function(_VerifyingOtp value) verifyingOtp,
+    required TResult Function(_OtpVerificationSuccessful value)
+        otpVerificationSuccessful,
+    required TResult Function(_OtpVerificationError value) otpVerificationError,
+    required TResult Function(_ResendingOtp value) resendingOtp,
+    required TResult Function(_OtpResendSuccessful value) otpResendSuccessful,
+    required TResult Function(_OtpResendError value) otpResendError,
+    required TResult Function(_CreatingPassword value) creatingPassword,
+    required TResult Function(_CreatePasswordSuccess value)
+        createPasswordSuccess,
+    required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
+  }) {
+    return checkedUserLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_RegistrationError value)? registrationError,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_RegistrationSuccessful value)? registrationSuccessful,
+    TResult? Function(_VerifyingOtp value)? verifyingOtp,
+    TResult? Function(_OtpVerificationSuccessful value)?
+        otpVerificationSuccessful,
+    TResult? Function(_OtpVerificationError value)? otpVerificationError,
+    TResult? Function(_ResendingOtp value)? resendingOtp,
+    TResult? Function(_OtpResendSuccessful value)? otpResendSuccessful,
+    TResult? Function(_OtpResendError value)? otpResendError,
+    TResult? Function(_CreatingPassword value)? creatingPassword,
+    TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
+    TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
+  }) {
+    return checkedUserLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_RegistrationError value)? registrationError,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_RegistrationSuccessful value)? registrationSuccessful,
+    TResult Function(_VerifyingOtp value)? verifyingOtp,
+    TResult Function(_OtpVerificationSuccessful value)?
+        otpVerificationSuccessful,
+    TResult Function(_OtpVerificationError value)? otpVerificationError,
+    TResult Function(_ResendingOtp value)? resendingOtp,
+    TResult Function(_OtpResendSuccessful value)? otpResendSuccessful,
+    TResult Function(_OtpResendError value)? otpResendError,
+    TResult Function(_CreatingPassword value)? creatingPassword,
+    TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
+    TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
+    required TResult orElse(),
+  }) {
+    if (checkedUserLoaded != null) {
+      return checkedUserLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CheckUsernameLoaded implements SignUpState {
+  const factory _CheckUsernameLoaded(final bool message) =
+      _$_CheckUsernameLoaded;
+
+  bool get message;
+  @JsonKey(ignore: true)
+  _$$_CheckUsernameLoadedCopyWith<_$_CheckUsernameLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CheckUsernameErrorCopyWith<$Res> {
+  factory _$$_CheckUsernameErrorCopyWith(_$_CheckUsernameError value,
+          $Res Function(_$_CheckUsernameError) then) =
+      __$$_CheckUsernameErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$_CheckUsernameErrorCopyWithImpl<$Res>
+    extends _$SignUpStateCopyWithImpl<$Res, _$_CheckUsernameError>
+    implements _$$_CheckUsernameErrorCopyWith<$Res> {
+  __$$_CheckUsernameErrorCopyWithImpl(
+      _$_CheckUsernameError _value, $Res Function(_$_CheckUsernameError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_CheckUsernameError(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CheckUsernameError implements _CheckUsernameError {
+  const _$_CheckUsernameError(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'SignUpState.checkUsernameError(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CheckUsernameError &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CheckUsernameErrorCopyWith<_$_CheckUsernameError> get copyWith =>
+      __$$_CheckUsernameErrorCopyWithImpl<_$_CheckUsernameError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String message) registrationError,
+    required TResult Function() loading,
+    required TResult Function(String message) registrationSuccessful,
+    required TResult Function() verifyingOtp,
+    required TResult Function(String message) otpVerificationSuccessful,
+    required TResult Function(String message) otpVerificationError,
+    required TResult Function() resendingOtp,
+    required TResult Function(String message) otpResendSuccessful,
+    required TResult Function(String message) otpResendError,
+    required TResult Function() creatingPassword,
+    required TResult Function(String message) createPasswordSuccess,
+    required TResult Function(String message) createPasswordError,
+    required TResult Function() checkingUsername,
+    required TResult Function(bool message) checkedUserLoaded,
+    required TResult Function(String message) checkUsernameError,
+  }) {
+    return checkUsernameError(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(String message)? registrationError,
+    TResult? Function()? loading,
+    TResult? Function(String message)? registrationSuccessful,
+    TResult? Function()? verifyingOtp,
+    TResult? Function(String message)? otpVerificationSuccessful,
+    TResult? Function(String message)? otpVerificationError,
+    TResult? Function()? resendingOtp,
+    TResult? Function(String message)? otpResendSuccessful,
+    TResult? Function(String message)? otpResendError,
+    TResult? Function()? creatingPassword,
+    TResult? Function(String message)? createPasswordSuccess,
+    TResult? Function(String message)? createPasswordError,
+    TResult? Function()? checkingUsername,
+    TResult? Function(bool message)? checkedUserLoaded,
+    TResult? Function(String message)? checkUsernameError,
+  }) {
+    return checkUsernameError?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String message)? registrationError,
+    TResult Function()? loading,
+    TResult Function(String message)? registrationSuccessful,
+    TResult Function()? verifyingOtp,
+    TResult Function(String message)? otpVerificationSuccessful,
+    TResult Function(String message)? otpVerificationError,
+    TResult Function()? resendingOtp,
+    TResult Function(String message)? otpResendSuccessful,
+    TResult Function(String message)? otpResendError,
+    TResult Function()? creatingPassword,
+    TResult Function(String message)? createPasswordSuccess,
+    TResult Function(String message)? createPasswordError,
+    TResult Function()? checkingUsername,
+    TResult Function(bool message)? checkedUserLoaded,
+    TResult Function(String message)? checkUsernameError,
+    required TResult orElse(),
+  }) {
+    if (checkUsernameError != null) {
+      return checkUsernameError(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_RegistrationError value) registrationError,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_RegistrationSuccessful value)
+        registrationSuccessful,
+    required TResult Function(_VerifyingOtp value) verifyingOtp,
+    required TResult Function(_OtpVerificationSuccessful value)
+        otpVerificationSuccessful,
+    required TResult Function(_OtpVerificationError value) otpVerificationError,
+    required TResult Function(_ResendingOtp value) resendingOtp,
+    required TResult Function(_OtpResendSuccessful value) otpResendSuccessful,
+    required TResult Function(_OtpResendError value) otpResendError,
+    required TResult Function(_CreatingPassword value) creatingPassword,
+    required TResult Function(_CreatePasswordSuccess value)
+        createPasswordSuccess,
+    required TResult Function(_CreatePasswordError value) createPasswordError,
+    required TResult Function(_CheckingUser value) checkingUsername,
+    required TResult Function(_CheckUsernameLoaded value) checkedUserLoaded,
+    required TResult Function(_CheckUsernameError value) checkUsernameError,
+  }) {
+    return checkUsernameError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_RegistrationError value)? registrationError,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_RegistrationSuccessful value)? registrationSuccessful,
+    TResult? Function(_VerifyingOtp value)? verifyingOtp,
+    TResult? Function(_OtpVerificationSuccessful value)?
+        otpVerificationSuccessful,
+    TResult? Function(_OtpVerificationError value)? otpVerificationError,
+    TResult? Function(_ResendingOtp value)? resendingOtp,
+    TResult? Function(_OtpResendSuccessful value)? otpResendSuccessful,
+    TResult? Function(_OtpResendError value)? otpResendError,
+    TResult? Function(_CreatingPassword value)? creatingPassword,
+    TResult? Function(_CreatePasswordSuccess value)? createPasswordSuccess,
+    TResult? Function(_CreatePasswordError value)? createPasswordError,
+    TResult? Function(_CheckingUser value)? checkingUsername,
+    TResult? Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult? Function(_CheckUsernameError value)? checkUsernameError,
+  }) {
+    return checkUsernameError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_RegistrationError value)? registrationError,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_RegistrationSuccessful value)? registrationSuccessful,
+    TResult Function(_VerifyingOtp value)? verifyingOtp,
+    TResult Function(_OtpVerificationSuccessful value)?
+        otpVerificationSuccessful,
+    TResult Function(_OtpVerificationError value)? otpVerificationError,
+    TResult Function(_ResendingOtp value)? resendingOtp,
+    TResult Function(_OtpResendSuccessful value)? otpResendSuccessful,
+    TResult Function(_OtpResendError value)? otpResendError,
+    TResult Function(_CreatingPassword value)? creatingPassword,
+    TResult Function(_CreatePasswordSuccess value)? createPasswordSuccess,
+    TResult Function(_CreatePasswordError value)? createPasswordError,
+    TResult Function(_CheckingUser value)? checkingUsername,
+    TResult Function(_CheckUsernameLoaded value)? checkedUserLoaded,
+    TResult Function(_CheckUsernameError value)? checkUsernameError,
+    required TResult orElse(),
+  }) {
+    if (checkUsernameError != null) {
+      return checkUsernameError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CheckUsernameError implements SignUpState {
+  const factory _CheckUsernameError(final String message) =
+      _$_CheckUsernameError;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$_CheckUsernameErrorCopyWith<_$_CheckUsernameError> get copyWith =>
       throw _privateConstructorUsedError;
 }

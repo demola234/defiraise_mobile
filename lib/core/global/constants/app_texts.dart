@@ -10,7 +10,7 @@ class AppTexts {
   static String accountLogin = "Login to my account";
   static String firstName = "User Name";
   static String fillEmail = "Your email address";
-    static String fillEmailLogin = "Your email address or username";
+  static String fillEmailLogin = "Your email address or username";
   static String emailInvalid = "Email is invalid";
   static String fieldEmpty(String field) => "$field can't be empty";
   static String alreadyHaveAccount = "Already have an account?";
@@ -19,7 +19,7 @@ class AppTexts {
   static String verify = "Verify";
   static String verifyOTPDescription(String email) =>
       "OTP has been sent to $email";
-  static String notYourEmail = "Not your Email?";
+  static String notYourEmail(String email) => "Not $email?";
   static String resendOTP = "Resend OTP";
   static String editEmail = "Edit Email";
   static String editEmailDesc = "Please re-enter your email";
@@ -32,7 +32,7 @@ class AppTexts {
   static String chacterLength = "At least 8 characters";
   static String passwordNotMatch = "Password does not match";
   static String looksGood = "Looks Good!";
-  static String useBiometrics = "Use my Biometrics to Login";
+  static String useBiometrics = "Use my Biometrics";
   static String login = "Login";
   static String loginDesc = "Enter Your Email to Proceed";
   static String forgetDetails = "Forgot my login details";
@@ -43,8 +43,12 @@ class AppTexts {
   static String resetPassword = "Reset Password";
   static String resetPasswordDesc = "Enter your email to reset password";
   static String resetPasswordButton = "Reset Password";
+  static String biometricsToContinue = "Please use your biometrics to continue";
   static String resetOTP = "Reset OTP";
   static String resetPassDesc = "Reset your password";
+  static String hiUser(String username) => "Hello $username,";
+  static String notUser(String username) => "Not $username?";
+  static String loginDiff = "Login as a different user";
 
   //! DASHBOARD
   static String searchCampaign = "Search Campaign";
@@ -55,6 +59,7 @@ class AppTexts {
   static String education = "Education";
   static String placeHolderName = "Joe Doe";
   static String donation = "Donation";
+  static String createDonation = "Create Donation";
 
   //! DONATION
   static String donationDesc = "Enter the amount you want to donate";
@@ -71,11 +76,16 @@ class AppTexts {
   static String proceed = "Proceed";
   static String availableBalance = "Available Balance";
   static String confirmDonation = "Confirm Donation Details";
-  static String success = "YEEEH!!!";
+  static String success = "Successful!!!";
   static String successDesc = "Your donation was successful";
   static String continueText = "Go to dashboard";
   static String walletAddr = "Wallet Address";
   static String copyAddr = "Copy address";
+  static String campaignName = "Campaign Title";
+  static String campaignDesc = "Campaign Description";
+  static String campaignGoal = "Campaign Goal";
+  static String selectCategory = "Select Category";
+  static String deadline = "Select Deadline";
 
   //! NAVIGATION
   static String home = "Home";
@@ -85,4 +95,11 @@ class AppTexts {
 
   //! My Campaign
   static String myCampaign = "My Campaign";
+  static String addCampaign = "Add Campaign";
+
+  //! Profile
+  static String profile = "Profile";
+  static String editProfile = "Edit Profile";
+  static String continueTo = "continue";
+  static String changePassword = "Change Password";
 }

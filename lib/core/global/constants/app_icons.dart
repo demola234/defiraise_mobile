@@ -28,6 +28,9 @@ class AppIcons {
   static String transfer = '${_baseAssetUrl}transfer.svg';
   static String share = '${_baseAssetUrl}share.svg';
   static String copy = '${_baseAssetUrl}copy.svg';
+  static String arrowDown = '${_baseAssetUrl}arrow-down.svg';
+  static String change = '${_baseAssetUrl}change.svg';
+  static String security = '${_baseAssetUrl}security.svg';
 
   //! NAV BAR
   static String homeSelected = '${_baseAssetUrl}home-selected.svg';

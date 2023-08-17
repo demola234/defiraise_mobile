@@ -14,7 +14,7 @@ class DeFiRaiseAppBar extends StatelessWidget {
   const DeFiRaiseAppBar({
     this.title,
     this.actions,
-    this.isBack = true,
+    this.isBack = false,
     super.key,
   });
 
@@ -24,11 +24,12 @@ class DeFiRaiseAppBar extends StatelessWidget {
       backgroundColor: AppColors.white200,
       elevation: 0,
       centerTitle: true,
+      automaticallyImplyLeading: false,
       title: Text(title ?? '',
           style: Config.b1(context).copyWith(
             color: AppColors.primaryColor,
             fontWeight: FontWeight.w400,
-            fontSize: 18,
+            fontSize: 15,
           )),
       actions: actions,
       leading: isBack!

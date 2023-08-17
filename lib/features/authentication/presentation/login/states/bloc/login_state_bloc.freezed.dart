@@ -21,6 +21,7 @@ mixin _$LoginState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) authenticationFailed,
+    required TResult Function(LoginResponse response) loginSuccessful,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$LoginState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String error)? authenticationFailed,
+    TResult? Function(LoginResponse response)? loginSuccessful,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$LoginState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? authenticationFailed,
+    TResult Function(LoginResponse response)? loginSuccessful,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$LoginState {
     required TResult Function(_Initial value) initial,
     required TResult Function(LoadingState value) loading,
     required TResult Function(AuthFailedState value) authenticationFailed,
+    required TResult Function(AuthLoadedState value) loginSuccessful,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$LoginState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(LoadingState value)? loading,
     TResult? Function(AuthFailedState value)? authenticationFailed,
+    TResult? Function(AuthLoadedState value)? loginSuccessful,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$LoginState {
     TResult Function(_Initial value)? initial,
     TResult Function(LoadingState value)? loading,
     TResult Function(AuthFailedState value)? authenticationFailed,
+    TResult Function(AuthLoadedState value)? loginSuccessful,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +126,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) authenticationFailed,
+    required TResult Function(LoginResponse response) loginSuccessful,
   }) {
     return initial();
   }
@@ -130,6 +137,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String error)? authenticationFailed,
+    TResult? Function(LoginResponse response)? loginSuccessful,
   }) {
     return initial?.call();
   }
@@ -140,6 +148,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? authenticationFailed,
+    TResult Function(LoginResponse response)? loginSuccessful,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -154,6 +163,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(LoadingState value) loading,
     required TResult Function(AuthFailedState value) authenticationFailed,
+    required TResult Function(AuthLoadedState value) loginSuccessful,
   }) {
     return initial(this);
   }
@@ -164,6 +174,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(LoadingState value)? loading,
     TResult? Function(AuthFailedState value)? authenticationFailed,
+    TResult? Function(AuthLoadedState value)? loginSuccessful,
   }) {
     return initial?.call(this);
   }
@@ -174,6 +185,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(LoadingState value)? loading,
     TResult Function(AuthFailedState value)? authenticationFailed,
+    TResult Function(AuthLoadedState value)? loginSuccessful,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -228,6 +240,7 @@ class _$LoadingState implements LoadingState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) authenticationFailed,
+    required TResult Function(LoginResponse response) loginSuccessful,
   }) {
     return loading();
   }
@@ -238,6 +251,7 @@ class _$LoadingState implements LoadingState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String error)? authenticationFailed,
+    TResult? Function(LoginResponse response)? loginSuccessful,
   }) {
     return loading?.call();
   }
@@ -248,6 +262,7 @@ class _$LoadingState implements LoadingState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? authenticationFailed,
+    TResult Function(LoginResponse response)? loginSuccessful,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -262,6 +277,7 @@ class _$LoadingState implements LoadingState {
     required TResult Function(_Initial value) initial,
     required TResult Function(LoadingState value) loading,
     required TResult Function(AuthFailedState value) authenticationFailed,
+    required TResult Function(AuthLoadedState value) loginSuccessful,
   }) {
     return loading(this);
   }
@@ -272,6 +288,7 @@ class _$LoadingState implements LoadingState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(LoadingState value)? loading,
     TResult? Function(AuthFailedState value)? authenticationFailed,
+    TResult? Function(AuthLoadedState value)? loginSuccessful,
   }) {
     return loading?.call(this);
   }
@@ -282,6 +299,7 @@ class _$LoadingState implements LoadingState {
     TResult Function(_Initial value)? initial,
     TResult Function(LoadingState value)? loading,
     TResult Function(AuthFailedState value)? authenticationFailed,
+    TResult Function(AuthLoadedState value)? loginSuccessful,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -362,6 +380,7 @@ class _$AuthFailedState implements AuthFailedState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) authenticationFailed,
+    required TResult Function(LoginResponse response) loginSuccessful,
   }) {
     return authenticationFailed(error);
   }
@@ -372,6 +391,7 @@ class _$AuthFailedState implements AuthFailedState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String error)? authenticationFailed,
+    TResult? Function(LoginResponse response)? loginSuccessful,
   }) {
     return authenticationFailed?.call(error);
   }
@@ -382,6 +402,7 @@ class _$AuthFailedState implements AuthFailedState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? authenticationFailed,
+    TResult Function(LoginResponse response)? loginSuccessful,
     required TResult orElse(),
   }) {
     if (authenticationFailed != null) {
@@ -396,6 +417,7 @@ class _$AuthFailedState implements AuthFailedState {
     required TResult Function(_Initial value) initial,
     required TResult Function(LoadingState value) loading,
     required TResult Function(AuthFailedState value) authenticationFailed,
+    required TResult Function(AuthLoadedState value) loginSuccessful,
   }) {
     return authenticationFailed(this);
   }
@@ -406,6 +428,7 @@ class _$AuthFailedState implements AuthFailedState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(LoadingState value)? loading,
     TResult? Function(AuthFailedState value)? authenticationFailed,
+    TResult? Function(AuthLoadedState value)? loginSuccessful,
   }) {
     return authenticationFailed?.call(this);
   }
@@ -416,6 +439,7 @@ class _$AuthFailedState implements AuthFailedState {
     TResult Function(_Initial value)? initial,
     TResult Function(LoadingState value)? loading,
     TResult Function(AuthFailedState value)? authenticationFailed,
+    TResult Function(AuthLoadedState value)? loginSuccessful,
     required TResult orElse(),
   }) {
     if (authenticationFailed != null) {
@@ -431,5 +455,162 @@ abstract class AuthFailedState implements LoginState {
   String get error;
   @JsonKey(ignore: true)
   _$$AuthFailedStateCopyWith<_$AuthFailedState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthLoadedStateCopyWith<$Res> {
+  factory _$$AuthLoadedStateCopyWith(
+          _$AuthLoadedState value, $Res Function(_$AuthLoadedState) then) =
+      __$$AuthLoadedStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({LoginResponse response});
+
+  $LoginResponseCopyWith<$Res> get response;
+}
+
+/// @nodoc
+class __$$AuthLoadedStateCopyWithImpl<$Res>
+    extends _$LoginStateCopyWithImpl<$Res, _$AuthLoadedState>
+    implements _$$AuthLoadedStateCopyWith<$Res> {
+  __$$AuthLoadedStateCopyWithImpl(
+      _$AuthLoadedState _value, $Res Function(_$AuthLoadedState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? response = null,
+  }) {
+    return _then(_$AuthLoadedState(
+      null == response
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as LoginResponse,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LoginResponseCopyWith<$Res> get response {
+    return $LoginResponseCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$AuthLoadedState implements AuthLoadedState {
+  const _$AuthLoadedState(this.response);
+
+  @override
+  final LoginResponse response;
+
+  @override
+  String toString() {
+    return 'LoginState.loginSuccessful(response: $response)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthLoadedState &&
+            (identical(other.response, response) ||
+                other.response == response));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, response);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthLoadedStateCopyWith<_$AuthLoadedState> get copyWith =>
+      __$$AuthLoadedStateCopyWithImpl<_$AuthLoadedState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String error) authenticationFailed,
+    required TResult Function(LoginResponse response) loginSuccessful,
+  }) {
+    return loginSuccessful(response);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String error)? authenticationFailed,
+    TResult? Function(LoginResponse response)? loginSuccessful,
+  }) {
+    return loginSuccessful?.call(response);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String error)? authenticationFailed,
+    TResult Function(LoginResponse response)? loginSuccessful,
+    required TResult orElse(),
+  }) {
+    if (loginSuccessful != null) {
+      return loginSuccessful(response);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(LoadingState value) loading,
+    required TResult Function(AuthFailedState value) authenticationFailed,
+    required TResult Function(AuthLoadedState value) loginSuccessful,
+  }) {
+    return loginSuccessful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(LoadingState value)? loading,
+    TResult? Function(AuthFailedState value)? authenticationFailed,
+    TResult? Function(AuthLoadedState value)? loginSuccessful,
+  }) {
+    return loginSuccessful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(LoadingState value)? loading,
+    TResult Function(AuthFailedState value)? authenticationFailed,
+    TResult Function(AuthLoadedState value)? loginSuccessful,
+    required TResult orElse(),
+  }) {
+    if (loginSuccessful != null) {
+      return loginSuccessful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthLoadedState implements LoginState {
+  const factory AuthLoadedState(final LoginResponse response) =
+      _$AuthLoadedState;
+
+  LoginResponse get response;
+  @JsonKey(ignore: true)
+  _$$AuthLoadedStateCopyWith<_$AuthLoadedState> get copyWith =>
       throw _privateConstructorUsedError;
 }

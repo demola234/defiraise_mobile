@@ -2,7 +2,7 @@ part of '../_home.dart';
 
 linearPercentage(int percentage, int total, AnimationController controller,
     BuildContext context,
-    {double? width, double? height}) {
+    {double? width = 250, double? height}) {
   return AnimatedBuilder(
       animation: controller,
       builder: (context, child) {
@@ -18,7 +18,7 @@ linearPercentage(int percentage, int total, AnimationController controller,
             ),
             Container(
               height: height ?? 15,
-              width: 250 * (percentage / total) * controller.value,
+              width: width! * (percentage / total) * controller.value,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 color: AppColors.black100,

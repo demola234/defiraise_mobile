@@ -5,7 +5,7 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.19.6 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependency_overrides:
   http: ^0.13.4
@@ -73,6 +73,7 @@ dependencies:
   #? shared_preferences is a Flutter plugin for reading and writing simple key-value pairs.
   shared_preferences: ^2.0.18
   #? Pinput is a Flutter package that provides a pin input widget.
+  shimmer: ^2.0.0
   pinput: ^2.2.21
   #? Timer count down is a Flutter package that provides a timer count down widget.
   timer_count_down: ^2.2.2
@@ -94,6 +95,14 @@ dependencies:
   auto_route: ^7.4.0
   #? mocktail is a Dart package that provides a set of utilities for mocking Dart objects.
   mocktail: ^0.2.0
+  #? pull_to_refresh is a Flutter package that provides a set of utilities for implementing pull to refresh.
+  pull_to_refresh: ^2.0.0
+  #?  currency_text_input_formatter package helps you to format a text field for currency input.
+  currency_text_input_formatter: ^2.1.10
+  #? scroll_date_picker is a Flutter package that provides a scrollable date picker.
+  scroll_date_picker: ^3.7.0
+  #?syncfusion_flutter_datepicker is a flutter package that provides a set of utilities for implementing date picker.
+  syncfusion_flutter_datepicker: ^22.2.8
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -120,6 +129,7 @@ dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
   #? flutter_staggered_animations is a Flutter package that provides a set of utilities for creating staggered animations.
   flutter_staggered_animations: ^1.1.1
+  # 
 
 
 

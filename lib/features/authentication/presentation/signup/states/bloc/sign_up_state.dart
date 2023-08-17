@@ -28,4 +28,11 @@ class SignUpState with _$SignUpState {
       _CreatePasswordSuccess;
   const factory SignUpState.createPasswordError(String message) =
       _CreatePasswordError;
+
+        ///
+  const factory SignUpState.checkingUsername() = _CheckingUser;
+  const factory SignUpState.checkedUserLoaded(bool message) =
+      _CheckUsernameLoaded;
+  const factory SignUpState.checkUsernameError(String message) =
+      _CheckUsernameError;
 }

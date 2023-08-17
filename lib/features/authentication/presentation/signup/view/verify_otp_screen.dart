@@ -2,8 +2,12 @@ import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
+import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/bloc/sign_up_bloc.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/verify_bloc/bloc/verify_otp_bloc.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/widgets/resend_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,18 +18,23 @@ import 'package:timer_count_down/timer_count_down.dart';
 import '../../../../../core/global/constants/app_texts.dart';
 
 class VerifyOTPScreen extends ConsumerStatefulWidget {
-  const VerifyOTPScreen({super.key});
+  final String username;
+  final String email;
+  const VerifyOTPScreen(
+      {required this.username, required this.email, super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _VerifyOTPScreenState();
 }
 
-class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen> {
+class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen>
+    with LoadingOverlayMixin {
   final ValueNotifier<bool> isEnabled = ValueNotifier<bool>(false);
   final ValueNotifier<String> otp = ValueNotifier<String>("");
   final TextEditingController _otpController = TextEditingController();
   late final CountdownController _controller;
+  OverlayEntry? _overlayEntry;
 
   bool canResend = false;
   final FocusNode _otpNode = FocusNode();
@@ -116,7 +125,7 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(AppTexts.notYourEmail,
+                        Text(AppTexts.notYourEmail(widget.email),
                             style: Config.b3(context).copyWith(
                               fontSize: 12,
                               color: AppColors.grey100.withOpacity(0.5),
@@ -144,50 +153,69 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen> {
                     ),
                   ),
                   const VerticalMargin(5),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: Countdown(
-                          seconds: 60,
-                          controller: _controller,
-                          onFinished: () {
-                            canResend = true;
-                          },
-                          build: (BuildContext context, double time) {
-                            canResend = time.toInt() == 0;
-                            return GestureDetector(
-                              onTap: canResend
-                                  // ignore: unnecessary_lambdas
-                                  ? () async {}
-                                  : null,
-                              child: bottomTexts(
-                                context: context,
-                                buttonText: canResend
-                                    ? 'Resend code'
-                                    : 'Resend OTP '
-                                        '0 : ${time.toInt().toString()} seconds',
-                                text: 'Didn’t get the code?',
-                                textColor: canResend
-                                    ? AppColors.secondaryColor
-                                    : AppColors.grey100,
+                  BlocConsumer<SignUpBloc, SignUpState>(
+                      listener: _listener,
+                      builder: (context, state) {
+                        return Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15.0),
+                              child: Countdown(
+                                seconds: 60,
+                                controller: _controller,
+                                onFinished: () {
+                                  canResend = true;
+                                },
+                                build: (BuildContext context, double time) {
+                                  canResend = time.toInt() == 0;
+                                  return GestureDetector(
+                                    onTap: canResend
+                                        // ignore: unnecessary_lambdas
+                                        ? () async {
+                                            context
+                                                .read<SignUpBloc>()
+                                                .add(ResendOtp(
+                                                  username: widget.username,
+                                                ));
+                                          }
+                                        : null,
+                                    child: bottomTexts(
+                                      context: context,
+                                      buttonText: canResend
+                                          ? 'Resend code'
+                                          : 'Resend OTP '
+                                              '0 : ${time.toInt().toString()} seconds',
+                                      text: 'Didn’t get the code?',
+                                      textColor: canResend
+                                          ? AppColors.secondaryColor
+                                          : AppColors.grey100,
+                                    ),
+                                  );
+                                },
                               ),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                            ),
+                          ],
+                        );
+                      }),
                   const VerticalMargin(30),
-                  AppButton(
-                    onTap: () {
-                      context.goNamed(RouteConstants.confirmPassword);
+                  BlocConsumer<VerifyOtpBloc, VerifyOtpState>(
+                    listener: _listenerToVerification,
+                    builder: (context, state) {
+                      return AppButton(
+                        onTap: () {
+                          context.read<VerifyOtpBloc>().add(VerifyOtpEq(
+                                otp: _otpController.text,
+                                username: widget.username,
+                              ));
+                          // context.goNamed(RouteConstants.confirmPassword);
+                        },
+                        textSize: 12,
+                        text: AppTexts.verify,
+                        textColor: AppColors.white100,
+                        color: AppColors.primaryColor,
+                      );
                     },
-                    textSize: 12,
-                    text: AppTexts.verify,
-                    textColor: AppColors.white100,
-                    color: AppColors.primaryColor,
                   ),
                 ],
               ),
@@ -196,6 +224,83 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen> {
         ),
       ),
     );
+  }
+
+  void _listenerToVerification(BuildContext context, VerifyOtpState state) {
+    state.maybeWhen(orElse: () {
+      _overlayEntry?.remove();
+    }, otpVerificationError: (error) {
+      _overlayEntry?.remove();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error),
+          backgroundColor: AppColors.errorColor,
+        ),
+      );
+    }, verifyingOtp: () {
+      _overlayEntry = showLoadingOverlay(context, _overlayEntry);
+    }, otpVerificationSuccessful: (success) {
+      _overlayEntry?.remove();
+
+      context.goNamed(RouteConstants.confirmPassword,
+          queryParameters: {"username": widget.username});
+    });
+  }
+
+  void _listener(BuildContext context, SignUpState state) {
+    state.maybeWhen(
+        orElse: () {
+          if (_overlayEntry != null) {
+            _overlayEntry?.remove();
+          }
+        },
+        verifyingOtp: () {
+          _overlayEntry = showLoadingOverlay(context, _overlayEntry);
+        },
+        loading: () {
+          _overlayEntry = showLoadingOverlay(context, _overlayEntry);
+        },
+        registrationError: (message) {
+          _overlayEntry?.remove();
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(message),
+              backgroundColor: AppColors.errorColor,
+            ),
+          );
+        },
+        otpVerificationError: (message) {
+          _overlayEntry?.remove();
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(message),
+              backgroundColor: AppColors.errorColor,
+            ),
+          );
+        },
+        otpResendError: (message) {
+          _overlayEntry?.remove();
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(message),
+              backgroundColor: AppColors.errorColor,
+            ),
+          );
+        },
+        otpResendSuccessful: (message) {
+          _overlayEntry?.remove();
+
+          SnackBar(
+            content: Text(message),
+            backgroundColor: AppColors.successColor,
+          );
+          _restartTimer();
+        },
+        registrationSuccessful: (message) {});
   }
 
   final preFilledWidget = Column(

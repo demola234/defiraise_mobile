@@ -9,15 +9,17 @@ part of 'last_user_cache_details.dart';
 _$_LastUserCachedDetails _$$_LastUserCachedDetailsFromJson(
         Map<String, dynamic> json) =>
     _$_LastUserCachedDetails(
-      name: json['name'] as String,
+      username: json['username'] as String,
+      email: json['email'] as String,
       password: json['password'] as String,
-      address: json['address'] as String,
+      isBiometric: json['isBiometric'] as bool,
     );
 
 Map<String, dynamic> _$$_LastUserCachedDetailsToJson(
         _$_LastUserCachedDetails instance) =>
     <String, dynamic>{
-      'name': instance.name,
+      'username': instance.username,
+      'email': instance.email,
       'password': instance.password,
-      'address': instance.address,
+      'isBiometric': instance.isBiometric,
     };

@@ -10,17 +10,16 @@ class FetchLastUserCredentials extends LoginStateEvent {}
 
 class LoginInUserEvent extends LoginStateEvent {
   final String password;
-  final String phoneNumber;
+  final String user;
 
-  const LoginInUserEvent({required this.password, required this.phoneNumber});
+  const LoginInUserEvent({required this.password, required this.user});
 }
 
 class ClearLastUserDataCacheEvent extends LoginStateEvent {}
 
 class LoginWithFingerPrintEvent extends LoginStateEvent {
-  final LastUserCachedDetails userCachedDetails;
 
-  const LoginWithFingerPrintEvent({required this.userCachedDetails});
+  const LoginWithFingerPrintEvent();
 }
 
 class LogOutEvent extends LoginStateEvent {

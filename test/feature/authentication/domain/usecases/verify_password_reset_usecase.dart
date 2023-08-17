@@ -47,7 +47,7 @@ void main() {
     )).thenAnswer((_) async => Right(tResponse));
 
     // act
-    final result = await usecase.call(Params(
+    final result = await usecase.call(VerifyPasswordParams(
       username: username,
       otpCode: otpCode,
       password: password,
@@ -72,7 +72,7 @@ void main() {
     )).thenAnswer((_) async => Left(failure));
 
     // act
-    final result = await usecase.call(Params(
+    final result = await usecase.call(VerifyPasswordParams(
       username: username,
       otpCode: otpCode,
       password: password,

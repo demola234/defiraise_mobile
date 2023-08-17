@@ -5,20 +5,20 @@ import 'package:defiraiser_mobile/features/authentication/domain/entities/base_e
 import 'package:defiraiser_mobile/features/authentication/domain/repositories/authentication_repository.dart';
 import 'package:equatable/equatable.dart';
 
-class ResendOtpUsecase implements UseCase<BaseEntity, Params> {
+class ResendOtpUsecase implements UseCase<BaseEntity, ResendOtpParams> {
   final AuthenticationRepository authenticationRepository;
 
   ResendOtpUsecase(this.authenticationRepository);
 
   @override
-  Future<Either<ApiError, BaseEntity>> call(Params params) async {
+  Future<Either<ApiError, BaseEntity>> call(ResendOtpParams params) async {
     return await authenticationRepository.resendOTP(userId: params.username);
   }
 }
 
-class Params extends Equatable {
+class ResendOtpParams extends Equatable {
   final String username;
-  const Params({
+  const ResendOtpParams({
     required this.username,
   });
 

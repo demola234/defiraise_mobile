@@ -1,9 +1,12 @@
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
+import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/forget_password/state/bloc/forget_password_bloc.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/widgets/resend_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,7 +17,8 @@ import 'package:timer_count_down/timer_count_down.dart';
 import '../../../../../core/global/constants/app_texts.dart';
 
 class ResetOTPScreen extends ConsumerStatefulWidget {
-  const ResetOTPScreen({super.key});
+  final String email;
+  const ResetOTPScreen({required this.email, super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ResetOTPScreenState();
@@ -49,22 +53,21 @@ class _ResetOTPScreenState extends ConsumerState<ResetOTPScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: PreferredSize(
-      //   preferredSize: Size(context.screenWidth(), 60),
-      //   child: const DeFiRaiseAppBar(
-      //     title: '',
-      //   ),
-      // ),
+      appBar: PreferredSize(
+          preferredSize: Size(context.screenWidth(), 60),
+          child: DeFiRaiseAppBar(
+            title: '',
+          )),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  VerticalMargin(30),
+                  VerticalMargin(20),
                   Text(AppTexts.resetOTP,
                       style: Config.h2(context).copyWith(
                         fontSize: 24,
@@ -115,28 +118,10 @@ class _ResetOTPScreenState extends ConsumerState<ResetOTPScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(AppTexts.notYourEmail,
+                        Text(AppTexts.notYourEmail(widget.email),
                             style: Config.b3(context).copyWith(
                               color: AppColors.grey100.withOpacity(0.5),
                             )),
-                        const HorizontalMargin(5),
-                        TextButton(
-                          style: ButtonStyle(
-                            overlayColor: MaterialStateProperty.all(
-                              Colors.transparent,
-                            ),
-                            enableFeedback: false,
-                            padding: MaterialStateProperty.all<EdgeInsets>(
-                                const EdgeInsets.all(0)),
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            "Edit Email",
-                            style: Config.b3(context).copyWith(
-                              color: AppColors.secondaryColor,
-                            ),
-                          ),
-                        )
                       ],
                     ),
                   ),
@@ -177,14 +162,27 @@ class _ResetOTPScreenState extends ConsumerState<ResetOTPScreen> {
                     ],
                   ),
                   const VerticalMargin(30),
-                  AppButton(
-                    text: AppTexts.verifyOTP,
-                    onTap: () {
-                      context.goNamed(RouteConstants.resetConfirmPassword);
+                  BlocConsumer<ForgetPasswordBloc, ForgetPasswordState>(
+                    listener: (context, state) {
+                      // TODO: implement listener
                     },
-                    textSize: 12,
-                    textColor: AppColors.white100,
-                    color: AppColors.primaryColor,
+                    builder: (context, state) {
+                      return AppButton(
+                        text: AppTexts.verifyOTP,
+                        onTap: () {
+                          context.goNamed(RouteConstants.resetConfirmPassword,
+                              queryParameters: {
+                                "otp": _otpController.text,
+                                "email": widget.email
+                              });
+
+                              
+                        },
+                        textSize: 12,
+                        textColor: AppColors.white100,
+                        color: AppColors.primaryColor,
+                      );
+                    },
                   ),
                 ],
               ),

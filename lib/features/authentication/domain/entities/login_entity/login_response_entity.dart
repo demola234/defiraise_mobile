@@ -13,7 +13,7 @@ String loginResponseToJson(LoginResponse data) => json.encode(data.toJson());
 @freezed
 class LoginResponse with _$LoginResponse {
   const factory LoginResponse({
-     Data? data,
+    Data? data,
     @Default('') message,
     required int status,
   }) = _LoginResponse;
@@ -31,23 +31,26 @@ class Data with _$Data {
     DateTime? accessTokenExpiresAt,
     @Default('') refreshToken,
     DateTime? refreshTokenExpiresAt,
-    required User user,
+    required UserResponse user,
   }) = _Data;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 }
 
 @freezed
-class User with _$User {
+class UserResponse with _$UserResponse {
   @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-  const factory User({
+  const factory UserResponse({
     @Default('') username,
     @Default('') email,
     DateTime? passwordChangedAt,
+    @Default(false) isFirstTime,
+    @Default('') avatar,
     DateTime? createdAt,
     @Default('') address,
+    @Default(false) biometrics,
     @Default('') balance,
-  }) = _User;
+  }) = _UserResponse;
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory UserResponse.fromJson(Map<String, dynamic> json) => _$UserResponseFromJson(json);
 }

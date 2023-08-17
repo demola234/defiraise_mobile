@@ -41,7 +41,7 @@ void main() {
     )).thenAnswer((_) async => Right(tResponse));
 
     // act
-    final result = await usecase.call(Params(username: username));
+    final result = await usecase.call(ResendOtpParams(username: username));
 
     // assert
     expect(result, Right(tResponse));
@@ -57,7 +57,7 @@ void main() {
         .thenAnswer((_) async => Left(failure));
 
     // act
-    final result = await usecase.call(Params(
+    final result = await usecase.call(ResendOtpParams(
       username: username,
     ));
 

@@ -47,13 +47,26 @@ class ResendOtp extends SignUpEvent {
   List<Object?> get props => [username];
 }
 
+class CheckUsernameEvent extends SignUpEvent {
+  final String username;
+
+  const CheckUsernameEvent({
+    required this.username,
+  });
+
+  @override
+  List<Object?> get props => [username];
+}
+
 class CreatePassword extends SignUpEvent {
   final String password;
   final String username;
+  final bool biometrics;
 
   const CreatePassword({
     required this.password,
     required this.username,
+    required this.biometrics,
   });
 
   @override
