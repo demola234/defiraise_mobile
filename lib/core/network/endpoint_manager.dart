@@ -23,4 +23,8 @@ class EndpointManager {
   static String getCampaignsByCategory(String id) =>
       '$_defifundr/campaigns/categories/$id';
   static const String createDonation = '$_defifundr/campaigns';
+  static const String setBiometrics = '$_defifundr/user/biometrics';
+  static const String changeUsername = '$_defifundr/user/update';
+  static const String changePassword = '$_defifundr/user/password/change';
+  static const String getPrivateKey = '$_defifundr/user/privatekey';
 }

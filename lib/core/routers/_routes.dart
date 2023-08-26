@@ -21,7 +21,9 @@ import 'package:defiraiser_mobile/features/home/presentation/_home.dart';
 import 'package:defiraiser_mobile/features/home/presentation/view/category_campaign_screen.dart';
 import 'package:defiraiser_mobile/features/profile/presentation/view/change_password_screen.dart';
 import 'package:defiraiser_mobile/features/profile/presentation/view/edit_profile_screen.dart';
+import 'package:defiraiser_mobile/features/profile/presentation/view/security_screen.dart';
 import 'package:defiraiser_mobile/features/profile/presentation/view/select_avatar_screen.dart';
+import 'package:defiraiser_mobile/features/profile/presentation/view/view_private_key_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

@@ -23,4 +23,6 @@ class RouteConstants {
   static String viewDonors = 'viewDonors';
   static String editProfile = 'editProfile';
   static String changePassword = 'changePassword';
+  static String security = 'security';
+  static String privateKey = 'privateKey';
 }

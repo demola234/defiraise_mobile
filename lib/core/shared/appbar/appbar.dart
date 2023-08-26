@@ -10,11 +10,13 @@ class DeFiRaiseAppBar extends StatelessWidget {
   final String? title;
   final List<Widget>? actions;
   final bool? isBack;
+  final Widget? leading;
 
   const DeFiRaiseAppBar({
     this.title,
     this.actions,
     this.isBack = false,
+    this.leading,
     super.key,
   });
 
@@ -39,7 +41,7 @@ class DeFiRaiseAppBar extends StatelessWidget {
                 context.pop();
               },
             )
-          : null,
+          : leading,
     );
   }
 }
