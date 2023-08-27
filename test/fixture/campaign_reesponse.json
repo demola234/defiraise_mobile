@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "campaign_id": "test",
+      "deadline": "test",
+      "description": "test",
+      "donations": [
+        {
+          "amount": 0,
+          "donor": "test",
+          "image": "test",
+          "username": "test"
+        }
+      ],
+      "goal": 0,
+      "id": 0,
+      "image": "test",
+      "owner": "test",
+      "title": "test",
+      "total_amount_donated": 0,
+      "total_number": 0,
+      "user": [
+        {
+          "address": "test",
+          "avatar": "test",
+          "email": "test",
+          "username": "test"
+        }
+      ]
+    }
+  ],
+  "message": "success",
+  "status": 200
+}

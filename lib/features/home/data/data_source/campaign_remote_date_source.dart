@@ -43,15 +43,9 @@ class CampaignRemoteDataSourceImpl implements CampaignRemoteDataSource {
 
   @override
   Future<CampaignCategories> getCategories() async {
-    final token =
-        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
-
     final response = await client.call(
       path: EndpointManager.getCategories,
       method: RequestMethod.get,
-      options: Options(headers: {
-        'Authorization': 'Bearer $token',
-      }),
     );
     final res = response!.data;
     if (response.statusCode == 200) {
@@ -63,15 +57,12 @@ class CampaignRemoteDataSourceImpl implements CampaignRemoteDataSource {
 
   @override
   Future<CampaignResponse> getCampaigns() async {
-    final token =
-        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
+    // final token =
+    //     await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
 
     final response = await client.call(
       path: EndpointManager.getCampaign,
       method: RequestMethod.get,
-      options: Options(headers: {
-        'Authorization': 'Bearer $token',
-      }),
     );
     final res = response!.data;
     if (response.statusCode == 200) {
@@ -83,15 +74,10 @@ class CampaignRemoteDataSourceImpl implements CampaignRemoteDataSource {
 
   @override
   Future<CampaignResponse> getMyCampaigns() async {
-    final token =
-        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
 
     final response = await client.call(
       path: EndpointManager.getMyCampaign,
       method: RequestMethod.get,
-      options: Options(headers: {
-        'Authorization': 'Bearer $token',
-      }),
     );
     final res = response!.data;
     if (response.statusCode == 200) {
@@ -103,15 +89,13 @@ class CampaignRemoteDataSourceImpl implements CampaignRemoteDataSource {
 
   @override
   Future<CampaignResponse> getDonations() async {
-    final token =
-        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
 
     final response = await client.call(
       path: EndpointManager.getDonation,
       method: RequestMethod.get,
-      options: Options(headers: {
-        'Authorization': 'Bearer $token',
-      }),
+      // options: Options(headers: {
+      //   'Authorization': 'Bearer $token',
+      // }),
     );
     final res = response!.data;
     if (response.statusCode == 200) {
@@ -123,15 +107,15 @@ class CampaignRemoteDataSourceImpl implements CampaignRemoteDataSource {
 
   @override
   Future<CampaignResponse> getCampaignsByCategory({required String id}) async {
-    final token =
-        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
+    // final token =
+    //     await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
 
     final response = await client.call(
       path: EndpointManager.getCampaignsByCategory(id),
       method: RequestMethod.get,
-      options: Options(headers: {
-        'Authorization': 'Bearer $token',
-      }),
+      // options: Options(headers: {
+      //   'Authorization': 'Bearer $token',
+      // }),
     );
     final res = response!.data;
     if (response.statusCode == 200) {
@@ -143,15 +127,15 @@ class CampaignRemoteDataSourceImpl implements CampaignRemoteDataSource {
 
   @override
   Future<BaseEntity> getCurrentEthPrice() async {
-    final token =
-        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
+    // final token =
+    //     await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
 
     final response = await client.call(
       path: EndpointManager.getCurrentEthPrice,
       method: RequestMethod.get,
-      options: Options(headers: {
-        'Authorization': 'Bearer $token',
-      }),
+      // options: Options(headers: {
+      //   'Authorization': 'Bearer $token',
+      // }),
     );
     final res = response!.data;
     if (response.statusCode == 200) {
@@ -164,8 +148,8 @@ class CampaignRemoteDataSourceImpl implements CampaignRemoteDataSource {
   @override
   Future<BaseEntity> makeDonation(
       {required String campaignId, required String amount}) async {
-    final token =
-        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
+    // final token =
+    //     await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
 
     final response = await client.call(
       path: EndpointManager.makeDonation,
@@ -174,9 +158,9 @@ class CampaignRemoteDataSourceImpl implements CampaignRemoteDataSource {
         'campaign_id': campaignId,
         'amount': amount,
       },
-      options: Options(headers: {
-        'Authorization': 'Bearer $token',
-      }),
+      // options: Options(headers: {
+      //   'Authorization': 'Bearer $token',
+      // }),
     );
     final res = response!.data;
     if (response.statusCode == 200) {
@@ -188,15 +172,15 @@ class CampaignRemoteDataSourceImpl implements CampaignRemoteDataSource {
 
   @override
   Future<DonorsEntity> getDonors({required String campaignId}) async {
-    final token =
-        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
+    // final token =
+    //     await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
 
     final response = await client.call(
       path: EndpointManager.getDonors(campaignId),
       method: RequestMethod.get,
-      options: Options(headers: {
-        'Authorization': 'Bearer $token',
-      }),
+      // options: Options(headers: {
+      //   'Authorization': 'Bearer $token',
+      // }),
     );
     final res = response!.data;
     if (response.statusCode == 200) {
@@ -214,8 +198,8 @@ class CampaignRemoteDataSourceImpl implements CampaignRemoteDataSource {
       required String category,
       required String deadline,
       required File images}) async {
-    final token =
-        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
+    // final token =
+    //     await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
 
     List<MultipartFile> multiPart = [];
     var data = <String, dynamic>{};
@@ -238,9 +222,9 @@ class CampaignRemoteDataSourceImpl implements CampaignRemoteDataSource {
       path: EndpointManager.createDonation,
       method: RequestMethod.post,
       body: FormData.fromMap(data),
-      options: Options(headers: {
-        'Authorization': 'Bearer $token',
-      }),
+      // options: Options(headers: {
+      //   'Authorization': 'Bearer $token',
+      // }),
     );
     final res = response!.data;
     if (response.statusCode == 200) {

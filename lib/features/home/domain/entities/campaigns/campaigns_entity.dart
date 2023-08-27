@@ -14,7 +14,7 @@ String campaignCategoriesToJson(CampaignResponse data) =>
 @freezed
 class CampaignResponse with _$CampaignResponse {
   const factory CampaignResponse({
-    required List<Datum> data,
+    List<Datum>? data,
     @Default('') message,
     @Default(0) status,
   }) = _CampaignCategories;

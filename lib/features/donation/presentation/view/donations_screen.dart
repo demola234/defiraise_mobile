@@ -81,12 +81,12 @@ class _DonationScreenViewState extends ConsumerState<DonationScreenView>
                   shrinkWrap: true,
                   physics: const BouncingScrollPhysics(
                       parent: AlwaysScrollableScrollPhysics()),
-                  itemCount: success.data.length,
+                  itemCount: success.data!.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
                         context.goNamed(RouteConstants.singleDonation,
-                            extra: success.data[index]);
+                            extra: success.data![index]);
                       },
                       child: AnimationConfiguration.staggeredList(
                         position: index,
@@ -95,7 +95,7 @@ class _DonationScreenViewState extends ConsumerState<DonationScreenView>
                           verticalOffset: 50.0,
                           child: FadeInAnimation(
                             child: BuildDonationWidget(
-                              campaign: success.data[index],
+                              campaign: success.data![index],
                               controller: _controller,
                             ),
                           ),

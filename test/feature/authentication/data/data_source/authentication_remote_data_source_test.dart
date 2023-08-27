@@ -18,12 +18,15 @@ class MockNetworkProvider extends Mock implements NetworkProvider {}
 void main() {
   late MockNetworkProvider mockNetworkProvider;
   late AuthenticationRemoteDataSource authenticationRemoteDataSource;
+
   late String tUsername = "test";
   late String tEmail = "test@test.com";
   late String tPassword = "test";
   late String tOtpCode = "123456";
+  late String tToken = "testToken";
+  late int tImageId = 1;
 
-  setUp(() {
+  setUp(() async {
     mockNetworkProvider = MockNetworkProvider();
     authenticationRemoteDataSource =
         IAuthenticationRemoteDataSource(mockNetworkProvider);
@@ -104,6 +107,33 @@ void main() {
     });
   }
 
+  void setUpMockProfileAvatar() {
+    when(() => mockNetworkProvider.call(
+            path: EndpointManager.setProfileAvatar,
+            method: RequestMethod.post,
+            body: {
+              "image_id": tImageId,
+            })).thenAnswer((_) async {
+      return Response(
+          requestOptions:
+              RequestOptions(path: EndpointManager.setProfileAvatar),
+          data: json.decode(fixture('create_account_response.json')),
+          statusCode: 200);
+    });
+  }
+
+  void setUpMockGetUserDetails() {
+    when(() => mockNetworkProvider.call(
+          path: EndpointManager.getUser,
+          method: RequestMethod.get,
+        )).thenAnswer((_) async {
+      return Response(
+          requestOptions: RequestOptions(path: EndpointManager.getUser),
+          data: json.decode(fixture('create_account_response.json')),
+          statusCode: 200);
+    });
+  }
+
   void setUpMockVerifyPasswordResetCodeHttpManager() {
     when(() => mockNetworkProvider.call(
             path: EndpointManager.confirmReset,
@@ -124,8 +154,8 @@ void main() {
     test("should return Create User Response when the call is successful",
         () async {
       setUpMockHttpManager();
-      final result = await authenticationRemoteDataSource.createAccount(
-          tUsername, tEmail);
+      final result =
+          await authenticationRemoteDataSource.createAccount(tUsername, tEmail);
       expect(result, isA<CreateAccountResponse>());
     });
 
@@ -144,10 +174,11 @@ void main() {
             statusCode: 400);
       });
       final call = authenticationRemoteDataSource.createAccount;
-      expect(() => call(tUsername, tEmail),
-          throwsA(isA<ServerException>()));
+      expect(() => call(tUsername, tEmail), throwsA(isA<ServerException>()));
     });
   });
+
+  
 
   group("login user account", () {
     test("should return Login Response when the call is successful", () async {
@@ -293,6 +324,58 @@ void main() {
                 otpCode: tOtpCode,
               ),
           throwsA(isA<ServerException>()));
+    });
+  });
+
+  group("Set Profile ", () {
+    test("should return ResendOTP Response when the call is successful",
+        () async {
+      setUpMockProfileAvatar();
+      final result =
+          await authenticationRemoteDataSource.setProfile(imageId: tImageId);
+      expect(result, isA<UserResponse>());
+    });
+
+    test("should throw ServerException when the call is unsuccessful",
+        () async {
+      when(() => mockNetworkProvider.call(
+            path: EndpointManager.setProfileAvatar,
+            method: RequestMethod.post,
+            body: {'image_id': tImageId},
+          )).thenAnswer((_) async {
+        return Response(
+            requestOptions:
+                RequestOptions(path: EndpointManager.setProfileAvatar),
+            data: json.decode(fixture('base_response_failed.json')),
+            statusCode: 400);
+      });
+      final call = authenticationRemoteDataSource.setProfile;
+      expect(() => call(imageId: tImageId), throwsA(isA<ServerException>()));
+    });
+  });
+
+  // getUserDetails
+  group("Get User Details", () {
+    test("should return ResendOTP Response when the call is successful",
+        () async {
+      setUpMockGetUserDetails();
+      final result = await authenticationRemoteDataSource.getUserDetails();
+      expect(result, isA<UserResponse>());
+    });
+
+    test("should throw ServerException when the call is unsuccessful",
+        () async {
+      when(() => mockNetworkProvider.call(
+            path: EndpointManager.getUser,
+            method: RequestMethod.get,
+          )).thenAnswer((_) async {
+        return Response(
+            requestOptions: RequestOptions(path: EndpointManager.getUser),
+            data: json.decode(fixture('base_response_failed.json')),
+            statusCode: 400);
+      });
+      final call = authenticationRemoteDataSource.getUserDetails;
+      expect(() => call(), throwsA(isA<ServerException>()));
     });
   });
 }

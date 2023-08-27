@@ -8,8 +8,8 @@ part of 'donors_entity.dart';
 
 _$_DonorsEntity _$$_DonorsEntityFromJson(Map<String, dynamic> json) =>
     _$_DonorsEntity(
-      data: (json['data'] as List<dynamic>)
-          .map((e) => Donors.fromJson(e as Map<String, dynamic>))
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => Donors.fromJson(e as Map<String, dynamic>))
           .toList(),
       message: json['message'] ?? '',
       status: json['status'] ?? 0,

@@ -27,14 +27,7 @@ class ISecureStorage implements SecureStorage {
   Future<String?> getHiveKey(String hiveKey) async {
     return await _flutterSecureStorage.read(
       key: hiveKey,
-      aOptions: AndroidOptions(
-          encryptedSharedPreferences: true,
-          keyCipherAlgorithm:
-              KeyCipherAlgorithm.RSA_ECB_OAEPwithSHA_256andMGF1Padding),
-      iOptions: IOSOptions(
-        synchronizable: true,
-        accessibility: KeychainAccessibility.first_unlock,
-      ),
+     
     );
   }
 

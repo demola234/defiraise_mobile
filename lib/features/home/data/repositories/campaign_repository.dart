@@ -123,6 +123,7 @@ class ICampaignRepository implements CampaignRepository {
         deadline: deadline,
         images: images,
       );
+      
       return Right(remoteCampaign);
     } on ApiError catch (error) {
       return Left(error);
