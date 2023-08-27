@@ -20,7 +20,7 @@ DonorsEntity _$DonorsEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DonorsEntity {
-  List<Donors> get data => throw _privateConstructorUsedError;
+  List<Donors>? get data => throw _privateConstructorUsedError;
   dynamic get message => throw _privateConstructorUsedError;
   dynamic get status => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $DonorsEntityCopyWith<$Res> {
           DonorsEntity value, $Res Function(DonorsEntity) then) =
       _$DonorsEntityCopyWithImpl<$Res, DonorsEntity>;
   @useResult
-  $Res call({List<Donors> data, dynamic message, dynamic status});
+  $Res call({List<Donors>? data, dynamic message, dynamic status});
 }
 
 /// @nodoc
@@ -52,15 +52,15 @@ class _$DonorsEntityCopyWithImpl<$Res, $Val extends DonorsEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? data = freezed,
     Object? message = freezed,
     Object? status = freezed,
   }) {
     return _then(_value.copyWith(
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Donors>,
+              as List<Donors>?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -81,7 +81,7 @@ abstract class _$$_DonorsEntityCopyWith<$Res>
       __$$_DonorsEntityCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Donors> data, dynamic message, dynamic status});
+  $Res call({List<Donors>? data, dynamic message, dynamic status});
 }
 
 /// @nodoc
@@ -95,15 +95,15 @@ class __$$_DonorsEntityCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? data = freezed,
     Object? message = freezed,
     Object? status = freezed,
   }) {
     return _then(_$_DonorsEntity(
-      data: null == data
+      data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Donors>,
+              as List<Donors>?,
       message: freezed == message ? _value.message! : message,
       status: freezed == status ? _value.status! : status,
     ));
@@ -114,18 +114,20 @@ class __$$_DonorsEntityCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_DonorsEntity implements _DonorsEntity {
   const _$_DonorsEntity(
-      {required final List<Donors> data, this.message = '', this.status = 0})
+      {final List<Donors>? data, this.message = '', this.status = 0})
       : _data = data;
 
   factory _$_DonorsEntity.fromJson(Map<String, dynamic> json) =>
       _$$_DonorsEntityFromJson(json);
 
-  final List<Donors> _data;
+  final List<Donors>? _data;
   @override
-  List<Donors> get data {
+  List<Donors>? get data {
+    final value = _data;
+    if (value == null) return null;
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -174,7 +176,7 @@ class _$_DonorsEntity implements _DonorsEntity {
 
 abstract class _DonorsEntity implements DonorsEntity {
   const factory _DonorsEntity(
-      {required final List<Donors> data,
+      {final List<Donors>? data,
       final dynamic message,
       final dynamic status}) = _$_DonorsEntity;
 
@@ -182,7 +184,7 @@ abstract class _DonorsEntity implements DonorsEntity {
       _$_DonorsEntity.fromJson;
 
   @override
-  List<Donors> get data;
+  List<Donors>? get data;
   @override
   dynamic get message;
   @override

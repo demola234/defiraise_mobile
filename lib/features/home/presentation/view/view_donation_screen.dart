@@ -57,7 +57,7 @@ class _ViewDonorsScreensState extends ConsumerState<ViewDonorsScreens> {
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics()),
-                itemCount: donors.data.length,
+                itemCount: donors.data!.length,
                 itemBuilder: (context, index) {
                   return AnimationConfiguration.staggeredList(
                     position: index,
@@ -66,7 +66,7 @@ class _ViewDonorsScreensState extends ConsumerState<ViewDonorsScreens> {
                       verticalOffset: 1.0,
                       child: FadeInAnimation(
                         child: _buildDonorItem(
-                          donors: donors.data[index],
+                          donors: donors.data![index],
                         ),
                       ),
                     ),

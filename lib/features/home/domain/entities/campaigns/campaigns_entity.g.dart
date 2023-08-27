@@ -9,8 +9,8 @@ part of 'campaigns_entity.dart';
 _$_CampaignCategories _$$_CampaignCategoriesFromJson(
         Map<String, dynamic> json) =>
     _$_CampaignCategories(
-      data: (json['data'] as List<dynamic>)
-          .map((e) => Datum.fromJson(e as Map<String, dynamic>))
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
           .toList(),
       message: json['message'] ?? '',
       status: json['status'] ?? 0,

@@ -1,14 +1,10 @@
-import 'package:defiraiser_mobile/core/di/injector.dart';
 import 'package:defiraiser_mobile/core/global/error/exceptions.dart';
 import 'package:defiraiser_mobile/core/network/endpoint_manager.dart';
 import 'package:defiraiser_mobile/core/network/network_provider.dart';
-import 'package:defiraiser_mobile/core/secure/secure.dart';
-import 'package:defiraiser_mobile/core/secure/secure_key.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/entities/base_entity/base_entity.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/entities/check_user_entity/check_user_entity.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/entities/login_entity/login_response_entity.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/entities/register_entity/create_account_response.dart';
-import 'package:dio/dio.dart';
 
 abstract class AuthenticationRemoteDataSource {
   Future<CreateAccountResponse> createAccount(String username, String email);
@@ -177,16 +173,10 @@ class IAuthenticationRemoteDataSource
 
   @override
   Future<UserResponse> setProfile({required int imageId}) async {
-    final token =
-        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
-
     final response = await client.call(
       path: EndpointManager.setProfileAvatar,
       method: RequestMethod.post,
       body: {'image_id': imageId},
-      options: Options(headers: {
-        'Authorization': 'Bearer $token',
-      }),
     );
     final res = response!.data['data'];
     if (response.statusCode == 200) {
@@ -198,15 +188,9 @@ class IAuthenticationRemoteDataSource
 
   @override
   Future<UserResponse> getUserDetails() async {
-    final token =
-        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
-
     final response = await client.call(
       path: EndpointManager.getUser,
       method: RequestMethod.get,
-      options: Options(headers: {
-        'Authorization': 'Bearer $token',
-      }),
     );
     final res = response!.data['data'];
     if (response.statusCode == 200) {

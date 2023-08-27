@@ -13,7 +13,7 @@ String donorsEntityToJson(DonorsEntity data) => json.encode(data.toJson());
 @freezed
 class DonorsEntity with _$DonorsEntity {
   const factory DonorsEntity({
-    required List<Donors> data,
+    List<Donors>? data,
     @Default('') message,
     @Default(0) status,
   }) = _DonorsEntity;

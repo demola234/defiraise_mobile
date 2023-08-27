@@ -55,7 +55,7 @@ class _LatestFundraiserWidgetState extends ConsumerState<LatestFundraiserWidget>
                   orElse: () => Container(),
                   loaded: (success) => AnimationLimiter(
                       child: ListView.builder(
-                          itemCount: success.data.length,
+                          itemCount: success.data!.length,
                           shrinkWrap: true,
                           physics: BouncingScrollPhysics(
                               parent: AlwaysScrollableScrollPhysics()),
@@ -65,7 +65,7 @@ class _LatestFundraiserWidgetState extends ConsumerState<LatestFundraiserWidget>
                             return GestureDetector(
                               onTap: () {
                                 context.goNamed(RouteConstants.singleDonation,
-                                    extra: success.data[index]);
+                                    extra: success.data![index]);
                               },
                               child: AnimationConfiguration.staggeredList(
                                   position: index,
@@ -104,7 +104,7 @@ class _LatestFundraiserWidgetState extends ConsumerState<LatestFundraiserWidget>
                                                             20),
                                                     child: CachedNetworkImage(
                                                         imageUrl: success
-                                                            .data[index].image,
+                                                            .data![index].image,
                                                         fit: BoxFit.cover,
                                                         height: 120,
                                                         placeholder: (context,
@@ -176,7 +176,7 @@ class _LatestFundraiserWidgetState extends ConsumerState<LatestFundraiserWidget>
                                                     HorizontalMargin(5),
                                                     CachedNetworkImage(
                                                         imageUrl: success
-                                                            .data[index]
+                                                            .data![index]
                                                             .user![0]
                                                             .avatar,
                                                         fit: BoxFit.cover,
@@ -198,11 +198,11 @@ class _LatestFundraiserWidgetState extends ConsumerState<LatestFundraiserWidget>
                                                     Flexible(
                                                       child: Text(
                                                         success
-                                                                    .data[index]
+                                                                    .data![index]
                                                                     .user![0]
                                                                     .username !=
                                                                 ""
-                                                            ? "${success.data[index].user![0].username}"
+                                                            ? "${success.data![index].user![0].username}"
                                                             : "Anonymous",
                                                         maxLines: 1,
                                                         overflow: TextOverflow
@@ -230,7 +230,7 @@ class _LatestFundraiserWidgetState extends ConsumerState<LatestFundraiserWidget>
                                                     Flexible(
                                                       child: Text(
                                                         success
-                                                            .data[index].title,
+                                                            .data![index].title,
                                                         maxLines: 1,
                                                         overflow: TextOverflow
                                                             .ellipsis,
@@ -249,9 +249,9 @@ class _LatestFundraiserWidgetState extends ConsumerState<LatestFundraiserWidget>
                                                 ),
                                                 VerticalMargin(10),
                                                 linearPercentage(
-                                                    success.data[index]
+                                                    success.data![index]
                                                         .totalAmountDonated,
-                                                    success.data[index].goal,
+                                                    success.data![index].goal,
                                                     _controller,
                                                     context,
                                                     height: 10,
@@ -273,7 +273,7 @@ class _LatestFundraiserWidgetState extends ConsumerState<LatestFundraiserWidget>
                                                         ),
                                                         HorizontalMargin(5),
                                                         Text(
-                                                          (success.data[index]
+                                                          (success.data![index]
                                                                       .goal /
                                                                   1000000000000000000)
                                                               .toString(),
@@ -304,7 +304,7 @@ class _LatestFundraiserWidgetState extends ConsumerState<LatestFundraiserWidget>
                                                     ),
                                                     Text(
                                                       DateTime.tryParse(success
-                                                              .data[index]
+                                                              .data![index]
                                                               .deadline!)!
                                                           .endTime(),
                                                       style: Config.b2(context)

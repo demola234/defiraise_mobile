@@ -20,7 +20,7 @@ CampaignResponse _$CampaignResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CampaignResponse {
-  List<Datum> get data => throw _privateConstructorUsedError;
+  List<Datum>? get data => throw _privateConstructorUsedError;
   dynamic get message => throw _privateConstructorUsedError;
   dynamic get status => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $CampaignResponseCopyWith<$Res> {
           CampaignResponse value, $Res Function(CampaignResponse) then) =
       _$CampaignResponseCopyWithImpl<$Res, CampaignResponse>;
   @useResult
-  $Res call({List<Datum> data, dynamic message, dynamic status});
+  $Res call({List<Datum>? data, dynamic message, dynamic status});
 }
 
 /// @nodoc
@@ -52,15 +52,15 @@ class _$CampaignResponseCopyWithImpl<$Res, $Val extends CampaignResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? data = freezed,
     Object? message = freezed,
     Object? status = freezed,
   }) {
     return _then(_value.copyWith(
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Datum>,
+              as List<Datum>?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -81,7 +81,7 @@ abstract class _$$_CampaignCategoriesCopyWith<$Res>
       __$$_CampaignCategoriesCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Datum> data, dynamic message, dynamic status});
+  $Res call({List<Datum>? data, dynamic message, dynamic status});
 }
 
 /// @nodoc
@@ -95,15 +95,15 @@ class __$$_CampaignCategoriesCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? data = freezed,
     Object? message = freezed,
     Object? status = freezed,
   }) {
     return _then(_$_CampaignCategories(
-      data: null == data
+      data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Datum>,
+              as List<Datum>?,
       message: freezed == message ? _value.message! : message,
       status: freezed == status ? _value.status! : status,
     ));
@@ -114,18 +114,20 @@ class __$$_CampaignCategoriesCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CampaignCategories implements _CampaignCategories {
   const _$_CampaignCategories(
-      {required final List<Datum> data, this.message = '', this.status = 0})
+      {final List<Datum>? data, this.message = '', this.status = 0})
       : _data = data;
 
   factory _$_CampaignCategories.fromJson(Map<String, dynamic> json) =>
       _$$_CampaignCategoriesFromJson(json);
 
-  final List<Datum> _data;
+  final List<Datum>? _data;
   @override
-  List<Datum> get data {
+  List<Datum>? get data {
+    final value = _data;
+    if (value == null) return null;
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -175,7 +177,7 @@ class _$_CampaignCategories implements _CampaignCategories {
 
 abstract class _CampaignCategories implements CampaignResponse {
   const factory _CampaignCategories(
-      {required final List<Datum> data,
+      {final List<Datum>? data,
       final dynamic message,
       final dynamic status}) = _$_CampaignCategories;
 
@@ -183,7 +185,7 @@ abstract class _CampaignCategories implements CampaignResponse {
       _$_CampaignCategories.fromJson;
 
   @override
-  List<Datum> get data;
+  List<Datum>? get data;
   @override
   dynamic get message;
   @override

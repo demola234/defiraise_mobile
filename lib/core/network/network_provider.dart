@@ -4,8 +4,12 @@
 import 'package:curl_logger_dio_interceptor/curl_logger_dio_interceptor.dart';
 // 🌎 Project imports:
 import 'package:defiraiser_mobile/core/network/api_error.dart';
+import 'package:defiraiser_mobile/core/secure/secure_key.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+
+import '../di/injector.dart';
+import '../secure/secure.dart';
 
 abstract class NetworkProvider {
   Future<Response?> call({
@@ -63,28 +67,59 @@ class NetworkProviderImpl extends NetworkProvider {
     Options? options,
     Map<String, dynamic> queryParams = const {},
   }) async {
+    final token =
+        await sl<SecureStorage>().getAccessToken(SecureStorageKey().token);
     Response? response;
     try {
       switch (method) {
         case RequestMethod.get:
-          response = await _getDioInstance()
-              .get(path, queryParameters: queryParams, options: options);
+          response = await _getDioInstance().get(
+            path,
+            queryParameters: queryParams,
+            options: Options(headers: {
+              'Authorization': 'Bearer $token',
+            }),
+          );
           break;
         case RequestMethod.post:
-          response = await _getDioInstance().post(path,
-              data: body, queryParameters: queryParams, options: options);
+          response = await _getDioInstance().post(
+            path,
+            data: body,
+            queryParameters: queryParams,
+            options: Options(headers: {
+              'Authorization': 'Bearer $token',
+            }),
+          );
           break;
         case RequestMethod.patch:
-          response = await _getDioInstance().patch(path,
-              data: body, queryParameters: queryParams, options: options);
+          response = await _getDioInstance().patch(
+            path,
+            data: body,
+            queryParameters: queryParams,
+            options: Options(headers: {
+              'Authorization': 'Bearer $token',
+            }),
+          );
           break;
         case RequestMethod.put:
-          response = await _getDioInstance().put(path,
-              data: body, queryParameters: queryParams, options: options);
+          response = await _getDioInstance().put(
+            path,
+            data: body,
+            queryParameters: queryParams,
+            options: Options(headers: {
+              'Authorization': 'Bearer $token',
+            }),
+          );
           break;
         case RequestMethod.delete:
-          response = await _getDioInstance().delete(path,
-              data: body, queryParameters: queryParams, options: options);
+          response = await _getDioInstance().delete(
+            path,
+            data: body,
+            queryParameters: queryParams,
+            options: Options(headers: {
+              'Authorization': 'Bearer $token',
+            }),
+          );
           break;
       }
 

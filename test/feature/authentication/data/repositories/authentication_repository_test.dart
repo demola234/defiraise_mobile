@@ -3,6 +3,8 @@ import 'package:defiraiser_mobile/features/authentication/data/data_source/authe
 import 'package:defiraiser_mobile/features/authentication/data/data_source/authentication_remote_data_source.dart';
 import 'package:defiraiser_mobile/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/entities/base_entity/base_entity.dart';
+import 'package:defiraiser_mobile/features/authentication/domain/entities/check_user_entity/check_user_entity.dart';
+import 'package:defiraiser_mobile/features/authentication/domain/entities/last_user_cache_details/last_user_cache_details.dart';
 import 'package:defiraiser_mobile/features/authentication/domain/entities/login_entity/login_response_entity.dart'
     as login;
 import 'package:defiraiser_mobile/features/authentication/domain/entities/register_entity/create_account_response.dart';
@@ -19,15 +21,19 @@ class MockAuthLocalDataSource extends Mock implements AuthLocalDataSource {}
 void main() {
   late MockAuthenticationRemoteDataSource mockRemoteDataSource;
   late IAuthenticationRepository authenticationRepositoryImpl;
+
   late MockAuthLocalDataSource mockAuthLocalDataSource;
 
   late String tUsername = "test";
   late String tEmail = "test@test.com";
   late String tPassword = "test";
   late String tOtpCode = "123456";
+  late int tImageId = 1;
   late CreateAccountResponse tCreateAccountResponse;
   late login.LoginResponse tLoginResponse;
   late BaseEntity tBaseResponse;
+  late CheckUserEntity tCheckUserEntity;
+  late login.UserResponse tUserResponse;
 
   setUpAll(() {
     mockRemoteDataSource = MockAuthenticationRemoteDataSource();
@@ -47,6 +53,21 @@ void main() {
         message: "success",
         status: 200);
   });
+
+  tUserResponse = const login.UserResponse(
+    username: "ademola1",
+    email: "",
+    passwordChangedAt: null,
+    createdAt: null,
+    address: "0x1C803Ba37C0494ecD088Fb878d687FAEb5a2EB5E",
+    balance: "0.1",
+  );
+
+  tCheckUserEntity = const CheckUserEntity(
+    data: true,
+    message: "success",
+    status: 200,
+  );
 
   tLoginResponse = const login.LoginResponse(
     data: login.Data(
@@ -98,9 +119,25 @@ void main() {
       // arrange
       when(() => mockRemoteDataSource.login(any(), any()))
           .thenAnswer((_) async => tLoginResponse);
+
       // act
       final result = await authenticationRepositoryImpl.login(
           username: tUsername, password: tPassword);
+      if (tLoginResponse.data != null) {
+        final lastCacheDetails = LastUserCachedDetails(
+          password: tPassword,
+          username: tUsername,
+          email: tLoginResponse.data!.user.email,
+          isBiometric: tLoginResponse.data!.user.biometrics,
+        );
+        await mockAuthLocalDataSource.cacheUserLoginData(
+            lastUserCachedDetails: lastCacheDetails);
+        await mockAuthLocalDataSource.cacheUserDetails(
+            user: tLoginResponse.data!.user);
+        await mockAuthLocalDataSource.saveAccessToken(
+            token: tLoginResponse.data!.accessToken);
+      }
+
       // assert
       verify(() => mockRemoteDataSource.login(any(), any()));
       expect(result, equals(Right(tLoginResponse)));
@@ -197,6 +234,69 @@ void main() {
           otpCode: any(named: "otpCode"),
           password: any(named: "password")));
       expect(result, equals(Right(tBaseResponse)));
+    });
+  });
+
+  // checkUsernameExists
+  group("checkUsernameExists user account", () {
+    test(
+        "should return remote data when the call to remote data source is successful",
+        () async {
+      // arrange
+      when(() => mockRemoteDataSource.checkUsernameExists(
+              username: any(
+            named: "username",
+          ))).thenAnswer((_) async => tCheckUserEntity);
+      // act
+      final result = await authenticationRepositoryImpl.checkUsernameExists(
+          username: tUsername);
+      // assert
+      verify(() => mockRemoteDataSource.checkUsernameExists(
+              username: any(
+            named: "username",
+          )));
+      expect(result, equals(Right(tCheckUserEntity)));
+    });
+  });
+
+  // setProfileAvatar
+  group("setProfileAvatar user account", () {
+    test(
+        "should return remote data when the call to remote data source is successful",
+        () async {
+      // arrange
+      when(() => mockRemoteDataSource.setProfile(
+            imageId: any(
+              named: "imageId",
+            ),
+          )).thenAnswer((_) async => tUserResponse);
+      // act
+      final result = await authenticationRepositoryImpl.setProfileAvatar(
+          imageId: tImageId);
+      // assert
+      verify(() => mockRemoteDataSource.setProfile(
+            imageId: any(
+              named: "imageId",
+            ),
+          ));
+      expect(result, equals(Right(tUserResponse)));
+    });
+  });
+
+  // getUserDetails
+  group("getUserDetails user account", () {
+    test(
+        "should return remote data when the call to remote data source is successful",
+        () async {
+      // arrange
+      when(() => mockRemoteDataSource.getUserDetails())
+          .thenAnswer((_) async => tUserResponse);
+      // act
+      final result = await authenticationRepositoryImpl.getUserDetails();
+      await mockAuthLocalDataSource.cacheUserDetails(user: tUserResponse);
+      // assert
+      verify(() => mockRemoteDataSource.getUserDetails());
+      expect(result, equals(Right(tUserResponse)));
     });
   });
 }

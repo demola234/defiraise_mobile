@@ -1,3 +1,4 @@
+import 'package:defiraiser_mobile/core/di/injector.dart';
 import 'package:defiraiser_mobile/core/network/network_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,6 +14,7 @@ void main() {
   late Response tResponse;
 
   setUp(() {
+    injector();
     mockDio = MockDio();
     networkProvider = NetworkProviderImpl();
   });
@@ -22,7 +24,9 @@ void main() {
     test("should return a response", () async {
       // arrange
       tResponse = Response(
-        requestOptions: RequestOptions(path: tPath),
+        requestOptions: RequestOptions(
+          path: tPath,
+        ),
         data: {"data": "data"},
         statusCode: 200,
         statusMessage: "OK",

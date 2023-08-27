@@ -12,7 +12,7 @@ abstract class AuthLocalDataSource {
     required LastUserCachedDetails lastUserCachedDetails,
   });
 
-  Future<void> cacheUserDetails({
+  cacheUserDetails({
     required UserResponse user,
   });
 

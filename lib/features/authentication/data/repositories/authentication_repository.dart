@@ -37,17 +37,20 @@ class IAuthenticationRepository implements AuthenticationRepository {
       {required String username, required String password}) async {
     try {
       final remoteLogin = await remoteDataSource.login(username, password);
-      final lastCacheDetails = LastUserCachedDetails(
-        password: password,
-        username: username,
-        email: remoteLogin.data!.user.email,
-        isBiometric: remoteLogin.data!.user.biometrics,
-      );
-      await authLocalDataSource.cacheUserLoginData(
-          lastUserCachedDetails: lastCacheDetails);
-      await authLocalDataSource.cacheUserDetails(user: remoteLogin.data!.user);
-      await authLocalDataSource.saveAccessToken(
-          token: remoteLogin.data!.accessToken);
+      if (remoteLogin.data != null) {
+        final lastCacheDetails = LastUserCachedDetails(
+          password: password,
+          username: username,
+          email: remoteLogin.data!.user.email,
+          isBiometric: remoteLogin.data!.user.biometrics,
+        );
+        await authLocalDataSource.cacheUserLoginData(
+            lastUserCachedDetails: lastCacheDetails);
+        await authLocalDataSource.cacheUserDetails(
+            user: remoteLogin.data!.user);
+        await authLocalDataSource.saveAccessToken(
+            token: remoteLogin.data!.accessToken);
+      }
       return Right(remoteLogin);
     } on ApiError catch (error) {
       return Left(error);
