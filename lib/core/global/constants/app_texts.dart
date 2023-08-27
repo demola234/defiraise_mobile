@@ -102,4 +102,9 @@ class AppTexts {
   static String editProfile = "Edit Profile";
   static String continueTo = "continue";
   static String changePassword = "Change Password";
+  static String oldPassword = "Old Password";
+  static String newPassword = "New Password";
+  static String security = "Security";
+  static String securityDesc = "Enter Password to Access Private Key";
+  static String getPrivateKey = "Get Private Key";
 }

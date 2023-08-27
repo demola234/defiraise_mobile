@@ -306,6 +306,52 @@ class AppRouter {
                     },
                   ),
                   GoRoute(
+                      path: 'security',
+                      name: RouteConstants.security,
+                      pageBuilder: (context, state) {
+                        return CustomTransitionPage(
+                          key: state.pageKey,
+                          child: SecurityScreen(),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            // Change the opacity of the screen using a Curve based on the the animation's
+                            // value
+                            return FadeTransition(
+                              opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                  .animate(animation),
+                              child: child,
+                            );
+                          },
+                        );
+                      },
+                      routes: [
+                        GoRoute(
+                            path: 'privateKey',
+                            name: RouteConstants.privateKey,
+                            pageBuilder: (context, state) {
+                              return CustomTransitionPage(
+                                key: state.pageKey,
+                                child: ViewPrivateScreen(
+                                  address:
+                                      state.queryParameters['address'] ?? '',
+                                  privateKey:
+                                      state.queryParameters['privateKey'] ?? '',
+                                ),
+                                transitionsBuilder: (context, animation,
+                                    secondaryAnimation, child) {
+                                  // Change the opacity of the screen using a Curve based on the the animation's
+                                  // value
+                                  return FadeTransition(
+                                    opacity:
+                                        CurveTween(curve: Curves.easeInOutCirc)
+                                            .animate(animation),
+                                    child: child,
+                                  );
+                                },
+                              );
+                            })
+                      ]),
+                  GoRoute(
                     path: 'selectAvatar2',
                     name: RouteConstants.selectAvatar2,
                     pageBuilder: (context, state) {

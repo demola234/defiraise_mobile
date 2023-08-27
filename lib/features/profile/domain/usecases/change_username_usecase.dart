@@ -5,25 +5,27 @@ import 'package:defiraiser_mobile/features/authentication/domain/entities/base_e
 import 'package:defiraiser_mobile/features/profile/domain/repositories/profile_repository.dart';
 import 'package:equatable/equatable.dart';
 
-class SetBiometricsUsecase implements UseCase<BaseEntity, BiometricsParams> {
+class ChangeUsernameUsecase implements UseCase<BaseEntity, ChangeUsernameParams> {
   final ProfileRepository profileRepository;
 
-  SetBiometricsUsecase(this.profileRepository);
+  ChangeUsernameUsecase(this.profileRepository);
 
   @override
-  Future<Either<ApiError, BaseEntity>> call(BiometricsParams params) async {
-    return await profileRepository.setBiometrics(
-        isBiometrics: params.biometrics);
+  Future<Either<ApiError, BaseEntity>> call(ChangeUsernameParams params) async {
+    return await profileRepository.changeUsername(
+
+        username: params.username,
+        );
   }
 }
 
-class BiometricsParams extends Equatable {
-  final bool biometrics;
+class ChangeUsernameParams extends Equatable {
+  final String username;
 
-  const BiometricsParams({
-    required this.biometrics,
+  const ChangeUsernameParams({
+    required this.username,
   });
 
   @override
-  List<Object> get props => [biometrics];
+  List<Object> get props => [username];
 }

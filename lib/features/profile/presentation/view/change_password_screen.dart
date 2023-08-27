@@ -2,13 +2,12 @@ import 'package:defiraiser_mobile/core/global/constants/app_icons.dart';
 import 'package:defiraiser_mobile/core/global/constants/app_texts.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
-import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
 import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
-import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/create_password_bloc/bloc/create_password_bloc.dart';
+import 'package:defiraiser_mobile/features/profile/presentation/state/change_password_bloc/bloc/change_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -48,58 +47,40 @@ class _ChangePasswordScreenState extends ConsumerState<ChangePasswordScreen>
   OverlayEntry? _overlayEntry;
 
   final passwordMatch = ValueNotifier<bool>(false);
-  final FocusNode _passwordNode = FocusNode();
-  final FocusNode _confirmPasswordNode = FocusNode();
+  final FocusNode _oldPasswordNode = FocusNode();
+  final FocusNode _newPasswordNode = FocusNode();
 
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _oldpasswordController = TextEditingController();
+  final TextEditingController _newPasswordController = TextEditingController();
 
   @override
   void dispose() {
-    _confirmPasswordController.dispose();
-    _passwordController.dispose();
+    _newPasswordController.dispose();
+    _oldpasswordController.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
-    _passwordController.addListener(_checkChanged);
-    _confirmPasswordController.addListener(_checkChangedConfrim);
+    _newPasswordController.addListener(_checkChanged);
 
     super.initState();
   }
 
-  _checkChangedConfrim() {
-    setState(() {
-      passwordMatch.value =
-          _passwordController.text == _confirmPasswordController.text;
-      enabled.value = capital.value &&
-          number.value &&
-          special.value &&
-          chacterLength.value &&
-          passwordMatch.value;
-    });
-  }
-
   _checkChanged() {
     setState(() {
-      passwordMatch.value =
-          _passwordController.text == _confirmPasswordController.text;
-      capital.value = _passwordController.text.contains(RegExp(r'[A-Z]'));
-      number.value = _passwordController.text.contains(RegExp(r'[0-9]'));
+      _newPasswordController.text;
+      capital.value = _newPasswordController.text.contains(RegExp(r'[A-Z]'));
+      number.value = _newPasswordController.text.contains(RegExp(r'[0-9]'));
 
-      special.value =
-          _passwordController.text.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
-      chacterLength.value = _passwordController.text.length >= 8;
+      special.value = _newPasswordController.text
+          .contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+      chacterLength.value = _newPasswordController.text.length >= 8;
 
-      enabled.value = capital.value &&
-          number.value &&
-          special.value &&
-          chacterLength.value &&
-          passwordMatch.value;
+      enabled.value =
+          capital.value && number.value && special.value && chacterLength.value;
 
-      isNotEmpty.value = _passwordController.text.isNotEmpty;
+      isNotEmpty.value = _newPasswordController.text.isNotEmpty;
     });
   }
 
@@ -123,8 +104,8 @@ class _ChangePasswordScreenState extends ConsumerState<ChangePasswordScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppTextField(
-                  hintText: AppTexts.password,
-                  controller: _passwordController,
+                  hintText: AppTexts.oldPassword,
+                  controller: _oldpasswordController,
                   obscureText: isHide.value,
                   inputType: TextInputType.visiblePassword,
                   textInputAction: TextInputAction.next,
@@ -150,8 +131,8 @@ class _ChangePasswordScreenState extends ConsumerState<ChangePasswordScreen>
                 ),
                 VerticalMargin(10),
                 AppTextField(
-                  hintText: AppTexts.confirmPassword,
-                  controller: _confirmPasswordController,
+                  hintText: AppTexts.newPassword,
+                  controller: _newPasswordController,
                   obscureText: isConfirmHide.value,
                   inputType: TextInputType.visiblePassword,
                   textInputAction: TextInputAction.done,
@@ -197,7 +178,7 @@ class _ChangePasswordScreenState extends ConsumerState<ChangePasswordScreen>
                     ),
                   ),
                 ),
-                BlocConsumer<CreatePasswordBloc, CreatePasswordState>(
+                BlocConsumer<ChangePasswordBloc, ChangePasswordState>(
                   listener: _listener,
                   builder: (context, state) {
                     return AnimatedBuilder(
@@ -210,17 +191,15 @@ class _ChangePasswordScreenState extends ConsumerState<ChangePasswordScreen>
                               text: AppTexts.looksGood,
                               isActive: enabled.value,
                               onTap: () {
-                                _passwordNode.unfocus();
-                                _confirmPasswordNode.unfocus();
-                                //FIXME: Navigate to login screen
+                                _oldPasswordNode.unfocus();
+                                _newPasswordNode.unfocus();
 
-                                // context
-                                //     .read<CreatePasswordBloc>()
-                                //     .add(CreatePasswordEq(
-                                //       biometrics: isSwitched.value,
-                                //       username: widget.username,
-                                //       password: _passwordController.text,
-                                //     ));
+                                context
+                                    .read<ChangePasswordBloc>()
+                                    .add(ChangePasswordEq(
+                                      oldPassword: _oldpasswordController.text,
+                                      newPassword: _newPasswordController.text,
+                                    ));
                               },
                               textColor: AppColors.white100,
                               textSize: 12,
@@ -241,12 +220,12 @@ class _ChangePasswordScreenState extends ConsumerState<ChangePasswordScreen>
     );
   }
 
-  void _listener(BuildContext context, CreatePasswordState state) {
+  void _listener(BuildContext context, ChangePasswordState state) {
     state.maybeWhen(orElse: () {
       _overlayEntry?.remove();
-    }, creatingPassword: () {
+    }, loading: () {
       _overlayEntry = showLoadingOverlay(context, _overlayEntry);
-    }, createPasswordError: (message) {
+    }, error: (message) {
       _overlayEntry?.remove();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -254,9 +233,9 @@ class _ChangePasswordScreenState extends ConsumerState<ChangePasswordScreen>
           backgroundColor: AppColors.errorColor,
         ),
       );
-    }, createPasswordSuccess: (message) {
+    }, loaded: (message) {
       _overlayEntry?.remove();
-      context.goNamed(RouteConstants.login);
+      context.pop();
     });
   }
 
@@ -289,10 +268,6 @@ class _ChangePasswordScreenState extends ConsumerState<ChangePasswordScreen>
         _passwordCheckerItem(
           enabled: isChacterLength,
           text: AppTexts.chacterLength,
-        ),
-        _passwordCheckerItem(
-          enabled: isPasswordMatch,
-          text: AppTexts.passwordNotMatch,
         ),
       ]),
     );

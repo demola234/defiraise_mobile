@@ -11,6 +11,7 @@ import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/login/states/get_user_details/bloc/get_user_details_bloc.dart';
 import 'package:defiraiser_mobile/features/home/presentation/_home.dart';
+import 'package:defiraiser_mobile/features/profile/presentation/state/set_biometrics_bloc/set_biometrics_bloc_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,13 +44,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
 
   @override
   void didChangeDependencies() {
-    context.read<GetUserDetailsBloc>().add(GetUserEventEq());
-    context.read<GetUserDetailsBloc>().stream.listen((event) {
-      event.maybeWhen(
-        orElse: () => isSwitched.value = user.biometrics,
-        loadDetails: (success) => isSwitched.value = success.biometrics,
-      );
-    });
+    // context.read<GetUserDetailsBloc>().add(GetUserEventEq());
+    // context.read<GetUserDetailsBloc>().stream.listen((event) {
+    //   event.maybeWhen(
+    //     orElse: () => isSwitched.value,
+    //     loadDetails: (success) => isSwitched.value = success.biometrics,
+    //   );
+    // });
     super.didChangeDependencies();
   }
 
@@ -118,21 +119,23 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
       ),
       child: Column(
         children: [
-          _profileMenuItem(AppIcons.profileUnselected, "Edit Profile",
-              onTap: () {
-            context.goNamed(RouteConstants.editProfile);
-          }),
-          _divider(),
+          // _profileMenuItem(AppIcons.profileUnselected, "Edit Profile",
+          //     onTap: () {
+          //   context.goNamed(RouteConstants.editProfile);
+          // }),
+          // _divider(),
           _profileMenuItem(AppIcons.change, "Change Password", onTap: () {
             context.goNamed(RouteConstants.changePassword);
           }),
           _divider(),
-          _profileMenuItem(AppIcons.security, "Security", onTap: () {}),
+          _profileMenuItem(AppIcons.security, "Security", onTap: () {
+            context.goNamed(RouteConstants.security);
+          }),
           _divider(),
           _profileMenuBiometrics(
-              Config.isIos ? AppIcons.faceId : AppIcons.fingerPrint,
-              "Biometrics",
-              onTap: () {}),
+            Config.isIos ? AppIcons.faceId : AppIcons.fingerPrint,
+            "Biometrics",
+          ),
         ],
       ),
     );
@@ -146,57 +149,71 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
     );
   }
 
-  Widget _profileMenuBiometrics(String icon, String title,
-      {void Function()? onTap}) {
+  Widget _profileMenuBiometrics(String icon, String title) {
     return BlocBuilder<GetUserDetailsBloc, GetUserDetailsState>(
       builder: (context, state) {
         return Container(
           padding: EdgeInsets.symmetric(vertical: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
+          child: BlocConsumer<SetBiometricsBlocBloc, SetBiometricsBlocState>(
+            listener: _listener,
+            builder: (context, state) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgPicture.asset(
-                    icon,
-                    color: AppColors.primaryColor,
-                    height: 25,
-                    width: 25,
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        icon,
+                        color: AppColors.primaryColor,
+                        height: 25,
+                        width: 25,
+                      ),
+                      HorizontalMargin(10),
+                      Text(
+                        title,
+                        style: Config.b3(context).copyWith(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                    ],
                   ),
-                  HorizontalMargin(10),
-                  Text(
-                    title,
-                    style: Config.b3(context).copyWith(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
+                  Config.isAndroid
+                      ? Switch(
+                          value: isSwitched.value,
+                          onChanged: (value) {
+                            context
+                                .read<SetBiometricsBlocBloc>()
+                                .add(SetBiometricsEvent(
+                                  biometrics: value,
+                                ));
+                            setState(() {
+                              isSwitched.value = value;
+                            });
+                          },
+                          activeTrackColor: AppColors.primaryColor,
+                          activeColor: AppColors.white100,
+                        )
+                      : CupertinoSwitch(
+                          // This bool value toggles the switch.
+                          value: isSwitched.value,
+                          activeColor: AppColors.secondaryColor,
+                          onChanged: (bool? value) {
+                            // This is called when the user toggles the switch.
+                            context
+                                .read<SetBiometricsBlocBloc>()
+                                .add(SetBiometricsEvent(
+                                  biometrics: value,
+                                ));
+                            setState(() {
+                              isSwitched.value = value ?? false;
+                            });
+                          },
+                        ),
                 ],
-              ),
-              Config.isAndroid
-                  ? Switch(
-                      value: isSwitched.value,
-                      onChanged: (value) {
-                        setState(() {
-                          isSwitched.value = value;
-                        });
-                      },
-                      activeTrackColor: AppColors.primaryColor,
-                      activeColor: AppColors.white100,
-                    )
-                  : CupertinoSwitch(
-                      // This bool value toggles the switch.
-                      value: isSwitched.value,
-                      activeColor: AppColors.secondaryColor,
-                      onChanged: (bool? value) {
-                        // This is called when the user toggles the switch.
-                        setState(() {
-                          isSwitched.value = value ?? false;
-                        });
-                      },
-                    ),
-            ],
+              );
+            },
           ),
         );
       },
@@ -306,7 +323,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                   builder: (context, child) {
                     return CachedNetworkImage(
                         imageUrl: state.maybeWhen(
-                          orElse: () => user.avatar,
+                          orElse: () => "",
                           loadDetails: (success) => success.avatar,
                         ),
                         fit: BoxFit.cover,
@@ -355,5 +372,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
         );
       }),
     );
+  }
+
+  void _listener(BuildContext context, SetBiometricsBlocState state) {
+    state.maybeWhen(
+        orElse: () {},
+        loaded: (response) {
+          context.read<GetUserDetailsBloc>().add(GetUserEventEq());
+        });
   }
 }

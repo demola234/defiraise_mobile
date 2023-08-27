@@ -32,6 +32,16 @@ mixin InputValidationMixin {
     return null;
   }
 
+  ValidateFailResult? isValidUsername(String? value) {
+    if (value == null || value.isEmpty) {
+      return ValidateFailResult.empty;
+    }
+    if (value.length < 4) {
+      return ValidateFailResult.invalidLength;
+    }
+    return null;
+  }
+
   ValidateFailResult? isInvalidEmail(String? value) {
     if (value == null || !isEmailRegEx.hasMatch(value)) {
       return ValidateFailResult.invalidEmail;
@@ -102,7 +112,6 @@ mixin InputValidationMixin {
     };
   }
 
-  
   String? isValidTermsAndConditions(bool? value, String message) {
     if (value == false || value == null) {
       return message;
