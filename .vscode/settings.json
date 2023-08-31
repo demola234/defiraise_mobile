@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["appbar", "Etherium", "RGBO"]
+  "cSpell.words": ["appbar", "Etherium", "RGBO"],
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
