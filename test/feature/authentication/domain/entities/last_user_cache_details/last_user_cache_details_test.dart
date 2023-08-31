@@ -4,25 +4,21 @@ import 'package:defiraiser_mobile/features/authentication/domain/entities/last_u
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tResponse = LastUserCachedDetails(
-      username: 'testUser1',
-      password: 'pass123',
-      isBiometric: true,
-      email: 'test@test.com');
+  final tLastUserCachedDetails = LastUserCachedDetails(
+    username: "test",
+    email: "test@test.com",
+    password: "test",
+    isBiometric: false,
+  );
 
-  group("test response on last user cache details", () {
+  final tLastUserCachedDetailsJson = jsonEncode(tLastUserCachedDetails);
+
+  group("test response on successful check user", () {
     test("should return a valid model", () {
       // arrange
-      final data = {
-        'name': tResponse.username,
-        'password': tResponse.password,
-        'isBiometric': tResponse.isBiometric,
-        'email': tResponse.email,
-      };
-      // act
-      final result = LastUserCachedDetails.fromJson(jsonEncode(data));
+      final result = LastUserCachedDetails.fromJson(tLastUserCachedDetailsJson);
       // assert
-      expect(result, tResponse);
+      expect(result, tLastUserCachedDetails);
     });
   });
 }
