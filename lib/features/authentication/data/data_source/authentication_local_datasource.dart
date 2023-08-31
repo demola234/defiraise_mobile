@@ -8,7 +8,7 @@ import 'package:defiraiser_mobile/features/authentication/domain/entities/login_
 abstract class AuthLocalDataSource {
   Future<LastUserCachedDetails> getLastUserData();
 
-  Future<void> cacheUserLoginData({
+  cacheUserLoginData({
     required LastUserCachedDetails lastUserCachedDetails,
   });
 
@@ -16,18 +16,18 @@ abstract class AuthLocalDataSource {
     required UserResponse user,
   });
 
-  Future<void> clearUserCache();
+  clearUserCache();
 
   Future<String> getAccessToken();
 
-  Future<void> saveAccessToken({
+  saveAccessToken({
     required String token,
   });
 }
 
 class IAuthLocalDataSource implements AuthLocalDataSource {
   @override
-  Future<void> cacheUserLoginData(
+  cacheUserLoginData(
       {required LastUserCachedDetails lastUserCachedDetails}) async {
     final cache = sl<SecureStorage>();
     await cache.saveAuth(lastUserCachedDetails, SecureStorageKey().userLogin);
@@ -51,7 +51,7 @@ class IAuthLocalDataSource implements AuthLocalDataSource {
   }
 
   @override
-  Future<void> saveAccessToken({required String token}) async {
+  saveAccessToken({required String token}) async {
     final cache = sl<SecureStorage>();
 
     final saveDetails =
@@ -70,7 +70,7 @@ class IAuthLocalDataSource implements AuthLocalDataSource {
   }
 
   @override
-  Future<void> cacheUserDetails({required UserResponse user}) {
+  cacheUserDetails({required UserResponse user}) {
     final cache = sl<AppCache>();
 
     final saveDetails = cache.saveUser(user);

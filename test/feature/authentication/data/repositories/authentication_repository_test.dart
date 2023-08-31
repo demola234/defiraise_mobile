@@ -118,25 +118,30 @@ void main() {
         () async {
       // arrange
       when(() => mockRemoteDataSource.login(any(), any()))
-          .thenAnswer((_) async => tLoginResponse);
+          .thenAnswer((_) async {
+        return tLoginResponse;
+      });
 
       // act
       final result = await authenticationRepositoryImpl.login(
-          username: tUsername, password: tPassword);
-      if (tLoginResponse.data != null) {
-        final lastCacheDetails = LastUserCachedDetails(
-          password: tPassword,
-          username: tUsername,
-          email: tLoginResponse.data!.user.email,
-          isBiometric: tLoginResponse.data!.user.biometrics,
-        );
-        await mockAuthLocalDataSource.cacheUserLoginData(
-            lastUserCachedDetails: lastCacheDetails);
-        await mockAuthLocalDataSource.cacheUserDetails(
-            user: tLoginResponse.data!.user);
-        await mockAuthLocalDataSource.saveAccessToken(
-            token: tLoginResponse.data!.accessToken);
-      }
+        username: tUsername,
+        password: tPassword,
+      );
+
+      final lastCacheDetails = LastUserCachedDetails(
+        password: tPassword,
+        username: tUsername,
+        email: tLoginResponse.data!.user.email,
+        isBiometric: tLoginResponse.data!.user.biometrics,
+      );
+
+      await mockAuthLocalDataSource.cacheUserLoginData(
+          lastUserCachedDetails: lastCacheDetails);
+
+      await mockAuthLocalDataSource.cacheUserDetails(user: tUserResponse);
+
+      await mockAuthLocalDataSource.saveAccessToken(
+          token: tLoginResponse.data!.accessToken);
 
       // assert
       verify(() => mockRemoteDataSource.login(any(), any()));
