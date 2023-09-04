@@ -35,7 +35,7 @@ class _ConfirmDonationDetailsScreenState
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: EdgeInsets.symmetric(horizontal: 20.sp),
         child: Column(
           children: [
             _buildDonationDetails(),
@@ -48,7 +48,7 @@ class _ConfirmDonationDetailsScreenState
 
   Widget _buildDonationDetails() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
+      padding: EdgeInsets.symmetric(vertical: 5.sp, horizontal: 10.sp),
       child: Column(
         children: [
           VerticalMargin(20),
@@ -70,7 +70,7 @@ class _ConfirmDonationDetailsScreenState
       style: Config.h3(context).copyWith(
         color: AppColors.grey100,
         fontWeight: FontWeight.w500,
-        fontSize: 10,
+        fontSize: 10.sp,
       ),
     );
   }
@@ -99,7 +99,7 @@ class _ConfirmDonationDetailsScreenState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 15.0),
+          padding: EdgeInsets.symmetric(horizontal: 5.sp, vertical: 15.sp),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,17 +113,18 @@ class _ConfirmDonationDetailsScreenState
                     style: Config.h3(context).copyWith(
                       color: AppColors.grey100,
                       fontWeight: FontWeight.w500,
-                      fontSize: 10,
+                      fontSize: 10.sp,
                     ),
                   ),
                   HorizontalMargin(5),
                   InkWell(
                     onTap: () {
                       Clipboard.setData(ClipboardData(text: widget.address));
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Copied to Clipboard'),
-                        ),
+                      context.showToast(
+                        title: AppIcons.copyPaste,
+                        context: context,
+                        toastDurationInSeconds: 1,
+                        isSuccess: true,
                       );
                     },
                     child: Row(
@@ -133,14 +134,14 @@ class _ConfirmDonationDetailsScreenState
                           style: Config.h3(context).copyWith(
                             color: AppColors.black200,
                             fontWeight: FontWeight.w500,
-                            fontSize: 10,
+                            fontSize: 10.sp,
                           ),
                         ),
                         HorizontalMargin(5),
                         SvgPicture.asset(
                           AppIcons.copyPaste,
-                          height: 15,
-                          width: 15,
+                          height: 15.sp,
+                          width: 15.sp,
                         ),
                       ],
                     ),
@@ -157,7 +158,7 @@ class _ConfirmDonationDetailsScreenState
                     style: Config.h3(context).copyWith(
                       color: AppColors.grey100,
                       fontWeight: FontWeight.w500,
-                      fontSize: 10,
+                      fontSize: 10.sp,
                     ),
                   ),
                   HorizontalMargin(5),
@@ -166,7 +167,7 @@ class _ConfirmDonationDetailsScreenState
                     style: Config.h3(context).copyWith(
                       color: AppColors.black200,
                       fontWeight: FontWeight.w500,
-                      fontSize: 10,
+                      fontSize: 10.sp,
                     ),
                   ),
                 ],
@@ -181,7 +182,7 @@ class _ConfirmDonationDetailsScreenState
                     style: Config.h3(context).copyWith(
                       color: AppColors.grey100,
                       fontWeight: FontWeight.w500,
-                      fontSize: 10,
+                      fontSize: 10.sp,
                     ),
                   ),
                   HorizontalMargin(5),
@@ -190,7 +191,7 @@ class _ConfirmDonationDetailsScreenState
                     style: Config.h3(context).copyWith(
                       color: AppColors.black200,
                       fontWeight: FontWeight.w500,
-                      fontSize: 10,
+                      fontSize: 10.sp,
                     ),
                   ),
                 ],
@@ -204,7 +205,7 @@ class _ConfirmDonationDetailsScreenState
 
   _buildDonationAmount() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+      padding: EdgeInsets.symmetric(horizontal: 40.sp),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -214,7 +215,7 @@ class _ConfirmDonationDetailsScreenState
             style: Config.b3(context).copyWith(
               color: AppColors.black200,
               fontWeight: FontWeight.w100,
-              fontSize: 12,
+              fontSize: 12.sp,
             ),
           ),
           VerticalMargin(20),
@@ -225,7 +226,7 @@ class _ConfirmDonationDetailsScreenState
               Text(
                 widget.amount,
                 style: Config.b1(context).copyWith(
-                  fontSize: 19.0,
+                  fontSize: 19.sp,
                   color: AppColors.black100,
                   fontWeight: FontWeight.bold,
                 ),
@@ -234,7 +235,7 @@ class _ConfirmDonationDetailsScreenState
               Text(
                 'ETH',
                 style: Config.b1(context).copyWith(
-                  fontSize: 19.0,
+                  fontSize: 19.sp,
                   color: AppColors.black100,
                   fontWeight: FontWeight.bold,
                 ),
@@ -249,7 +250,7 @@ class _ConfirmDonationDetailsScreenState
               Text(
                 'USD ${double.parse(widget.amountInUsd).toStringAsFixed(2)}',
                 style: Config.b2(context).copyWith(
-                  fontSize: 14.0,
+                  fontSize: 14.sp,
                   color: AppColors.secondaryColor,
                   fontWeight: FontWeight.w100,
                 ),
@@ -268,11 +269,11 @@ class _ConfirmDonationDetailsScreenState
       _overlayEntry = showLoadingOverlay(context, _overlayEntry);
     }, error: (message) {
       _overlayEntry?.remove();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: AppColors.errorColor,
-        ),
+      context.showToast(
+        title: message,
+        context: context,
+        toastDurationInSeconds: 2,
+        isSuccess: false,
       );
     }, loaded: (response) {
       _overlayEntry?.remove();

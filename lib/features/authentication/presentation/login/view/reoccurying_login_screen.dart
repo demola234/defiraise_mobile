@@ -7,10 +7,12 @@ import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/local/local.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
+import 'package:defiraiser_mobile/core/shared/custom_tooast/custom_tooast.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
 import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/login/states/bloc/login_state_bloc.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/login/states/get_user_details/bloc/get_user_details_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,6 +38,23 @@ class _LastUserLoginScreenState extends ConsumerState<LastUserLoginScreen>
   final isValidate = ValueNotifier<bool>(false);
   final isHide = ValueNotifier<bool>(true);
   final user = sl<AppCache>().getUserDetails();
+
+  @override
+  void initState() {
+    _emailController.text = user.username;
+    _passwordController.addListener(_listentToPassword);
+    super.initState();
+  }
+
+  _listentToPassword() {
+    setState(() {
+      if (_passwordController.text.isNotEmpty) {
+        isValidate.value = true;
+      } else {
+        isValidate.value = false;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,17 +145,17 @@ class _LastUserLoginScreenState extends ConsumerState<LastUserLoginScreen>
                                                 .hasAvailableBiometrics()
                                                 .then((value) {
                                               if (value) {
+                                                print(value);
                                                 context.read<LoginStateBloc>().add(
                                                     LoginWithFingerPrintEvent());
                                               } else {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                        "No biometrics available"),
-                                                    backgroundColor:
-                                                        AppColors.errorColor,
-                                                  ),
+                                                print(value);
+                                                context.showToast(
+                                                  title:
+                                                      "No Biometrics Available on this Device",
+                                                  context: context,
+                                                  toastDurationInSeconds: 2,
+                                                  isSuccess: false,
                                                 );
                                               }
                                             });
@@ -186,6 +205,7 @@ class _LastUserLoginScreenState extends ConsumerState<LastUserLoginScreen>
                                   builder: (context, state) {
                                     return AppButton(
                                       text: AppTexts.login,
+                                      isActive: isValidate.value,
                                       onTap: () async {
                                         context
                                             .read<LoginStateBloc>()
@@ -246,14 +266,15 @@ class _LastUserLoginScreenState extends ConsumerState<LastUserLoginScreen>
       _overlayEntry = showLoadingOverlay(context, _overlayEntry);
     }, authenticationFailed: (message) {
       _overlayEntry?.remove();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: AppColors.errorColor,
-        ),
+      context.showToast(
+        title: message,
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: false,
       );
     }, loginSuccessful: (response) {
       _overlayEntry?.remove();
+      context.read<GetUserDetailsBloc>().add(GetUserEventEq());
       if (!response.data!.user.isFirstTime) {
         context.goNamed(RouteConstants.selectAvatar);
       } else {

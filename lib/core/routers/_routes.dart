@@ -1,5 +1,6 @@
 
 
+import 'package:defiraiser_mobile/core/cache/app_cache.dart';
 import 'package:defiraiser_mobile/core/di/injector.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/secure/secure.dart';

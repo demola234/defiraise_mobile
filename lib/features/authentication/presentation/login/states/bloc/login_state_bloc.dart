@@ -27,7 +27,6 @@ class LoginStateBloc extends Bloc<LoginStateEvent, LoginState> {
     failureOrSuccess.fold((failure) {
       emit(LoginState.authenticationFailed(failure.errorMessage));
     }, (success) {
-      Future.delayed(Duration(milliseconds: 5000));
       emit(LoginState.loginSuccessful(success));
     });
   }
@@ -46,11 +45,10 @@ class LoginStateBloc extends Bloc<LoginStateEvent, LoginState> {
       failureOrSuccess.fold((failure) {
         emit(LoginState.authenticationFailed(failure.errorMessage));
       }, (success) {
-        Future.delayed(Duration(milliseconds: 5000));
         emit(LoginState.loginSuccessful(success));
       });
     } else {
-      emit(const LoginState.authenticationFailed('Incorrect Biometrics'));
+      emit(LoginState.authenticationFailed('Incorrect Biometrics'));
     }
   }
 }

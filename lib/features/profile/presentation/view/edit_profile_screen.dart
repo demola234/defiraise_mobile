@@ -3,6 +3,7 @@ import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
+import 'package:defiraiser_mobile/core/shared/custom_tooast/custom_tooast.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
 import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
@@ -179,19 +180,19 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen>
       _overlayEntry = showLoadingOverlay(context, _overlayEntry);
     }, error: (message) {
       _overlayEntry?.remove();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: AppColors.errorColor,
-        ),
-      );
+    context.showToast(
+              title:message,
+              context: context,
+              toastDurationInSeconds: 1,
+              isSuccess: false,
+            );
     }, loaded: (message) {
       _overlayEntry?.remove();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: AppColors.successColor,
-        ),
+     context.showToast(
+        title: "Username changed successfully",
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: true,
       );
       context.pop();
       context.read<GetUserDetailsBloc>().add(GetUserEventEq());
@@ -205,11 +206,11 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen>
       _overlayEntry = showLoadingOverlay(context, _overlayEntry);
     }, checkUsernameError: (message) {
       _overlayEntry?.remove();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: AppColors.errorColor,
-        ),
+    context.showToast(
+        title: message,
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: false,
       );
     }, checkedUserLoaded: (message) {
       _overlayEntry?.remove();

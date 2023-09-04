@@ -1,19 +1,26 @@
+import 'dart:async';
+
 import 'package:defiraiser_mobile/core/global/constants/app_texts.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
+import 'package:defiraiser_mobile/core/shared/custom_tooast/custom_tooast.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
 import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/bloc/sign_up_bloc.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/check_user_bloc/bloc/check_username_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class CreateAccountScreen extends ConsumerStatefulWidget {
-  const CreateAccountScreen({super.key});
+  final String? email;
+  final String? username;
+  const CreateAccountScreen({this.email, this.username, super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -29,6 +36,47 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen>
   final FocusNode _emailNode = FocusNode();
   final FocusNode _firstNameNode = FocusNode();
   OverlayEntry? _overlayEntry;
+  Timer? _debounceTimer;
+  // Add debounce to search
+  void debouncing({required Function() fn, int waitForMs = 500}) {
+    // if this function is called before 500ms [waitForMs] expired
+    //cancel the previous call
+    _debounceTimer?.cancel();
+    // set a 500ms [waitForMs] timer for the [fn] to be called
+    _debounceTimer = Timer(Duration(milliseconds: waitForMs), fn);
+  }
+
+  @override
+  void initState() {
+    _firstNameController.addListener(_checkChanged);
+    _emailController.addListener(_checkChanged);
+    if (widget.username != null) {
+      setState(() {
+        _firstNameController.text = widget.username!;
+      });
+    }
+    if (widget.email != null) {
+      setState(() {
+        _emailController.text = widget.email!;
+      });
+    }
+
+    super.initState();
+  }
+
+  void _checkChanged() {
+    setState(() {
+      if (_firstNameController.text.length > 3 &&
+          _emailController.text.isNotEmpty &&
+          // email validation regex
+          RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+              .hasMatch(_emailController.text)) {
+        isValidate.value = true;
+      } else {
+        isValidate.value = false;
+      }
+    });
+  }
 
   @override
   void dispose() {
@@ -66,43 +114,60 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen>
                       // TODO: implement listener
                     },
                     builder: (context, state) {
-                      return AppTextField(
-                        controller: _firstNameController,
-                        hintText: AppTexts.firstName,
-                        inputType: TextInputType.name,
-                        textCapitalization: TextCapitalization.none,
-                        focusNode: _firstNameNode,
-                        onChanged: (input) {
-                          context
-                              .read<SignUpBloc>()
-                              .add(CheckUsernameEvent(username: input));
+                      return BlocConsumer<CheckUsernameBloc,
+                          CheckUsernameState>(
+                        listener: (context, stated) {
+                          // TODO: do stuff here based on Bloc state
                         },
-                        suffixIcon: state.maybeWhen(
-                          orElse: () => Icon(
-                            Icons.info,
-                            color: Colors.orange,
-                          ),
-                          checkUsernameError: (check) => Icon(
-                            Icons.error,
-                            color: AppColors.errorColor,
-                          ),
-                          checkedUserLoaded: (check) => check == false
-                              ? Icon(
-                                  Icons.check_box,
-                                  color: AppColors.successColor,
-                                )
-                              : Icon(
-                                  Icons.error,
-                                  color: AppColors.errorColor,
+                        builder: (context, stated) {
+                          return AppTextField(
+                            controller: _firstNameController,
+                            hintText: AppTexts.firstName,
+                            inputType: TextInputType.name,
+                            textCapitalization: TextCapitalization.none,
+                            focusNode: _firstNameNode,
+                            onChanged: (input) {
+                              if (input.length > 3) {
+                                debouncing(fn: () async {
+                                  context
+                                      .read<CheckUsernameBloc>()
+                                      .add(CheckUsernameEq(username: input));
+                                });
+                              }
+                            },
+                            suffixIcon: stated.maybeWhen(
+                              orElse: () => Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: SizedBox(
+                                  height: 8.sp,
+                                  width: 8.sp,
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.primaryColor,
+                                    strokeWidth: 1.sp,
+                                  ),
                                 ),
-                        ),
-                        textInputAction: TextInputAction.next,
-                        validator: isValidate.value
-                            ? combine([
-                                withMessage(AppTexts.fieldEmpty("First Name"),
-                                    isTextEmpty),
-                              ])
-                            : null,
+                              ),
+                              checkUsernameError: (check) => Icon(
+                                Icons.error,
+                                color: AppColors.errorColor,
+                              ),
+                              checkedUserLoaded: (check) => check == false
+                                  ? SizedBox()
+                                  : Icon(
+                                      Icons.error,
+                                      color: AppColors.errorColor,
+                                    ),
+                            ),
+                            textInputAction: TextInputAction.next,
+                            validator: isValidate.value
+                                ? combine([
+                                    withMessage(
+                                        AppTexts.fieldEmpty("First Name"),
+                                        isTextEmpty),
+                                  ])
+                                : null,
+                          );
+                        },
                       );
                     },
                   ),
@@ -126,20 +191,41 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen>
                   BlocConsumer<SignUpBloc, SignUpState>(
                     listener: _listener,
                     builder: (context, state) {
-                      return AppButton(
-                        text: AppTexts.createAccountButton,
-                        onTap: () {
-                          _emailNode.unfocus();
-                          _firstNameNode.unfocus();
-                          //FIXME: Navigate to login screen
+                      return BlocConsumer<CheckUsernameBloc,
+                          CheckUsernameState>(
+                        listener: _listenAndCheckUsername,
+                        builder: (context, stated) {
+                          return AppButton(
+                            text: AppTexts.createAccountButton,
+                            onTap: () {
+                              _emailNode.unfocus();
+                              _firstNameNode.unfocus();
+                              //FIXME: Navigate to login screen
 
-                          context.read<SignUpBloc>().add(RegisterUser(
-                              email: _emailController.text,
-                              username: _firstNameController.text));
+                              if (_formKey.currentState!.validate()) {
+                                context.read<SignUpBloc>().add(RegisterUser(
+                                    email: _emailController.text,
+                                    username: _firstNameController.text));
+                              } else {
+                                context.showToast(
+                                  title: AppTexts.emailInvalid,
+                                  context: context,
+                                  toastDurationInSeconds: 1,
+                                  isSuccess: false,
+                                );
+                              }
+                            },
+                            textSize: 12.sp,
+                            isActive: stated.maybeWhen(
+                              orElse: () => false,
+                              checkedUserLoaded: (check) {
+                                return check == false && isValidate.value;
+                              },
+                            ),
+                            textColor: AppColors.white100,
+                            color: AppColors.primaryColor,
+                          );
                         },
-                        textSize: 12,
-                        textColor: AppColors.white100,
-                        color: AppColors.primaryColor,
                       );
                     },
                   ),
@@ -174,21 +260,69 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen>
     );
   }
 
+  void _listenAndCheckUsername(BuildContext context, CheckUsernameState state) {
+    state.maybeWhen(
+        orElse: () {
+          _overlayEntry?.remove();
+        },
+        checkingUsername: () {},
+        checkUsernameError: (message) {
+          context.showToast(
+            title: message,
+            context: context,
+            toastDurationInSeconds: 1,
+            isSuccess: false,
+          );
+        },
+        checkedUserLoaded: (check) {
+          if (check == true) {
+            context.showToast(
+              title: AppTexts.usernameAlreadyTaken,
+              context: context,
+              toastDurationInSeconds: 1,
+              isSuccess: false,
+            );
+          }
+        });
+  }
+
   void _listener(BuildContext context, SignUpState state) {
     state.maybeWhen(orElse: () {
       _overlayEntry?.remove();
+    }, checkedUserLoaded: (check) {
+      if (check == true) {
+        context.showToast(
+          title: AppTexts.usernameAlreadyTaken,
+          context: context,
+          toastDurationInSeconds: 1,
+          isSuccess: false,
+        );
+      }
     }, loading: () {
       _overlayEntry = showLoadingOverlay(context, _overlayEntry);
     }, registrationError: (message) {
       _overlayEntry?.remove();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: AppColors.errorColor,
-        ),
+      context.showToast(
+        title: message,
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: false,
       );
+      if (message == AppTexts.incompleteRegistration) {
+        context.goNamed(RouteConstants.verifyEmail, queryParameters: {
+          "username": _firstNameController.text,
+          "email": _emailController.text
+        });
+        return;
+      }
     }, registrationSuccessful: (message) {
       _overlayEntry?.remove();
+      context.showToast(
+        title: "Please check your email to verify your account",
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: true,
+      );
       context.goNamed(RouteConstants.verifyEmail, queryParameters: {
         "username": _firstNameController.text,
         "email": _emailController.text

@@ -4,6 +4,7 @@ import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
+import 'package:defiraiser_mobile/core/shared/custom_tooast/custom_tooast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -66,11 +67,12 @@ class _ViewPrivateScreenState extends ConsumerState<ViewPrivateScreen> {
                     InkWell(
                       onTap: () {
                         Clipboard.setData(ClipboardData(text: widget.address));
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Copied to Clipboard'),
-                          ),
-                        );
+                        context.showToast(
+              title: AppTexts.copied,
+              context: context,
+              toastDurationInSeconds: 1,
+              isSuccess: true,
+            );
                       },
                       child: Row(
                         children: [
@@ -111,11 +113,12 @@ class _ViewPrivateScreenState extends ConsumerState<ViewPrivateScreen> {
                       onTap: () {
                         Clipboard.setData(
                             ClipboardData(text: widget.privateKey));
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Copied to Clipboard'),
-                          ),
-                        );
+                        context.showToast(
+              title: AppTexts.copied,
+              context: context,
+              toastDurationInSeconds: 1,
+              isSuccess: true,
+            );
                       },
                       child: Row(
                         children: [

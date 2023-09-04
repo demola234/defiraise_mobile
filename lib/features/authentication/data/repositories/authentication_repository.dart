@@ -46,9 +46,9 @@ class IAuthenticationRepository implements AuthenticationRepository {
 
       await authLocalDataSource.cacheUserLoginData(
           lastUserCachedDetails: lastCacheDetails);
-      // await authLocalDataSource.cacheUserDetails(user: remoteLogin.data!.user);
-      // await authLocalDataSource.saveAccessToken(
-      //     token: remoteLogin.data!.accessToken);
+      await authLocalDataSource.cacheUserDetails(user: remoteLogin.data!.user);
+      await authLocalDataSource.saveAccessToken(
+          token: remoteLogin.data!.accessToken);
 
       return Right(remoteLogin);
     } on ApiError catch (error) {
@@ -100,7 +100,6 @@ class IAuthenticationRepository implements AuthenticationRepository {
     try {
       final remoteVerifyOtp =
           await remoteDataSource.resetPassword(username: username);
-      // localDataSource.cacheWeather(remoteWeather);
       return Right(remoteVerifyOtp);
     } on ApiError catch (error) {
       return Left(error);
@@ -118,7 +117,6 @@ class IAuthenticationRepository implements AuthenticationRepository {
         otpCode: otpCode,
         password: password,
       );
-      // localDataSource.cacheWeather(remoteWeather);
       return Right(remoteVerifyOtp);
     } on ApiError catch (error) {
       return Left(error);
@@ -136,7 +134,6 @@ class IAuthenticationRepository implements AuthenticationRepository {
         biometrics: biometrics,
         password: password,
       );
-      // localDataSource.cacheWeather(remoteWeather);
       return Right(remoteVerifyOtp);
     } on ApiError catch (error) {
       return Left(error);

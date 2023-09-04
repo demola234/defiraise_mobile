@@ -18,6 +18,7 @@ import 'package:defiraiser_mobile/features/authentication/presentation/forget_pa
 import 'package:defiraiser_mobile/features/authentication/presentation/login/states/get_user_details/bloc/get_user_details_bloc.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/login/states/set_profile_avatar/bloc/set_profile_avatar_bloc.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/bloc/sign_up_bloc.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/check_user_bloc/bloc/check_username_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -62,6 +63,12 @@ Future<void> registerAuthDependencies() async {
     authLocator.registerFactory(
     () => GetUserDetailsBloc(
       getUserDetailsUsecase: authLocator(),
+    ),
+  );
+
+   authLocator.registerFactory(
+    () => CheckUsernameBloc(
+      checkUsernameExistUsecase: authLocator(),
     ),
   );
 

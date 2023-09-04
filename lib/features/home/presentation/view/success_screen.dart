@@ -15,7 +15,7 @@ class _SuccessScreenState extends ConsumerState<SuccessScreen> {
       backgroundColor: AppColors.white200,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0),
+          padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -43,8 +43,8 @@ class _SuccessScreenState extends ConsumerState<SuccessScreen> {
           context.goNamed(RouteConstants.home);
         },
         child: Container(
-          width: 40,
-          height: 40,
+          width: 40.sp,
+          height: 40.sp,
           decoration: BoxDecoration(
             color: AppColors.white200,
             borderRadius: BorderRadius.circular(10),
@@ -78,8 +78,8 @@ class _SuccessScreenState extends ConsumerState<SuccessScreen> {
       alignment: Alignment.center,
       child: Lottie.asset(
         AppJsons.success,
-        width: 200,
-        height: 200,
+        width: 200.sp,
+        height: 200.sp,
         reverse: false,
         repeat: false,
         fit: BoxFit.cover,
@@ -105,7 +105,7 @@ class _SuccessScreenState extends ConsumerState<SuccessScreen> {
           style: Config.h3(context).copyWith(
             color: AppColors.grey100,
             fontWeight: FontWeight.w500,
-            fontSize: 14,
+            fontSize: 14.sp,
           ),
         ),
       ],

@@ -4,8 +4,10 @@ import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
+import 'package:defiraiser_mobile/core/shared/custom_tooast/custom_tooast.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
+import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/forget_password/state/bloc/forget_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +15,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class ResetEmailScreen extends ConsumerStatefulWidget {
-  const ResetEmailScreen({super.key});
+  final String? user;
+  const ResetEmailScreen({
+    this.user,
+    super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -21,11 +26,25 @@ class ResetEmailScreen extends ConsumerStatefulWidget {
 }
 
 class _ResetEmailScreenState extends ConsumerState<ResetEmailScreen>
-    with InputValidationMixin {
+    with InputValidationMixin, LoadingOverlayMixin {
+  OverlayEntry? _overlayEntry;
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _emailController = TextEditingController();
   final FocusNode _emailNode = FocusNode();
   final isValidate = ValueNotifier<bool>(false);
+
+  @override
+  void initState() {
+    _emailNode.requestFocus();
+    _emailController.addListener(_checkValidation);
+    super.initState();
+  }
+
+  void _checkValidation() {
+    setState(() {
+      isValidate.value = _emailController.text.isNotEmpty;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +53,7 @@ class _ResetEmailScreenState extends ConsumerState<ResetEmailScreen>
             preferredSize: Size(context.screenWidth(), 60),
             child: DeFiRaiseAppBar(
               title: '',
+              isBack: true,
             )),
         body: SafeArea(
             child: Padding(
@@ -59,15 +79,13 @@ class _ResetEmailScreenState extends ConsumerState<ResetEmailScreen>
                               VerticalMargin(50),
                               AppTextField(
                                 controller: _emailController,
-                                hintText: AppTexts.fillEmail,
+                                hintText: AppTexts.fillEmailLogin,
                                 inputType: TextInputType.emailAddress,
                                 textCapitalization: TextCapitalization.none,
                                 focusNode: _emailNode,
                                 textInputAction: TextInputAction.next,
                                 validator: isValidate.value
                                     ? combine([
-                                        withMessage(AppTexts.emailInvalid,
-                                            isInvalidEmail),
                                         withMessage(
                                             AppTexts.fieldEmpty("Email"),
                                             isTextEmpty),
@@ -83,6 +101,7 @@ class _ResetEmailScreenState extends ConsumerState<ResetEmailScreen>
                                 listener: _listener,
                                 builder: (context, state) {
                                   return AppButton(
+                                    isActive: isValidate.value,
                                     text: AppTexts.resetPasswordButton,
                                     onTap: () {
                                       context.read<ForgetPasswordBloc>().add(
@@ -99,20 +118,29 @@ class _ResetEmailScreenState extends ConsumerState<ResetEmailScreen>
   }
 
   void _listener(BuildContext context, ForgetPasswordState state) {
-    state.maybeWhen(
-        orElse: () {},
-        resetPasswordError: (message) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(message),
-              backgroundColor: AppColors.errorColor,
-            ),
-          );
-        },
-        resetPasswordSuccess: (response) {
-          context.goNamed(RouteConstants.resetOtp, queryParameters: {
-            "email": _emailController.text,
-          });
-        });
+    state.maybeWhen(orElse: () {
+      _overlayEntry?.remove();
+    }, loading: () {
+      _overlayEntry = showLoadingOverlay(context, _overlayEntry);
+    }, resetPasswordError: (message) {
+      _overlayEntry?.remove();
+      context.showToast(
+        title: message,
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: false,
+      );
+    }, resetPasswordSuccess: (response) {
+      _overlayEntry?.remove();
+      context.goNamed(RouteConstants.resetOtp, queryParameters: {
+        "email": _emailController.text,
+      });
+      context.showToast(
+        title: "OTP has been sent to your email",
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: true,
+      );
+    });
   }
 }

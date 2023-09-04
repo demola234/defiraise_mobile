@@ -32,7 +32,7 @@ class _DonationViewState extends ConsumerState<DonationView>
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: SizedBox(
           width: context.screenWidth() * 0.9,
-          height: 50,
+          height: 50.sp,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -47,9 +47,10 @@ class _DonationViewState extends ConsumerState<DonationView>
                       });
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 60, vertical: 15),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 60.sp, vertical: 15.sp),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10.sp),
                     color: AppColors.black100,
                   ),
                   child: Center(
@@ -57,7 +58,7 @@ class _DonationViewState extends ConsumerState<DonationView>
                       AppTexts.donate,
                       style: Config.b1(context).copyWith(
                         color: AppColors.white100,
-                        fontSize: 13,
+                        fontSize: 13.sp,
                       ),
                     ),
                   ),
@@ -66,9 +67,10 @@ class _DonationViewState extends ConsumerState<DonationView>
               InkWell(
                 onTap: () {},
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 60, vertical: 15),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 60.sp, vertical: 15.sp),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10.sp),
                     color: AppColors.white100,
                     border: Border.all(color: AppColors.black100),
                   ),
@@ -90,16 +92,16 @@ class _DonationViewState extends ConsumerState<DonationView>
           child: FadeInUp(
             duration: const Duration(milliseconds: 700),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              padding: EdgeInsets.symmetric(horizontal: 25.sp),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   VerticalMargin(10),
                   Container(
-                    height: 240,
+                    height: 240.sp,
                     width: context.screenWidth(),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
+                      borderRadius: BorderRadius.circular(25.sp),
                       color: AppColors.grey200,
                     ),
                     child: ClipRRect(
@@ -107,7 +109,7 @@ class _DonationViewState extends ConsumerState<DonationView>
                       child: CachedNetworkImage(
                           imageUrl: widget.campaign!.image,
                           fit: BoxFit.cover,
-                          height: 240,
+                          height: 240.sp,
                           placeholder: (context, url) => Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
@@ -123,7 +125,7 @@ class _DonationViewState extends ConsumerState<DonationView>
                                   ],
                                 ),
                                 child: Container(
-                                  height: 120,
+                                  height: 120.sp,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
                                   ),
@@ -132,9 +134,9 @@ class _DonationViewState extends ConsumerState<DonationView>
                           errorWidget: (context, url, error) {
                             return Image.asset(
                               AppImages.avatar(1),
-                              height: 12,
+                              height: 240.sp,
                               fit: BoxFit.cover,
-                              width: 12,
+                              width: 240.sp,
                             );
                           }),
                     ),
@@ -144,7 +146,7 @@ class _DonationViewState extends ConsumerState<DonationView>
                     widget.campaign!.title,
                     style: TextStyle(
                         color: AppColors.black100,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.bold),
                   ),
                   VerticalMargin(10),
@@ -152,13 +154,13 @@ class _DonationViewState extends ConsumerState<DonationView>
                     children: [
                       Row(
                         children: [
-                          SvgPicture.asset(AppIcons.group, height: 20),
+                          SvgPicture.asset(AppIcons.group, height: 20.sp),
                           HorizontalMargin(4),
                           Text(
                             '${widget.campaign!.totalNumber} Donor${widget.campaign!.totalNumber > 1 ? "s" : ""}',
                             style: Config.b3(context).copyWith(
                               color: AppColors.black100,
-                              fontSize: 10,
+                              fontSize: 10.sp,
                             ),
                           ),
                         ],
@@ -166,13 +168,13 @@ class _DonationViewState extends ConsumerState<DonationView>
                       HorizontalMargin(10),
                       Row(
                         children: [
-                          SvgPicture.asset(AppIcons.bitcoinGp, height: 16),
+                          SvgPicture.asset(AppIcons.bitcoinGp, height: 16.sp),
                           HorizontalMargin(4),
                           Text(
                             '${widget.campaign!.totalAmountDonated / 1000000000000000000} Eth Raised From ${widget.campaign!.goal / 1000000000000000000} Eth',
                             style: Config.b3(context).copyWith(
                               color: AppColors.black100,
-                              fontSize: 10,
+                              fontSize: 10.sp,
                             ),
                           ),
                         ],
@@ -191,7 +193,7 @@ class _DonationViewState extends ConsumerState<DonationView>
                         children: [
                           SvgPicture.asset(
                             AppIcons.ether,
-                            height: 16,
+                            height: 16.sp,
                             color: AppColors.grey300,
                           ),
                           HorizontalMargin(4),
@@ -199,14 +201,14 @@ class _DonationViewState extends ConsumerState<DonationView>
                             '${(widget.campaign!.totalAmountDonated / 1000000000000000000)}',
                             style: Config.b2(context).copyWith(
                               color: AppColors.black100,
-                              fontSize: 15,
+                              fontSize: 15.sp,
                             ),
                           ),
                           Text(
                             ' of ${(widget.campaign!.goal / 1000000000000000000)} Eth',
                             style: Config.b1(context).copyWith(
                               color: AppColors.secondaryColor,
-                              fontSize: 15,
+                              fontSize: 15.sp,
                             ),
                           ),
                         ],
@@ -218,7 +220,7 @@ class _DonationViewState extends ConsumerState<DonationView>
                                 .endTime(),
                             style: Config.b3(context).copyWith(
                               color: AppColors.black100,
-                              fontSize: 10,
+                              fontSize: 10.sp,
                             ),
                           ),
                         ],
@@ -230,12 +232,13 @@ class _DonationViewState extends ConsumerState<DonationView>
                     AppTexts.organizedBy,
                     style: Config.h1(context).copyWith(
                       color: AppColors.black100,
-                      fontSize: 16,
+                      fontSize: 16.sp,
                     ),
                   ),
                   VerticalMargin(10),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 10.sp, vertical: 10.sp),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: AppColors.black100,
@@ -245,15 +248,15 @@ class _DonationViewState extends ConsumerState<DonationView>
                         CachedNetworkImage(
                             imageUrl: widget.campaign!.user![0].avatar!,
                             fit: BoxFit.cover,
-                            height: 60,
-                            width: 60,
+                            height: 60.sp,
+                            width: 60.sp,
                             placeholder: (context, url) => LoadingImage(),
                             errorWidget: (context, url, error) {
                               return Image.asset(
                                 AppImages.avatar(1),
-                                height: 20,
+                                height: 20.sp,
                                 fit: BoxFit.cover,
-                                width: 20,
+                                width: 20.sp,
                               );
                             }),
                         HorizontalMargin(10),
@@ -266,7 +269,7 @@ class _DonationViewState extends ConsumerState<DonationView>
                                   : widget.campaign!.user![0].username,
                               style: Config.h1(context).copyWith(
                                 color: AppColors.white100,
-                                fontSize: 15,
+                                fontSize: 15.sp,
                               ),
                             ),
                             VerticalMargin(2),
@@ -283,7 +286,7 @@ class _DonationViewState extends ConsumerState<DonationView>
                           '${widget.campaign!.totalNumber} people have just made a donation',
                           style: Config.b3(context).copyWith(
                             color: AppColors.black100,
-                            fontSize: 10,
+                            fontSize: 10.sp,
                           ),
                         )
                       : SizedBox.shrink(),
@@ -295,27 +298,27 @@ class _DonationViewState extends ConsumerState<DonationView>
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              height: 60,
+                              height: 60.sp,
                               width: context.screenWidth() * 0.55,
                               child: Stack(
                                 children: List.generate(
                                   widget.campaign!.donations!.length,
                                   (index) => Positioned(
-                                    left: index * 20.0,
+                                    left: index * 20.sp,
                                     child: CachedNetworkImage(
                                         imageUrl: widget
                                             .campaign!.donations![0].image,
                                         fit: BoxFit.cover,
-                                        height: 60,
-                                        width: 60,
+                                        height: 60.sp,
+                                        width: 60.sp,
                                         placeholder: (context, url) =>
                                             LoadingImage(),
                                         errorWidget: (context, url, error) {
                                           return Image.asset(
                                             AppImages.avatar(1),
-                                            height: 20,
+                                            height: 20.sp,
                                             fit: BoxFit.cover,
-                                            width: 20,
+                                            width: 20.sp,
                                           );
                                         }),
                                   ),
@@ -332,7 +335,7 @@ class _DonationViewState extends ConsumerState<DonationView>
                               },
                               child: Container(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 15),
+                                    horizontal: 15.sp, vertical: 15.sp),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: AppColors.secondaryColor,
@@ -342,7 +345,7 @@ class _DonationViewState extends ConsumerState<DonationView>
                                     AppTexts.viewDonations,
                                     style: Config.b1(context).copyWith(
                                       color: AppColors.white100,
-                                      fontSize: 10,
+                                      fontSize: 10.sp,
                                     ),
                                   ),
                                 ),
@@ -356,7 +359,7 @@ class _DonationViewState extends ConsumerState<DonationView>
                     AppTexts.aboutDonation,
                     style: Config.h1(context).copyWith(
                       color: AppColors.black100,
-                      fontSize: 16,
+                      fontSize: 16.sp,
                     ),
                   ),
                   VerticalMargin(10),
@@ -366,7 +369,7 @@ class _DonationViewState extends ConsumerState<DonationView>
                     textAlign: TextAlign.justify,
                     style: Config.b3(context).copyWith(
                       color: AppColors.grey300,
-                      fontSize: 10,
+                      fontSize: 10.sp,
                     ),
                   ),
                   VerticalMargin(60),
@@ -384,9 +387,9 @@ class _DonationViewState extends ConsumerState<DonationView>
       children: List.generate(
         5,
         (index) => Positioned(
-          left: index - 20.0,
+          left: index - 20.sp,
           child: CircleAvatar(
-            radius: 10,
+            radius: 10.sp,
             backgroundImage: AssetImage(AppImages.avatar(index)),
           ),
         ),

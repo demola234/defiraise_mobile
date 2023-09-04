@@ -3,6 +3,7 @@ import 'package:defiraiser_mobile/core/global/constants/app_icons.dart';
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
@@ -31,7 +32,7 @@ class DeFiRaiseAppBar extends StatelessWidget {
           style: Config.b1(context).copyWith(
             color: AppColors.primaryColor,
             fontWeight: FontWeight.w400,
-            fontSize: 15,
+            fontSize: 15.sp,
           )),
       actions: actions,
       leading: isBack!

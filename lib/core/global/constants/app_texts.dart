@@ -39,16 +39,21 @@ class AppTexts {
   static String biometrics = "Use Biometrics";
   static String selectAvatar = "Select Avatar";
   static String selectAvatarDesc = "Choose your avatar";
+  static String usernameAlreadyTaken = "Username Already Exists";
   static String dashboard = "Get Started";
   static String resetPassword = "Reset Password";
-  static String resetPasswordDesc = "Enter your email to reset password";
+  static String resetPasswordDesc =
+      "Enter your email or username to reset password";
   static String resetPasswordButton = "Reset Password";
   static String biometricsToContinue = "Please use your biometrics to continue";
   static String resetOTP = "Reset OTP";
-  static String resetPassDesc = "Reset your password";
+  static String resetPassDesc = "Enter new password to reset";
   static String hiUser(String username) => "Hello $username,";
   static String notUser(String username) => "Not $username?";
   static String loginDiff = "Login as a different user";
+  static String invalidCode = "invalid otp code";
+  static String incompleteRegistration = "incomplete registration";
+  static String userNotVerified = "user not verified";
 
   //! DASHBOARD
   static String searchCampaign = "Search Campaign";
@@ -60,6 +65,7 @@ class AppTexts {
   static String placeHolderName = "Joe Doe";
   static String donation = "Donation";
   static String createDonation = "Create Donation";
+  static String copied = "Copied to clipboard";
 
   //! DONATION
   static String donationDesc = "Enter the amount you want to donate";
@@ -86,6 +92,8 @@ class AppTexts {
   static String campaignGoal = "Campaign Goal";
   static String selectCategory = "Select Category";
   static String deadline = "Select Deadline";
+  static String emptyMyCampaigns = "No Campaigns Yet";
+  static String emptyMyCampaignsDescription = "Create Donation";
 
   //! NAVIGATION
   static String home = "Home";

@@ -4,6 +4,8 @@ import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/features/donation/presentation/state/get_donation/bloc/get_donation_bloc.dart';
 import 'package:defiraiser_mobile/features/home/presentation/widget/donation_widget.dart';
+import 'package:defiraiser_mobile/features/home/presentation/widget/empty_campaign_categories.dart';
+import 'package:defiraiser_mobile/features/home/presentation/widget/loading_campaigns_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -43,7 +45,7 @@ class _DonationScreenViewState extends ConsumerState<DonationScreenView>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size(context.screenWidth(), 60),
+        preferredSize: Size(context.screenWidth(), 40),
         child: DeFiRaiseAppBar(
           isBack: false,
           title: AppTexts.donation,
@@ -64,12 +66,12 @@ class _DonationScreenViewState extends ConsumerState<DonationScreenView>
         builder: (context, state) {
       return state.maybeWhen(
           orElse: () => Container(),
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => LoadingCampaigns(),
           error: (error) => Center(child: Text(error)),
           loaded: (success) => Expanded(
                   child: SmartRefresher(
                 enablePullDown: true,
-                enablePullUp: true,
+                enablePullUp: false,
                 header: const WaterDropHeader(),
                 onRefresh: () async {
                   //  refresh bloc
@@ -77,33 +79,39 @@ class _DonationScreenViewState extends ConsumerState<DonationScreenView>
                   _refreshController1.refreshCompleted();
                 },
                 controller: _refreshController1,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics()),
-                  itemCount: success.data!.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        context.goNamed(RouteConstants.singleDonation,
-                            extra: success.data![index]);
-                      },
-                      child: AnimationConfiguration.staggeredList(
-                        position: index,
-                        duration: const Duration(milliseconds: 200),
-                        child: SlideAnimation(
-                          verticalOffset: 50.0,
-                          child: FadeInAnimation(
-                            child: BuildDonationWidget(
-                              campaign: success.data![index],
-                              controller: _controller,
+                child: success.data!.isNotEmpty
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics()),
+                        itemCount: success.data!.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              context.goNamed(RouteConstants.singleDonation,
+                                  extra: success.data![index]);
+                            },
+                            child: AnimationConfiguration.staggeredList(
+                              position: index,
+                              duration: const Duration(milliseconds: 200),
+                              child: SlideAnimation(
+                                verticalOffset: 50.0,
+                                child: FadeInAnimation(
+                                  child: BuildDonationWidget(
+                                    campaign: success.data![index],
+                                    controller: _controller,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
+                          );
+                        },
+                      )
+                    : EmptyCampaignCategories(
+                        title: "No donations yet",
+                        description:
+                            "There are no donations yet, but you can be the first to donate to this campaign",
                       ),
-                    );
-                  },
-                ),
               )));
     });
   }

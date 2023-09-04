@@ -10,6 +10,7 @@ abstract class GetPrivateKeyEvent extends Equatable {
 
 class PrivateKeyEvent extends GetPrivateKeyEvent {
   final String? password;
+  final bool? isBio;
 
-  const PrivateKeyEvent({this.password});
+  const PrivateKeyEvent({this.password, this.isBio});
 }

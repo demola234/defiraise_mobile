@@ -4,6 +4,7 @@ import 'dart:math';
 
 // 🐦 Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 // 📦 Package imports:
 import 'package:google_fonts/google_fonts.dart';
 
@@ -87,7 +88,7 @@ class HorizontalMargin extends StatelessWidget {
   final double x;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(width: x);
+    return SizedBox(width: x.sp);
   }
 }
 
@@ -96,6 +97,6 @@ class VerticalMargin extends StatelessWidget {
   final double y;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height: y);
+    return SizedBox(height: y.sp);
   }
 }

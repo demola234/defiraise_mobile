@@ -3,6 +3,7 @@ import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 // 🌎 Project imports:
 
 class AppTextField extends StatelessWidget {
@@ -99,31 +100,31 @@ class AppTextField extends StatelessWidget {
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.sp),
               borderSide: BorderSide(
                 color: AppColors.grey200.withOpacity(0.5),
-                width: 1,
+                width: 1.sp,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.sp),
               borderSide: BorderSide(
                 color: AppColors.grey200.withOpacity(0.5),
-                width: 1,
+                width: 1.sp,
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.sp),
               borderSide: BorderSide(
                 color: AppColors.errorColor,
-                width: 1,
+                width: 1.sp,
               ),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.sp),
               borderSide: BorderSide(
                 color: AppColors.white100,
-                width: 1,
+                width: 1.sp,
               ),
             ),
             prefixIcon: prefixIcon,

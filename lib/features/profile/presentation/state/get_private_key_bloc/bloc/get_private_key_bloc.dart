@@ -1,4 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:defiraiser_mobile/core/di/injector.dart';
+import 'package:defiraiser_mobile/core/local/local.dart';
+import 'package:defiraiser_mobile/core/secure/secure.dart';
+import 'package:defiraiser_mobile/core/secure/secure_key.dart';
 import 'package:defiraiser_mobile/features/profile/domain/entities/address_entity/address_entity.dart';
 import 'package:defiraiser_mobile/features/profile/domain/usecases/get_privatekey_usecase.dart';
 import 'package:equatable/equatable.dart';
@@ -16,13 +20,32 @@ class GetPrivateKeyBloc extends Bloc<GetPrivateKeyEvent, GetPrivateKeyState> {
 
   Future<void> _getPrivateKey(
       PrivateKeyEvent event, Emitter<GetPrivateKeyState> emit) async {
-    emit(const GetPrivateKeyState.loading());
-    final failureOrSuccess = await getPrivateUseCaseKey
-        .call(GetPrivateKeyParams(password: event.password!));
-    failureOrSuccess.fold((failure) {
-      emit(GetPrivateKeyState.error(failure.errorMessage));
-    }, (success) {
-      emit(GetPrivateKeyState.loaded(success));
-    });
+    final user = await sl<SecureStorage>()
+        .getAuthCredentials(SecureStorageKey().userLogin);
+
+    if (event.isBio!) {
+      final bio = await sl<LocalAuth>().authenticate();
+      if (bio) {
+        emit(const GetPrivateKeyState.loading());
+        final failureOrSuccess = await getPrivateUseCaseKey
+            .call(GetPrivateKeyParams(password: event.password!));
+        failureOrSuccess.fold((failure) {
+          emit(GetPrivateKeyState.error(failure.errorMessage));
+        }, (success) {
+          emit(GetPrivateKeyState.loaded(success));
+        });
+      } else {
+        emit(const GetPrivateKeyState.error('Biometric not found'));
+      }
+    } else {
+      emit(const GetPrivateKeyState.loading());
+      final failureOrSuccess = await getPrivateUseCaseKey
+          .call(GetPrivateKeyParams(password: event.password!));
+      failureOrSuccess.fold((failure) {
+        emit(GetPrivateKeyState.error(failure.errorMessage));
+      }, (success) {
+        emit(GetPrivateKeyState.loaded(success));
+      });
+    }
   }
 }

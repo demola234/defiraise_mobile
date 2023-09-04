@@ -6,6 +6,7 @@ import 'package:defiraiser_mobile/features/donation/presentation/view/donations_
 import 'package:defiraiser_mobile/features/home/presentation/_home.dart';
 import 'package:defiraiser_mobile/features/profile/presentation/view/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../global/constants/app_texts.dart';
@@ -62,8 +63,8 @@ class _BottomNavigationControllerState
                 children: [
                   SvgPicture.asset(
                     AppIcons.homeUnselected,
-                    height: 28,
-                    width: 28,
+                    height: 28.sp,
+                    width: 28.sp,
                     allowDrawingOutsideViewBox: true,
                     color: AppColors.grey300,
                   ),
@@ -71,7 +72,7 @@ class _BottomNavigationControllerState
                   Text(
                     AppTexts.home,
                     style: Config.b2(context).copyWith(
-                      fontSize: 10,
+                      fontSize: 10.sp,
                       color: AppColors.grey300,
                     ),
                   ),
@@ -83,8 +84,8 @@ class _BottomNavigationControllerState
                 children: [
                   SvgPicture.asset(
                     AppIcons.homeSelected,
-                    height: 28,
-                    width: 28,
+                    height: 28.sp,
+                    width: 28.sp,
                     allowDrawingOutsideViewBox: true,
                     color: AppColors.primaryColor,
                   ),
@@ -92,7 +93,7 @@ class _BottomNavigationControllerState
                   Text(
                     AppTexts.home,
                     style: Config.b2(context).copyWith(
-                      fontSize: 10,
+                      fontSize: 10.sp,
                       color: AppColors.primaryColor,
                     ),
                   )
@@ -104,8 +105,8 @@ class _BottomNavigationControllerState
                 children: [
                   SvgPicture.asset(
                     AppIcons.handUnselected,
-                    height: 28,
-                    width: 28,
+                    height: 28.sp,
+                    width: 28.sp,
                     allowDrawingOutsideViewBox: true,
                     color: AppColors.grey300,
                   ),
@@ -113,7 +114,7 @@ class _BottomNavigationControllerState
                   Text(
                     AppTexts.navDonation,
                     style: Config.b2(context).copyWith(
-                      fontSize: 10,
+                      fontSize: 10.sp,
                       color: AppColors.grey300,
                     ),
                   ),
@@ -125,8 +126,8 @@ class _BottomNavigationControllerState
                 children: [
                   SvgPicture.asset(
                     AppIcons.handSelected,
-                    height: 28,
-                    width: 28,
+                    height: 28.sp,
+                    width: 28.sp,
                     allowDrawingOutsideViewBox: true,
                     color: AppColors.primaryColor,
                   ),
@@ -134,7 +135,7 @@ class _BottomNavigationControllerState
                   Text(
                     AppTexts.navDonation,
                     style: Config.b2(context).copyWith(
-                      fontSize: 10,
+                      fontSize: 10.sp,
                       color: AppColors.primaryColor,
                     ),
                   )
@@ -146,8 +147,8 @@ class _BottomNavigationControllerState
                 children: [
                   SvgPicture.asset(
                     AppIcons.donateUnselected,
-                    height: 28,
-                    width: 28,
+                    height: 28.sp,
+                    width: 28.sp,
                     allowDrawingOutsideViewBox: true,
                     color: AppColors.grey300,
                   ),
@@ -155,7 +156,7 @@ class _BottomNavigationControllerState
                   Text(
                     AppTexts.navCampaign,
                     style: Config.b2(context).copyWith(
-                      fontSize: 10,
+                      fontSize: 10.sp,
                       color: AppColors.grey300,
                     ),
                   ),
@@ -167,8 +168,8 @@ class _BottomNavigationControllerState
                 children: [
                   SvgPicture.asset(
                     AppIcons.donateSelected,
-                    height: 28,
-                    width: 28,
+                    height: 28.sp,
+                    width: 28.sp,
                     allowDrawingOutsideViewBox: true,
                     color: AppColors.primaryColor,
                   ),
@@ -176,7 +177,7 @@ class _BottomNavigationControllerState
                   Text(
                     AppTexts.navCampaign,
                     style: Config.b2(context).copyWith(
-                      fontSize: 10,
+                      fontSize: 10.sp,
                       color: AppColors.primaryColor,
                     ),
                   )
@@ -188,8 +189,8 @@ class _BottomNavigationControllerState
                 children: [
                   SvgPicture.asset(
                     AppIcons.profileUnselected,
-                    height: 28,
-                    width: 28,
+                    height: 28.sp,
+                    width: 28.sp,
                     allowDrawingOutsideViewBox: true,
                     color: AppColors.grey300,
                   ),
@@ -197,7 +198,7 @@ class _BottomNavigationControllerState
                   Text(
                     AppTexts.navProfile,
                     style: Config.b2(context).copyWith(
-                      fontSize: 10,
+                      fontSize: 10.sp,
                       color: AppColors.grey300,
                     ),
                   ),
@@ -209,8 +210,8 @@ class _BottomNavigationControllerState
                 children: [
                   SvgPicture.asset(
                     AppIcons.profileSelected,
-                    height: 28,
-                    width: 28,
+                    height: 28.sp,
+                    width: 28.sp,
                     allowDrawingOutsideViewBox: true,
                     color: AppColors.primaryColor,
                   ),
@@ -218,7 +219,7 @@ class _BottomNavigationControllerState
                   Text(
                     AppTexts.navProfile,
                     style: Config.b2(context).copyWith(
-                      fontSize: 10,
+                      fontSize: 10.sp,
                       color: AppColors.primaryColor,
                     ),
                   )
@@ -227,12 +228,12 @@ class _BottomNavigationControllerState
             ),
           ],
           selectedItemColor: AppColors.primaryColor,
-          selectedFontSize: 12,
-          unselectedFontSize: 12,
+          selectedFontSize: 12.sp,
+          unselectedFontSize: 12.sp,
           onTap: navigationTapped,
           type: BottomNavigationBarType.fixed,
           currentIndex: _page,
-          iconSize: 20,
+          iconSize: 20.sp,
         ));
   }
 }

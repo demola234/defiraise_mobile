@@ -8,6 +8,7 @@ import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
+import 'package:defiraiser_mobile/core/shared/custom_tooast/custom_tooast.dart';
 import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/login/states/get_user_details/bloc/get_user_details_bloc.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/login/states/set_profile_avatar/bloc/set_profile_avatar_bloc.dart';
@@ -15,6 +16,7 @@ import 'package:defiraiser_mobile/features/home/presentation/_home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class SelectAvatarScreen2 extends ConsumerStatefulWidget {
@@ -67,7 +69,7 @@ class _ProfileScreenState extends ConsumerState<SelectAvatarScreen2>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size(context.screenWidth(), 60),
+          preferredSize: Size(context.screenWidth(), 40.sp),
           child: DeFiRaiseAppBar(
             isBack: true,
             title: AppTexts.selectAvatar,
@@ -76,7 +78,7 @@ class _ProfileScreenState extends ConsumerState<SelectAvatarScreen2>
         body: SafeArea(
             child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+                    EdgeInsets.symmetric(horizontal: 25.sp, vertical: 30.sp),
                 child: SingleChildScrollView(
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,7 +92,7 @@ class _ProfileScreenState extends ConsumerState<SelectAvatarScreen2>
                                 animation: _animationController,
                                 builder: (context, child) {
                                   return Container(
-                                    width: 120,
+                                    width: 120.sp,
                                     // margin: EdgeInsets.all(
                                     //     _animationController.value * 3),
                                     padding: EdgeInsets.all(
@@ -99,7 +101,7 @@ class _ProfileScreenState extends ConsumerState<SelectAvatarScreen2>
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                             color: AppColors.grey200,
-                                            width: 4)),
+                                            width: 4.sp)),
                                     child: isSelected.value == 10
                                         ? BlocBuilder<GetUserDetailsBloc,
                                                 GetUserDetailsState>(
@@ -119,14 +121,14 @@ class _ProfileScreenState extends ConsumerState<SelectAvatarScreen2>
                                                     (context, url, error) {
                                                   return Image.asset(
                                                     AppImages.avatar(1),
-                                                    height: 60,
+                                                    height: 60.sp,
                                                     fit: BoxFit.cover,
-                                                    width: 60,
+                                                    width: 60.sp,
                                                   );
                                                 });
                                           })
                                         : CircleAvatar(
-                                            radius: 60,
+                                            radius: 60.sp,
                                             backgroundColor: Colors.transparent,
                                             backgroundImage: AssetImage(
                                                 AppImages.avatar(
@@ -136,16 +138,17 @@ class _ProfileScreenState extends ConsumerState<SelectAvatarScreen2>
                                 }),
                             Positioned(
                               top: 0,
-                              right: -8,
+                              right: -8.sp,
                               child: Container(
                                 padding: EdgeInsets.all(2),
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: AppColors.textfieldColor,
                                     border: Border.all(
-                                        color: AppColors.white100, width: 3)),
+                                        color: AppColors.white100,
+                                        width: 3.sp)),
                                 child: CircleAvatar(
-                                    radius: 15,
+                                    radius: 15.sp,
                                     backgroundColor: AppColors.textfieldColor,
                                     child: AnimatedBuilder(
                                         animation: _animationController,
@@ -158,9 +161,9 @@ class _ProfileScreenState extends ConsumerState<SelectAvatarScreen2>
                                             transform: Matrix4.rotationZ(
                                                 _animationController.value *
                                                     0.25),
-                                            child: Text('👋',
+                                            child: Text('👋🏽',
                                                 style: TextStyle(
-                                                    fontSize: 20,
+                                                    fontSize: 20.sp,
                                                     color: AppColors.white100)),
                                           );
                                         })),
@@ -174,8 +177,8 @@ class _ProfileScreenState extends ConsumerState<SelectAvatarScreen2>
                       Align(
                         alignment: Alignment.center,
                         child: Wrap(
-                          spacing: 30,
-                          runSpacing: 10,
+                          spacing: 30.sp,
+                          runSpacing: 10.sp,
                           verticalDirection: VerticalDirection.down,
                           children:
                               List.generate(9, (index) => _avatars(index)),
@@ -196,7 +199,7 @@ class _ProfileScreenState extends ConsumerState<SelectAvatarScreen2>
                                   ));
                             },
                             textColor: AppColors.white100,
-                            textSize: 12,
+                            textSize: 12.sp,
                             color: AppColors.primaryColor,
                           );
                         },
@@ -228,7 +231,7 @@ class _ProfileScreenState extends ConsumerState<SelectAvatarScreen2>
                         : AppColors.textfieldColor,
                     width: 1)),
             child: CircleAvatar(
-              radius: 40,
+              radius: 40.sp,
               backgroundColor: Colors.transparent,
               backgroundImage: AssetImage(
                 AppImages.avatar(index + 1),
@@ -254,16 +257,22 @@ class _ProfileScreenState extends ConsumerState<SelectAvatarScreen2>
       _overlayEntry = showLoadingOverlay(context, _overlayEntry);
     }, profileError: (message) {
       _overlayEntry?.remove();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: AppColors.errorColor,
-        ),
+      context.showToast(
+        title: message,
+        context: context,
+        isSuccess: false,
+        toastDurationInSeconds: 1,
       );
     }, profileSet: (response) {
       _overlayEntry?.remove();
 
       context.goNamed(RouteConstants.home);
+      context.showToast(
+        title: "Profile Avatar Updated",
+        context: context,
+        isSuccess: true,
+        toastDurationInSeconds: 1,
+      );
       context.read<GetUserDetailsBloc>().add(GetUserEventEq());
     });
   }

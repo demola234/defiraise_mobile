@@ -1,5 +1,6 @@
 class EndpointManager {
-  static const String _defifundr = 'http://localhost:8080';
+  // static const String _defifundr = 'http://localhost:8080';
+  static const String _defifundr = 'https://defifundr-hyper.koyeb.app';
 
   // Authentication
   static const String createAccount = '$_defifundr/user';
