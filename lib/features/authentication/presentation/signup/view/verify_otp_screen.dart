@@ -2,6 +2,7 @@ import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
+import 'package:defiraiser_mobile/core/shared/custom_tooast/custom_tooast.dart';
 import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/bloc/sign_up_bloc.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/verify_bloc/bloc/verify_otp_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:defiraiser_mobile/features/authentication/presentation/signup/wi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
@@ -67,7 +69,7 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen>
       // ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+          padding: EdgeInsets.symmetric(horizontal: 25.sp, vertical: 50.sp),
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,
@@ -77,7 +79,7 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen>
                   VerticalMargin(20),
                   Text(AppTexts.verifyOTP,
                       style: Config.h2(context).copyWith(
-                        fontSize: 22,
+                        fontSize: 22.sp,
                       )),
                   VerticalMargin(5),
                   // 📝 Note: The code below is the same as the one in the previous snippet.
@@ -87,7 +89,7 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen>
                       )),
                   VerticalMargin(50),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 20.sp),
                     child: Pinput(
                       defaultPinTheme: defaultPinTheme,
                       listenForMultipleSmsOnAndroid: true,
@@ -121,13 +123,13 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen>
                   const VerticalMargin(30),
                   // Not your Email? Change it
                   Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
+                    padding: EdgeInsets.only(left: 15.sp),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(AppTexts.notYourEmail(widget.email),
                             style: Config.b3(context).copyWith(
-                              fontSize: 12,
+                              fontSize: 12.sp,
                               color: AppColors.grey100.withOpacity(0.5),
                             )),
                         const HorizontalMargin(2),
@@ -140,12 +142,18 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen>
                             padding: MaterialStateProperty.all<EdgeInsets>(
                                 const EdgeInsets.all(0)),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            context.goNamed(RouteConstants.register,
+                                queryParameters: {
+                                  "username": widget.username,
+                                  "email": widget.email
+                                });
+                          },
                           child: Text(
                             "Edit Email",
                             style: Config.b3(context).copyWith(
                               color: AppColors.secondaryColor,
-                              fontSize: 12,
+                              fontSize: 12.sp,
                             ),
                           ),
                         )
@@ -160,7 +168,7 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 15.0),
+                              padding: EdgeInsets.only(left: 15.sp),
                               child: Countdown(
                                 seconds: 60,
                                 controller: _controller,
@@ -210,7 +218,8 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen>
                               ));
                           // context.goNamed(RouteConstants.confirmPassword);
                         },
-                        textSize: 12,
+                        isActive: _otpController.text.length == 6,
+                        textSize: 12.sp,
                         text: AppTexts.verify,
                         textColor: AppColors.white100,
                         color: AppColors.primaryColor,
@@ -232,11 +241,11 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen>
     }, otpVerificationError: (error) {
       _overlayEntry?.remove();
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(error),
-          backgroundColor: AppColors.errorColor,
-        ),
+      context.showToast(
+        title: error,
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: false,
       );
     }, verifyingOtp: () {
       _overlayEntry = showLoadingOverlay(context, _overlayEntry);
@@ -264,39 +273,41 @@ class _VerifyOTPScreenState extends ConsumerState<VerifyOTPScreen>
         registrationError: (message) {
           _overlayEntry?.remove();
 
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(message),
-              backgroundColor: AppColors.errorColor,
-            ),
+          context.showToast(
+            title: message,
+            context: context,
+            toastDurationInSeconds: 1,
+            isSuccess: false,
           );
         },
         otpVerificationError: (message) {
           _overlayEntry?.remove();
 
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(message),
-              backgroundColor: AppColors.errorColor,
-            ),
+          context.showToast(
+            title: message,
+            context: context,
+            toastDurationInSeconds: 1,
+            isSuccess: false,
           );
         },
         otpResendError: (message) {
           _overlayEntry?.remove();
 
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(message),
-              backgroundColor: AppColors.errorColor,
-            ),
+          context.showToast(
+            title: message,
+            context: context,
+            toastDurationInSeconds: 1,
+            isSuccess: false,
           );
         },
         otpResendSuccessful: (message) {
           _overlayEntry?.remove();
 
-          SnackBar(
-            content: Text(message),
-            backgroundColor: AppColors.successColor,
+          context.showToast(
+            title: message,
+            context: context,
+            toastDurationInSeconds: 1,
+            isSuccess: true,
           );
           _restartTimer();
         },

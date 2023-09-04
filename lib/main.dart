@@ -7,6 +7,7 @@ import 'package:defiraiser_mobile/features/authentication/presentation/login/sta
 import 'package:defiraiser_mobile/features/authentication/presentation/login/states/get_user_details/bloc/get_user_details_bloc.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/login/states/set_profile_avatar/bloc/set_profile_avatar_bloc.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/bloc/sign_up_bloc.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/check_user_bloc/bloc/check_username_bloc.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/create_password_bloc/bloc/create_password_bloc.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/verify_bloc/bloc/verify_otp_bloc.dart';
 import 'package:defiraiser_mobile/features/donation/presentation/state/create_donation/bloc/create_donation_bloc.dart';
@@ -29,6 +30,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:nested/nested.dart';
 
@@ -63,18 +65,23 @@ class _MyAppState extends ConsumerState<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: appProviders,
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        title: 'DeFiRaiser',
-        scrollBehavior: const _AppScrollBehavior(),
-        theme: ThemeData(
-          primarySwatch: Colors.grey,
+    return ScreenUtilInit(
+      designSize: const Size(410, 890),
+      minTextAdapt: true,
+      splitScreenMode: false,
+      child: MultiBlocProvider(
+        providers: appProviders,
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: 'DeFiFundr',
+          scrollBehavior: const _AppScrollBehavior(),
+          theme: ThemeData(
+            primarySwatch: Colors.grey,
+          ),
+          routeInformationProvider: AppRouter.router.routeInformationProvider,
+          routeInformationParser: AppRouter.router.routeInformationParser,
+          routerDelegate: AppRouter.router.routerDelegate,
         ),
-        routeInformationProvider: AppRouter.router.routeInformationProvider,
-        routeInformationParser: AppRouter.router.routeInformationParser,
-        routerDelegate: AppRouter.router.routerDelegate,
       ),
     );
   }
@@ -98,6 +105,9 @@ class _MyAppState extends ConsumerState<MyApp> {
       ),
       BlocProvider<SetProfileAvatarBloc>(
         create: (context) => authLocator<SetProfileAvatarBloc>(),
+      ),
+      BlocProvider<CheckUsernameBloc>(
+        create: (context) => authLocator<CheckUsernameBloc>(),
       ),
       BlocProvider<CategoriesBlocBloc>(
         create: (context) =>
@@ -130,7 +140,8 @@ class _MyAppState extends ConsumerState<MyApp> {
         create: (context) => homeLocator<GetDonorsBloc>()..add(DonationEvent()),
       ),
       BlocProvider<GetUserDetailsBloc>(
-        create: (context) => homeLocator<GetUserDetailsBloc>(),
+        create: (context) =>
+            homeLocator<GetUserDetailsBloc>()..add(GetUserEventEq()),
       ),
       BlocProvider<CreateDonationBloc>(
         create: (context) => homeLocator<CreateDonationBloc>(),

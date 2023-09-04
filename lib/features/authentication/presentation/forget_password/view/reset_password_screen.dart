@@ -5,8 +5,10 @@ import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
+import 'package:defiraiser_mobile/core/shared/custom_tooast/custom_tooast.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
+import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/forget_password/state/bloc/forget_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +28,11 @@ class ResetPasswordScreen extends ConsumerStatefulWidget {
 }
 
 class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
-    with InputValidationMixin, SingleTickerProviderStateMixin {
+    with
+        InputValidationMixin,
+        SingleTickerProviderStateMixin,
+        LoadingOverlayMixin {
+  OverlayEntry? _overlayEntry;
   late AnimationController controller = AnimationController(
     duration: const Duration(milliseconds: 500),
     vsync: this,
@@ -245,25 +251,33 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
   }
 
   void _listener(BuildContext context, ForgetPasswordState state) {
-    state.maybeWhen(
-        orElse: () {},
-        registrationError: (message) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(message),
-              backgroundColor: AppColors.errorColor,
-            ),
-          );
-        },
-        registrationSuccessful: (message) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(message),
-              backgroundColor: AppColors.successColor,
-            ),
-          );
-          context.goNamed(RouteConstants.login);
+    state.maybeWhen(orElse: () {
+      _overlayEntry?.remove();
+    }, registrationError: (message) {
+      _overlayEntry?.remove();
+      context.showToast(
+        title: message,
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: false,
+      );
+      if (message == AppTexts.invalidCode) {
+        context.goNamed(RouteConstants.resetOtp, queryParameters: {
+          "email": widget.email,
         });
+      }
+    }, loading: () {
+      _overlayEntry = showLoadingOverlay(context, _overlayEntry);
+    }, registrationSuccessful: (message) {
+      _overlayEntry?.remove();
+      context.showToast(
+        title: message,
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: true,
+      );
+      context.goNamed(RouteConstants.login);
+    });
   }
 
   Container _passwordChecker(

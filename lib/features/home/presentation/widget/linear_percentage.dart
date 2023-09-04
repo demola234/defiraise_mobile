@@ -9,15 +9,15 @@ linearPercentage(int percentage, int total, AnimationController controller,
         return Stack(
           children: [
             Container(
-              height: height ?? 15,
+              height: height ?? 15.sp,
               width: context.screenWidth(),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(30.sp),
                 color: AppColors.grey200.withOpacity(0.5),
               ),
             ),
             Container(
-              height: height ?? 15,
+              height: height ?? 15.sp,
               width: width! * (percentage / total) * controller.value,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),

@@ -103,6 +103,9 @@ dependencies:
   scroll_date_picker: ^3.7.0
   #?syncfusion_flutter_datepicker is a flutter package that provides a set of utilities for implementing date picker.
   syncfusion_flutter_datepicker: ^22.2.8
+  #?  flutter_screenutil is a Flutter package that provides a set of utilities for implementing responsive UI.
+  flutter_screenutil: ^5.9.0
+  
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -129,7 +132,7 @@ dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
   #? flutter_staggered_animations is a Flutter package that provides a set of utilities for creating staggered animations.
   flutter_staggered_animations: ^1.1.1
-  # 
+  
 
 
 

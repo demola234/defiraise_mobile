@@ -36,7 +36,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         backgroundColor: AppColors.white200,
         body: SmartRefresher(
           enablePullDown: true,
-          enablePullUp: true,
+          enablePullUp: false,
           header: const MaterialClassicHeader(
             color: AppColors.black100,
             backgroundColor: AppColors.white100,
@@ -63,19 +63,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                     GestureDetector(
                       onTap: () {},
                       child: Padding(
-                        padding: EdgeInsets.only(right: 15.0, top: 10),
+                        padding: EdgeInsets.only(right: 15.sp, top: 10.sp),
                         child: Stack(
                           children: const [],
                         ),
                       ),
                     ),
                   ],
-                  expandedHeight: 300,
+                  expandedHeight: 300.sp,
                   flexibleSpace: FlexibleSpaceBar(
                       collapseMode: CollapseMode.parallax,
                       background: Stack(children: [
                         Container(
-                          height: 300,
+                          height: 300.sp,
                           width: context.screenWidth(),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
@@ -102,8 +102,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         //   ),
                         // ),
                         Positioned(
-                          top: 90,
-                          left: 20,
+                          top: 90.sp,
+                          left: 20.sp,
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,37 +113,48 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                                     GetUserDetailsState>(
                                   builder: (context, state) {
                                     return GestureDetector(
-                                      onTap: () {
-                                        context.goNamed(
-                                            RouteConstants.selectAvatar2);
-                                      },
-                                      child: CachedNetworkImage(
-                                          imageUrl: state.maybeWhen(
-                                            orElse: () => user.avatar,
-                                            loadDetails: (success) =>
-                                                success.avatar,
-                                          ),
-                                          fit: BoxFit.cover,
-                                          height: 60,
-                                          width: 60,
-                                          placeholder: (context, url) =>
-                                              LoadingImage(),
-                                          errorWidget: (context, url, error) {
-                                            return Image.asset(
-                                              AppImages.avatar(1),
-                                              height: 60,
-                                              fit: BoxFit.cover,
-                                              width: 60,
-                                            );
-                                          }),
-                                    );
+                                        onTap: state.maybeMap(
+                                            orElse: () => null,
+                                            loadDetails: (l) => () {
+                                                  context.goNamed(RouteConstants
+                                                      .selectAvatar2);
+                                                }),
+                                        child: state.maybeMap(
+                                          orElse: () => LoadingImage(),
+                                          error: (e) => CircleAvatar(
+                                              radius: 30.sp,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              backgroundImage: AssetImage(
+                                                  AppImages.avatar(1))),
+                                          loadDetails: (l) =>
+                                              CachedNetworkImage(
+                                                  imageUrl: state.maybeWhen(
+                                                    orElse: () => "",
+                                                    loadDetails: (success) =>
+                                                        success.avatar,
+                                                  ),
+                                                  fit: BoxFit.cover,
+                                                  height: 60.sp,
+                                                  width: 60.sp,
+                                                  placeholder: (context, url) =>
+                                                      LoadingImage(),
+                                                  errorWidget:
+                                                      (context, url, error) {
+                                                    return CircleAvatar(
+                                                      radius: 30.sp,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      backgroundImage:
+                                                          AssetImage(
+                                                              AppImages.avatar(
+                                                                  1)),
+                                                    );
+                                                  }),
+                                        ));
                                   },
                                 ),
-                                // CircleAvatar(
-                                //   radius: 30,
-                                //   backgroundColor: Colors.transparent,
-                                //   backgroundImage: AssetImage(AppImages.avatar(1)),
-                                // )
+                                //
                               ]),
                         ),
                         _balanceWidget(context)
@@ -162,7 +173,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         child: BlocBuilder<GetUserDetailsBloc, GetUserDetailsState>(
           builder: (context, state) {
             return Container(
-              height: 170,
+              height: 170.sp,
               width: context.screenWidth() * 0.9,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
@@ -174,26 +185,28 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                 children: [
                   Text(AppTexts.balance,
                       style: Config.b1(context).copyWith(
-                        color: AppColors.white100,
-                      )),
+                          color: AppColors.white100, fontSize: 12.sp)),
                   VerticalMargin(5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("ETH",
-                          style: Config.b1(context).copyWith(
-                            color: AppColors.white100,
-                          )),
+                      Padding(
+                        padding: EdgeInsets.only(top: 8.sp),
+                        child: Text("ETH",
+                            style: Config.b1(context).copyWith(
+                              color: AppColors.white100,
+                            )),
+                      ),
                       HorizontalMargin(10),
                       Text(
                           state.maybeWhen(
                             orElse: () => double.tryParse(user.balance)!
-                                .toStringAsFixed(4)
+                                .toStringAsFixed(3)
                                 .toString(),
                             loadDetails: (data) =>
                                 double.tryParse(data.balance)!
-                                    .toStringAsFixed(4)
+                                    .toStringAsFixed(3)
                                     .toString(),
                             loading: () => '●●●',
                           ),
@@ -227,14 +240,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
   Container _searchBar(BuildContext context) {
     return Container(
-        height: 60,
+        height: 60.sp,
         width: context.screenWidth() * 0.73,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: AppColors.white100,
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: EdgeInsets.symmetric(horizontal: 10.sp),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -280,7 +293,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                       QrImageView(
                         data: user.address,
                         version: QrVersions.auto,
-                        size: 170.0,
+                        size: 170.sp,
                         // embeddedImage: AssetImage(AppImages.appLogoQr),
                         // embeddedImageStyle: QrEmbeddedImageStyle(
                         //   size: Size(40, 40),
@@ -291,6 +304,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         AppTexts.walletAddr,
                         style: Config.b1(context).copyWith(
                           color: AppColors.black100,
+                          fontSize: 15.sp,
                         ),
                       ),
                       VerticalMargin(10),
@@ -299,6 +313,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         style: Config.b3(context).copyWith(
                           color: AppColors.secondaryColor,
                           fontWeight: FontWeight.bold,
+                          fontSize: 12.sp,
                         ),
                       ),
                       VerticalMargin(10),
@@ -307,14 +322,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                             Clipboard.setData(ClipboardData(text: user.address))
                                 .then((_) {
                               Navigator.pop(context);
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text(
-                                      "Wallet Address has been copied to clipboard")));
+                              context.showToast(
+                                title: AppTexts.copied,
+                                context: context,
+                                toastDurationInSeconds: 1,
+                                isSuccess: true,
+                              );
                             });
                           },
                           child: Container(
-                            height: 50,
-                            width: 160,
+                            height: 50.sp,
+                            width: 160.sp,
                             decoration: BoxDecoration(
                                 border: Border.all(
                                   color: AppColors.grey200,
@@ -342,7 +360,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
             );
           },
           child: Container(
-            height: 40,
+            height: 40.sp,
             width: context.screenWidth() * 0.4,
             decoration: BoxDecoration(
               color: AppColors.black200,
@@ -355,14 +373,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                 SvgPicture.asset(
                   AppIcons.wallet,
                   color: AppColors.white100,
-                  height: 20,
-                  width: 20,
+                  height: 20.sp,
+                  width: 20.sp,
                 ),
                 HorizontalMargin(5),
                 Text(AppTexts.topUp,
                     style: Config.b1(context).copyWith(
                       color: AppColors.white100,
-                      fontSize: 11,
+                      fontSize: 11.sp,
                     )),
               ],
             ),
@@ -378,31 +396,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 }
 
 class LoadingImage extends StatelessWidget {
+  final double? height;
+  final double? width;
   const LoadingImage({
+    this.height,
+    this.width,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: AppColors.grey100,
-        ),
-        child: Shimmer(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              AppColors.grey100,
-              AppColors.white100,
-            ],
-          ),
-          child: Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.grey100,
-            ),
+    return Shimmer.fromColors(
+        baseColor: AppColors.grey300.withOpacity(0.2),
+        highlightColor: AppColors.white100.withOpacity(0.3),
+        child: Container(
+          width: width ?? 50.sp,
+          height:height?? 50.sp,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
           ),
         ));
   }

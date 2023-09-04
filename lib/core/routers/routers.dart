@@ -9,10 +9,9 @@ class AppRouter {
     initialLocation: RouteConstants.initial,
     redirect: (context, state) async {
       final info = sl<SecureStorage>();
-      final infoList =
-          await info.getAuthCredentials(SecureStorageKey().userLogin);
+      final infoList = sl<AppCache>().getUserDetails();
 
-      if (infoList != null) {
+      if (infoList.username != '') {
         // if it is biometric, then go to login not initial screen
         if (state.location == RouteConstants.initial) {
           return '/login/lastLogin';
@@ -78,7 +77,9 @@ class AppRouter {
                     pageBuilder: (context, state) {
                       return CustomTransitionPage(
                         key: state.pageKey,
-                        child: const ResetEmailScreen(),
+                        child: ResetEmailScreen(
+                          user: state.queryParameters['user'] ?? '',
+                        ),
                         transitionsBuilder:
                             (context, animation, secondaryAnimation, child) {
                           // Change the opacity of the screen using a Curve based on the the animation's
@@ -146,7 +147,10 @@ class AppRouter {
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                   key: state.pageKey,
-                  child: const CreateAccountScreen(),
+                  child: CreateAccountScreen(
+                    email: state.queryParameters['email'] ?? '',
+                    username: state.queryParameters['username'] ?? '',
+                  ),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     // Change the opacity of the screen using a Curve based on the the animation's

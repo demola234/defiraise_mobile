@@ -6,6 +6,8 @@ import 'package:curl_logger_dio_interceptor/curl_logger_dio_interceptor.dart';
 import 'package:defiraiser_mobile/core/network/api_error.dart';
 import 'package:defiraiser_mobile/core/secure/secure_key.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_smart_retry/dio_smart_retry.dart';
+import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../di/injector.dart';
@@ -52,6 +54,13 @@ class NetworkProviderImpl extends NetworkProvider {
         compact: true,
         maxWidth: 90,
       ),
+    );
+
+    RetryInterceptor(
+      dio: dio,
+      retryableExtraStatuses: {401},
+      logPrint: (message) => debugPrint(message),
+      retries: 2,
     );
 
     dio.interceptors.add(CurlLoggerDioInterceptor(printOnSuccess: true));

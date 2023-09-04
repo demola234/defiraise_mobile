@@ -120,7 +120,7 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
     return Scaffold(
       backgroundColor: AppColors.white200,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(80),
+        preferredSize: Size.fromHeight(60.sp),
         child: DeFiRaiseAppBar(
           title: AppTexts.amount2Donate,
           isBack: true,
@@ -128,7 +128,7 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
       ),
       body: Column(
         children: [
-          VerticalMargin(50),
+          VerticalMargin(5),
           Expanded(
             child: SizedBox(
               width: context.screenWidth(0.8),
@@ -137,19 +137,25 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                      padding: const EdgeInsets.only(top: 19.0),
+                      padding: EdgeInsets.only(top: 15.sp),
                       child: Text(
                         "ETH",
+                        style: Config.b3(context).copyWith(
+                          fontSize: 14.sp,
+                          color: AppColors.black100,
+                          fontWeight: FontWeight.bold,
+                        ),
                       )),
                   HorizontalMargin(10),
                   ScaleTransition(
                     scale: _animation,
                     child: AutoSizeText(
-                      maxFontSize: 40,
+                      maxFontSize: 50,
                       _amountController.text.isEmpty
                           ? '0.00'
                           : _amountController.text,
                       softWrap: true,
+                      // stepGranularity: 0.4,
                       overflow: TextOverflow.fade,
                       style: Config.h1(context).copyWith(
                           color: _isAvailableGreaterThanAmount.value ||
@@ -162,7 +168,7 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
                                   _amountController.text == "0"
                               ? AppColors.black100
                               : AppColors.errorColor,
-                          fontSize: 40,
+                          fontSize: 60.sp,
                           decoration: _isAvailableGreaterThanAmount.value ||
                                   !_amountController.text.isNotEmpty ||
                                   _amountController.text == "0.00" ||
@@ -192,6 +198,9 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
                     HapticFeedback.mediumImpact();
                     SystemSound.play(SystemSoundType.alert);
                     setState(() {
+                      if (_availableBalance == 0.0) {
+                        return;
+                      }
                       _amountController.text =
                           (_availableBalance - 0.001).toStringAsPrecision(4);
                     });
@@ -202,15 +211,15 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
                   ),
                   color: AppColors.black200,
                   elevation: 0.0,
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  minWidth: 20.0,
+                  padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                  minWidth: 20.sp,
                   // height: 35.0,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.sp),
                     child: Text(
                       'Use Max',
                       style: Config.b1(context).copyWith(
-                        fontSize: 8.0,
+                        fontSize: 8.sp,
                         color: AppColors.white100,
                         fontWeight: FontWeight.bold,
                       ),
@@ -222,7 +231,7 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
           Text(
             AppTexts.availableBalance.toUpperCase(),
             style: Config.b3(context).copyWith(
-              fontSize: 11.0,
+              fontSize: 11.sp,
               color: AppColors.grey300,
               fontWeight: FontWeight.w100,
             ),
@@ -235,7 +244,7 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
               Text(
                 _availableBalance.toStringAsFixed(4),
                 style: Config.b1(context).copyWith(
-                  fontSize: 19.0,
+                  fontSize: 19.sp,
                   color: AppColors.black100,
                   fontWeight: FontWeight.bold,
                 ),
@@ -244,7 +253,7 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
               Text(
                 'ETH',
                 style: Config.b1(context).copyWith(
-                  fontSize: 19.0,
+                  fontSize: 19.sp,
                   color: AppColors.black100,
                   fontWeight: FontWeight.bold,
                 ),
@@ -261,7 +270,7 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
                 Text(
                   'USD ${_exchangeRateDollarToEther().toStringAsFixed(2)}',
                   style: Config.b2(context).copyWith(
-                    fontSize: 14.0,
+                    fontSize: 14.sp,
                     color: AppColors.secondaryColor,
                     fontWeight: FontWeight.w100,
                   ),
@@ -347,19 +356,11 @@ class _AmountDonateScreenState extends ConsumerState<AmountDonateScreen>
               } else if (double.tryParse(widget.goal)! >=
                   double.tryParse(_amountController.text)!) {
                 // show snackbar
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      "Amount should be less than the goal",
-                      style: Config.b1(context).copyWith(
-                        fontSize: 14.0,
-                        color: AppColors.white100,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    backgroundColor: AppColors.errorColor,
-                    duration: Duration(seconds: 2),
-                  ),
+                context.showToast(
+                  title: "Amount should be less than the goal",
+                  context: context,
+                  toastDurationInSeconds: 1,
+                  isSuccess: false,
                 );
               }
             },

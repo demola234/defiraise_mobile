@@ -75,7 +75,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     failureOrSuccess.fold((failure) {
       emit(SignUpState.otpResendError(failure.errorMessage));
     }, (success) {
-      emit(SignUpState.otpResendSuccessful(success.message));
+      emit(SignUpState.otpResendSuccessful(success.data!));
     });
   }
 }

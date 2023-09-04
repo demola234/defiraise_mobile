@@ -40,8 +40,8 @@ class _StartUpScreenState extends ConsumerState<StartUpScreen>
               animation: controller,
               child: Image.asset(
                 AppImages.bank,
-                height: 250,
-                width: 250,
+                height: 250.sp,
+                width: 250.sp,
                 fit: BoxFit.cover,
               ),
               builder: (context, child) {
@@ -55,7 +55,7 @@ class _StartUpScreenState extends ConsumerState<StartUpScreen>
           const VerticalMargin(60),
           AppButton(
             text: AppTexts.createAccountButton,
-            textSize: 12,
+            textSize: 12.sp,
             onTap: () {
               context.goNamed(RouteConstants.register);
             },
@@ -64,7 +64,7 @@ class _StartUpScreenState extends ConsumerState<StartUpScreen>
           ),
           AppButton(
             text: AppTexts.accountLogin,
-            textSize: 12,
+            textSize: 12.sp,
             onTap: () async {
               context.goNamed(RouteConstants.login);
             },
@@ -78,7 +78,7 @@ class _StartUpScreenState extends ConsumerState<StartUpScreen>
               text: "${AppTexts.termsAndConditions}\n",
               style: Config.b1(context).copyWith(
                 color: AppColors.grey100,
-                fontSize: 11,
+                fontSize: 11.sp,
               ),
               children: [
                 TextSpan(

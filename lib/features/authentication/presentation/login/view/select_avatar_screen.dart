@@ -4,11 +4,14 @@ import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
+import 'package:defiraiser_mobile/core/shared/custom_tooast/custom_tooast.dart';
 import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/login/states/get_user_details/bloc/get_user_details_bloc.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/login/states/set_profile_avatar/bloc/set_profile_avatar_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class SelectAvatarScreen extends ConsumerStatefulWidget {
@@ -42,7 +45,7 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
         body: SafeArea(
             child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+                    EdgeInsets.symmetric(horizontal: 25.sp, vertical: 30.sp),
                 child: SingleChildScrollView(
                     child: Form(
                         key: _formKey,
@@ -51,7 +54,7 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
                             children: [
                               Text(AppTexts.selectAvatar,
                                   style: Config.h2(context).copyWith(
-                                    fontSize: 24,
+                                    fontSize: 24.sp,
                                   )),
                               VerticalMargin(5),
                               // 📝 Note: The code below is the same as the one in the previous snippet.
@@ -68,7 +71,7 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
                                         animation: _animationController,
                                         builder: (context, child) {
                                           return Container(
-                                            width: 120,
+                                            width: 120.sp,
                                             // margin: EdgeInsets.all(
                                             //     _animationController.value * 3),
                                             padding: EdgeInsets.all(
@@ -77,9 +80,9 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
                                                 shape: BoxShape.circle,
                                                 border: Border.all(
                                                     color: AppColors.grey200,
-                                                    width: 4)),
+                                                    width: 4.sp)),
                                             child: CircleAvatar(
-                                              radius: 60,
+                                              radius: 60.sp,
                                               backgroundColor:
                                                   Colors.transparent,
                                               backgroundImage: AssetImage(
@@ -98,9 +101,9 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
                                             color: AppColors.textfieldColor,
                                             border: Border.all(
                                                 color: AppColors.white100,
-                                                width: 3)),
+                                                width: 3.sp)),
                                         child: CircleAvatar(
-                                            radius: 15,
+                                            radius: 15.sp,
                                             backgroundColor:
                                                 AppColors.textfieldColor,
                                             child: AnimatedBuilder(
@@ -118,7 +121,7 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
                                                                 0.25),
                                                     child: Text('👋',
                                                         style: TextStyle(
-                                                            fontSize: 20,
+                                                            fontSize: 20.sp,
                                                             color: AppColors
                                                                 .white100)),
                                                   );
@@ -133,8 +136,8 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
                               Align(
                                 alignment: Alignment.center,
                                 child: Wrap(
-                                  spacing: 30,
-                                  runSpacing: 10,
+                                  spacing: 30.sp,
+                                  runSpacing: 10.sp,
                                   verticalDirection: VerticalDirection.down,
                                   children: List.generate(
                                       9, (index) => _avatars(index)),
@@ -173,14 +176,21 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
       _overlayEntry = showLoadingOverlay(context, _overlayEntry);
     }, profileError: (message) {
       _overlayEntry?.remove();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: AppColors.errorColor,
-        ),
+      context.showToast(
+        title: message,
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: false,
       );
     }, profileSet: (response) {
       _overlayEntry?.remove();
+      context.showToast(
+        title: "Avatar set successfully",
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: true,
+      );
+      context.read<GetUserDetailsBloc>().add(GetUserEventEq());
       context.goNamed(RouteConstants.home);
     });
   }
@@ -209,7 +219,7 @@ class _SelectAvatarScreenState extends ConsumerState<SelectAvatarScreen>
                         : AppColors.textfieldColor,
                     width: 1)),
             child: CircleAvatar(
-              radius: 40,
+              radius: 40.sp,
               backgroundColor: Colors.transparent,
               backgroundImage: AssetImage(
                 AppImages.avatar(index + 1),

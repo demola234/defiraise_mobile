@@ -8,6 +8,7 @@ import 'package:defiraiser_mobile/core/local/local.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/appbar/appbar.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
+import 'package:defiraiser_mobile/core/shared/custom_tooast/custom_tooast.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
 import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
@@ -29,13 +30,24 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen>
     with InputValidationMixin, LoadingOverlayMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final FocusNode _emailNode = FocusNode();
+
   OverlayEntry? _overlayEntry;
   final FocusNode _passwordNode = FocusNode();
   final isValidate = ValueNotifier<bool>(false);
   final isHide = ValueNotifier<bool>(true);
   final user = sl<AppCache>().getUserDetails();
+
+  @override
+  void initState() {
+    _passwordController.addListener(_checkChanged);
+    super.initState();
+  }
+
+  void _checkChanged() {
+    setState(() {
+      isValidate.value = _passwordController.text.isNotEmpty;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -122,16 +134,15 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen>
                                                       password:
                                                           _passwordController
                                                               .text,
+                                                      isBio: true,
                                                     ));
                                               } else {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                        "No biometrics available"),
-                                                    backgroundColor:
-                                                        AppColors.errorColor,
-                                                  ),
+                                                context.showToast(
+                                                  title:
+                                                      "No biometrics available",
+                                                  context: context,
+                                                  toastDurationInSeconds: 1,
+                                                  isSuccess: false,
                                                 );
                                               }
                                             });
@@ -182,12 +193,14 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen>
                                   builder: (context, state) {
                                     return AppButton(
                                       text: AppTexts.getPrivateKey,
+                                      isActive: isValidate.value,
                                       onTap: () async {
                                         context
                                             .read<GetPrivateKeyBloc>()
                                             .add(PrivateKeyEvent(
                                               password:
                                                   _passwordController.text,
+                                              isBio: false,
                                             ));
                                       },
                                       textColor: AppColors.white100,
@@ -197,7 +210,7 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen>
                                   }),
 
                               VerticalMargin(20),
-                               ]))))));
+                            ]))))));
   }
 
   void _listener(BuildContext context, GetPrivateKeyState state) {
@@ -207,11 +220,11 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen>
       _overlayEntry = showLoadingOverlay(context, _overlayEntry);
     }, error: (message) {
       _overlayEntry?.remove();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: AppColors.errorColor,
-        ),
+      context.showToast(
+        title: message,
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: false,
       );
     }, loaded: (response) {
       _overlayEntry?.remove();

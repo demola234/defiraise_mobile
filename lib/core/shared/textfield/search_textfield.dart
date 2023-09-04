@@ -3,6 +3,7 @@ import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 // 🌎 Project imports:
 
 class SearchTextField extends StatelessWidget {
@@ -96,14 +97,14 @@ class SearchTextField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(40),
                 borderSide: BorderSide(
                   color: AppColors.grey100.withOpacity(0.5),
-                  width: 1,
+                  width: 1.sp,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(40),
                 borderSide: BorderSide(
                   color: AppColors.grey100.withOpacity(0.5),
-                  width: 1,
+                  width: 1.sp,
                 ),
               ),
               focusedErrorBorder: OutlineInputBorder(
@@ -117,7 +118,7 @@ class SearchTextField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(40),
                 borderSide: BorderSide(
                   color: AppColors.white100,
-                  width: 1,
+                  width: 1.sp,
                 ),
               ),
               prefixIcon: prefixIcon,
@@ -125,7 +126,7 @@ class SearchTextField extends StatelessWidget {
               hintText: '$hintText',
               hintStyle: Config.b2(context).copyWith(
                 color: AppColors.grey100.withOpacity(0.5),
-                fontSize: 16,
+                fontSize: 16.sp,
               )),
           onChanged: onChanged,
           validator: validator,

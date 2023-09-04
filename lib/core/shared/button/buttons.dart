@@ -2,6 +2,7 @@
 import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 // 📦 Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 // 🌎 Project imports:
@@ -36,15 +37,16 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 5.sp, vertical: 10.sp),
       child: Container(
-        height: 58,
+        height: 58.sp,
         width: (context.screenWidth() * 0.85),
         decoration: BoxDecoration(
           color: isActive! ? color : AppColors.grey200,
-          borderRadius: BorderRadius.circular(isRounded == true ? 40 : 15),
+          borderRadius:
+              BorderRadius.circular(isRounded == true ? 40.sp : 15.sp),
           border: Border.all(
-            width: 0.5,
+            width: 0.5.sp,
             color: borderColor ?? Colors.transparent,
           ),
         ),
@@ -58,7 +60,7 @@ class AppButton extends StatelessWidget {
               if (iconRtr != null)
                 SvgPicture.asset(
                   iconRtr!,
-                  height: 16,
+                  height: 16.sp,
                   width: 16,
                   color: textColor,
                 )
@@ -76,8 +78,8 @@ class AppButton extends StatelessWidget {
               if (icon != null)
                 SvgPicture.asset(
                   icon!,
-                  height: 16,
-                  width: 16,
+                  height: 16.sp,
+                  width: 16.sp,
                   color: textColor,
                 )
               else

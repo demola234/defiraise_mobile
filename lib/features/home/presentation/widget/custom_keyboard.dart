@@ -15,9 +15,9 @@ class CustomKeyboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 20.0,
-        horizontal: 15.0,
+      padding: EdgeInsets.symmetric(
+        vertical: 20.sp,
+        horizontal: 15.sp,
       ),
       child: Column(
         children: [
@@ -43,7 +43,7 @@ class CustomKeyboard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16.0),
+          SizedBox(height: 16.sp),
           Row(
             children: [
               KeyText(
@@ -66,7 +66,7 @@ class CustomKeyboard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16.0),
+          SizedBox(height: 16.sp),
           Row(
             children: [
               KeyText(
@@ -89,7 +89,7 @@ class CustomKeyboard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16.0),
+          SizedBox(height: 16.sp),
           Row(
             children: [
               Expanded(
@@ -100,15 +100,15 @@ class CustomKeyboard extends StatelessWidget {
                     SystemSound.play(SystemSoundType.alert);
                   },
                   elevation: 0.0,
-                  padding: const EdgeInsets.all(14.0),
-                  minWidth: 64.0,
-                  height: 64.0,
+                  padding: EdgeInsets.all(14.sp),
+                  minWidth: 64.sp,
+                  height: 64.sp,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "●",
                       style: Config.h1(context).copyWith(
-                        fontSize: 16.0,
+                        fontSize: 16.sp,
                         color: AppColors.black100,
                         fontWeight: FontWeight.bold,
                       ),
@@ -131,9 +131,9 @@ class CustomKeyboard extends StatelessWidget {
                   onLongPress: onBackspaceLongPress,
                   shape: const CircleBorder(),
                   elevation: 0.0,
-                  padding: const EdgeInsets.all(16.0),
-                  minWidth: 64.0,
-                  height: 64.0,
+                  padding: EdgeInsets.all(16.sp),
+                  minWidth: 64.sp,
+                  height: 64.sp,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SvgPicture.asset(

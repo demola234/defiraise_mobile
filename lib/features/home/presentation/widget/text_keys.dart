@@ -22,15 +22,15 @@ class KeyText extends StatelessWidget {
         shape: const CircleBorder(),
         color: AppColors.black200,
         elevation: 0.0,
-        padding: const EdgeInsets.all(14.0),
-        minWidth: 64.0,
-        height: 64.0,
+        padding: EdgeInsets.all(14.sp),
+        minWidth: 64.sp,
+        height: 64.sp,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8.sp),
           child: Text(
             text,
             style: Config.b1(context).copyWith(
-              fontSize: 16.0,
+              fontSize: 16.sp,
               color: AppColors.white100,
               fontWeight: FontWeight.bold,
             ),

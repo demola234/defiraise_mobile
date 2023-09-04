@@ -4,10 +4,13 @@ import 'package:defiraiser_mobile/core/global/constants/size.dart';
 import 'package:defiraiser_mobile/core/global/themes/color_scheme.dart';
 import 'package:defiraiser_mobile/core/routers/routes_constants.dart';
 import 'package:defiraiser_mobile/core/shared/button/buttons.dart';
+import 'package:defiraiser_mobile/core/shared/custom_tooast/custom_tooast.dart';
 import 'package:defiraiser_mobile/core/shared/textfield/textfield.dart';
 import 'package:defiraiser_mobile/core/utils/input_validation.dart';
 import 'package:defiraiser_mobile/core/utils/loading_overlay.dart';
 import 'package:defiraiser_mobile/features/authentication/presentation/login/states/bloc/login_state_bloc.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/login/states/get_user_details/bloc/get_user_details_bloc.dart';
+import 'package:defiraiser_mobile/features/authentication/presentation/signup/states/bloc/sign_up_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,6 +34,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
   final FocusNode _passwordNode = FocusNode();
   final isValidate = ValueNotifier<bool>(false);
   final isHide = ValueNotifier<bool>(true);
+
+  @override
+  void initState() {
+    _emailNode.requestFocus();
+    _emailController.addListener(_checkValidation);
+    _passwordController.addListener(_checkValidation);
+    super.initState();
+  }
+
+  void _checkValidation() {
+    setState(() {
+      if (_emailController.text.isNotEmpty &&
+          _passwordController.text.isNotEmpty) {
+        isValidate.value = true;
+      } else {
+        isValidate.value = false;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +90,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                                 textInputAction: TextInputAction.next,
                                 validator: isValidate.value
                                     ? combine([
-                                        withMessage(AppTexts.emailInvalid,
-                                            isInvalidEmail),
                                         withMessage(
                                             AppTexts.fieldEmpty("Email"),
                                             isTextEmpty),
@@ -140,6 +160,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                                   builder: (context, state) {
                                     return AppButton(
                                       text: AppTexts.login,
+                                      isActive: isValidate.value,
                                       onTap: () async {
                                         context
                                             .read<LoginStateBloc>()
@@ -185,14 +206,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
       _overlayEntry = showLoadingOverlay(context, _overlayEntry);
     }, authenticationFailed: (message) {
       _overlayEntry?.remove();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: AppColors.errorColor,
-        ),
+      if (message == AppTexts.userNotVerified) {
+        context.read<SignUpBloc>().add(ResendOtp(
+              username: _emailController.text,
+            ));
+        context.goNamed(RouteConstants.verifyEmail,
+            queryParameters: {"username": _emailController.text});
+      }
+      context.showToast(
+        title: message,
+        context: context,
+        toastDurationInSeconds: 1,
+        isSuccess: false,
       );
     }, loginSuccessful: (response) {
       _overlayEntry?.remove();
+      context.read<GetUserDetailsBloc>().add(GetUserEventEq());
 
       if (!response.data!.user.isFirstTime) {
         context.goNamed(RouteConstants.selectAvatar);

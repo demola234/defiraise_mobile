@@ -8,6 +8,7 @@ import 'package:defiraiser_mobile/features/authentication/presentation/signup/wi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
@@ -122,6 +123,30 @@ class _ResetOTPScreenState extends ConsumerState<ResetOTPScreen> {
                             style: Config.b3(context).copyWith(
                               color: AppColors.grey100.withOpacity(0.5),
                             )),
+                        const HorizontalMargin(2),
+                        TextButton(
+                          style: ButtonStyle(
+                            overlayColor: MaterialStateProperty.all(
+                              Colors.transparent,
+                            ),
+                            enableFeedback: false,
+                            padding: MaterialStateProperty.all<EdgeInsets>(
+                                const EdgeInsets.all(0)),
+                          ),
+                          onPressed: () {
+                            context.goNamed(RouteConstants.resetPassword,
+                                queryParameters: {
+                                  "user": widget.email,
+                                });
+                          },
+                          child: Text(
+                            "Edit Email",
+                            style: Config.b3(context).copyWith(
+                              color: AppColors.secondaryColor,
+                              fontSize: 12.sp,
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -169,14 +194,13 @@ class _ResetOTPScreenState extends ConsumerState<ResetOTPScreen> {
                     builder: (context, state) {
                       return AppButton(
                         text: AppTexts.verifyOTP,
+                        isActive: _otpController.text.length == 6,
                         onTap: () {
                           context.goNamed(RouteConstants.resetConfirmPassword,
                               queryParameters: {
                                 "otp": _otpController.text,
                                 "email": widget.email
                               });
-
-                              
                         },
                         textSize: 12,
                         textColor: AppColors.white100,
