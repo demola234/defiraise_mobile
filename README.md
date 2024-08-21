@@ -113,3 +113,10 @@ make test
 ## Screenshots
 
 <img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/Registration.png" width="270" height="600"> <img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/Verify.png" width="270" height="600"> <img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/CreatePass.png" width="270" height="600">
+
+
+<img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/SelectAvatar.png" width="270" height="600"> <img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/HomeScreen.png" width="270" height="600"> <img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/DonationDetails.png" width="270" height="600">
+
+<img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/ActiveDonations.png" width="270" height="600"> <img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/AmountDonations.png" width="270" height="600"> <img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/ConfirmDonations.png" width="270" height="600">
+
+<img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/DonationSuccess.png" width="270" height="600"> <img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/ProfileScreen.png" width="270" height="600"> <img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/CreateDonationScreen.png" width="270" height="600">
