@@ -18,6 +18,15 @@ DefiFundr is a decentralized crowdfunding platform built on the Ethereum blockch
 - Metamask (for interacting with the blockchain)
 - Solidity (for writing smart contracts)
 
+<!-- Project Code Architecture -->
+## Project Code Architecture
+<!-- Clean Architecture -->
+### Clean Architecture
+The project is structured using the Clean Architecture pattern, which separates the code into different layers based on their responsibilities. The layers are as follows: 
+    - Presentation Layer: This layer contains the UI code, including widgets, screens, and navigation.
+    - Domain Layer: This layer contains the business logic of the application, including use cases, entities, and repositories.
+    - Data Layer: This layer contains the data sources of the application, including local and remote data sources.
+
 <!-- Videos -->
 ## Demo
 
