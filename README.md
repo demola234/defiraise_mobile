@@ -18,6 +18,14 @@ DefiFundr is a decentralized crowdfunding platform built on the Ethereum blockch
 - Metamask (for interacting with the blockchain)
 - Solidity (for writing smart contracts)
 
+<!-- Videos -->
+## Video Demo
+
+[![Watch the video](path_to_gif.gif)](https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/DefiFundr2.mp4)
+
+[![Watch the video 2](path_to_gif.gif)](https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/DefiFundr.mp4)
+
+
 ## Installation
 ### Running with MakeFile
 
