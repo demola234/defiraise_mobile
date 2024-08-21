@@ -12,7 +12,7 @@ part of 'campaigns_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 CampaignResponse _$CampaignResponseFromJson(Map<String, dynamic> json) {
   return _CampaignCategories.fromJson(json);
@@ -74,22 +74,22 @@ class _$CampaignResponseCopyWithImpl<$Res, $Val extends CampaignResponse>
 }
 
 /// @nodoc
-abstract class _$$_CampaignCategoriesCopyWith<$Res>
+abstract class _$$CampaignCategoriesImplCopyWith<$Res>
     implements $CampaignResponseCopyWith<$Res> {
-  factory _$$_CampaignCategoriesCopyWith(_$_CampaignCategories value,
-          $Res Function(_$_CampaignCategories) then) =
-      __$$_CampaignCategoriesCopyWithImpl<$Res>;
+  factory _$$CampaignCategoriesImplCopyWith(_$CampaignCategoriesImpl value,
+          $Res Function(_$CampaignCategoriesImpl) then) =
+      __$$CampaignCategoriesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Datum>? data, dynamic message, dynamic status});
 }
 
 /// @nodoc
-class __$$_CampaignCategoriesCopyWithImpl<$Res>
-    extends _$CampaignResponseCopyWithImpl<$Res, _$_CampaignCategories>
-    implements _$$_CampaignCategoriesCopyWith<$Res> {
-  __$$_CampaignCategoriesCopyWithImpl(
-      _$_CampaignCategories _value, $Res Function(_$_CampaignCategories) _then)
+class __$$CampaignCategoriesImplCopyWithImpl<$Res>
+    extends _$CampaignResponseCopyWithImpl<$Res, _$CampaignCategoriesImpl>
+    implements _$$CampaignCategoriesImplCopyWith<$Res> {
+  __$$CampaignCategoriesImplCopyWithImpl(_$CampaignCategoriesImpl _value,
+      $Res Function(_$CampaignCategoriesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_CampaignCategoriesCopyWithImpl<$Res>
     Object? message = freezed,
     Object? status = freezed,
   }) {
-    return _then(_$_CampaignCategories(
+    return _then(_$CampaignCategoriesImpl(
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -112,13 +112,13 @@ class __$$_CampaignCategoriesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CampaignCategories implements _CampaignCategories {
-  const _$_CampaignCategories(
+class _$CampaignCategoriesImpl implements _CampaignCategories {
+  const _$CampaignCategoriesImpl(
       {final List<Datum>? data, this.message = '', this.status = 0})
       : _data = data;
 
-  factory _$_CampaignCategories.fromJson(Map<String, dynamic> json) =>
-      _$$_CampaignCategoriesFromJson(json);
+  factory _$CampaignCategoriesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CampaignCategoriesImplFromJson(json);
 
   final List<Datum>? _data;
   @override
@@ -143,10 +143,10 @@ class _$_CampaignCategories implements _CampaignCategories {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CampaignCategories &&
+            other is _$CampaignCategoriesImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality().equals(other.status, status));
@@ -163,13 +163,13 @@ class _$_CampaignCategories implements _CampaignCategories {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CampaignCategoriesCopyWith<_$_CampaignCategories> get copyWith =>
-      __$$_CampaignCategoriesCopyWithImpl<_$_CampaignCategories>(
+  _$$CampaignCategoriesImplCopyWith<_$CampaignCategoriesImpl> get copyWith =>
+      __$$CampaignCategoriesImplCopyWithImpl<_$CampaignCategoriesImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CampaignCategoriesToJson(
+    return _$$CampaignCategoriesImplToJson(
       this,
     );
   }
@@ -179,10 +179,10 @@ abstract class _CampaignCategories implements CampaignResponse {
   const factory _CampaignCategories(
       {final List<Datum>? data,
       final dynamic message,
-      final dynamic status}) = _$_CampaignCategories;
+      final dynamic status}) = _$CampaignCategoriesImpl;
 
   factory _CampaignCategories.fromJson(Map<String, dynamic> json) =
-      _$_CampaignCategories.fromJson;
+      _$CampaignCategoriesImpl.fromJson;
 
   @override
   List<Datum>? get data;
@@ -192,7 +192,7 @@ abstract class _CampaignCategories implements CampaignResponse {
   dynamic get status;
   @override
   @JsonKey(ignore: true)
-  _$$_CampaignCategoriesCopyWith<_$_CampaignCategories> get copyWith =>
+  _$$CampaignCategoriesImplCopyWith<_$CampaignCategoriesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -320,9 +320,10 @@ class _$DatumCopyWithImpl<$Res, $Val extends Datum>
 }
 
 /// @nodoc
-abstract class _$$_DatumCopyWith<$Res> implements $DatumCopyWith<$Res> {
-  factory _$$_DatumCopyWith(_$_Datum value, $Res Function(_$_Datum) then) =
-      __$$_DatumCopyWithImpl<$Res>;
+abstract class _$$DatumImplCopyWith<$Res> implements $DatumCopyWith<$Res> {
+  factory _$$DatumImplCopyWith(
+          _$DatumImpl value, $Res Function(_$DatumImpl) then) =
+      __$$DatumImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -341,9 +342,11 @@ abstract class _$$_DatumCopyWith<$Res> implements $DatumCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_DatumCopyWithImpl<$Res> extends _$DatumCopyWithImpl<$Res, _$_Datum>
-    implements _$$_DatumCopyWith<$Res> {
-  __$$_DatumCopyWithImpl(_$_Datum _value, $Res Function(_$_Datum) _then)
+class __$$DatumImplCopyWithImpl<$Res>
+    extends _$DatumCopyWithImpl<$Res, _$DatumImpl>
+    implements _$$DatumImplCopyWith<$Res> {
+  __$$DatumImplCopyWithImpl(
+      _$DatumImpl _value, $Res Function(_$DatumImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -362,7 +365,7 @@ class __$$_DatumCopyWithImpl<$Res> extends _$DatumCopyWithImpl<$Res, _$_Datum>
     Object? user = freezed,
     Object? donations = freezed,
   }) {
-    return _then(_$_Datum(
+    return _then(_$DatumImpl(
       campaignId: freezed == campaignId ? _value.campaignId! : campaignId,
       title: freezed == title ? _value.title! : title,
       description: freezed == description ? _value.description! : description,
@@ -390,8 +393,8 @@ class __$$_DatumCopyWithImpl<$Res> extends _$DatumCopyWithImpl<$Res, _$_Datum>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_Datum implements _Datum {
-  const _$_Datum(
+class _$DatumImpl implements _Datum {
+  const _$DatumImpl(
       {this.campaignId = '',
       this.title = '',
       this.description = '',
@@ -407,8 +410,8 @@ class _$_Datum implements _Datum {
       : _user = user,
         _donations = donations;
 
-  factory _$_Datum.fromJson(Map<String, dynamic> json) =>
-      _$$_DatumFromJson(json);
+  factory _$DatumImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DatumImplFromJson(json);
 
   @override
   @JsonKey()
@@ -466,10 +469,10 @@ class _$_Datum implements _Datum {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Datum &&
+            other is _$DatumImpl &&
             const DeepCollectionEquality()
                 .equals(other.campaignId, campaignId) &&
             const DeepCollectionEquality().equals(other.title, title) &&
@@ -509,12 +512,12 @@ class _$_Datum implements _Datum {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DatumCopyWith<_$_Datum> get copyWith =>
-      __$$_DatumCopyWithImpl<_$_Datum>(this, _$identity);
+  _$$DatumImplCopyWith<_$DatumImpl> get copyWith =>
+      __$$DatumImplCopyWithImpl<_$DatumImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DatumToJson(
+    return _$$DatumImplToJson(
       this,
     );
   }
@@ -533,9 +536,9 @@ abstract class _Datum implements Datum {
       final dynamic owner,
       final dynamic totalNumber,
       final List<User>? user,
-      final List<Donation>? donations}) = _$_Datum;
+      final List<Donation>? donations}) = _$DatumImpl;
 
-  factory _Datum.fromJson(Map<String, dynamic> json) = _$_Datum.fromJson;
+  factory _Datum.fromJson(Map<String, dynamic> json) = _$DatumImpl.fromJson;
 
   @override
   dynamic get campaignId;
@@ -563,7 +566,7 @@ abstract class _Datum implements Datum {
   List<Donation>? get donations;
   @override
   @JsonKey(ignore: true)
-  _$$_DatumCopyWith<_$_Datum> get copyWith =>
+  _$$DatumImplCopyWith<_$DatumImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -632,21 +635,22 @@ class _$DonationCopyWithImpl<$Res, $Val extends Donation>
 }
 
 /// @nodoc
-abstract class _$$_DonationCopyWith<$Res> implements $DonationCopyWith<$Res> {
-  factory _$$_DonationCopyWith(
-          _$_Donation value, $Res Function(_$_Donation) then) =
-      __$$_DonationCopyWithImpl<$Res>;
+abstract class _$$DonationImplCopyWith<$Res>
+    implements $DonationCopyWith<$Res> {
+  factory _$$DonationImplCopyWith(
+          _$DonationImpl value, $Res Function(_$DonationImpl) then) =
+      __$$DonationImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({dynamic amount, dynamic donor, dynamic image, dynamic username});
 }
 
 /// @nodoc
-class __$$_DonationCopyWithImpl<$Res>
-    extends _$DonationCopyWithImpl<$Res, _$_Donation>
-    implements _$$_DonationCopyWith<$Res> {
-  __$$_DonationCopyWithImpl(
-      _$_Donation _value, $Res Function(_$_Donation) _then)
+class __$$DonationImplCopyWithImpl<$Res>
+    extends _$DonationCopyWithImpl<$Res, _$DonationImpl>
+    implements _$$DonationImplCopyWith<$Res> {
+  __$$DonationImplCopyWithImpl(
+      _$DonationImpl _value, $Res Function(_$DonationImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -657,7 +661,7 @@ class __$$_DonationCopyWithImpl<$Res>
     Object? image = freezed,
     Object? username = freezed,
   }) {
-    return _then(_$_Donation(
+    return _then(_$DonationImpl(
       amount: freezed == amount ? _value.amount! : amount,
       donor: freezed == donor ? _value.donor! : donor,
       image: freezed == image ? _value.image! : image,
@@ -669,15 +673,15 @@ class __$$_DonationCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_Donation implements _Donation {
-  const _$_Donation(
+class _$DonationImpl implements _Donation {
+  const _$DonationImpl(
       {this.amount = 0.0,
       this.donor = '',
       this.image = '',
       this.username = 'Anonymous'});
 
-  factory _$_Donation.fromJson(Map<String, dynamic> json) =>
-      _$$_DonationFromJson(json);
+  factory _$DonationImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DonationImplFromJson(json);
 
   @override
   @JsonKey()
@@ -698,10 +702,10 @@ class _$_Donation implements _Donation {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Donation &&
+            other is _$DonationImpl &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.donor, donor) &&
             const DeepCollectionEquality().equals(other.image, image) &&
@@ -720,12 +724,12 @@ class _$_Donation implements _Donation {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DonationCopyWith<_$_Donation> get copyWith =>
-      __$$_DonationCopyWithImpl<_$_Donation>(this, _$identity);
+  _$$DonationImplCopyWith<_$DonationImpl> get copyWith =>
+      __$$DonationImplCopyWithImpl<_$DonationImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DonationToJson(
+    return _$$DonationImplToJson(
       this,
     );
   }
@@ -736,9 +740,10 @@ abstract class _Donation implements Donation {
       {final dynamic amount,
       final dynamic donor,
       final dynamic image,
-      final dynamic username}) = _$_Donation;
+      final dynamic username}) = _$DonationImpl;
 
-  factory _Donation.fromJson(Map<String, dynamic> json) = _$_Donation.fromJson;
+  factory _Donation.fromJson(Map<String, dynamic> json) =
+      _$DonationImpl.fromJson;
 
   @override
   dynamic get amount;
@@ -750,7 +755,7 @@ abstract class _Donation implements Donation {
   dynamic get username;
   @override
   @JsonKey(ignore: true)
-  _$$_DonationCopyWith<_$_Donation> get copyWith =>
+  _$$DonationImplCopyWith<_$DonationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -818,18 +823,20 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
 }
 
 /// @nodoc
-abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
-      __$$_UserCopyWithImpl<$Res>;
+abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
+  factory _$$UserImplCopyWith(
+          _$UserImpl value, $Res Function(_$UserImpl) then) =
+      __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({dynamic username, dynamic email, dynamic address, dynamic avatar});
 }
 
 /// @nodoc
-class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
-    implements _$$_UserCopyWith<$Res> {
-  __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
+class __$$UserImplCopyWithImpl<$Res>
+    extends _$UserCopyWithImpl<$Res, _$UserImpl>
+    implements _$$UserImplCopyWith<$Res> {
+  __$$UserImplCopyWithImpl(_$UserImpl _value, $Res Function(_$UserImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -840,7 +847,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? address = freezed,
     Object? avatar = freezed,
   }) {
-    return _then(_$_User(
+    return _then(_$UserImpl(
       username: freezed == username ? _value.username! : username,
       email: freezed == email ? _value.email! : email,
       address: freezed == address ? _value.address! : address,
@@ -852,14 +859,15 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_User implements _User {
-  const _$_User(
+class _$UserImpl implements _User {
+  const _$UserImpl(
       {this.username = 'Anonymous',
       this.email = '',
       this.address = '',
       this.avatar = ''});
 
-  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
+  factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserImplFromJson(json);
 
   @override
   @JsonKey()
@@ -880,10 +888,10 @@ class _$_User implements _User {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_User &&
+            other is _$UserImpl &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.address, address) &&
@@ -902,12 +910,12 @@ class _$_User implements _User {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserCopyWith<_$_User> get copyWith =>
-      __$$_UserCopyWithImpl<_$_User>(this, _$identity);
+  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
+      __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserToJson(
+    return _$$UserImplToJson(
       this,
     );
   }
@@ -918,9 +926,9 @@ abstract class _User implements User {
       {final dynamic username,
       final dynamic email,
       final dynamic address,
-      final dynamic avatar}) = _$_User;
+      final dynamic avatar}) = _$UserImpl;
 
-  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+  factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
   @override
   dynamic get username;
@@ -932,5 +940,6 @@ abstract class _User implements User {
   dynamic get avatar;
   @override
   @JsonKey(ignore: true)
-  _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
+  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

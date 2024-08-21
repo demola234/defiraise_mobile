@@ -12,7 +12,7 @@ part of 'base_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 BaseEntity _$BaseEntityFromJson(Map<String, dynamic> json) {
   return _BaseEntity.fromJson(json);
@@ -74,22 +74,22 @@ class _$BaseEntityCopyWithImpl<$Res, $Val extends BaseEntity>
 }
 
 /// @nodoc
-abstract class _$$_BaseEntityCopyWith<$Res>
+abstract class _$$BaseEntityImplCopyWith<$Res>
     implements $BaseEntityCopyWith<$Res> {
-  factory _$$_BaseEntityCopyWith(
-          _$_BaseEntity value, $Res Function(_$_BaseEntity) then) =
-      __$$_BaseEntityCopyWithImpl<$Res>;
+  factory _$$BaseEntityImplCopyWith(
+          _$BaseEntityImpl value, $Res Function(_$BaseEntityImpl) then) =
+      __$$BaseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? data, String message, int status});
 }
 
 /// @nodoc
-class __$$_BaseEntityCopyWithImpl<$Res>
-    extends _$BaseEntityCopyWithImpl<$Res, _$_BaseEntity>
-    implements _$$_BaseEntityCopyWith<$Res> {
-  __$$_BaseEntityCopyWithImpl(
-      _$_BaseEntity _value, $Res Function(_$_BaseEntity) _then)
+class __$$BaseEntityImplCopyWithImpl<$Res>
+    extends _$BaseEntityCopyWithImpl<$Res, _$BaseEntityImpl>
+    implements _$$BaseEntityImplCopyWith<$Res> {
+  __$$BaseEntityImplCopyWithImpl(
+      _$BaseEntityImpl _value, $Res Function(_$BaseEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_BaseEntityCopyWithImpl<$Res>
     Object? message = null,
     Object? status = null,
   }) {
-    return _then(_$_BaseEntity(
+    return _then(_$BaseEntityImpl(
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -118,11 +118,12 @@ class __$$_BaseEntityCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BaseEntity implements _BaseEntity {
-  const _$_BaseEntity({this.data, required this.message, required this.status});
+class _$BaseEntityImpl implements _BaseEntity {
+  const _$BaseEntityImpl(
+      {this.data, required this.message, required this.status});
 
-  factory _$_BaseEntity.fromJson(Map<String, dynamic> json) =>
-      _$$_BaseEntityFromJson(json);
+  factory _$BaseEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BaseEntityImplFromJson(json);
 
   @override
   final String? data;
@@ -137,10 +138,10 @@ class _$_BaseEntity implements _BaseEntity {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BaseEntity &&
+            other is _$BaseEntityImpl &&
             (identical(other.data, data) || other.data == data) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.status, status) || other.status == status));
@@ -153,12 +154,12 @@ class _$_BaseEntity implements _BaseEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BaseEntityCopyWith<_$_BaseEntity> get copyWith =>
-      __$$_BaseEntityCopyWithImpl<_$_BaseEntity>(this, _$identity);
+  _$$BaseEntityImplCopyWith<_$BaseEntityImpl> get copyWith =>
+      __$$BaseEntityImplCopyWithImpl<_$BaseEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BaseEntityToJson(
+    return _$$BaseEntityImplToJson(
       this,
     );
   }
@@ -168,10 +169,10 @@ abstract class _BaseEntity implements BaseEntity {
   const factory _BaseEntity(
       {final String? data,
       required final String message,
-      required final int status}) = _$_BaseEntity;
+      required final int status}) = _$BaseEntityImpl;
 
   factory _BaseEntity.fromJson(Map<String, dynamic> json) =
-      _$_BaseEntity.fromJson;
+      _$BaseEntityImpl.fromJson;
 
   @override
   String? get data;
@@ -181,6 +182,6 @@ abstract class _BaseEntity implements BaseEntity {
   int get status;
   @override
   @JsonKey(ignore: true)
-  _$$_BaseEntityCopyWith<_$_BaseEntity> get copyWith =>
+  _$$BaseEntityImplCopyWith<_$BaseEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

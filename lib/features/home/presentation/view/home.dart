@@ -278,6 +278,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
               builder: (_) {
                 return Container(
                   height: context.screenHeight() * 0.45,
+                  width: context.screenWidth(),
                   decoration: BoxDecoration(
                     color: AppColors.white100,
                     borderRadius: BorderRadius.only(
@@ -294,10 +295,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         data: user.address,
                         version: QrVersions.auto,
                         size: 170.sp,
-                        // embeddedImage: AssetImage(AppImages.appLogoQr),
-                        // embeddedImageStyle: QrEmbeddedImageStyle(
-                        //   size: Size(40, 40),
-                        // ),
+                        embeddedImage: AssetImage(AppImages.appLogoQr),
+                        embeddedImageStyle: QrEmbeddedImageStyle(
+                          size: Size(40, 40),
+                        ),
                       ),
                       VerticalMargin(20),
                       Text(

@@ -6,8 +6,8 @@ part of 'donors_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DonorsEntity _$$_DonorsEntityFromJson(Map<String, dynamic> json) =>
-    _$_DonorsEntity(
+_$DonorsEntityImpl _$$DonorsEntityImplFromJson(Map<String, dynamic> json) =>
+    _$DonorsEntityImpl(
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => Donors.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -15,21 +15,22 @@ _$_DonorsEntity _$$_DonorsEntityFromJson(Map<String, dynamic> json) =>
       status: json['status'] ?? 0,
     );
 
-Map<String, dynamic> _$$_DonorsEntityToJson(_$_DonorsEntity instance) =>
+Map<String, dynamic> _$$DonorsEntityImplToJson(_$DonorsEntityImpl instance) =>
     <String, dynamic>{
       'data': instance.data,
       'message': instance.message,
       'status': instance.status,
     };
 
-_$_Datum _$$_DatumFromJson(Map<String, dynamic> json) => _$_Datum(
+_$DatumImpl _$$DatumImplFromJson(Map<String, dynamic> json) => _$DatumImpl(
       amount: json['amount'] ?? 0.0,
       donor: json['donor'] ?? '',
       image: json['image'] ?? '',
       username: json['username'] ?? '',
     );
 
-Map<String, dynamic> _$$_DatumToJson(_$_Datum instance) => <String, dynamic>{
+Map<String, dynamic> _$$DatumImplToJson(_$DatumImpl instance) =>
+    <String, dynamic>{
       'amount': instance.amount,
       'donor': instance.donor,
       'image': instance.image,

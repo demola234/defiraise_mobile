@@ -12,7 +12,7 @@ part of 'get_user_details_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$GetUserDetailsState {
@@ -87,24 +87,25 @@ class _$GetUserDetailsStateCopyWithImpl<$Res, $Val extends GetUserDetailsState>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$GetUserDetailsStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$GetUserDetailsStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -112,9 +113,9 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -196,28 +197,29 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements GetUserDetailsState {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_LoadingCopyWith<$Res> {
-  factory _$$_LoadingCopyWith(
-          _$_Loading value, $Res Function(_$_Loading) then) =
-      __$$_LoadingCopyWithImpl<$Res>;
+abstract class _$$LoadingImplCopyWith<$Res> {
+  factory _$$LoadingImplCopyWith(
+          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
+      __$$LoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res>
-    extends _$GetUserDetailsStateCopyWithImpl<$Res, _$_Loading>
-    implements _$$_LoadingCopyWith<$Res> {
-  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+class __$$LoadingImplCopyWithImpl<$Res>
+    extends _$GetUserDetailsStateCopyWithImpl<$Res, _$LoadingImpl>
+    implements _$$LoadingImplCopyWith<$Res> {
+  __$$LoadingImplCopyWithImpl(
+      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Loading implements _Loading {
-  const _$_Loading();
+class _$LoadingImpl implements _Loading {
+  const _$LoadingImpl();
 
   @override
   String toString() {
@@ -225,9 +227,9 @@ class _$_Loading implements _Loading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Loading);
+        (other.runtimeType == runtimeType && other is _$LoadingImpl);
   }
 
   @override
@@ -309,14 +311,14 @@ class _$_Loading implements _Loading {
 }
 
 abstract class _Loading implements GetUserDetailsState {
-  const factory _Loading() = _$_Loading;
+  const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$_LoadUserDetailsCopyWith<$Res> {
-  factory _$$_LoadUserDetailsCopyWith(
-          _$_LoadUserDetails value, $Res Function(_$_LoadUserDetails) then) =
-      __$$_LoadUserDetailsCopyWithImpl<$Res>;
+abstract class _$$LoadUserDetailsImplCopyWith<$Res> {
+  factory _$$LoadUserDetailsImplCopyWith(_$LoadUserDetailsImpl value,
+          $Res Function(_$LoadUserDetailsImpl) then) =
+      __$$LoadUserDetailsImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserResponse message});
 
@@ -324,11 +326,11 @@ abstract class _$$_LoadUserDetailsCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadUserDetailsCopyWithImpl<$Res>
-    extends _$GetUserDetailsStateCopyWithImpl<$Res, _$_LoadUserDetails>
-    implements _$$_LoadUserDetailsCopyWith<$Res> {
-  __$$_LoadUserDetailsCopyWithImpl(
-      _$_LoadUserDetails _value, $Res Function(_$_LoadUserDetails) _then)
+class __$$LoadUserDetailsImplCopyWithImpl<$Res>
+    extends _$GetUserDetailsStateCopyWithImpl<$Res, _$LoadUserDetailsImpl>
+    implements _$$LoadUserDetailsImplCopyWith<$Res> {
+  __$$LoadUserDetailsImplCopyWithImpl(
+      _$LoadUserDetailsImpl _value, $Res Function(_$LoadUserDetailsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -336,7 +338,7 @@ class __$$_LoadUserDetailsCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_LoadUserDetails(
+    return _then(_$LoadUserDetailsImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -355,8 +357,8 @@ class __$$_LoadUserDetailsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoadUserDetails implements _LoadUserDetails {
-  const _$_LoadUserDetails(this.message);
+class _$LoadUserDetailsImpl implements _LoadUserDetails {
+  const _$LoadUserDetailsImpl(this.message);
 
   @override
   final UserResponse message;
@@ -367,10 +369,10 @@ class _$_LoadUserDetails implements _LoadUserDetails {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoadUserDetails &&
+            other is _$LoadUserDetailsImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -380,8 +382,9 @@ class _$_LoadUserDetails implements _LoadUserDetails {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LoadUserDetailsCopyWith<_$_LoadUserDetails> get copyWith =>
-      __$$_LoadUserDetailsCopyWithImpl<_$_LoadUserDetails>(this, _$identity);
+  _$$LoadUserDetailsImplCopyWith<_$LoadUserDetailsImpl> get copyWith =>
+      __$$LoadUserDetailsImplCopyWithImpl<_$LoadUserDetailsImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -460,27 +463,29 @@ class _$_LoadUserDetails implements _LoadUserDetails {
 
 abstract class _LoadUserDetails implements GetUserDetailsState {
   const factory _LoadUserDetails(final UserResponse message) =
-      _$_LoadUserDetails;
+      _$LoadUserDetailsImpl;
 
   UserResponse get message;
   @JsonKey(ignore: true)
-  _$$_LoadUserDetailsCopyWith<_$_LoadUserDetails> get copyWith =>
+  _$$LoadUserDetailsImplCopyWith<_$LoadUserDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ErrorCopyWith<$Res> {
-  factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
-      __$$_ErrorCopyWithImpl<$Res>;
+abstract class _$$ErrorImplCopyWith<$Res> {
+  factory _$$ErrorImplCopyWith(
+          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
+      __$$ErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_ErrorCopyWithImpl<$Res>
-    extends _$GetUserDetailsStateCopyWithImpl<$Res, _$_Error>
-    implements _$$_ErrorCopyWith<$Res> {
-  __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
+class __$$ErrorImplCopyWithImpl<$Res>
+    extends _$GetUserDetailsStateCopyWithImpl<$Res, _$ErrorImpl>
+    implements _$$ErrorImplCopyWith<$Res> {
+  __$$ErrorImplCopyWithImpl(
+      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -488,7 +493,7 @@ class __$$_ErrorCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_Error(
+    return _then(_$ErrorImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -499,8 +504,8 @@ class __$$_ErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Error implements _Error {
-  const _$_Error(this.message);
+class _$ErrorImpl implements _Error {
+  const _$ErrorImpl(this.message);
 
   @override
   final String message;
@@ -511,10 +516,10 @@ class _$_Error implements _Error {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Error &&
+            other is _$ErrorImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -524,8 +529,8 @@ class _$_Error implements _Error {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ErrorCopyWith<_$_Error> get copyWith =>
-      __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -603,10 +608,10 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements GetUserDetailsState {
-  const factory _Error(final String message) = _$_Error;
+  const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

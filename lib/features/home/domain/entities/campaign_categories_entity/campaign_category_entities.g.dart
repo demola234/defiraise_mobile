@@ -6,32 +6,33 @@ part of 'campaign_category_entities.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CampaignCategories _$$_CampaignCategoriesFromJson(
+_$CampaignCategoriesImpl _$$CampaignCategoriesImplFromJson(
         Map<String, dynamic> json) =>
-    _$_CampaignCategories(
+    _$CampaignCategoriesImpl(
       data: (json['data'] as List<dynamic>)
           .map((e) => Datum.fromJson(e as Map<String, dynamic>))
           .toList(),
       message: json['message'] ?? '',
-      status: json['status'] as int,
+      status: (json['status'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$_CampaignCategoriesToJson(
-        _$_CampaignCategories instance) =>
+Map<String, dynamic> _$$CampaignCategoriesImplToJson(
+        _$CampaignCategoriesImpl instance) =>
     <String, dynamic>{
       'data': instance.data,
       'message': instance.message,
       'status': instance.status,
     };
 
-_$_Datum _$$_DatumFromJson(Map<String, dynamic> json) => _$_Datum(
+_$DatumImpl _$$DatumImplFromJson(Map<String, dynamic> json) => _$DatumImpl(
       name: json['name'] ?? '',
       image: json['image'] ?? '',
       description: json['description'] ?? '',
       id: json['id'] ?? '',
     );
 
-Map<String, dynamic> _$$_DatumToJson(_$_Datum instance) => <String, dynamic>{
+Map<String, dynamic> _$$DatumImplToJson(_$DatumImpl instance) =>
+    <String, dynamic>{
       'name': instance.name,
       'image': instance.image,
       'description': instance.description,

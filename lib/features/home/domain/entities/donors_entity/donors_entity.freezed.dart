@@ -12,7 +12,7 @@ part of 'donors_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 DonorsEntity _$DonorsEntityFromJson(Map<String, dynamic> json) {
   return _DonorsEntity.fromJson(json);
@@ -74,22 +74,22 @@ class _$DonorsEntityCopyWithImpl<$Res, $Val extends DonorsEntity>
 }
 
 /// @nodoc
-abstract class _$$_DonorsEntityCopyWith<$Res>
+abstract class _$$DonorsEntityImplCopyWith<$Res>
     implements $DonorsEntityCopyWith<$Res> {
-  factory _$$_DonorsEntityCopyWith(
-          _$_DonorsEntity value, $Res Function(_$_DonorsEntity) then) =
-      __$$_DonorsEntityCopyWithImpl<$Res>;
+  factory _$$DonorsEntityImplCopyWith(
+          _$DonorsEntityImpl value, $Res Function(_$DonorsEntityImpl) then) =
+      __$$DonorsEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Donors>? data, dynamic message, dynamic status});
 }
 
 /// @nodoc
-class __$$_DonorsEntityCopyWithImpl<$Res>
-    extends _$DonorsEntityCopyWithImpl<$Res, _$_DonorsEntity>
-    implements _$$_DonorsEntityCopyWith<$Res> {
-  __$$_DonorsEntityCopyWithImpl(
-      _$_DonorsEntity _value, $Res Function(_$_DonorsEntity) _then)
+class __$$DonorsEntityImplCopyWithImpl<$Res>
+    extends _$DonorsEntityCopyWithImpl<$Res, _$DonorsEntityImpl>
+    implements _$$DonorsEntityImplCopyWith<$Res> {
+  __$$DonorsEntityImplCopyWithImpl(
+      _$DonorsEntityImpl _value, $Res Function(_$DonorsEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_DonorsEntityCopyWithImpl<$Res>
     Object? message = freezed,
     Object? status = freezed,
   }) {
-    return _then(_$_DonorsEntity(
+    return _then(_$DonorsEntityImpl(
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -112,13 +112,13 @@ class __$$_DonorsEntityCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DonorsEntity implements _DonorsEntity {
-  const _$_DonorsEntity(
+class _$DonorsEntityImpl implements _DonorsEntity {
+  const _$DonorsEntityImpl(
       {final List<Donors>? data, this.message = '', this.status = 0})
       : _data = data;
 
-  factory _$_DonorsEntity.fromJson(Map<String, dynamic> json) =>
-      _$$_DonorsEntityFromJson(json);
+  factory _$DonorsEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DonorsEntityImplFromJson(json);
 
   final List<Donors>? _data;
   @override
@@ -143,10 +143,10 @@ class _$_DonorsEntity implements _DonorsEntity {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DonorsEntity &&
+            other is _$DonorsEntityImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality().equals(other.status, status));
@@ -163,12 +163,12 @@ class _$_DonorsEntity implements _DonorsEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DonorsEntityCopyWith<_$_DonorsEntity> get copyWith =>
-      __$$_DonorsEntityCopyWithImpl<_$_DonorsEntity>(this, _$identity);
+  _$$DonorsEntityImplCopyWith<_$DonorsEntityImpl> get copyWith =>
+      __$$DonorsEntityImplCopyWithImpl<_$DonorsEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DonorsEntityToJson(
+    return _$$DonorsEntityImplToJson(
       this,
     );
   }
@@ -178,10 +178,10 @@ abstract class _DonorsEntity implements DonorsEntity {
   const factory _DonorsEntity(
       {final List<Donors>? data,
       final dynamic message,
-      final dynamic status}) = _$_DonorsEntity;
+      final dynamic status}) = _$DonorsEntityImpl;
 
   factory _DonorsEntity.fromJson(Map<String, dynamic> json) =
-      _$_DonorsEntity.fromJson;
+      _$DonorsEntityImpl.fromJson;
 
   @override
   List<Donors>? get data;
@@ -191,7 +191,7 @@ abstract class _DonorsEntity implements DonorsEntity {
   dynamic get status;
   @override
   @JsonKey(ignore: true)
-  _$$_DonorsEntityCopyWith<_$_DonorsEntity> get copyWith =>
+  _$$DonorsEntityImplCopyWith<_$DonorsEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -259,18 +259,21 @@ class _$DonorsCopyWithImpl<$Res, $Val extends Donors>
 }
 
 /// @nodoc
-abstract class _$$_DatumCopyWith<$Res> implements $DonorsCopyWith<$Res> {
-  factory _$$_DatumCopyWith(_$_Datum value, $Res Function(_$_Datum) then) =
-      __$$_DatumCopyWithImpl<$Res>;
+abstract class _$$DatumImplCopyWith<$Res> implements $DonorsCopyWith<$Res> {
+  factory _$$DatumImplCopyWith(
+          _$DatumImpl value, $Res Function(_$DatumImpl) then) =
+      __$$DatumImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({dynamic amount, dynamic donor, dynamic image, dynamic username});
 }
 
 /// @nodoc
-class __$$_DatumCopyWithImpl<$Res> extends _$DonorsCopyWithImpl<$Res, _$_Datum>
-    implements _$$_DatumCopyWith<$Res> {
-  __$$_DatumCopyWithImpl(_$_Datum _value, $Res Function(_$_Datum) _then)
+class __$$DatumImplCopyWithImpl<$Res>
+    extends _$DonorsCopyWithImpl<$Res, _$DatumImpl>
+    implements _$$DatumImplCopyWith<$Res> {
+  __$$DatumImplCopyWithImpl(
+      _$DatumImpl _value, $Res Function(_$DatumImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -281,7 +284,7 @@ class __$$_DatumCopyWithImpl<$Res> extends _$DonorsCopyWithImpl<$Res, _$_Datum>
     Object? image = freezed,
     Object? username = freezed,
   }) {
-    return _then(_$_Datum(
+    return _then(_$DatumImpl(
       amount: freezed == amount ? _value.amount! : amount,
       donor: freezed == donor ? _value.donor! : donor,
       image: freezed == image ? _value.image! : image,
@@ -292,15 +295,15 @@ class __$$_DatumCopyWithImpl<$Res> extends _$DonorsCopyWithImpl<$Res, _$_Datum>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Datum implements _Datum {
-  const _$_Datum(
+class _$DatumImpl implements _Datum {
+  const _$DatumImpl(
       {this.amount = 0.0,
       this.donor = '',
       this.image = '',
       this.username = ''});
 
-  factory _$_Datum.fromJson(Map<String, dynamic> json) =>
-      _$$_DatumFromJson(json);
+  factory _$DatumImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DatumImplFromJson(json);
 
   @override
   @JsonKey()
@@ -321,10 +324,10 @@ class _$_Datum implements _Datum {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Datum &&
+            other is _$DatumImpl &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.donor, donor) &&
             const DeepCollectionEquality().equals(other.image, image) &&
@@ -343,12 +346,12 @@ class _$_Datum implements _Datum {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DatumCopyWith<_$_Datum> get copyWith =>
-      __$$_DatumCopyWithImpl<_$_Datum>(this, _$identity);
+  _$$DatumImplCopyWith<_$DatumImpl> get copyWith =>
+      __$$DatumImplCopyWithImpl<_$DatumImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DatumToJson(
+    return _$$DatumImplToJson(
       this,
     );
   }
@@ -359,9 +362,9 @@ abstract class _Datum implements Donors {
       {final dynamic amount,
       final dynamic donor,
       final dynamic image,
-      final dynamic username}) = _$_Datum;
+      final dynamic username}) = _$DatumImpl;
 
-  factory _Datum.fromJson(Map<String, dynamic> json) = _$_Datum.fromJson;
+  factory _Datum.fromJson(Map<String, dynamic> json) = _$DatumImpl.fromJson;
 
   @override
   dynamic get amount;
@@ -373,6 +376,6 @@ abstract class _Datum implements Donors {
   dynamic get username;
   @override
   @JsonKey(ignore: true)
-  _$$_DatumCopyWith<_$_Datum> get copyWith =>
+  _$$DatumImplCopyWith<_$DatumImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

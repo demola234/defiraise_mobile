@@ -12,7 +12,7 @@ part of 'address_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AddressEntity _$AddressEntityFromJson(Map<String, dynamic> json) {
   return _AddressEntity.fromJson(json);
@@ -84,11 +84,11 @@ class _$AddressEntityCopyWithImpl<$Res, $Val extends AddressEntity>
 }
 
 /// @nodoc
-abstract class _$$_AddressEntityCopyWith<$Res>
+abstract class _$$AddressEntityImplCopyWith<$Res>
     implements $AddressEntityCopyWith<$Res> {
-  factory _$$_AddressEntityCopyWith(
-          _$_AddressEntity value, $Res Function(_$_AddressEntity) then) =
-      __$$_AddressEntityCopyWithImpl<$Res>;
+  factory _$$AddressEntityImplCopyWith(
+          _$AddressEntityImpl value, $Res Function(_$AddressEntityImpl) then) =
+      __$$AddressEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Data data, dynamic message, int status});
@@ -98,11 +98,11 @@ abstract class _$$_AddressEntityCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AddressEntityCopyWithImpl<$Res>
-    extends _$AddressEntityCopyWithImpl<$Res, _$_AddressEntity>
-    implements _$$_AddressEntityCopyWith<$Res> {
-  __$$_AddressEntityCopyWithImpl(
-      _$_AddressEntity _value, $Res Function(_$_AddressEntity) _then)
+class __$$AddressEntityImplCopyWithImpl<$Res>
+    extends _$AddressEntityCopyWithImpl<$Res, _$AddressEntityImpl>
+    implements _$$AddressEntityImplCopyWith<$Res> {
+  __$$AddressEntityImplCopyWithImpl(
+      _$AddressEntityImpl _value, $Res Function(_$AddressEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -112,7 +112,7 @@ class __$$_AddressEntityCopyWithImpl<$Res>
     Object? message = freezed,
     Object? status = null,
   }) {
-    return _then(_$_AddressEntity(
+    return _then(_$AddressEntityImpl(
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -128,12 +128,12 @@ class __$$_AddressEntityCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AddressEntity implements _AddressEntity {
-  const _$_AddressEntity(
+class _$AddressEntityImpl implements _AddressEntity {
+  const _$AddressEntityImpl(
       {required this.data, this.message = '', required this.status});
 
-  factory _$_AddressEntity.fromJson(Map<String, dynamic> json) =>
-      _$$_AddressEntityFromJson(json);
+  factory _$AddressEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AddressEntityImplFromJson(json);
 
   @override
   final Data data;
@@ -149,10 +149,10 @@ class _$_AddressEntity implements _AddressEntity {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AddressEntity &&
+            other is _$AddressEntityImpl &&
             (identical(other.data, data) || other.data == data) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             (identical(other.status, status) || other.status == status));
@@ -166,12 +166,12 @@ class _$_AddressEntity implements _AddressEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AddressEntityCopyWith<_$_AddressEntity> get copyWith =>
-      __$$_AddressEntityCopyWithImpl<_$_AddressEntity>(this, _$identity);
+  _$$AddressEntityImplCopyWith<_$AddressEntityImpl> get copyWith =>
+      __$$AddressEntityImplCopyWithImpl<_$AddressEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AddressEntityToJson(
+    return _$$AddressEntityImplToJson(
       this,
     );
   }
@@ -181,10 +181,10 @@ abstract class _AddressEntity implements AddressEntity {
   const factory _AddressEntity(
       {required final Data data,
       final dynamic message,
-      required final int status}) = _$_AddressEntity;
+      required final int status}) = _$AddressEntityImpl;
 
   factory _AddressEntity.fromJson(Map<String, dynamic> json) =
-      _$_AddressEntity.fromJson;
+      _$AddressEntityImpl.fromJson;
 
   @override
   Data get data;
@@ -194,7 +194,7 @@ abstract class _AddressEntity implements AddressEntity {
   int get status;
   @override
   @JsonKey(ignore: true)
-  _$$_AddressEntityCopyWith<_$_AddressEntity> get copyWith =>
+  _$$AddressEntityImplCopyWith<_$AddressEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -250,18 +250,20 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
 }
 
 /// @nodoc
-abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
-  factory _$$_DataCopyWith(_$_Data value, $Res Function(_$_Data) then) =
-      __$$_DataCopyWithImpl<$Res>;
+abstract class _$$DataImplCopyWith<$Res> implements $DataCopyWith<$Res> {
+  factory _$$DataImplCopyWith(
+          _$DataImpl value, $Res Function(_$DataImpl) then) =
+      __$$DataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({dynamic address, dynamic privateKey});
 }
 
 /// @nodoc
-class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
-    implements _$$_DataCopyWith<$Res> {
-  __$$_DataCopyWithImpl(_$_Data _value, $Res Function(_$_Data) _then)
+class __$$DataImplCopyWithImpl<$Res>
+    extends _$DataCopyWithImpl<$Res, _$DataImpl>
+    implements _$$DataImplCopyWith<$Res> {
+  __$$DataImplCopyWithImpl(_$DataImpl _value, $Res Function(_$DataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -270,7 +272,7 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
     Object? address = freezed,
     Object? privateKey = freezed,
   }) {
-    return _then(_$_Data(
+    return _then(_$DataImpl(
       address: freezed == address ? _value.address! : address,
       privateKey: freezed == privateKey ? _value.privateKey! : privateKey,
     ));
@@ -280,10 +282,11 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_Data implements _Data {
-  const _$_Data({this.address = '', this.privateKey = ''});
+class _$DataImpl implements _Data {
+  const _$DataImpl({this.address = '', this.privateKey = ''});
 
-  factory _$_Data.fromJson(Map<String, dynamic> json) => _$$_DataFromJson(json);
+  factory _$DataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DataImplFromJson(json);
 
   @override
   @JsonKey()
@@ -298,10 +301,10 @@ class _$_Data implements _Data {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Data &&
+            other is _$DataImpl &&
             const DeepCollectionEquality().equals(other.address, address) &&
             const DeepCollectionEquality()
                 .equals(other.privateKey, privateKey));
@@ -317,12 +320,12 @@ class _$_Data implements _Data {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DataCopyWith<_$_Data> get copyWith =>
-      __$$_DataCopyWithImpl<_$_Data>(this, _$identity);
+  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
+      __$$DataImplCopyWithImpl<_$DataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DataToJson(
+    return _$$DataImplToJson(
       this,
     );
   }
@@ -330,9 +333,9 @@ class _$_Data implements _Data {
 
 abstract class _Data implements Data {
   const factory _Data({final dynamic address, final dynamic privateKey}) =
-      _$_Data;
+      _$DataImpl;
 
-  factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
+  factory _Data.fromJson(Map<String, dynamic> json) = _$DataImpl.fromJson;
 
   @override
   dynamic get address;
@@ -340,5 +343,6 @@ abstract class _Data implements Data {
   dynamic get privateKey;
   @override
   @JsonKey(ignore: true)
-  _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;
+  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

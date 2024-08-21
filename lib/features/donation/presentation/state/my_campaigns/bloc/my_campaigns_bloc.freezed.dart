@@ -12,7 +12,7 @@ part of 'my_campaigns_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MyCampaignsState {
@@ -87,24 +87,25 @@ class _$MyCampaignsStateCopyWithImpl<$Res, $Val extends MyCampaignsState>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$MyCampaignsStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$MyCampaignsStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -112,9 +113,9 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -196,29 +197,29 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements MyCampaignsState {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingStateCopyWith<$Res> {
-  factory _$$LoadingStateCopyWith(
-          _$LoadingState value, $Res Function(_$LoadingState) then) =
-      __$$LoadingStateCopyWithImpl<$Res>;
+abstract class _$$LoadingStateImplCopyWith<$Res> {
+  factory _$$LoadingStateImplCopyWith(
+          _$LoadingStateImpl value, $Res Function(_$LoadingStateImpl) then) =
+      __$$LoadingStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingStateCopyWithImpl<$Res>
-    extends _$MyCampaignsStateCopyWithImpl<$Res, _$LoadingState>
-    implements _$$LoadingStateCopyWith<$Res> {
-  __$$LoadingStateCopyWithImpl(
-      _$LoadingState _value, $Res Function(_$LoadingState) _then)
+class __$$LoadingStateImplCopyWithImpl<$Res>
+    extends _$MyCampaignsStateCopyWithImpl<$Res, _$LoadingStateImpl>
+    implements _$$LoadingStateImplCopyWith<$Res> {
+  __$$LoadingStateImplCopyWithImpl(
+      _$LoadingStateImpl _value, $Res Function(_$LoadingStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadingState implements LoadingState {
-  const _$LoadingState();
+class _$LoadingStateImpl implements LoadingState {
+  const _$LoadingStateImpl();
 
   @override
   String toString() {
@@ -226,9 +227,9 @@ class _$LoadingState implements LoadingState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingState);
+        (other.runtimeType == runtimeType && other is _$LoadingStateImpl);
   }
 
   @override
@@ -310,24 +311,24 @@ class _$LoadingState implements LoadingState {
 }
 
 abstract class LoadingState implements MyCampaignsState {
-  const factory LoadingState() = _$LoadingState;
+  const factory LoadingState() = _$LoadingStateImpl;
 }
 
 /// @nodoc
-abstract class _$$ErrorStateCopyWith<$Res> {
-  factory _$$ErrorStateCopyWith(
-          _$ErrorState value, $Res Function(_$ErrorState) then) =
-      __$$ErrorStateCopyWithImpl<$Res>;
+abstract class _$$ErrorStateImplCopyWith<$Res> {
+  factory _$$ErrorStateImplCopyWith(
+          _$ErrorStateImpl value, $Res Function(_$ErrorStateImpl) then) =
+      __$$ErrorStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$ErrorStateCopyWithImpl<$Res>
-    extends _$MyCampaignsStateCopyWithImpl<$Res, _$ErrorState>
-    implements _$$ErrorStateCopyWith<$Res> {
-  __$$ErrorStateCopyWithImpl(
-      _$ErrorState _value, $Res Function(_$ErrorState) _then)
+class __$$ErrorStateImplCopyWithImpl<$Res>
+    extends _$MyCampaignsStateCopyWithImpl<$Res, _$ErrorStateImpl>
+    implements _$$ErrorStateImplCopyWith<$Res> {
+  __$$ErrorStateImplCopyWithImpl(
+      _$ErrorStateImpl _value, $Res Function(_$ErrorStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -335,7 +336,7 @@ class __$$ErrorStateCopyWithImpl<$Res>
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$ErrorState(
+    return _then(_$ErrorStateImpl(
       null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -346,8 +347,8 @@ class __$$ErrorStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorState implements ErrorState {
-  const _$ErrorState(this.error);
+class _$ErrorStateImpl implements ErrorState {
+  const _$ErrorStateImpl(this.error);
 
   @override
   final String error;
@@ -358,10 +359,10 @@ class _$ErrorState implements ErrorState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorState &&
+            other is _$ErrorStateImpl &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -371,8 +372,8 @@ class _$ErrorState implements ErrorState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorStateCopyWith<_$ErrorState> get copyWith =>
-      __$$ErrorStateCopyWithImpl<_$ErrorState>(this, _$identity);
+  _$$ErrorStateImplCopyWith<_$ErrorStateImpl> get copyWith =>
+      __$$ErrorStateImplCopyWithImpl<_$ErrorStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -450,19 +451,19 @@ class _$ErrorState implements ErrorState {
 }
 
 abstract class ErrorState implements MyCampaignsState {
-  const factory ErrorState(final String error) = _$ErrorState;
+  const factory ErrorState(final String error) = _$ErrorStateImpl;
 
   String get error;
   @JsonKey(ignore: true)
-  _$$ErrorStateCopyWith<_$ErrorState> get copyWith =>
+  _$$ErrorStateImplCopyWith<_$ErrorStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadMyCampaignsCopyWith<$Res> {
-  factory _$$LoadMyCampaignsCopyWith(
-          _$LoadMyCampaigns value, $Res Function(_$LoadMyCampaigns) then) =
-      __$$LoadMyCampaignsCopyWithImpl<$Res>;
+abstract class _$$LoadMyCampaignsImplCopyWith<$Res> {
+  factory _$$LoadMyCampaignsImplCopyWith(_$LoadMyCampaignsImpl value,
+          $Res Function(_$LoadMyCampaignsImpl) then) =
+      __$$LoadMyCampaignsImplCopyWithImpl<$Res>;
   @useResult
   $Res call({CampaignResponse campaigns});
 
@@ -470,11 +471,11 @@ abstract class _$$LoadMyCampaignsCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$LoadMyCampaignsCopyWithImpl<$Res>
-    extends _$MyCampaignsStateCopyWithImpl<$Res, _$LoadMyCampaigns>
-    implements _$$LoadMyCampaignsCopyWith<$Res> {
-  __$$LoadMyCampaignsCopyWithImpl(
-      _$LoadMyCampaigns _value, $Res Function(_$LoadMyCampaigns) _then)
+class __$$LoadMyCampaignsImplCopyWithImpl<$Res>
+    extends _$MyCampaignsStateCopyWithImpl<$Res, _$LoadMyCampaignsImpl>
+    implements _$$LoadMyCampaignsImplCopyWith<$Res> {
+  __$$LoadMyCampaignsImplCopyWithImpl(
+      _$LoadMyCampaignsImpl _value, $Res Function(_$LoadMyCampaignsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -482,7 +483,7 @@ class __$$LoadMyCampaignsCopyWithImpl<$Res>
   $Res call({
     Object? campaigns = null,
   }) {
-    return _then(_$LoadMyCampaigns(
+    return _then(_$LoadMyCampaignsImpl(
       null == campaigns
           ? _value.campaigns
           : campaigns // ignore: cast_nullable_to_non_nullable
@@ -501,8 +502,8 @@ class __$$LoadMyCampaignsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadMyCampaigns implements LoadMyCampaigns {
-  const _$LoadMyCampaigns(this.campaigns);
+class _$LoadMyCampaignsImpl implements LoadMyCampaigns {
+  const _$LoadMyCampaignsImpl(this.campaigns);
 
   @override
   final CampaignResponse campaigns;
@@ -513,10 +514,10 @@ class _$LoadMyCampaigns implements LoadMyCampaigns {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadMyCampaigns &&
+            other is _$LoadMyCampaignsImpl &&
             (identical(other.campaigns, campaigns) ||
                 other.campaigns == campaigns));
   }
@@ -527,8 +528,9 @@ class _$LoadMyCampaigns implements LoadMyCampaigns {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadMyCampaignsCopyWith<_$LoadMyCampaigns> get copyWith =>
-      __$$LoadMyCampaignsCopyWithImpl<_$LoadMyCampaigns>(this, _$identity);
+  _$$LoadMyCampaignsImplCopyWith<_$LoadMyCampaignsImpl> get copyWith =>
+      __$$LoadMyCampaignsImplCopyWithImpl<_$LoadMyCampaignsImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -607,10 +609,10 @@ class _$LoadMyCampaigns implements LoadMyCampaigns {
 
 abstract class LoadMyCampaigns implements MyCampaignsState {
   const factory LoadMyCampaigns(final CampaignResponse campaigns) =
-      _$LoadMyCampaigns;
+      _$LoadMyCampaignsImpl;
 
   CampaignResponse get campaigns;
   @JsonKey(ignore: true)
-  _$$LoadMyCampaignsCopyWith<_$LoadMyCampaigns> get copyWith =>
+  _$$LoadMyCampaignsImplCopyWith<_$LoadMyCampaignsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

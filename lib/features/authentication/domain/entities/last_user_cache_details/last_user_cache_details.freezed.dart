@@ -12,7 +12,7 @@ part of 'last_user_cache_details.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 LastUserCachedDetails _$LastUserCachedDetailsFromJson(
     Map<String, dynamic> json) {
@@ -82,22 +82,24 @@ class _$LastUserCachedDetailsCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_LastUserCachedDetailsCopyWith<$Res>
+abstract class _$$LastUserCachedDetailsImplCopyWith<$Res>
     implements $LastUserCachedDetailsCopyWith<$Res> {
-  factory _$$_LastUserCachedDetailsCopyWith(_$_LastUserCachedDetails value,
-          $Res Function(_$_LastUserCachedDetails) then) =
-      __$$_LastUserCachedDetailsCopyWithImpl<$Res>;
+  factory _$$LastUserCachedDetailsImplCopyWith(
+          _$LastUserCachedDetailsImpl value,
+          $Res Function(_$LastUserCachedDetailsImpl) then) =
+      __$$LastUserCachedDetailsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String username, String email, String password, bool isBiometric});
 }
 
 /// @nodoc
-class __$$_LastUserCachedDetailsCopyWithImpl<$Res>
-    extends _$LastUserCachedDetailsCopyWithImpl<$Res, _$_LastUserCachedDetails>
-    implements _$$_LastUserCachedDetailsCopyWith<$Res> {
-  __$$_LastUserCachedDetailsCopyWithImpl(_$_LastUserCachedDetails _value,
-      $Res Function(_$_LastUserCachedDetails) _then)
+class __$$LastUserCachedDetailsImplCopyWithImpl<$Res>
+    extends _$LastUserCachedDetailsCopyWithImpl<$Res,
+        _$LastUserCachedDetailsImpl>
+    implements _$$LastUserCachedDetailsImplCopyWith<$Res> {
+  __$$LastUserCachedDetailsImplCopyWithImpl(_$LastUserCachedDetailsImpl _value,
+      $Res Function(_$LastUserCachedDetailsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -108,7 +110,7 @@ class __$$_LastUserCachedDetailsCopyWithImpl<$Res>
     Object? password = null,
     Object? isBiometric = null,
   }) {
-    return _then(_$_LastUserCachedDetails(
+    return _then(_$LastUserCachedDetailsImpl(
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -131,15 +133,15 @@ class __$$_LastUserCachedDetailsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LastUserCachedDetails implements _LastUserCachedDetails {
-  const _$_LastUserCachedDetails(
+class _$LastUserCachedDetailsImpl implements _LastUserCachedDetails {
+  const _$LastUserCachedDetailsImpl(
       {required this.username,
       required this.email,
       required this.password,
       required this.isBiometric});
 
-  factory _$_LastUserCachedDetails.fromJson(Map<String, dynamic> json) =>
-      _$$_LastUserCachedDetailsFromJson(json);
+  factory _$LastUserCachedDetailsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LastUserCachedDetailsImplFromJson(json);
 
   @override
   final String username;
@@ -156,10 +158,10 @@ class _$_LastUserCachedDetails implements _LastUserCachedDetails {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LastUserCachedDetails &&
+            other is _$LastUserCachedDetailsImpl &&
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.email, email) || other.email == email) &&
@@ -177,13 +179,13 @@ class _$_LastUserCachedDetails implements _LastUserCachedDetails {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LastUserCachedDetailsCopyWith<_$_LastUserCachedDetails> get copyWith =>
-      __$$_LastUserCachedDetailsCopyWithImpl<_$_LastUserCachedDetails>(
-          this, _$identity);
+  _$$LastUserCachedDetailsImplCopyWith<_$LastUserCachedDetailsImpl>
+      get copyWith => __$$LastUserCachedDetailsImplCopyWithImpl<
+          _$LastUserCachedDetailsImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LastUserCachedDetailsToJson(
+    return _$$LastUserCachedDetailsImplToJson(
       this,
     );
   }
@@ -194,10 +196,10 @@ abstract class _LastUserCachedDetails implements LastUserCachedDetails {
       {required final String username,
       required final String email,
       required final String password,
-      required final bool isBiometric}) = _$_LastUserCachedDetails;
+      required final bool isBiometric}) = _$LastUserCachedDetailsImpl;
 
   factory _LastUserCachedDetails.fromJson(Map<String, dynamic> json) =
-      _$_LastUserCachedDetails.fromJson;
+      _$LastUserCachedDetailsImpl.fromJson;
 
   @override
   String get username;
@@ -209,6 +211,6 @@ abstract class _LastUserCachedDetails implements LastUserCachedDetails {
   bool get isBiometric;
   @override
   @JsonKey(ignore: true)
-  _$$_LastUserCachedDetailsCopyWith<_$_LastUserCachedDetails> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LastUserCachedDetailsImplCopyWith<_$LastUserCachedDetailsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

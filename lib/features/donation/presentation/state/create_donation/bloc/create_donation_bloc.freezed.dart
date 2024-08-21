@@ -12,7 +12,7 @@ part of 'create_donation_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CreateDonationState {
@@ -87,24 +87,25 @@ class _$CreateDonationStateCopyWithImpl<$Res, $Val extends CreateDonationState>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$CreateDonationStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$CreateDonationStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -112,9 +113,9 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -196,29 +197,29 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements CreateDonationState {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingStateCopyWith<$Res> {
-  factory _$$LoadingStateCopyWith(
-          _$LoadingState value, $Res Function(_$LoadingState) then) =
-      __$$LoadingStateCopyWithImpl<$Res>;
+abstract class _$$LoadingStateImplCopyWith<$Res> {
+  factory _$$LoadingStateImplCopyWith(
+          _$LoadingStateImpl value, $Res Function(_$LoadingStateImpl) then) =
+      __$$LoadingStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingStateCopyWithImpl<$Res>
-    extends _$CreateDonationStateCopyWithImpl<$Res, _$LoadingState>
-    implements _$$LoadingStateCopyWith<$Res> {
-  __$$LoadingStateCopyWithImpl(
-      _$LoadingState _value, $Res Function(_$LoadingState) _then)
+class __$$LoadingStateImplCopyWithImpl<$Res>
+    extends _$CreateDonationStateCopyWithImpl<$Res, _$LoadingStateImpl>
+    implements _$$LoadingStateImplCopyWith<$Res> {
+  __$$LoadingStateImplCopyWithImpl(
+      _$LoadingStateImpl _value, $Res Function(_$LoadingStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadingState implements LoadingState {
-  const _$LoadingState();
+class _$LoadingStateImpl implements LoadingState {
+  const _$LoadingStateImpl();
 
   @override
   String toString() {
@@ -226,9 +227,9 @@ class _$LoadingState implements LoadingState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingState);
+        (other.runtimeType == runtimeType && other is _$LoadingStateImpl);
   }
 
   @override
@@ -310,24 +311,24 @@ class _$LoadingState implements LoadingState {
 }
 
 abstract class LoadingState implements CreateDonationState {
-  const factory LoadingState() = _$LoadingState;
+  const factory LoadingState() = _$LoadingStateImpl;
 }
 
 /// @nodoc
-abstract class _$$ErrorStateCopyWith<$Res> {
-  factory _$$ErrorStateCopyWith(
-          _$ErrorState value, $Res Function(_$ErrorState) then) =
-      __$$ErrorStateCopyWithImpl<$Res>;
+abstract class _$$ErrorStateImplCopyWith<$Res> {
+  factory _$$ErrorStateImplCopyWith(
+          _$ErrorStateImpl value, $Res Function(_$ErrorStateImpl) then) =
+      __$$ErrorStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$ErrorStateCopyWithImpl<$Res>
-    extends _$CreateDonationStateCopyWithImpl<$Res, _$ErrorState>
-    implements _$$ErrorStateCopyWith<$Res> {
-  __$$ErrorStateCopyWithImpl(
-      _$ErrorState _value, $Res Function(_$ErrorState) _then)
+class __$$ErrorStateImplCopyWithImpl<$Res>
+    extends _$CreateDonationStateCopyWithImpl<$Res, _$ErrorStateImpl>
+    implements _$$ErrorStateImplCopyWith<$Res> {
+  __$$ErrorStateImplCopyWithImpl(
+      _$ErrorStateImpl _value, $Res Function(_$ErrorStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -335,7 +336,7 @@ class __$$ErrorStateCopyWithImpl<$Res>
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$ErrorState(
+    return _then(_$ErrorStateImpl(
       null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -346,8 +347,8 @@ class __$$ErrorStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorState implements ErrorState {
-  const _$ErrorState(this.error);
+class _$ErrorStateImpl implements ErrorState {
+  const _$ErrorStateImpl(this.error);
 
   @override
   final String error;
@@ -358,10 +359,10 @@ class _$ErrorState implements ErrorState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorState &&
+            other is _$ErrorStateImpl &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -371,8 +372,8 @@ class _$ErrorState implements ErrorState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorStateCopyWith<_$ErrorState> get copyWith =>
-      __$$ErrorStateCopyWithImpl<_$ErrorState>(this, _$identity);
+  _$$ErrorStateImplCopyWith<_$ErrorStateImpl> get copyWith =>
+      __$$ErrorStateImplCopyWithImpl<_$ErrorStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -450,29 +451,29 @@ class _$ErrorState implements ErrorState {
 }
 
 abstract class ErrorState implements CreateDonationState {
-  const factory ErrorState(final String error) = _$ErrorState;
+  const factory ErrorState(final String error) = _$ErrorStateImpl;
 
   String get error;
   @JsonKey(ignore: true)
-  _$$ErrorStateCopyWith<_$ErrorState> get copyWith =>
+  _$$ErrorStateImplCopyWith<_$ErrorStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CreateDonationLoadedCopyWith<$Res> {
-  factory _$$CreateDonationLoadedCopyWith(_$CreateDonationLoaded value,
-          $Res Function(_$CreateDonationLoaded) then) =
-      __$$CreateDonationLoadedCopyWithImpl<$Res>;
+abstract class _$$CreateDonationLoadedImplCopyWith<$Res> {
+  factory _$$CreateDonationLoadedImplCopyWith(_$CreateDonationLoadedImpl value,
+          $Res Function(_$CreateDonationLoadedImpl) then) =
+      __$$CreateDonationLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String campaignHex});
 }
 
 /// @nodoc
-class __$$CreateDonationLoadedCopyWithImpl<$Res>
-    extends _$CreateDonationStateCopyWithImpl<$Res, _$CreateDonationLoaded>
-    implements _$$CreateDonationLoadedCopyWith<$Res> {
-  __$$CreateDonationLoadedCopyWithImpl(_$CreateDonationLoaded _value,
-      $Res Function(_$CreateDonationLoaded) _then)
+class __$$CreateDonationLoadedImplCopyWithImpl<$Res>
+    extends _$CreateDonationStateCopyWithImpl<$Res, _$CreateDonationLoadedImpl>
+    implements _$$CreateDonationLoadedImplCopyWith<$Res> {
+  __$$CreateDonationLoadedImplCopyWithImpl(_$CreateDonationLoadedImpl _value,
+      $Res Function(_$CreateDonationLoadedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -480,7 +481,7 @@ class __$$CreateDonationLoadedCopyWithImpl<$Res>
   $Res call({
     Object? campaignHex = null,
   }) {
-    return _then(_$CreateDonationLoaded(
+    return _then(_$CreateDonationLoadedImpl(
       null == campaignHex
           ? _value.campaignHex
           : campaignHex // ignore: cast_nullable_to_non_nullable
@@ -491,8 +492,8 @@ class __$$CreateDonationLoadedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreateDonationLoaded implements CreateDonationLoaded {
-  const _$CreateDonationLoaded(this.campaignHex);
+class _$CreateDonationLoadedImpl implements CreateDonationLoaded {
+  const _$CreateDonationLoadedImpl(this.campaignHex);
 
   @override
   final String campaignHex;
@@ -503,10 +504,10 @@ class _$CreateDonationLoaded implements CreateDonationLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateDonationLoaded &&
+            other is _$CreateDonationLoadedImpl &&
             (identical(other.campaignHex, campaignHex) ||
                 other.campaignHex == campaignHex));
   }
@@ -517,9 +518,10 @@ class _$CreateDonationLoaded implements CreateDonationLoaded {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreateDonationLoadedCopyWith<_$CreateDonationLoaded> get copyWith =>
-      __$$CreateDonationLoadedCopyWithImpl<_$CreateDonationLoaded>(
-          this, _$identity);
+  _$$CreateDonationLoadedImplCopyWith<_$CreateDonationLoadedImpl>
+      get copyWith =>
+          __$$CreateDonationLoadedImplCopyWithImpl<_$CreateDonationLoadedImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -598,10 +600,10 @@ class _$CreateDonationLoaded implements CreateDonationLoaded {
 
 abstract class CreateDonationLoaded implements CreateDonationState {
   const factory CreateDonationLoaded(final String campaignHex) =
-      _$CreateDonationLoaded;
+      _$CreateDonationLoadedImpl;
 
   String get campaignHex;
   @JsonKey(ignore: true)
-  _$$CreateDonationLoadedCopyWith<_$CreateDonationLoaded> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CreateDonationLoadedImplCopyWith<_$CreateDonationLoadedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

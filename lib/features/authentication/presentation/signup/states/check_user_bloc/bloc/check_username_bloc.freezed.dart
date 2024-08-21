@@ -12,7 +12,7 @@ part of 'check_username_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CheckUsernameState {
@@ -87,24 +87,25 @@ class _$CheckUsernameStateCopyWithImpl<$Res, $Val extends CheckUsernameState>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$CheckUsernameStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$CheckUsernameStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -112,9 +113,9 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -196,29 +197,29 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements CheckUsernameState {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_CheckingUserCopyWith<$Res> {
-  factory _$$_CheckingUserCopyWith(
-          _$_CheckingUser value, $Res Function(_$_CheckingUser) then) =
-      __$$_CheckingUserCopyWithImpl<$Res>;
+abstract class _$$CheckingUserImplCopyWith<$Res> {
+  factory _$$CheckingUserImplCopyWith(
+          _$CheckingUserImpl value, $Res Function(_$CheckingUserImpl) then) =
+      __$$CheckingUserImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_CheckingUserCopyWithImpl<$Res>
-    extends _$CheckUsernameStateCopyWithImpl<$Res, _$_CheckingUser>
-    implements _$$_CheckingUserCopyWith<$Res> {
-  __$$_CheckingUserCopyWithImpl(
-      _$_CheckingUser _value, $Res Function(_$_CheckingUser) _then)
+class __$$CheckingUserImplCopyWithImpl<$Res>
+    extends _$CheckUsernameStateCopyWithImpl<$Res, _$CheckingUserImpl>
+    implements _$$CheckingUserImplCopyWith<$Res> {
+  __$$CheckingUserImplCopyWithImpl(
+      _$CheckingUserImpl _value, $Res Function(_$CheckingUserImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_CheckingUser implements _CheckingUser {
-  const _$_CheckingUser();
+class _$CheckingUserImpl implements _CheckingUser {
+  const _$CheckingUserImpl();
 
   @override
   String toString() {
@@ -226,9 +227,9 @@ class _$_CheckingUser implements _CheckingUser {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_CheckingUser);
+        (other.runtimeType == runtimeType && other is _$CheckingUserImpl);
   }
 
   @override
@@ -310,24 +311,24 @@ class _$_CheckingUser implements _CheckingUser {
 }
 
 abstract class _CheckingUser implements CheckUsernameState {
-  const factory _CheckingUser() = _$_CheckingUser;
+  const factory _CheckingUser() = _$CheckingUserImpl;
 }
 
 /// @nodoc
-abstract class _$$_CheckUsernameLoadedCopyWith<$Res> {
-  factory _$$_CheckUsernameLoadedCopyWith(_$_CheckUsernameLoaded value,
-          $Res Function(_$_CheckUsernameLoaded) then) =
-      __$$_CheckUsernameLoadedCopyWithImpl<$Res>;
+abstract class _$$CheckUsernameLoadedImplCopyWith<$Res> {
+  factory _$$CheckUsernameLoadedImplCopyWith(_$CheckUsernameLoadedImpl value,
+          $Res Function(_$CheckUsernameLoadedImpl) then) =
+      __$$CheckUsernameLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool message});
 }
 
 /// @nodoc
-class __$$_CheckUsernameLoadedCopyWithImpl<$Res>
-    extends _$CheckUsernameStateCopyWithImpl<$Res, _$_CheckUsernameLoaded>
-    implements _$$_CheckUsernameLoadedCopyWith<$Res> {
-  __$$_CheckUsernameLoadedCopyWithImpl(_$_CheckUsernameLoaded _value,
-      $Res Function(_$_CheckUsernameLoaded) _then)
+class __$$CheckUsernameLoadedImplCopyWithImpl<$Res>
+    extends _$CheckUsernameStateCopyWithImpl<$Res, _$CheckUsernameLoadedImpl>
+    implements _$$CheckUsernameLoadedImplCopyWith<$Res> {
+  __$$CheckUsernameLoadedImplCopyWithImpl(_$CheckUsernameLoadedImpl _value,
+      $Res Function(_$CheckUsernameLoadedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -335,7 +336,7 @@ class __$$_CheckUsernameLoadedCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_CheckUsernameLoaded(
+    return _then(_$CheckUsernameLoadedImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -346,8 +347,8 @@ class __$$_CheckUsernameLoadedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CheckUsernameLoaded implements _CheckUsernameLoaded {
-  const _$_CheckUsernameLoaded(this.message);
+class _$CheckUsernameLoadedImpl implements _CheckUsernameLoaded {
+  const _$CheckUsernameLoadedImpl(this.message);
 
   @override
   final bool message;
@@ -358,10 +359,10 @@ class _$_CheckUsernameLoaded implements _CheckUsernameLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CheckUsernameLoaded &&
+            other is _$CheckUsernameLoadedImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -371,8 +372,8 @@ class _$_CheckUsernameLoaded implements _CheckUsernameLoaded {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CheckUsernameLoadedCopyWith<_$_CheckUsernameLoaded> get copyWith =>
-      __$$_CheckUsernameLoadedCopyWithImpl<_$_CheckUsernameLoaded>(
+  _$$CheckUsernameLoadedImplCopyWith<_$CheckUsernameLoadedImpl> get copyWith =>
+      __$$CheckUsernameLoadedImplCopyWithImpl<_$CheckUsernameLoadedImpl>(
           this, _$identity);
 
   @override
@@ -452,29 +453,29 @@ class _$_CheckUsernameLoaded implements _CheckUsernameLoaded {
 
 abstract class _CheckUsernameLoaded implements CheckUsernameState {
   const factory _CheckUsernameLoaded(final bool message) =
-      _$_CheckUsernameLoaded;
+      _$CheckUsernameLoadedImpl;
 
   bool get message;
   @JsonKey(ignore: true)
-  _$$_CheckUsernameLoadedCopyWith<_$_CheckUsernameLoaded> get copyWith =>
+  _$$CheckUsernameLoadedImplCopyWith<_$CheckUsernameLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_CheckUsernameErrorCopyWith<$Res> {
-  factory _$$_CheckUsernameErrorCopyWith(_$_CheckUsernameError value,
-          $Res Function(_$_CheckUsernameError) then) =
-      __$$_CheckUsernameErrorCopyWithImpl<$Res>;
+abstract class _$$CheckUsernameErrorImplCopyWith<$Res> {
+  factory _$$CheckUsernameErrorImplCopyWith(_$CheckUsernameErrorImpl value,
+          $Res Function(_$CheckUsernameErrorImpl) then) =
+      __$$CheckUsernameErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_CheckUsernameErrorCopyWithImpl<$Res>
-    extends _$CheckUsernameStateCopyWithImpl<$Res, _$_CheckUsernameError>
-    implements _$$_CheckUsernameErrorCopyWith<$Res> {
-  __$$_CheckUsernameErrorCopyWithImpl(
-      _$_CheckUsernameError _value, $Res Function(_$_CheckUsernameError) _then)
+class __$$CheckUsernameErrorImplCopyWithImpl<$Res>
+    extends _$CheckUsernameStateCopyWithImpl<$Res, _$CheckUsernameErrorImpl>
+    implements _$$CheckUsernameErrorImplCopyWith<$Res> {
+  __$$CheckUsernameErrorImplCopyWithImpl(_$CheckUsernameErrorImpl _value,
+      $Res Function(_$CheckUsernameErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -482,7 +483,7 @@ class __$$_CheckUsernameErrorCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_CheckUsernameError(
+    return _then(_$CheckUsernameErrorImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -493,8 +494,8 @@ class __$$_CheckUsernameErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CheckUsernameError implements _CheckUsernameError {
-  const _$_CheckUsernameError(this.message);
+class _$CheckUsernameErrorImpl implements _CheckUsernameError {
+  const _$CheckUsernameErrorImpl(this.message);
 
   @override
   final String message;
@@ -505,10 +506,10 @@ class _$_CheckUsernameError implements _CheckUsernameError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CheckUsernameError &&
+            other is _$CheckUsernameErrorImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -518,8 +519,8 @@ class _$_CheckUsernameError implements _CheckUsernameError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CheckUsernameErrorCopyWith<_$_CheckUsernameError> get copyWith =>
-      __$$_CheckUsernameErrorCopyWithImpl<_$_CheckUsernameError>(
+  _$$CheckUsernameErrorImplCopyWith<_$CheckUsernameErrorImpl> get copyWith =>
+      __$$CheckUsernameErrorImplCopyWithImpl<_$CheckUsernameErrorImpl>(
           this, _$identity);
 
   @override
@@ -599,10 +600,10 @@ class _$_CheckUsernameError implements _CheckUsernameError {
 
 abstract class _CheckUsernameError implements CheckUsernameState {
   const factory _CheckUsernameError(final String message) =
-      _$_CheckUsernameError;
+      _$CheckUsernameErrorImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_CheckUsernameErrorCopyWith<_$_CheckUsernameError> get copyWith =>
+  _$$CheckUsernameErrorImplCopyWith<_$CheckUsernameErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

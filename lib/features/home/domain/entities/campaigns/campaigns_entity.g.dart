@@ -6,9 +6,9 @@ part of 'campaigns_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CampaignCategories _$$_CampaignCategoriesFromJson(
+_$CampaignCategoriesImpl _$$CampaignCategoriesImplFromJson(
         Map<String, dynamic> json) =>
-    _$_CampaignCategories(
+    _$CampaignCategoriesImpl(
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -16,15 +16,15 @@ _$_CampaignCategories _$$_CampaignCategoriesFromJson(
       status: json['status'] ?? 0,
     );
 
-Map<String, dynamic> _$$_CampaignCategoriesToJson(
-        _$_CampaignCategories instance) =>
+Map<String, dynamic> _$$CampaignCategoriesImplToJson(
+        _$CampaignCategoriesImpl instance) =>
     <String, dynamic>{
       'data': instance.data,
       'message': instance.message,
       'status': instance.status,
     };
 
-_$_Datum _$$_DatumFromJson(Map<String, dynamic> json) => _$_Datum(
+_$DatumImpl _$$DatumImplFromJson(Map<String, dynamic> json) => _$DatumImpl(
       campaignId: json['campaign_id'] ?? '',
       title: json['title'] ?? '',
       description: json['description'] ?? '',
@@ -43,7 +43,8 @@ _$_Datum _$$_DatumFromJson(Map<String, dynamic> json) => _$_Datum(
           .toList(),
     );
 
-Map<String, dynamic> _$$_DatumToJson(_$_Datum instance) => <String, dynamic>{
+Map<String, dynamic> _$$DatumImplToJson(_$DatumImpl instance) =>
+    <String, dynamic>{
       'campaign_id': instance.campaignId,
       'title': instance.title,
       'description': instance.description,
@@ -58,14 +59,15 @@ Map<String, dynamic> _$$_DatumToJson(_$_Datum instance) => <String, dynamic>{
       'donations': instance.donations?.map((e) => e.toJson()).toList(),
     };
 
-_$_Donation _$$_DonationFromJson(Map<String, dynamic> json) => _$_Donation(
+_$DonationImpl _$$DonationImplFromJson(Map<String, dynamic> json) =>
+    _$DonationImpl(
       amount: json['amount'] ?? 0.0,
       donor: json['donor'] ?? '',
       image: json['image'] ?? '',
       username: json['username'] ?? 'Anonymous',
     );
 
-Map<String, dynamic> _$$_DonationToJson(_$_Donation instance) =>
+Map<String, dynamic> _$$DonationImplToJson(_$DonationImpl instance) =>
     <String, dynamic>{
       'amount': instance.amount,
       'donor': instance.donor,
@@ -73,14 +75,15 @@ Map<String, dynamic> _$$_DonationToJson(_$_Donation instance) =>
       'username': instance.username,
     };
 
-_$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
+_$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       username: json['username'] ?? 'Anonymous',
       email: json['email'] ?? '',
       address: json['address'] ?? '',
       avatar: json['avatar'] ?? '',
     );
 
-Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
+Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
+    <String, dynamic>{
       'username': instance.username,
       'email': instance.email,
       'address': instance.address,

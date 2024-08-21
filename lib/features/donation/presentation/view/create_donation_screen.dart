@@ -179,12 +179,13 @@ class _DonationScreenViewState extends ConsumerState<CreateDonationScreen>
                   // FilteringTextInputFormatter.allow(
                   //     RegExp(r'(^\d*[\.\,]?\d{0,10})')),
                   // always add a decimal to the end of the input if it's not there
-                  CurrencyTextInputFormatter(
-                    name: '',
-                    decimalDigits: 4,
-                    symbol: 'ETH  ',
-                    locale: 'en_US',
-                  ),
+                  // CurrencyTextInputFormatter(
+                    
+                    // name: '',
+                    // decimalDigits: 4,
+                    // symbol: 'ETH  ',
+                    // locale: 'en_US',
+                  // ),
                 ],
                 inputType: TextInputType.numberWithOptions(decimal: true),
                 onChanged: (value) {

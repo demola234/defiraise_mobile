@@ -12,7 +12,7 @@ part of 'campaign_category_entities.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 CampaignCategories _$CampaignCategoriesFromJson(Map<String, dynamic> json) {
   return _CampaignCategories.fromJson(json);
@@ -74,22 +74,22 @@ class _$CampaignCategoriesCopyWithImpl<$Res, $Val extends CampaignCategories>
 }
 
 /// @nodoc
-abstract class _$$_CampaignCategoriesCopyWith<$Res>
+abstract class _$$CampaignCategoriesImplCopyWith<$Res>
     implements $CampaignCategoriesCopyWith<$Res> {
-  factory _$$_CampaignCategoriesCopyWith(_$_CampaignCategories value,
-          $Res Function(_$_CampaignCategories) then) =
-      __$$_CampaignCategoriesCopyWithImpl<$Res>;
+  factory _$$CampaignCategoriesImplCopyWith(_$CampaignCategoriesImpl value,
+          $Res Function(_$CampaignCategoriesImpl) then) =
+      __$$CampaignCategoriesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Datum> data, dynamic message, int status});
 }
 
 /// @nodoc
-class __$$_CampaignCategoriesCopyWithImpl<$Res>
-    extends _$CampaignCategoriesCopyWithImpl<$Res, _$_CampaignCategories>
-    implements _$$_CampaignCategoriesCopyWith<$Res> {
-  __$$_CampaignCategoriesCopyWithImpl(
-      _$_CampaignCategories _value, $Res Function(_$_CampaignCategories) _then)
+class __$$CampaignCategoriesImplCopyWithImpl<$Res>
+    extends _$CampaignCategoriesCopyWithImpl<$Res, _$CampaignCategoriesImpl>
+    implements _$$CampaignCategoriesImplCopyWith<$Res> {
+  __$$CampaignCategoriesImplCopyWithImpl(_$CampaignCategoriesImpl _value,
+      $Res Function(_$CampaignCategoriesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_CampaignCategoriesCopyWithImpl<$Res>
     Object? message = freezed,
     Object? status = null,
   }) {
-    return _then(_$_CampaignCategories(
+    return _then(_$CampaignCategoriesImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -115,15 +115,15 @@ class __$$_CampaignCategoriesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CampaignCategories implements _CampaignCategories {
-  const _$_CampaignCategories(
+class _$CampaignCategoriesImpl implements _CampaignCategories {
+  const _$CampaignCategoriesImpl(
       {required final List<Datum> data,
       this.message = '',
       required this.status})
       : _data = data;
 
-  factory _$_CampaignCategories.fromJson(Map<String, dynamic> json) =>
-      _$$_CampaignCategoriesFromJson(json);
+  factory _$CampaignCategoriesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CampaignCategoriesImplFromJson(json);
 
   final List<Datum> _data;
   @override
@@ -145,10 +145,10 @@ class _$_CampaignCategories implements _CampaignCategories {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CampaignCategories &&
+            other is _$CampaignCategoriesImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             (identical(other.status, status) || other.status == status));
@@ -165,13 +165,13 @@ class _$_CampaignCategories implements _CampaignCategories {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CampaignCategoriesCopyWith<_$_CampaignCategories> get copyWith =>
-      __$$_CampaignCategoriesCopyWithImpl<_$_CampaignCategories>(
+  _$$CampaignCategoriesImplCopyWith<_$CampaignCategoriesImpl> get copyWith =>
+      __$$CampaignCategoriesImplCopyWithImpl<_$CampaignCategoriesImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CampaignCategoriesToJson(
+    return _$$CampaignCategoriesImplToJson(
       this,
     );
   }
@@ -181,10 +181,10 @@ abstract class _CampaignCategories implements CampaignCategories {
   const factory _CampaignCategories(
       {required final List<Datum> data,
       final dynamic message,
-      required final int status}) = _$_CampaignCategories;
+      required final int status}) = _$CampaignCategoriesImpl;
 
   factory _CampaignCategories.fromJson(Map<String, dynamic> json) =
-      _$_CampaignCategories.fromJson;
+      _$CampaignCategoriesImpl.fromJson;
 
   @override
   List<Datum> get data;
@@ -194,7 +194,7 @@ abstract class _CampaignCategories implements CampaignCategories {
   int get status;
   @override
   @JsonKey(ignore: true)
-  _$$_CampaignCategoriesCopyWith<_$_CampaignCategories> get copyWith =>
+  _$$CampaignCategoriesImplCopyWith<_$CampaignCategoriesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -262,18 +262,21 @@ class _$DatumCopyWithImpl<$Res, $Val extends Datum>
 }
 
 /// @nodoc
-abstract class _$$_DatumCopyWith<$Res> implements $DatumCopyWith<$Res> {
-  factory _$$_DatumCopyWith(_$_Datum value, $Res Function(_$_Datum) then) =
-      __$$_DatumCopyWithImpl<$Res>;
+abstract class _$$DatumImplCopyWith<$Res> implements $DatumCopyWith<$Res> {
+  factory _$$DatumImplCopyWith(
+          _$DatumImpl value, $Res Function(_$DatumImpl) then) =
+      __$$DatumImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({dynamic name, dynamic image, dynamic description, dynamic id});
 }
 
 /// @nodoc
-class __$$_DatumCopyWithImpl<$Res> extends _$DatumCopyWithImpl<$Res, _$_Datum>
-    implements _$$_DatumCopyWith<$Res> {
-  __$$_DatumCopyWithImpl(_$_Datum _value, $Res Function(_$_Datum) _then)
+class __$$DatumImplCopyWithImpl<$Res>
+    extends _$DatumCopyWithImpl<$Res, _$DatumImpl>
+    implements _$$DatumImplCopyWith<$Res> {
+  __$$DatumImplCopyWithImpl(
+      _$DatumImpl _value, $Res Function(_$DatumImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -284,7 +287,7 @@ class __$$_DatumCopyWithImpl<$Res> extends _$DatumCopyWithImpl<$Res, _$_Datum>
     Object? description = freezed,
     Object? id = freezed,
   }) {
-    return _then(_$_Datum(
+    return _then(_$DatumImpl(
       name: freezed == name ? _value.name! : name,
       image: freezed == image ? _value.image! : image,
       description: freezed == description ? _value.description! : description,
@@ -296,12 +299,12 @@ class __$$_DatumCopyWithImpl<$Res> extends _$DatumCopyWithImpl<$Res, _$_Datum>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_Datum implements _Datum {
-  const _$_Datum(
+class _$DatumImpl implements _Datum {
+  const _$DatumImpl(
       {this.name = '', this.image = '', this.description = '', this.id = ''});
 
-  factory _$_Datum.fromJson(Map<String, dynamic> json) =>
-      _$$_DatumFromJson(json);
+  factory _$DatumImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DatumImplFromJson(json);
 
   @override
   @JsonKey()
@@ -322,10 +325,10 @@ class _$_Datum implements _Datum {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Datum &&
+            other is _$DatumImpl &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality()
@@ -345,12 +348,12 @@ class _$_Datum implements _Datum {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DatumCopyWith<_$_Datum> get copyWith =>
-      __$$_DatumCopyWithImpl<_$_Datum>(this, _$identity);
+  _$$DatumImplCopyWith<_$DatumImpl> get copyWith =>
+      __$$DatumImplCopyWithImpl<_$DatumImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DatumToJson(
+    return _$$DatumImplToJson(
       this,
     );
   }
@@ -361,9 +364,9 @@ abstract class _Datum implements Datum {
       {final dynamic name,
       final dynamic image,
       final dynamic description,
-      final dynamic id}) = _$_Datum;
+      final dynamic id}) = _$DatumImpl;
 
-  factory _Datum.fromJson(Map<String, dynamic> json) = _$_Datum.fromJson;
+  factory _Datum.fromJson(Map<String, dynamic> json) = _$DatumImpl.fromJson;
 
   @override
   dynamic get name;
@@ -375,6 +378,6 @@ abstract class _Datum implements Datum {
   dynamic get id;
   @override
   @JsonKey(ignore: true)
-  _$$_DatumCopyWith<_$_Datum> get copyWith =>
+  _$$DatumImplCopyWith<_$DatumImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

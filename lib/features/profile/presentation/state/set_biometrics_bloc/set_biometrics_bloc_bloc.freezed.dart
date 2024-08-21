@@ -12,7 +12,7 @@ part of 'set_biometrics_bloc_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SetBiometricsBlocState {
@@ -88,24 +88,25 @@ class _$SetBiometricsBlocStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$SetBiometricsBlocStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$SetBiometricsBlocStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -113,9 +114,9 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -197,29 +198,29 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements SetBiometricsBlocState {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingStateCopyWith<$Res> {
-  factory _$$LoadingStateCopyWith(
-          _$LoadingState value, $Res Function(_$LoadingState) then) =
-      __$$LoadingStateCopyWithImpl<$Res>;
+abstract class _$$LoadingStateImplCopyWith<$Res> {
+  factory _$$LoadingStateImplCopyWith(
+          _$LoadingStateImpl value, $Res Function(_$LoadingStateImpl) then) =
+      __$$LoadingStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingStateCopyWithImpl<$Res>
-    extends _$SetBiometricsBlocStateCopyWithImpl<$Res, _$LoadingState>
-    implements _$$LoadingStateCopyWith<$Res> {
-  __$$LoadingStateCopyWithImpl(
-      _$LoadingState _value, $Res Function(_$LoadingState) _then)
+class __$$LoadingStateImplCopyWithImpl<$Res>
+    extends _$SetBiometricsBlocStateCopyWithImpl<$Res, _$LoadingStateImpl>
+    implements _$$LoadingStateImplCopyWith<$Res> {
+  __$$LoadingStateImplCopyWithImpl(
+      _$LoadingStateImpl _value, $Res Function(_$LoadingStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadingState implements LoadingState {
-  const _$LoadingState();
+class _$LoadingStateImpl implements LoadingState {
+  const _$LoadingStateImpl();
 
   @override
   String toString() {
@@ -227,9 +228,9 @@ class _$LoadingState implements LoadingState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingState);
+        (other.runtimeType == runtimeType && other is _$LoadingStateImpl);
   }
 
   @override
@@ -311,24 +312,24 @@ class _$LoadingState implements LoadingState {
 }
 
 abstract class LoadingState implements SetBiometricsBlocState {
-  const factory LoadingState() = _$LoadingState;
+  const factory LoadingState() = _$LoadingStateImpl;
 }
 
 /// @nodoc
-abstract class _$$ErrorStateCopyWith<$Res> {
-  factory _$$ErrorStateCopyWith(
-          _$ErrorState value, $Res Function(_$ErrorState) then) =
-      __$$ErrorStateCopyWithImpl<$Res>;
+abstract class _$$ErrorStateImplCopyWith<$Res> {
+  factory _$$ErrorStateImplCopyWith(
+          _$ErrorStateImpl value, $Res Function(_$ErrorStateImpl) then) =
+      __$$ErrorStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$ErrorStateCopyWithImpl<$Res>
-    extends _$SetBiometricsBlocStateCopyWithImpl<$Res, _$ErrorState>
-    implements _$$ErrorStateCopyWith<$Res> {
-  __$$ErrorStateCopyWithImpl(
-      _$ErrorState _value, $Res Function(_$ErrorState) _then)
+class __$$ErrorStateImplCopyWithImpl<$Res>
+    extends _$SetBiometricsBlocStateCopyWithImpl<$Res, _$ErrorStateImpl>
+    implements _$$ErrorStateImplCopyWith<$Res> {
+  __$$ErrorStateImplCopyWithImpl(
+      _$ErrorStateImpl _value, $Res Function(_$ErrorStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -336,7 +337,7 @@ class __$$ErrorStateCopyWithImpl<$Res>
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$ErrorState(
+    return _then(_$ErrorStateImpl(
       null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -347,8 +348,8 @@ class __$$ErrorStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorState implements ErrorState {
-  const _$ErrorState(this.error);
+class _$ErrorStateImpl implements ErrorState {
+  const _$ErrorStateImpl(this.error);
 
   @override
   final String error;
@@ -359,10 +360,10 @@ class _$ErrorState implements ErrorState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorState &&
+            other is _$ErrorStateImpl &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -372,8 +373,8 @@ class _$ErrorState implements ErrorState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorStateCopyWith<_$ErrorState> get copyWith =>
-      __$$ErrorStateCopyWithImpl<_$ErrorState>(this, _$identity);
+  _$$ErrorStateImplCopyWith<_$ErrorStateImpl> get copyWith =>
+      __$$ErrorStateImplCopyWithImpl<_$ErrorStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -451,29 +452,29 @@ class _$ErrorState implements ErrorState {
 }
 
 abstract class ErrorState implements SetBiometricsBlocState {
-  const factory ErrorState(final String error) = _$ErrorState;
+  const factory ErrorState(final String error) = _$ErrorStateImpl;
 
   String get error;
   @JsonKey(ignore: true)
-  _$$ErrorStateCopyWith<_$ErrorState> get copyWith =>
+  _$$ErrorStateImplCopyWith<_$ErrorStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadedStateCopyWith<$Res> {
-  factory _$$LoadedStateCopyWith(
-          _$LoadedState value, $Res Function(_$LoadedState) then) =
-      __$$LoadedStateCopyWithImpl<$Res>;
+abstract class _$$LoadedStateImplCopyWith<$Res> {
+  factory _$$LoadedStateImplCopyWith(
+          _$LoadedStateImpl value, $Res Function(_$LoadedStateImpl) then) =
+      __$$LoadedStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String biometrics});
 }
 
 /// @nodoc
-class __$$LoadedStateCopyWithImpl<$Res>
-    extends _$SetBiometricsBlocStateCopyWithImpl<$Res, _$LoadedState>
-    implements _$$LoadedStateCopyWith<$Res> {
-  __$$LoadedStateCopyWithImpl(
-      _$LoadedState _value, $Res Function(_$LoadedState) _then)
+class __$$LoadedStateImplCopyWithImpl<$Res>
+    extends _$SetBiometricsBlocStateCopyWithImpl<$Res, _$LoadedStateImpl>
+    implements _$$LoadedStateImplCopyWith<$Res> {
+  __$$LoadedStateImplCopyWithImpl(
+      _$LoadedStateImpl _value, $Res Function(_$LoadedStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -481,7 +482,7 @@ class __$$LoadedStateCopyWithImpl<$Res>
   $Res call({
     Object? biometrics = null,
   }) {
-    return _then(_$LoadedState(
+    return _then(_$LoadedStateImpl(
       null == biometrics
           ? _value.biometrics
           : biometrics // ignore: cast_nullable_to_non_nullable
@@ -492,8 +493,8 @@ class __$$LoadedStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedState implements LoadedState {
-  const _$LoadedState(this.biometrics);
+class _$LoadedStateImpl implements LoadedState {
+  const _$LoadedStateImpl(this.biometrics);
 
   @override
   final String biometrics;
@@ -504,10 +505,10 @@ class _$LoadedState implements LoadedState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedState &&
+            other is _$LoadedStateImpl &&
             (identical(other.biometrics, biometrics) ||
                 other.biometrics == biometrics));
   }
@@ -518,8 +519,8 @@ class _$LoadedState implements LoadedState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedStateCopyWith<_$LoadedState> get copyWith =>
-      __$$LoadedStateCopyWithImpl<_$LoadedState>(this, _$identity);
+  _$$LoadedStateImplCopyWith<_$LoadedStateImpl> get copyWith =>
+      __$$LoadedStateImplCopyWithImpl<_$LoadedStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -597,10 +598,10 @@ class _$LoadedState implements LoadedState {
 }
 
 abstract class LoadedState implements SetBiometricsBlocState {
-  const factory LoadedState(final String biometrics) = _$LoadedState;
+  const factory LoadedState(final String biometrics) = _$LoadedStateImpl;
 
   String get biometrics;
   @JsonKey(ignore: true)
-  _$$LoadedStateCopyWith<_$LoadedState> get copyWith =>
+  _$$LoadedStateImplCopyWith<_$LoadedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

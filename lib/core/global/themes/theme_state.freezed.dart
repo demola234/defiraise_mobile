@@ -12,7 +12,7 @@ part of 'theme_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ThemeState {
@@ -89,19 +89,21 @@ class _$ThemeStateCopyWithImpl<$Res, $Val extends ThemeState>
 }
 
 /// @nodoc
-abstract class _$$ThemeCopyWith<$Res> implements $ThemeStateCopyWith<$Res> {
-  factory _$$ThemeCopyWith(_$Theme value, $Res Function(_$Theme) then) =
-      __$$ThemeCopyWithImpl<$Res>;
+abstract class _$$ThemeImplCopyWith<$Res> implements $ThemeStateCopyWith<$Res> {
+  factory _$$ThemeImplCopyWith(
+          _$ThemeImpl value, $Res Function(_$ThemeImpl) then) =
+      __$$ThemeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeData themeData});
 }
 
 /// @nodoc
-class __$$ThemeCopyWithImpl<$Res>
-    extends _$ThemeStateCopyWithImpl<$Res, _$Theme>
-    implements _$$ThemeCopyWith<$Res> {
-  __$$ThemeCopyWithImpl(_$Theme _value, $Res Function(_$Theme) _then)
+class __$$ThemeImplCopyWithImpl<$Res>
+    extends _$ThemeStateCopyWithImpl<$Res, _$ThemeImpl>
+    implements _$$ThemeImplCopyWith<$Res> {
+  __$$ThemeImplCopyWithImpl(
+      _$ThemeImpl _value, $Res Function(_$ThemeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -109,7 +111,7 @@ class __$$ThemeCopyWithImpl<$Res>
   $Res call({
     Object? themeData = null,
   }) {
-    return _then(_$Theme(
+    return _then(_$ThemeImpl(
       themeData: null == themeData
           ? _value.themeData
           : themeData // ignore: cast_nullable_to_non_nullable
@@ -120,8 +122,8 @@ class __$$ThemeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Theme implements Theme {
-  const _$Theme({required this.themeData});
+class _$ThemeImpl implements Theme {
+  const _$ThemeImpl({required this.themeData});
 
   @override
   final ThemeData themeData;
@@ -132,10 +134,10 @@ class _$Theme implements Theme {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Theme &&
+            other is _$ThemeImpl &&
             (identical(other.themeData, themeData) ||
                 other.themeData == themeData));
   }
@@ -146,8 +148,8 @@ class _$Theme implements Theme {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ThemeCopyWith<_$Theme> get copyWith =>
-      __$$ThemeCopyWithImpl<_$Theme>(this, _$identity);
+  _$$ThemeImplCopyWith<_$ThemeImpl> get copyWith =>
+      __$$ThemeImplCopyWithImpl<_$ThemeImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -207,11 +209,12 @@ class _$Theme implements Theme {
 }
 
 abstract class Theme implements ThemeState {
-  const factory Theme({required final ThemeData themeData}) = _$Theme;
+  const factory Theme({required final ThemeData themeData}) = _$ThemeImpl;
 
   @override
   ThemeData get themeData;
   @override
   @JsonKey(ignore: true)
-  _$$ThemeCopyWith<_$Theme> get copyWith => throw _privateConstructorUsedError;
+  _$$ThemeImplCopyWith<_$ThemeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

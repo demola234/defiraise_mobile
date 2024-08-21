@@ -12,7 +12,7 @@ part of 'create_account_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 CreateAccountResponse _$CreateAccountResponseFromJson(
     Map<String, dynamic> json) {
@@ -90,11 +90,12 @@ class _$CreateAccountResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_CreateAccountResponseCopyWith<$Res>
+abstract class _$$CreateAccountResponseImplCopyWith<$Res>
     implements $CreateAccountResponseCopyWith<$Res> {
-  factory _$$_CreateAccountResponseCopyWith(_$_CreateAccountResponse value,
-          $Res Function(_$_CreateAccountResponse) then) =
-      __$$_CreateAccountResponseCopyWithImpl<$Res>;
+  factory _$$CreateAccountResponseImplCopyWith(
+          _$CreateAccountResponseImpl value,
+          $Res Function(_$CreateAccountResponseImpl) then) =
+      __$$CreateAccountResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Data? data, dynamic message, int status});
@@ -104,11 +105,12 @@ abstract class _$$_CreateAccountResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CreateAccountResponseCopyWithImpl<$Res>
-    extends _$CreateAccountResponseCopyWithImpl<$Res, _$_CreateAccountResponse>
-    implements _$$_CreateAccountResponseCopyWith<$Res> {
-  __$$_CreateAccountResponseCopyWithImpl(_$_CreateAccountResponse _value,
-      $Res Function(_$_CreateAccountResponse) _then)
+class __$$CreateAccountResponseImplCopyWithImpl<$Res>
+    extends _$CreateAccountResponseCopyWithImpl<$Res,
+        _$CreateAccountResponseImpl>
+    implements _$$CreateAccountResponseImplCopyWith<$Res> {
+  __$$CreateAccountResponseImplCopyWithImpl(_$CreateAccountResponseImpl _value,
+      $Res Function(_$CreateAccountResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -118,7 +120,7 @@ class __$$_CreateAccountResponseCopyWithImpl<$Res>
     Object? message = freezed,
     Object? status = null,
   }) {
-    return _then(_$_CreateAccountResponse(
+    return _then(_$CreateAccountResponseImpl(
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -134,12 +136,12 @@ class __$$_CreateAccountResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CreateAccountResponse implements _CreateAccountResponse {
-  const _$_CreateAccountResponse(
+class _$CreateAccountResponseImpl implements _CreateAccountResponse {
+  const _$CreateAccountResponseImpl(
       {this.data, this.message = '', required this.status});
 
-  factory _$_CreateAccountResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_CreateAccountResponseFromJson(json);
+  factory _$CreateAccountResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreateAccountResponseImplFromJson(json);
 
   @override
   final Data? data;
@@ -155,10 +157,10 @@ class _$_CreateAccountResponse implements _CreateAccountResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CreateAccountResponse &&
+            other is _$CreateAccountResponseImpl &&
             (identical(other.data, data) || other.data == data) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             (identical(other.status, status) || other.status == status));
@@ -172,13 +174,13 @@ class _$_CreateAccountResponse implements _CreateAccountResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CreateAccountResponseCopyWith<_$_CreateAccountResponse> get copyWith =>
-      __$$_CreateAccountResponseCopyWithImpl<_$_CreateAccountResponse>(
-          this, _$identity);
+  _$$CreateAccountResponseImplCopyWith<_$CreateAccountResponseImpl>
+      get copyWith => __$$CreateAccountResponseImplCopyWithImpl<
+          _$CreateAccountResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CreateAccountResponseToJson(
+    return _$$CreateAccountResponseImplToJson(
       this,
     );
   }
@@ -188,10 +190,10 @@ abstract class _CreateAccountResponse implements CreateAccountResponse {
   const factory _CreateAccountResponse(
       {final Data? data,
       final dynamic message,
-      required final int status}) = _$_CreateAccountResponse;
+      required final int status}) = _$CreateAccountResponseImpl;
 
   factory _CreateAccountResponse.fromJson(Map<String, dynamic> json) =
-      _$_CreateAccountResponse.fromJson;
+      _$CreateAccountResponseImpl.fromJson;
 
   @override
   Data? get data;
@@ -201,8 +203,8 @@ abstract class _CreateAccountResponse implements CreateAccountResponse {
   int get status;
   @override
   @JsonKey(ignore: true)
-  _$$_CreateAccountResponseCopyWith<_$_CreateAccountResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CreateAccountResponseImplCopyWith<_$CreateAccountResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 Data _$DataFromJson(Map<String, dynamic> json) {
@@ -287,9 +289,10 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
 }
 
 /// @nodoc
-abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
-  factory _$$_DataCopyWith(_$_Data value, $Res Function(_$_Data) then) =
-      __$$_DataCopyWithImpl<$Res>;
+abstract class _$$DataImplCopyWith<$Res> implements $DataCopyWith<$Res> {
+  factory _$$DataImplCopyWith(
+          _$DataImpl value, $Res Function(_$DataImpl) then) =
+      __$$DataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -302,9 +305,10 @@ abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
-    implements _$$_DataCopyWith<$Res> {
-  __$$_DataCopyWithImpl(_$_Data _value, $Res Function(_$_Data) _then)
+class __$$DataImplCopyWithImpl<$Res>
+    extends _$DataCopyWithImpl<$Res, _$DataImpl>
+    implements _$$DataImplCopyWith<$Res> {
+  __$$DataImplCopyWithImpl(_$DataImpl _value, $Res Function(_$DataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -317,7 +321,7 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
     Object? address = freezed,
     Object? balance = freezed,
   }) {
-    return _then(_$_Data(
+    return _then(_$DataImpl(
       username: freezed == username ? _value.username! : username,
       email: freezed == email ? _value.email! : email,
       passwordChangedAt: freezed == passwordChangedAt
@@ -336,8 +340,8 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Data implements _Data {
-  const _$_Data(
+class _$DataImpl implements _Data {
+  const _$DataImpl(
       {this.username = '',
       this.email = '',
       this.passwordChangedAt,
@@ -345,7 +349,8 @@ class _$_Data implements _Data {
       this.address = '',
       this.balance = ''});
 
-  factory _$_Data.fromJson(Map<String, dynamic> json) => _$$_DataFromJson(json);
+  factory _$DataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DataImplFromJson(json);
 
   @override
   @JsonKey()
@@ -370,10 +375,10 @@ class _$_Data implements _Data {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Data &&
+            other is _$DataImpl &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             (identical(other.passwordChangedAt, passwordChangedAt) ||
@@ -398,12 +403,12 @@ class _$_Data implements _Data {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DataCopyWith<_$_Data> get copyWith =>
-      __$$_DataCopyWithImpl<_$_Data>(this, _$identity);
+  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
+      __$$DataImplCopyWithImpl<_$DataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DataToJson(
+    return _$$DataImplToJson(
       this,
     );
   }
@@ -416,9 +421,9 @@ abstract class _Data implements Data {
       final DateTime? passwordChangedAt,
       final DateTime? createdAt,
       final dynamic address,
-      final dynamic balance}) = _$_Data;
+      final dynamic balance}) = _$DataImpl;
 
-  factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
+  factory _Data.fromJson(Map<String, dynamic> json) = _$DataImpl.fromJson;
 
   @override
   dynamic get username;
@@ -434,5 +439,6 @@ abstract class _Data implements Data {
   dynamic get balance;
   @override
   @JsonKey(ignore: true)
-  _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;
+  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -1,5 +1,5 @@
 class SecureStorageKey {
-  String hiveKey = 'hive_key';
-  String userLogin = 'user_login_data';
-  String token = 'token';
+  String hiveKey = 'hive_keys';
+  String userLogin = 'user_logins_data';
+  String token = 'tokens';
 }

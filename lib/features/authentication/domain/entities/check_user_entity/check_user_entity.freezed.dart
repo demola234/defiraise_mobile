@@ -12,7 +12,7 @@ part of 'check_user_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 CheckUserEntity _$CheckUserEntityFromJson(Map<String, dynamic> json) {
   return _CheckUserEntity.fromJson(json);
@@ -74,22 +74,22 @@ class _$CheckUserEntityCopyWithImpl<$Res, $Val extends CheckUserEntity>
 }
 
 /// @nodoc
-abstract class _$$_CheckUserEntityCopyWith<$Res>
+abstract class _$$CheckUserEntityImplCopyWith<$Res>
     implements $CheckUserEntityCopyWith<$Res> {
-  factory _$$_CheckUserEntityCopyWith(
-          _$_CheckUserEntity value, $Res Function(_$_CheckUserEntity) then) =
-      __$$_CheckUserEntityCopyWithImpl<$Res>;
+  factory _$$CheckUserEntityImplCopyWith(_$CheckUserEntityImpl value,
+          $Res Function(_$CheckUserEntityImpl) then) =
+      __$$CheckUserEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool? data, String message, int status});
 }
 
 /// @nodoc
-class __$$_CheckUserEntityCopyWithImpl<$Res>
-    extends _$CheckUserEntityCopyWithImpl<$Res, _$_CheckUserEntity>
-    implements _$$_CheckUserEntityCopyWith<$Res> {
-  __$$_CheckUserEntityCopyWithImpl(
-      _$_CheckUserEntity _value, $Res Function(_$_CheckUserEntity) _then)
+class __$$CheckUserEntityImplCopyWithImpl<$Res>
+    extends _$CheckUserEntityCopyWithImpl<$Res, _$CheckUserEntityImpl>
+    implements _$$CheckUserEntityImplCopyWith<$Res> {
+  __$$CheckUserEntityImplCopyWithImpl(
+      _$CheckUserEntityImpl _value, $Res Function(_$CheckUserEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_CheckUserEntityCopyWithImpl<$Res>
     Object? message = null,
     Object? status = null,
   }) {
-    return _then(_$_CheckUserEntity(
+    return _then(_$CheckUserEntityImpl(
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -118,12 +118,12 @@ class __$$_CheckUserEntityCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CheckUserEntity implements _CheckUserEntity {
-  const _$_CheckUserEntity(
+class _$CheckUserEntityImpl implements _CheckUserEntity {
+  const _$CheckUserEntityImpl(
       {this.data, required this.message, required this.status});
 
-  factory _$_CheckUserEntity.fromJson(Map<String, dynamic> json) =>
-      _$$_CheckUserEntityFromJson(json);
+  factory _$CheckUserEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CheckUserEntityImplFromJson(json);
 
   @override
   final bool? data;
@@ -138,10 +138,10 @@ class _$_CheckUserEntity implements _CheckUserEntity {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CheckUserEntity &&
+            other is _$CheckUserEntityImpl &&
             (identical(other.data, data) || other.data == data) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.status, status) || other.status == status));
@@ -154,12 +154,13 @@ class _$_CheckUserEntity implements _CheckUserEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CheckUserEntityCopyWith<_$_CheckUserEntity> get copyWith =>
-      __$$_CheckUserEntityCopyWithImpl<_$_CheckUserEntity>(this, _$identity);
+  _$$CheckUserEntityImplCopyWith<_$CheckUserEntityImpl> get copyWith =>
+      __$$CheckUserEntityImplCopyWithImpl<_$CheckUserEntityImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CheckUserEntityToJson(
+    return _$$CheckUserEntityImplToJson(
       this,
     );
   }
@@ -169,10 +170,10 @@ abstract class _CheckUserEntity implements CheckUserEntity {
   const factory _CheckUserEntity(
       {final bool? data,
       required final String message,
-      required final int status}) = _$_CheckUserEntity;
+      required final int status}) = _$CheckUserEntityImpl;
 
   factory _CheckUserEntity.fromJson(Map<String, dynamic> json) =
-      _$_CheckUserEntity.fromJson;
+      _$CheckUserEntityImpl.fromJson;
 
   @override
   bool? get data;
@@ -182,6 +183,6 @@ abstract class _CheckUserEntity implements CheckUserEntity {
   int get status;
   @override
   @JsonKey(ignore: true)
-  _$$_CheckUserEntityCopyWith<_$_CheckUserEntity> get copyWith =>
+  _$$CheckUserEntityImplCopyWith<_$CheckUserEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

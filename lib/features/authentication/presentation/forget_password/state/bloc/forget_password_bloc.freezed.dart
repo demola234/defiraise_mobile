@@ -12,7 +12,7 @@ part of 'forget_password_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ForgetPasswordState {
@@ -146,24 +146,25 @@ class _$ForgetPasswordStateCopyWithImpl<$Res, $Val extends ForgetPasswordState>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -171,9 +172,9 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -314,24 +315,24 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements ForgetPasswordState {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_ForgetPasswordErrorCopyWith<$Res> {
-  factory _$$_ForgetPasswordErrorCopyWith(_$_ForgetPasswordError value,
-          $Res Function(_$_ForgetPasswordError) then) =
-      __$$_ForgetPasswordErrorCopyWithImpl<$Res>;
+abstract class _$$ForgetPasswordErrorImplCopyWith<$Res> {
+  factory _$$ForgetPasswordErrorImplCopyWith(_$ForgetPasswordErrorImpl value,
+          $Res Function(_$ForgetPasswordErrorImpl) then) =
+      __$$ForgetPasswordErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_ForgetPasswordErrorCopyWithImpl<$Res>
-    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$_ForgetPasswordError>
-    implements _$$_ForgetPasswordErrorCopyWith<$Res> {
-  __$$_ForgetPasswordErrorCopyWithImpl(_$_ForgetPasswordError _value,
-      $Res Function(_$_ForgetPasswordError) _then)
+class __$$ForgetPasswordErrorImplCopyWithImpl<$Res>
+    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$ForgetPasswordErrorImpl>
+    implements _$$ForgetPasswordErrorImplCopyWith<$Res> {
+  __$$ForgetPasswordErrorImplCopyWithImpl(_$ForgetPasswordErrorImpl _value,
+      $Res Function(_$ForgetPasswordErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -339,7 +340,7 @@ class __$$_ForgetPasswordErrorCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_ForgetPasswordError(
+    return _then(_$ForgetPasswordErrorImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -350,8 +351,8 @@ class __$$_ForgetPasswordErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ForgetPasswordError implements _ForgetPasswordError {
-  const _$_ForgetPasswordError(this.message);
+class _$ForgetPasswordErrorImpl implements _ForgetPasswordError {
+  const _$ForgetPasswordErrorImpl(this.message);
 
   @override
   final String message;
@@ -362,10 +363,10 @@ class _$_ForgetPasswordError implements _ForgetPasswordError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ForgetPasswordError &&
+            other is _$ForgetPasswordErrorImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -375,8 +376,8 @@ class _$_ForgetPasswordError implements _ForgetPasswordError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ForgetPasswordErrorCopyWith<_$_ForgetPasswordError> get copyWith =>
-      __$$_ForgetPasswordErrorCopyWithImpl<_$_ForgetPasswordError>(
+  _$$ForgetPasswordErrorImplCopyWith<_$ForgetPasswordErrorImpl> get copyWith =>
+      __$$ForgetPasswordErrorImplCopyWithImpl<_$ForgetPasswordErrorImpl>(
           this, _$identity);
 
   @override
@@ -515,33 +516,34 @@ class _$_ForgetPasswordError implements _ForgetPasswordError {
 
 abstract class _ForgetPasswordError implements ForgetPasswordState {
   const factory _ForgetPasswordError(final String message) =
-      _$_ForgetPasswordError;
+      _$ForgetPasswordErrorImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_ForgetPasswordErrorCopyWith<_$_ForgetPasswordError> get copyWith =>
+  _$$ForgetPasswordErrorImplCopyWith<_$ForgetPasswordErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_LoadingCopyWith<$Res> {
-  factory _$$_LoadingCopyWith(
-          _$_Loading value, $Res Function(_$_Loading) then) =
-      __$$_LoadingCopyWithImpl<$Res>;
+abstract class _$$LoadingImplCopyWith<$Res> {
+  factory _$$LoadingImplCopyWith(
+          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
+      __$$LoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res>
-    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$_Loading>
-    implements _$$_LoadingCopyWith<$Res> {
-  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+class __$$LoadingImplCopyWithImpl<$Res>
+    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$LoadingImpl>
+    implements _$$LoadingImplCopyWith<$Res> {
+  __$$LoadingImplCopyWithImpl(
+      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Loading implements _Loading {
-  const _$_Loading();
+class _$LoadingImpl implements _Loading {
+  const _$LoadingImpl();
 
   @override
   String toString() {
@@ -549,9 +551,9 @@ class _$_Loading implements _Loading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Loading);
+        (other.runtimeType == runtimeType && other is _$LoadingImpl);
   }
 
   @override
@@ -692,24 +694,25 @@ class _$_Loading implements _Loading {
 }
 
 abstract class _Loading implements ForgetPasswordState {
-  const factory _Loading() = _$_Loading;
+  const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$_ForgetPasswordSuccessCopyWith<$Res> {
-  factory _$$_ForgetPasswordSuccessCopyWith(_$_ForgetPasswordSuccess value,
-          $Res Function(_$_ForgetPasswordSuccess) then) =
-      __$$_ForgetPasswordSuccessCopyWithImpl<$Res>;
+abstract class _$$ForgetPasswordSuccessImplCopyWith<$Res> {
+  factory _$$ForgetPasswordSuccessImplCopyWith(
+          _$ForgetPasswordSuccessImpl value,
+          $Res Function(_$ForgetPasswordSuccessImpl) then) =
+      __$$ForgetPasswordSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_ForgetPasswordSuccessCopyWithImpl<$Res>
-    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$_ForgetPasswordSuccess>
-    implements _$$_ForgetPasswordSuccessCopyWith<$Res> {
-  __$$_ForgetPasswordSuccessCopyWithImpl(_$_ForgetPasswordSuccess _value,
-      $Res Function(_$_ForgetPasswordSuccess) _then)
+class __$$ForgetPasswordSuccessImplCopyWithImpl<$Res>
+    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$ForgetPasswordSuccessImpl>
+    implements _$$ForgetPasswordSuccessImplCopyWith<$Res> {
+  __$$ForgetPasswordSuccessImplCopyWithImpl(_$ForgetPasswordSuccessImpl _value,
+      $Res Function(_$ForgetPasswordSuccessImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -717,7 +720,7 @@ class __$$_ForgetPasswordSuccessCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_ForgetPasswordSuccess(
+    return _then(_$ForgetPasswordSuccessImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -728,8 +731,8 @@ class __$$_ForgetPasswordSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ForgetPasswordSuccess implements _ForgetPasswordSuccess {
-  const _$_ForgetPasswordSuccess(this.message);
+class _$ForgetPasswordSuccessImpl implements _ForgetPasswordSuccess {
+  const _$ForgetPasswordSuccessImpl(this.message);
 
   @override
   final String message;
@@ -740,10 +743,10 @@ class _$_ForgetPasswordSuccess implements _ForgetPasswordSuccess {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ForgetPasswordSuccess &&
+            other is _$ForgetPasswordSuccessImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -753,9 +756,9 @@ class _$_ForgetPasswordSuccess implements _ForgetPasswordSuccess {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ForgetPasswordSuccessCopyWith<_$_ForgetPasswordSuccess> get copyWith =>
-      __$$_ForgetPasswordSuccessCopyWithImpl<_$_ForgetPasswordSuccess>(
-          this, _$identity);
+  _$$ForgetPasswordSuccessImplCopyWith<_$ForgetPasswordSuccessImpl>
+      get copyWith => __$$ForgetPasswordSuccessImplCopyWithImpl<
+          _$ForgetPasswordSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -893,34 +896,34 @@ class _$_ForgetPasswordSuccess implements _ForgetPasswordSuccess {
 
 abstract class _ForgetPasswordSuccess implements ForgetPasswordState {
   const factory _ForgetPasswordSuccess(final String message) =
-      _$_ForgetPasswordSuccess;
+      _$ForgetPasswordSuccessImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_ForgetPasswordSuccessCopyWith<_$_ForgetPasswordSuccess> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ForgetPasswordSuccessImplCopyWith<_$ForgetPasswordSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_VerifyingOtpCopyWith<$Res> {
-  factory _$$_VerifyingOtpCopyWith(
-          _$_VerifyingOtp value, $Res Function(_$_VerifyingOtp) then) =
-      __$$_VerifyingOtpCopyWithImpl<$Res>;
+abstract class _$$VerifyingOtpImplCopyWith<$Res> {
+  factory _$$VerifyingOtpImplCopyWith(
+          _$VerifyingOtpImpl value, $Res Function(_$VerifyingOtpImpl) then) =
+      __$$VerifyingOtpImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_VerifyingOtpCopyWithImpl<$Res>
-    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$_VerifyingOtp>
-    implements _$$_VerifyingOtpCopyWith<$Res> {
-  __$$_VerifyingOtpCopyWithImpl(
-      _$_VerifyingOtp _value, $Res Function(_$_VerifyingOtp) _then)
+class __$$VerifyingOtpImplCopyWithImpl<$Res>
+    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$VerifyingOtpImpl>
+    implements _$$VerifyingOtpImplCopyWith<$Res> {
+  __$$VerifyingOtpImplCopyWithImpl(
+      _$VerifyingOtpImpl _value, $Res Function(_$VerifyingOtpImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_VerifyingOtp implements _VerifyingOtp {
-  const _$_VerifyingOtp();
+class _$VerifyingOtpImpl implements _VerifyingOtp {
+  const _$VerifyingOtpImpl();
 
   @override
   String toString() {
@@ -928,9 +931,9 @@ class _$_VerifyingOtp implements _VerifyingOtp {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_VerifyingOtp);
+        (other.runtimeType == runtimeType && other is _$VerifyingOtpImpl);
   }
 
   @override
@@ -1071,27 +1074,27 @@ class _$_VerifyingOtp implements _VerifyingOtp {
 }
 
 abstract class _VerifyingOtp implements ForgetPasswordState {
-  const factory _VerifyingOtp() = _$_VerifyingOtp;
+  const factory _VerifyingOtp() = _$VerifyingOtpImpl;
 }
 
 /// @nodoc
-abstract class _$$_OtpVerificationSuccessfulCopyWith<$Res> {
-  factory _$$_OtpVerificationSuccessfulCopyWith(
-          _$_OtpVerificationSuccessful value,
-          $Res Function(_$_OtpVerificationSuccessful) then) =
-      __$$_OtpVerificationSuccessfulCopyWithImpl<$Res>;
+abstract class _$$OtpVerificationSuccessfulImplCopyWith<$Res> {
+  factory _$$OtpVerificationSuccessfulImplCopyWith(
+          _$OtpVerificationSuccessfulImpl value,
+          $Res Function(_$OtpVerificationSuccessfulImpl) then) =
+      __$$OtpVerificationSuccessfulImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_OtpVerificationSuccessfulCopyWithImpl<$Res>
+class __$$OtpVerificationSuccessfulImplCopyWithImpl<$Res>
     extends _$ForgetPasswordStateCopyWithImpl<$Res,
-        _$_OtpVerificationSuccessful>
-    implements _$$_OtpVerificationSuccessfulCopyWith<$Res> {
-  __$$_OtpVerificationSuccessfulCopyWithImpl(
-      _$_OtpVerificationSuccessful _value,
-      $Res Function(_$_OtpVerificationSuccessful) _then)
+        _$OtpVerificationSuccessfulImpl>
+    implements _$$OtpVerificationSuccessfulImplCopyWith<$Res> {
+  __$$OtpVerificationSuccessfulImplCopyWithImpl(
+      _$OtpVerificationSuccessfulImpl _value,
+      $Res Function(_$OtpVerificationSuccessfulImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1099,7 +1102,7 @@ class __$$_OtpVerificationSuccessfulCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_OtpVerificationSuccessful(
+    return _then(_$OtpVerificationSuccessfulImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -1110,8 +1113,8 @@ class __$$_OtpVerificationSuccessfulCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OtpVerificationSuccessful implements _OtpVerificationSuccessful {
-  const _$_OtpVerificationSuccessful(this.message);
+class _$OtpVerificationSuccessfulImpl implements _OtpVerificationSuccessful {
+  const _$OtpVerificationSuccessfulImpl(this.message);
 
   @override
   final String message;
@@ -1122,10 +1125,10 @@ class _$_OtpVerificationSuccessful implements _OtpVerificationSuccessful {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OtpVerificationSuccessful &&
+            other is _$OtpVerificationSuccessfulImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -1135,9 +1138,9 @@ class _$_OtpVerificationSuccessful implements _OtpVerificationSuccessful {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OtpVerificationSuccessfulCopyWith<_$_OtpVerificationSuccessful>
-      get copyWith => __$$_OtpVerificationSuccessfulCopyWithImpl<
-          _$_OtpVerificationSuccessful>(this, _$identity);
+  _$$OtpVerificationSuccessfulImplCopyWith<_$OtpVerificationSuccessfulImpl>
+      get copyWith => __$$OtpVerificationSuccessfulImplCopyWithImpl<
+          _$OtpVerificationSuccessfulImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1275,29 +1278,29 @@ class _$_OtpVerificationSuccessful implements _OtpVerificationSuccessful {
 
 abstract class _OtpVerificationSuccessful implements ForgetPasswordState {
   const factory _OtpVerificationSuccessful(final String message) =
-      _$_OtpVerificationSuccessful;
+      _$OtpVerificationSuccessfulImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_OtpVerificationSuccessfulCopyWith<_$_OtpVerificationSuccessful>
+  _$$OtpVerificationSuccessfulImplCopyWith<_$OtpVerificationSuccessfulImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_OtpVerificationErrorCopyWith<$Res> {
-  factory _$$_OtpVerificationErrorCopyWith(_$_OtpVerificationError value,
-          $Res Function(_$_OtpVerificationError) then) =
-      __$$_OtpVerificationErrorCopyWithImpl<$Res>;
+abstract class _$$OtpVerificationErrorImplCopyWith<$Res> {
+  factory _$$OtpVerificationErrorImplCopyWith(_$OtpVerificationErrorImpl value,
+          $Res Function(_$OtpVerificationErrorImpl) then) =
+      __$$OtpVerificationErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_OtpVerificationErrorCopyWithImpl<$Res>
-    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$_OtpVerificationError>
-    implements _$$_OtpVerificationErrorCopyWith<$Res> {
-  __$$_OtpVerificationErrorCopyWithImpl(_$_OtpVerificationError _value,
-      $Res Function(_$_OtpVerificationError) _then)
+class __$$OtpVerificationErrorImplCopyWithImpl<$Res>
+    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$OtpVerificationErrorImpl>
+    implements _$$OtpVerificationErrorImplCopyWith<$Res> {
+  __$$OtpVerificationErrorImplCopyWithImpl(_$OtpVerificationErrorImpl _value,
+      $Res Function(_$OtpVerificationErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1305,7 +1308,7 @@ class __$$_OtpVerificationErrorCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_OtpVerificationError(
+    return _then(_$OtpVerificationErrorImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -1316,8 +1319,8 @@ class __$$_OtpVerificationErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OtpVerificationError implements _OtpVerificationError {
-  const _$_OtpVerificationError(this.message);
+class _$OtpVerificationErrorImpl implements _OtpVerificationError {
+  const _$OtpVerificationErrorImpl(this.message);
 
   @override
   final String message;
@@ -1328,10 +1331,10 @@ class _$_OtpVerificationError implements _OtpVerificationError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OtpVerificationError &&
+            other is _$OtpVerificationErrorImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -1341,9 +1344,10 @@ class _$_OtpVerificationError implements _OtpVerificationError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OtpVerificationErrorCopyWith<_$_OtpVerificationError> get copyWith =>
-      __$$_OtpVerificationErrorCopyWithImpl<_$_OtpVerificationError>(
-          this, _$identity);
+  _$$OtpVerificationErrorImplCopyWith<_$OtpVerificationErrorImpl>
+      get copyWith =>
+          __$$OtpVerificationErrorImplCopyWithImpl<_$OtpVerificationErrorImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1481,34 +1485,34 @@ class _$_OtpVerificationError implements _OtpVerificationError {
 
 abstract class _OtpVerificationError implements ForgetPasswordState {
   const factory _OtpVerificationError(final String message) =
-      _$_OtpVerificationError;
+      _$OtpVerificationErrorImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_OtpVerificationErrorCopyWith<_$_OtpVerificationError> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$OtpVerificationErrorImplCopyWith<_$OtpVerificationErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ResendingOtpCopyWith<$Res> {
-  factory _$$_ResendingOtpCopyWith(
-          _$_ResendingOtp value, $Res Function(_$_ResendingOtp) then) =
-      __$$_ResendingOtpCopyWithImpl<$Res>;
+abstract class _$$ResendingOtpImplCopyWith<$Res> {
+  factory _$$ResendingOtpImplCopyWith(
+          _$ResendingOtpImpl value, $Res Function(_$ResendingOtpImpl) then) =
+      __$$ResendingOtpImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ResendingOtpCopyWithImpl<$Res>
-    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$_ResendingOtp>
-    implements _$$_ResendingOtpCopyWith<$Res> {
-  __$$_ResendingOtpCopyWithImpl(
-      _$_ResendingOtp _value, $Res Function(_$_ResendingOtp) _then)
+class __$$ResendingOtpImplCopyWithImpl<$Res>
+    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$ResendingOtpImpl>
+    implements _$$ResendingOtpImplCopyWith<$Res> {
+  __$$ResendingOtpImplCopyWithImpl(
+      _$ResendingOtpImpl _value, $Res Function(_$ResendingOtpImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ResendingOtp implements _ResendingOtp {
-  const _$_ResendingOtp();
+class _$ResendingOtpImpl implements _ResendingOtp {
+  const _$ResendingOtpImpl();
 
   @override
   String toString() {
@@ -1516,9 +1520,9 @@ class _$_ResendingOtp implements _ResendingOtp {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ResendingOtp);
+        (other.runtimeType == runtimeType && other is _$ResendingOtpImpl);
   }
 
   @override
@@ -1659,24 +1663,24 @@ class _$_ResendingOtp implements _ResendingOtp {
 }
 
 abstract class _ResendingOtp implements ForgetPasswordState {
-  const factory _ResendingOtp() = _$_ResendingOtp;
+  const factory _ResendingOtp() = _$ResendingOtpImpl;
 }
 
 /// @nodoc
-abstract class _$$_OtpResendSuccessfulCopyWith<$Res> {
-  factory _$$_OtpResendSuccessfulCopyWith(_$_OtpResendSuccessful value,
-          $Res Function(_$_OtpResendSuccessful) then) =
-      __$$_OtpResendSuccessfulCopyWithImpl<$Res>;
+abstract class _$$OtpResendSuccessfulImplCopyWith<$Res> {
+  factory _$$OtpResendSuccessfulImplCopyWith(_$OtpResendSuccessfulImpl value,
+          $Res Function(_$OtpResendSuccessfulImpl) then) =
+      __$$OtpResendSuccessfulImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_OtpResendSuccessfulCopyWithImpl<$Res>
-    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$_OtpResendSuccessful>
-    implements _$$_OtpResendSuccessfulCopyWith<$Res> {
-  __$$_OtpResendSuccessfulCopyWithImpl(_$_OtpResendSuccessful _value,
-      $Res Function(_$_OtpResendSuccessful) _then)
+class __$$OtpResendSuccessfulImplCopyWithImpl<$Res>
+    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$OtpResendSuccessfulImpl>
+    implements _$$OtpResendSuccessfulImplCopyWith<$Res> {
+  __$$OtpResendSuccessfulImplCopyWithImpl(_$OtpResendSuccessfulImpl _value,
+      $Res Function(_$OtpResendSuccessfulImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1684,7 +1688,7 @@ class __$$_OtpResendSuccessfulCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_OtpResendSuccessful(
+    return _then(_$OtpResendSuccessfulImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -1695,8 +1699,8 @@ class __$$_OtpResendSuccessfulCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OtpResendSuccessful implements _OtpResendSuccessful {
-  const _$_OtpResendSuccessful(this.message);
+class _$OtpResendSuccessfulImpl implements _OtpResendSuccessful {
+  const _$OtpResendSuccessfulImpl(this.message);
 
   @override
   final String message;
@@ -1707,10 +1711,10 @@ class _$_OtpResendSuccessful implements _OtpResendSuccessful {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OtpResendSuccessful &&
+            other is _$OtpResendSuccessfulImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -1720,8 +1724,8 @@ class _$_OtpResendSuccessful implements _OtpResendSuccessful {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OtpResendSuccessfulCopyWith<_$_OtpResendSuccessful> get copyWith =>
-      __$$_OtpResendSuccessfulCopyWithImpl<_$_OtpResendSuccessful>(
+  _$$OtpResendSuccessfulImplCopyWith<_$OtpResendSuccessfulImpl> get copyWith =>
+      __$$OtpResendSuccessfulImplCopyWithImpl<_$OtpResendSuccessfulImpl>(
           this, _$identity);
 
   @override
@@ -1860,29 +1864,29 @@ class _$_OtpResendSuccessful implements _OtpResendSuccessful {
 
 abstract class _OtpResendSuccessful implements ForgetPasswordState {
   const factory _OtpResendSuccessful(final String message) =
-      _$_OtpResendSuccessful;
+      _$OtpResendSuccessfulImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_OtpResendSuccessfulCopyWith<_$_OtpResendSuccessful> get copyWith =>
+  _$$OtpResendSuccessfulImplCopyWith<_$OtpResendSuccessfulImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_OtpResendErrorCopyWith<$Res> {
-  factory _$$_OtpResendErrorCopyWith(
-          _$_OtpResendError value, $Res Function(_$_OtpResendError) then) =
-      __$$_OtpResendErrorCopyWithImpl<$Res>;
+abstract class _$$OtpResendErrorImplCopyWith<$Res> {
+  factory _$$OtpResendErrorImplCopyWith(_$OtpResendErrorImpl value,
+          $Res Function(_$OtpResendErrorImpl) then) =
+      __$$OtpResendErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_OtpResendErrorCopyWithImpl<$Res>
-    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$_OtpResendError>
-    implements _$$_OtpResendErrorCopyWith<$Res> {
-  __$$_OtpResendErrorCopyWithImpl(
-      _$_OtpResendError _value, $Res Function(_$_OtpResendError) _then)
+class __$$OtpResendErrorImplCopyWithImpl<$Res>
+    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$OtpResendErrorImpl>
+    implements _$$OtpResendErrorImplCopyWith<$Res> {
+  __$$OtpResendErrorImplCopyWithImpl(
+      _$OtpResendErrorImpl _value, $Res Function(_$OtpResendErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1890,7 +1894,7 @@ class __$$_OtpResendErrorCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_OtpResendError(
+    return _then(_$OtpResendErrorImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -1901,8 +1905,8 @@ class __$$_OtpResendErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OtpResendError implements _OtpResendError {
-  const _$_OtpResendError(this.message);
+class _$OtpResendErrorImpl implements _OtpResendError {
+  const _$OtpResendErrorImpl(this.message);
 
   @override
   final String message;
@@ -1913,10 +1917,10 @@ class _$_OtpResendError implements _OtpResendError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OtpResendError &&
+            other is _$OtpResendErrorImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -1926,8 +1930,9 @@ class _$_OtpResendError implements _OtpResendError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OtpResendErrorCopyWith<_$_OtpResendError> get copyWith =>
-      __$$_OtpResendErrorCopyWithImpl<_$_OtpResendError>(this, _$identity);
+  _$$OtpResendErrorImplCopyWith<_$OtpResendErrorImpl> get copyWith =>
+      __$$OtpResendErrorImplCopyWithImpl<_$OtpResendErrorImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2064,34 +2069,34 @@ class _$_OtpResendError implements _OtpResendError {
 }
 
 abstract class _OtpResendError implements ForgetPasswordState {
-  const factory _OtpResendError(final String message) = _$_OtpResendError;
+  const factory _OtpResendError(final String message) = _$OtpResendErrorImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_OtpResendErrorCopyWith<_$_OtpResendError> get copyWith =>
+  _$$OtpResendErrorImplCopyWith<_$OtpResendErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_CreatingPasswordCopyWith<$Res> {
-  factory _$$_CreatingPasswordCopyWith(
-          _$_CreatingPassword value, $Res Function(_$_CreatingPassword) then) =
-      __$$_CreatingPasswordCopyWithImpl<$Res>;
+abstract class _$$CreatingPasswordImplCopyWith<$Res> {
+  factory _$$CreatingPasswordImplCopyWith(_$CreatingPasswordImpl value,
+          $Res Function(_$CreatingPasswordImpl) then) =
+      __$$CreatingPasswordImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_CreatingPasswordCopyWithImpl<$Res>
-    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$_CreatingPassword>
-    implements _$$_CreatingPasswordCopyWith<$Res> {
-  __$$_CreatingPasswordCopyWithImpl(
-      _$_CreatingPassword _value, $Res Function(_$_CreatingPassword) _then)
+class __$$CreatingPasswordImplCopyWithImpl<$Res>
+    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$CreatingPasswordImpl>
+    implements _$$CreatingPasswordImplCopyWith<$Res> {
+  __$$CreatingPasswordImplCopyWithImpl(_$CreatingPasswordImpl _value,
+      $Res Function(_$CreatingPasswordImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_CreatingPassword implements _CreatingPassword {
-  const _$_CreatingPassword();
+class _$CreatingPasswordImpl implements _CreatingPassword {
+  const _$CreatingPasswordImpl();
 
   @override
   String toString() {
@@ -2099,9 +2104,9 @@ class _$_CreatingPassword implements _CreatingPassword {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_CreatingPassword);
+        (other.runtimeType == runtimeType && other is _$CreatingPasswordImpl);
   }
 
   @override
@@ -2242,24 +2247,25 @@ class _$_CreatingPassword implements _CreatingPassword {
 }
 
 abstract class _CreatingPassword implements ForgetPasswordState {
-  const factory _CreatingPassword() = _$_CreatingPassword;
+  const factory _CreatingPassword() = _$CreatingPasswordImpl;
 }
 
 /// @nodoc
-abstract class _$$_CreatePasswordSuccessCopyWith<$Res> {
-  factory _$$_CreatePasswordSuccessCopyWith(_$_CreatePasswordSuccess value,
-          $Res Function(_$_CreatePasswordSuccess) then) =
-      __$$_CreatePasswordSuccessCopyWithImpl<$Res>;
+abstract class _$$CreatePasswordSuccessImplCopyWith<$Res> {
+  factory _$$CreatePasswordSuccessImplCopyWith(
+          _$CreatePasswordSuccessImpl value,
+          $Res Function(_$CreatePasswordSuccessImpl) then) =
+      __$$CreatePasswordSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_CreatePasswordSuccessCopyWithImpl<$Res>
-    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$_CreatePasswordSuccess>
-    implements _$$_CreatePasswordSuccessCopyWith<$Res> {
-  __$$_CreatePasswordSuccessCopyWithImpl(_$_CreatePasswordSuccess _value,
-      $Res Function(_$_CreatePasswordSuccess) _then)
+class __$$CreatePasswordSuccessImplCopyWithImpl<$Res>
+    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$CreatePasswordSuccessImpl>
+    implements _$$CreatePasswordSuccessImplCopyWith<$Res> {
+  __$$CreatePasswordSuccessImplCopyWithImpl(_$CreatePasswordSuccessImpl _value,
+      $Res Function(_$CreatePasswordSuccessImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2267,7 +2273,7 @@ class __$$_CreatePasswordSuccessCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_CreatePasswordSuccess(
+    return _then(_$CreatePasswordSuccessImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -2278,8 +2284,8 @@ class __$$_CreatePasswordSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CreatePasswordSuccess implements _CreatePasswordSuccess {
-  const _$_CreatePasswordSuccess(this.message);
+class _$CreatePasswordSuccessImpl implements _CreatePasswordSuccess {
+  const _$CreatePasswordSuccessImpl(this.message);
 
   @override
   final String message;
@@ -2290,10 +2296,10 @@ class _$_CreatePasswordSuccess implements _CreatePasswordSuccess {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CreatePasswordSuccess &&
+            other is _$CreatePasswordSuccessImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -2303,9 +2309,9 @@ class _$_CreatePasswordSuccess implements _CreatePasswordSuccess {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CreatePasswordSuccessCopyWith<_$_CreatePasswordSuccess> get copyWith =>
-      __$$_CreatePasswordSuccessCopyWithImpl<_$_CreatePasswordSuccess>(
-          this, _$identity);
+  _$$CreatePasswordSuccessImplCopyWith<_$CreatePasswordSuccessImpl>
+      get copyWith => __$$CreatePasswordSuccessImplCopyWithImpl<
+          _$CreatePasswordSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2443,29 +2449,29 @@ class _$_CreatePasswordSuccess implements _CreatePasswordSuccess {
 
 abstract class _CreatePasswordSuccess implements ForgetPasswordState {
   const factory _CreatePasswordSuccess(final String message) =
-      _$_CreatePasswordSuccess;
+      _$CreatePasswordSuccessImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_CreatePasswordSuccessCopyWith<_$_CreatePasswordSuccess> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CreatePasswordSuccessImplCopyWith<_$CreatePasswordSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_CreatePasswordErrorCopyWith<$Res> {
-  factory _$$_CreatePasswordErrorCopyWith(_$_CreatePasswordError value,
-          $Res Function(_$_CreatePasswordError) then) =
-      __$$_CreatePasswordErrorCopyWithImpl<$Res>;
+abstract class _$$CreatePasswordErrorImplCopyWith<$Res> {
+  factory _$$CreatePasswordErrorImplCopyWith(_$CreatePasswordErrorImpl value,
+          $Res Function(_$CreatePasswordErrorImpl) then) =
+      __$$CreatePasswordErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_CreatePasswordErrorCopyWithImpl<$Res>
-    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$_CreatePasswordError>
-    implements _$$_CreatePasswordErrorCopyWith<$Res> {
-  __$$_CreatePasswordErrorCopyWithImpl(_$_CreatePasswordError _value,
-      $Res Function(_$_CreatePasswordError) _then)
+class __$$CreatePasswordErrorImplCopyWithImpl<$Res>
+    extends _$ForgetPasswordStateCopyWithImpl<$Res, _$CreatePasswordErrorImpl>
+    implements _$$CreatePasswordErrorImplCopyWith<$Res> {
+  __$$CreatePasswordErrorImplCopyWithImpl(_$CreatePasswordErrorImpl _value,
+      $Res Function(_$CreatePasswordErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2473,7 +2479,7 @@ class __$$_CreatePasswordErrorCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_CreatePasswordError(
+    return _then(_$CreatePasswordErrorImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -2484,8 +2490,8 @@ class __$$_CreatePasswordErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CreatePasswordError implements _CreatePasswordError {
-  const _$_CreatePasswordError(this.message);
+class _$CreatePasswordErrorImpl implements _CreatePasswordError {
+  const _$CreatePasswordErrorImpl(this.message);
 
   @override
   final String message;
@@ -2496,10 +2502,10 @@ class _$_CreatePasswordError implements _CreatePasswordError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CreatePasswordError &&
+            other is _$CreatePasswordErrorImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -2509,8 +2515,8 @@ class _$_CreatePasswordError implements _CreatePasswordError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CreatePasswordErrorCopyWith<_$_CreatePasswordError> get copyWith =>
-      __$$_CreatePasswordErrorCopyWithImpl<_$_CreatePasswordError>(
+  _$$CreatePasswordErrorImplCopyWith<_$CreatePasswordErrorImpl> get copyWith =>
+      __$$CreatePasswordErrorImplCopyWithImpl<_$CreatePasswordErrorImpl>(
           this, _$identity);
 
   @override
@@ -2649,10 +2655,10 @@ class _$_CreatePasswordError implements _CreatePasswordError {
 
 abstract class _CreatePasswordError implements ForgetPasswordState {
   const factory _CreatePasswordError(final String message) =
-      _$_CreatePasswordError;
+      _$CreatePasswordErrorImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_CreatePasswordErrorCopyWith<_$_CreatePasswordError> get copyWith =>
+  _$$CreatePasswordErrorImplCopyWith<_$CreatePasswordErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

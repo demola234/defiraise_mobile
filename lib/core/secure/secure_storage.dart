@@ -12,12 +12,6 @@ abstract class SecureStorage {
   clearAccessToken(String hiveKey);
 }
 
-final secureStorageProvider = Provider<SecureStorage>((ref) {
-  final flutterSecureStorage = ref.watch(flutterSecureStorageProvider);
-
-  return ISecureStorage(flutterSecureStorage);
-});
-
 class ISecureStorage implements SecureStorage {
   final FlutterSecureStorage _flutterSecureStorage;
 

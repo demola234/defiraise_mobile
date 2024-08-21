@@ -6,14 +6,14 @@ part of 'base_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_BaseEntity _$$_BaseEntityFromJson(Map<String, dynamic> json) =>
-    _$_BaseEntity(
+_$BaseEntityImpl _$$BaseEntityImplFromJson(Map<String, dynamic> json) =>
+    _$BaseEntityImpl(
       data: json['data'] as String?,
       message: json['message'] as String,
-      status: json['status'] as int,
+      status: (json['status'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$_BaseEntityToJson(_$_BaseEntity instance) =>
+Map<String, dynamic> _$$BaseEntityImplToJson(_$BaseEntityImpl instance) =>
     <String, dynamic>{
       'data': instance.data,
       'message': instance.message,

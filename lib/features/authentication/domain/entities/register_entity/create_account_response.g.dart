@@ -6,25 +6,25 @@ part of 'create_account_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CreateAccountResponse _$$_CreateAccountResponseFromJson(
+_$CreateAccountResponseImpl _$$CreateAccountResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$_CreateAccountResponse(
+    _$CreateAccountResponseImpl(
       data: json['data'] == null
           ? null
           : Data.fromJson(json['data'] as Map<String, dynamic>),
       message: json['message'] ?? '',
-      status: json['status'] as int,
+      status: (json['status'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$_CreateAccountResponseToJson(
-        _$_CreateAccountResponse instance) =>
+Map<String, dynamic> _$$CreateAccountResponseImplToJson(
+        _$CreateAccountResponseImpl instance) =>
     <String, dynamic>{
       'data': instance.data,
       'message': instance.message,
       'status': instance.status,
     };
 
-_$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
+_$DataImpl _$$DataImplFromJson(Map<String, dynamic> json) => _$DataImpl(
       username: json['username'] ?? '',
       email: json['email'] ?? '',
       passwordChangedAt: json['passwordChangedAt'] == null
@@ -37,7 +37,8 @@ _$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
       balance: json['balance'] ?? '',
     );
 
-Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{
+Map<String, dynamic> _$$DataImplToJson(_$DataImpl instance) =>
+    <String, dynamic>{
       'username': instance.username,
       'email': instance.email,
       'passwordChangedAt': instance.passwordChangedAt?.toIso8601String(),
