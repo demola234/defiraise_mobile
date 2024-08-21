@@ -21,7 +21,7 @@ DefiFundr is a decentralized crowdfunding platform built on the Ethereum blockch
 <!-- Videos -->
 ## Demo
 
-<img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/DefiFundr3.gif" width="270" height="600"> <img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/DefiFundr3.gif" width="270" height="600"> 
+<img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/DefiFundr3.gif" width="270" height="600"> <img src="https://raw.githubusercontent.com/demola234/defiraise_mobile/main/screenshots/DefiFundr.gif" width="270" height="600"> 
 
 
 ## Installation
